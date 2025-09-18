@@ -1,0 +1,254 @@
+profiles:
+
+  # 1
+  core-minimal:
+    include:
+      - cilium
+      - cert-manager
+      - external-dns
+      - sealed-secrets
+      - metrics-server
+      - kube-state-metrics
+      - node-exporter
+    choose_one:
+      ingress: [nginx-ingress-controller, kong, apisix, contour, envoy-gateway, haproxy]
+      gitops: [argo-cd, flux]
+    optional:
+      - metallb
+      - vault
+
+  # 2
+  core-enterprise:
+    include:
+      - cilium
+      - vault
+      - sealed-secrets
+      - cert-manager
+      - external-dns
+      - metallb
+      - kubernetes-event-exporter
+      - kube-state-metrics
+      - node-exporter
+      - oauth2-proxy
+      - pinniped
+      - harbor
+    choose_one:
+      gitops: [argo-cd, flux]
+
+  # 3
+  edge-nginx:
+    include:
+      - nginx-ingress-controller
+      - cert-manager
+      - external-dns
+      - oauth2-proxy
+    optional:
+      - keycloak
+    conflicts_with:
+      - kong
+      - apisix
+      - contour
+      - envoy-gateway
+      - haproxy
+
+  # 4
+  edge-kong:
+    include:
+      - kong
+      - cert-manager
+      - external-dns
+      - oauth2-proxy
+    optional:
+      - keycloak
+    conflicts_with:
+      - nginx-ingress-controller
+      - apisix
+      - contour
+      - envoy-gateway
+      - haproxy
+
+  # 5
+  observability-grafana:
+    include:
+      - kube-prometheus
+      - grafana
+      - grafana-alloy
+      - grafana-loki
+      - grafana-tempo
+    choose_one:
+      log_agent: [fluent-bit, fluentd]
+      lts_metrics: [thanos, victoriametrics, grafana-mimir]
+    conflicts_with:
+      - elasticsearch
+      - kibana
+      - logstash
+
+  # 6
+  observability-elastic:
+    include:
+      - elasticsearch
+      - kibana
+      - logstash
+    choose_one:
+      log_agent: [fluent-bit, fluentd]
+    optional:
+      - jaeger
+    conflicts_with:
+      - grafana-loki
+      - grafana-tempo
+      - grafana-mimir
+      - thanos
+      - victoriametrics
+
+  # 7
+  tracing:
+    choose_one:
+      tracer: [grafana-tempo, jaeger, zipkin]
+    optional:
+      - grafana
+      - kube-prometheus
+
+  # 8
+  data-postgresql-ha:
+    include:
+      - postgresql-ha
+    optional:
+      - cloudnative-pg
+      - postgresql
+    conflicts_with:
+      - mysql
+      - mariadb
+      - mariadb-galera
+
+  # 9
+  data-mysql:
+    include:
+      - mysql
+    optional:
+      - mariadb
+      - mariadb-galera
+    conflicts_with:
+      - postgresql
+      - postgresql-ha
+      - cloudnative-pg
+
+  # 10
+  data-clickhouse:
+    include:
+      - clickhouse
+    optional:
+      - clickhouse-operator
+
+  # 11
+  data-cassandra-scylla:
+    choose_one:
+      wide_column: [cassandra, scylladb]
+    optional:
+      - janusgraph
+    notes: "JanusGraph typically also needs a search backend (elasticsearch or opensearch)."
+
+  # 12
+  object-storage-minio:
+    include:
+      - minio
+    optional:
+      - minio-operator
+    alternatives:
+      - seaweedfs
+
+  # 13
+  streaming-kafka:
+    include:
+      - kafka
+      - zookeeper
+      - schema-registry
+    optional:
+      - nats
+    notes: "Use NATS if you need lightweight pub/sub alongside Kafka."
+
+  # 14
+  mq-rabbitmq:
+    choose_one:
+      mq: [rabbitmq, rabbitmq-cluster-operator]
+    optional:
+      - redis
+      - valkey
+
+  # 15
+  lakehouse-iceberg:
+    include:
+      - spark
+      - flink
+      - dremio
+      - nessie
+    requires:
+      - minio
+    optional:
+      - clickhouse
+    notes: "MinIO provides S3 for Iceberg; Dremio for queries; Spark/Flink for processing."
+
+  # 16
+  mlops-light:
+    include:
+      - jupyterhub
+      - mlflow
+      - minio
+    optional:
+      - kube-prometheus
+      - grafana
+    notes: "Back MLflow artifacts to MinIO (S3)."
+
+  # 17
+  mlops-gpu:
+    include:
+      - jupyterhub
+      - mlflow
+      - kuberay
+      - pytorch
+      - deepspeed
+    requires:
+      - minio
+    optional:
+      - milvus
+      - etcd
+    notes: "Milvus needs etcd + S3 (MinIO). Ensure GPU nodes/taints exist."
+
+  # 18
+  siem-elk:
+    include:
+      - elasticsearch
+      - kibana
+      - logstash
+    choose_one:
+      shipper: [fluent-bit, fluentd]
+    optional:
+      - jaeger
+      - apisix
+    notes: "Classic ELK-based SIEM/observability."
+
+  # 19
+  webapps-suite:
+    include:
+      - keycloak
+      - oauth2-proxy
+      - postgresql
+      - redis
+    choose_many:
+      apps: [wordpress, drupal, ghost, discourse, redmine, moodle, odoo, appsmith]
+    requires:
+      - ingress
+      - cert-manager
+    notes: "Put apps behind SSO; swap DB/cache to taste."
+
+  # 20
+  ci-cd-gitops:
+    include:
+      - harbor
+      - argo-workflows
+      - gitea
+    choose_one:
+      gitops: [argo-cd, flux]
+      ci: [jenkins, gitlab-runner, concourse]
+    optional:
+      - chainloop
+    notes: "Harbor for images; ArgoCD/Flux for GitOps; Jenkins/GitLab Runner/Concourse for CI."
