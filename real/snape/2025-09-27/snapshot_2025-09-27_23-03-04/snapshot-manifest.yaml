@@ -1,0 +1,62 @@
+apiVersion: snapshot.kwok.io/v1
+kind: ClusterSnapshot
+metadata:
+  name: kwok-snapshot-2025-09-27_23-03-04
+  creationTimestamp: '2025-09-27T23:03:05.806487'
+spec:
+  timestamp: 2025-09-27_23-03-04
+  clusterInfo:
+    cluster_info: 'Kubernetes control plane is running at http://127.0.0.1:8080
+
+
+      To further debug and diagnose cluster problems, use ''kubectl cluster-info dump''.
+
+      '
+    kubectl_version:
+      clientVersion:
+        buildDate: '2025-07-15T18:06:34Z'
+        compiler: gc
+        gitCommit: 80779bd6ff08b451e1c165a338a7b69351e9b0b8
+        gitTreeState: clean
+        gitVersion: v1.33.3
+        goVersion: go1.24.4
+        major: '1'
+        minor: '33'
+        platform: linux/amd64
+      kustomizeVersion: v5.6.0
+    nodes_summary: 'NAME                     STATUS   ROLES                  AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE    KERNEL-VERSION   CONTAINER-RUNTIME
+
+      master-1                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      master-2                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      master-3                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      worker-backend-tier-1    Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      worker-backend-tier-2    Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      worker-database-tier-1   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      worker-frontend-tier-1   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      worker-frontend-tier-2   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>
+
+      '
+  resourceCounts:
+    nodes: 8
+    pods: 8
+    services: 6
+    deployments: 0
+    replicasets: 0
+    configmaps: 6
+    secrets: 2
+    persistentvolumes: 32
+    persistentvolumeclaims: 20
+    networkpolicies: 10
+    serviceaccounts: 8
+    roles: 7
+    rolebindings: 7
+    clusterroles: 62
+    clusterrolebindings: 43
+  totalResources: 219

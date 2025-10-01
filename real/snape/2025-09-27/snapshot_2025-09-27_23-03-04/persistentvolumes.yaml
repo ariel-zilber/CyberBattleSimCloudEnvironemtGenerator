@@ -1,0 +1,929 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-backend-tier-zone-a-1"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"20Gi"},"claimRef":{"name":"pvc-backend-tier-zone-a-1"},"hostPath":{"path":"/mnt/data/pv-backend-tier-zone-a-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-backend-tier-zone-a-1
+    resourceVersion: '441'
+    uid: cafdc009-3ba9-4c97-9f49-3d3afe14a543
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      name: pvc-backend-tier-zone-a-1
+    hostPath:
+      path: /mnt/data/pv-backend-tier-zone-a-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-backend-tier-zone-a-2"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"20Gi"},"claimRef":{"name":"pvc-backend-tier-zone-a-2"},"hostPath":{"path":"/mnt/data/pv-backend-tier-zone-a-2"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-backend-tier-zone-a-2
+    resourceVersion: '444'
+    uid: 46c93df3-0965-493e-82c6-6a7e3563eca0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      name: pvc-backend-tier-zone-a-2
+    hostPath:
+      path: /mnt/data/pv-backend-tier-zone-a-2
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-backend-tier-zone-b-1"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"20Gi"},"claimRef":{"name":"pvc-backend-tier-zone-b-1"},"hostPath":{"path":"/mnt/data/pv-backend-tier-zone-b-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-backend-tier-zone-b-1
+    resourceVersion: '446'
+    uid: 495cd6ae-610d-4c0a-8425-bba04fbe8356
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      name: pvc-backend-tier-zone-b-1
+    hostPath:
+      path: /mnt/data/pv-backend-tier-zone-b-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-backend-tier-zone-c-1"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"20Gi"},"claimRef":{"name":"pvc-backend-tier-zone-c-1"},"hostPath":{"path":"/mnt/data/pv-backend-tier-zone-c-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-backend-tier-zone-c-1
+    resourceVersion: '450'
+    uid: 0a4ff8ee-fd02-40f1-a38b-d92358a14a64
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      name: pvc-backend-tier-zone-c-1
+    hostPath:
+      path: /mnt/data/pv-backend-tier-zone-c-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-database-tier-zone-a-1"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"50Gi"},"claimRef":{"name":"pvc-database-tier-zone-a-1"},"hostPath":{"path":"/mnt/data/pv-database-tier-zone-a-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-database-tier-zone-a-1
+    resourceVersion: '452'
+    uid: 109385c5-d7ad-47db-b8e1-19789459611a
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 50Gi
+    claimRef:
+      name: pvc-database-tier-zone-a-1
+    hostPath:
+      path: /mnt/data/pv-database-tier-zone-a-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-database-tier-zone-b-1"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"50Gi"},"claimRef":{"name":"pvc-database-tier-zone-b-1"},"hostPath":{"path":"/mnt/data/pv-database-tier-zone-b-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-database-tier-zone-b-1
+    resourceVersion: '454'
+    uid: f42e7a78-dc22-446f-b7df-c9a9bef2e152
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 50Gi
+    claimRef:
+      name: pvc-database-tier-zone-b-1
+    hostPath:
+      path: /mnt/data/pv-database-tier-zone-b-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:59Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-data-example-elasticsearch-data-0
+    resourceVersion: '927'
+    uid: 1930b66a-2590-4d5c-8eee-437c278a6a5a
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-example-elasticsearch-data-1
+      namespace: default
+      resourceVersion: '790'
+      uid: 177f2be8-ac27-43d5-b991-2bc224b0c2d1
+    hostPath:
+      path: /mnt/kube-storage/pv-default-data-example-elasticsearch-data-0
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:59Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-data-example-elasticsearch-data-1
+    resourceVersion: '935'
+    uid: dc124c51-5c47-4e35-b532-032d66cb69f5
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-example-elasticsearch-master-0
+      namespace: default
+      resourceVersion: '805'
+      uid: 673c792f-0aec-404b-903b-5da7af8f8340
+    hostPath:
+      path: /mnt/kube-storage/pv-default-data-example-elasticsearch-data-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:59Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-data-example-elasticsearch-master-0
+    resourceVersion: '921'
+    uid: 11080f92-4a10-4395-bd7d-215f4fc45937
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-example-elasticsearch-data-0
+      namespace: default
+      resourceVersion: '766'
+      uid: 3ac12fe6-4794-44ae-86d8-4bad24effec4
+    hostPath:
+      path: /mnt/kube-storage/pv-default-data-example-elasticsearch-master-0
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:59Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-data-example-elasticsearch-master-1
+    resourceVersion: '931'
+    uid: 775949c5-6f92-4bad-9541-644808031605
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: redis-data-example-redis-replicas-2
+      namespace: default
+      resourceVersion: '677'
+      uid: 2a0ac133-8ea7-4cd8-ad3d-c2c3ad3ccaa1
+    hostPath:
+      path: /mnt/kube-storage/pv-default-data-example-elasticsearch-master-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:13Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-backend-tier-zone-a-1
+    resourceVersion: '626'
+    uid: 036bf3af-5187-4c2c-a551-5add6cdc78e8
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-backend-tier-zone-a-2
+      namespace: default
+      resourceVersion: '468'
+      uid: f9a66378-2a34-4b4f-9856-300716a46d95
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-backend-tier-zone-a-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:13Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-backend-tier-zone-a-2
+    resourceVersion: '660'
+    uid: 92f50787-c608-4f1f-bad1-f552535c7290
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-backend-tier-zone-c-1
+      namespace: default
+      resourceVersion: '473'
+      uid: bee94130-c9bf-43e3-a360-bc007818d7c7
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-backend-tier-zone-a-2
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:13Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-backend-tier-zone-b-1
+    resourceVersion: '656'
+    uid: bd9f4e7c-8cba-4ed1-861e-056df95363c9
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-backend-tier-zone-a-1
+      namespace: default
+      resourceVersion: '467'
+      uid: a92b4109-6395-4298-81ec-6d618f9af93b
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-backend-tier-zone-b-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-backend-tier-zone-c-1
+    resourceVersion: '622'
+    uid: ffdc1b72-5e5a-4a89-b9c6-f3039840e9da
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 20Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-backend-tier-zone-b-1
+      namespace: default
+      resourceVersion: '471'
+      uid: 376b3f53-066b-4db8-9f4f-7960e8cd72da
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-backend-tier-zone-c-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-database-tier-zone-a-1
+    resourceVersion: '630'
+    uid: 32d07bf9-8e9a-45e1-8550-ab1b3f4e8281
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 50Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-database-tier-zone-b-1
+      namespace: default
+      resourceVersion: '477'
+      uid: 4152ef4a-e0f4-4d51-bec9-946696e3e8d8
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-database-tier-zone-a-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-database-tier-zone-b-1
+    resourceVersion: '648'
+    uid: e1096eee-574a-4003-90e2-bd8fbdb81a70
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 50Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-database-tier-zone-a-1
+      namespace: default
+      resourceVersion: '475'
+      uid: b6885969-2b6d-4a69-9634-13a5fce1e380
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-database-tier-zone-b-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-a-1
+    resourceVersion: '634'
+    uid: 4201141a-3132-4134-bec0-c02d39cf5290
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-c-2
+      namespace: default
+      resourceVersion: '489'
+      uid: d6b43cf4-44b6-4870-ae0d-f0f59aacc8d2
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-a-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-a-2
+    resourceVersion: '610'
+    uid: 21a49381-c6cf-41c2-899e-e3c9736e7f34
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-a-2
+      namespace: default
+      resourceVersion: '481'
+      uid: fbee926a-f5f0-43e8-a506-a78988b4f064
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-a-2
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-b-1
+    resourceVersion: '614'
+    uid: 9cfdc208-f891-458e-882d-5f012dfa0f12
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-b-1
+      namespace: default
+      resourceVersion: '483'
+      uid: bd2e1507-9116-44a4-bdf9-84bf70a0eda8
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-b-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-b-2
+    resourceVersion: '618'
+    uid: b00fabef-500a-4514-8de8-40073b2ea2e4
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-c-1
+      namespace: default
+      resourceVersion: '487'
+      uid: 58ff96bb-c151-41d8-8538-cd80c0ecc64b
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-b-2
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-c-1
+    resourceVersion: '638'
+    uid: 29d29a13-e51b-44d9-b8d6-8dbadfbbf159
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-b-2
+      namespace: default
+      resourceVersion: '485'
+      uid: 595d3b65-ad06-4ccc-b57c-6107e077002c
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-c-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-pvc-frontend-tier-zone-c-2
+    resourceVersion: '652'
+    uid: b160ad69-9895-4ea0-84c2-00e4c9174f9d
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pvc-frontend-tier-zone-a-1
+      namespace: default
+      resourceVersion: '479'
+      uid: 75d7bd43-2cad-4334-a6d4-8005241298ac
+    hostPath:
+      path: /mnt/kube-storage/pv-default-pvc-frontend-tier-zone-c-2
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:57:04Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-redis-data-example-redis-master-0
+    resourceVersion: '396'
+    uid: e1ca72c6-0fb5-4b64-a18a-2ef2bb86733e
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: redis-data-example-redis-replicas-0
+      namespace: default
+      resourceVersion: '333'
+      uid: 8b697a9e-45e4-4da1-80fe-6af456f9bd26
+    hostPath:
+      path: /mnt/kube-storage/pv-default-redis-data-example-redis-master-0
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:57:04Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-redis-data-example-redis-replicas-0
+    resourceVersion: '392'
+    uid: b9acfb52-413f-4481-abad-2dbcbb941d4c
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: redis-data-example-redis-master-0
+      namespace: default
+      resourceVersion: '332'
+      uid: d5a74337-0547-4d7c-9daa-cf8b1e3ea86e
+    hostPath:
+      path: /mnt/kube-storage/pv-default-redis-data-example-redis-replicas-0
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:14Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-redis-data-example-redis-replicas-1
+    resourceVersion: '642'
+    uid: 5948b465-12ac-4b07-a190-e5ff37e7a3cc
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: redis-data-example-redis-replicas-1
+      namespace: default
+      resourceVersion: '423'
+      uid: 49773105-1433-4186-aad6-d00039b97a1d
+    hostPath:
+      path: /mnt/kube-storage/pv-default-redis-data-example-redis-replicas-1
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.kubernetes.io/bound-by-controller: 'yes'
+    creationTimestamp: '2025-09-27T19:58:59Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-default-redis-data-example-redis-replicas-2
+    resourceVersion: '939'
+    uid: 4f6665bd-16ad-4d71-ade0-8e8b370f2157
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-example-elasticsearch-master-1
+      namespace: default
+      resourceVersion: '825'
+      uid: 5c90f6c4-8570-4e47-a4a9-a183bb20f187
+    hostPath:
+      path: /mnt/kube-storage/pv-default-redis-data-example-redis-replicas-2
+      type: DirectoryOrCreate
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-a-1"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-a-1"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-a-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:29Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-a-1
+    resourceVersion: '456'
+    uid: 5acfd875-cbbe-42ed-928c-104708784e9b
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-a-1
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-a-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-a-2"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-a-2"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-a-2"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:30Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-a-2
+    resourceVersion: '458'
+    uid: 22a10575-d273-4f29-a67b-f680b1a2abd9
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-a-2
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-a-2
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-b-1"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-b-1"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-b-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:30Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-b-1
+    resourceVersion: '460'
+    uid: 530e2a34-566c-4a0c-a1aa-d21943257f7e
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-b-1
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-b-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-b-2"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-b-2"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-b-2"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:30Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-b-2
+    resourceVersion: '462'
+    uid: 47afcf83-441c-43c3-bdc6-4455d54470dc
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-b-2
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-b-2
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-c-1"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-c-1"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-c-1"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:30Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-c-1
+    resourceVersion: '464'
+    uid: 2b45dbad-a66c-4dc0-801e-071cf89a09f0
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-c-1
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-c-1
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pv-frontend-tier-zone-c-2"},"spec":{"accessModes":["ReadWriteMany"],"capacity":{"storage":"10Gi"},"claimRef":{"name":"pvc-frontend-tier-zone-c-2"},"hostPath":{"path":"/mnt/data/pv-frontend-tier-zone-c-2"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
+
+        '
+    creationTimestamp: '2025-09-27T19:57:30Z'
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pv-frontend-tier-zone-c-2
+    resourceVersion: '466'
+    uid: ab08fea9-6d5e-4188-9dd8-63f74149d80c
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 10Gi
+    claimRef:
+      name: pvc-frontend-tier-zone-c-2
+    hostPath:
+      path: /mnt/data/pv-frontend-tier-zone-c-2
+      type: ''
+    persistentVolumeReclaimPolicy: Retain
+    volumeMode: Filesystem
+  status:
+    phase: Available
+kind: List
+metadata:
+  resourceVersion: ''

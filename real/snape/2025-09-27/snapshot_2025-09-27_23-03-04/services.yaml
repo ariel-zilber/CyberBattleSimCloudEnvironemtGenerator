@@ -1,0 +1,252 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    labels:
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch
+    namespace: default
+    resourceVersion: '753'
+    uid: 3535b716-c79f-4326-b307-23c78c8d639b
+  spec:
+    clusterIP: 10.0.0.49
+    clusterIPs:
+    - 10.0.0.49
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: tcp-rest-api
+      port: 9200
+      protocol: TCP
+      targetPort: rest-api
+    - name: tcp-transport
+      port: 9300
+      protocol: TCP
+      targetPort: 9300
+    selector:
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/name: elasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    labels:
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-coordinating-hl
+    namespace: default
+    resourceVersion: '740'
+    uid: bbdf7f80-d758-4f60-bea8-4cec30f25889
+  spec:
+    clusterIP: None
+    clusterIPs:
+    - None
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: tcp-rest-api
+      port: 9200
+      protocol: TCP
+      targetPort: rest-api
+    - name: tcp-transport
+      port: 9300
+      protocol: TCP
+      targetPort: transport
+    publishNotReadyAddresses: true
+    selector:
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/name: elasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    labels:
+      app.kubernetes.io/component: data
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-data-hl
+    namespace: default
+    resourceVersion: '743'
+    uid: 5bbe6068-a88e-4b3a-86e2-ac8165ae7d14
+  spec:
+    clusterIP: None
+    clusterIPs:
+    - None
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: tcp-rest-api
+      port: 9200
+      protocol: TCP
+      targetPort: rest-api
+    - name: tcp-transport
+      port: 9300
+      protocol: TCP
+      targetPort: transport
+    publishNotReadyAddresses: true
+    selector:
+      app.kubernetes.io/component: data
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/name: elasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    labels:
+      app.kubernetes.io/component: ingest
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-ingest-hl
+    namespace: default
+    resourceVersion: '746'
+    uid: 05ee01de-e871-4c0f-b08f-a0fbc48a45eb
+  spec:
+    clusterIP: None
+    clusterIPs:
+    - None
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: tcp-rest-api
+      port: 9200
+      protocol: TCP
+      targetPort: rest-api
+    - name: tcp-transport
+      port: 9300
+      protocol: TCP
+      targetPort: transport
+    publishNotReadyAddresses: true
+    selector:
+      app.kubernetes.io/component: ingest
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/name: elasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    labels:
+      app.kubernetes.io/component: master
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-master-hl
+    namespace: default
+    resourceVersion: '749'
+    uid: 687b3613-89f4-4e51-866b-f9902b98b388
+  spec:
+    clusterIP: None
+    clusterIPs:
+    - None
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: tcp-rest-api
+      port: 9200
+      protocol: TCP
+      targetPort: rest-api
+    - name: tcp-transport
+      port: 9300
+      protocol: TCP
+      targetPort: transport
+    publishNotReadyAddresses: true
+    selector:
+      app.kubernetes.io/component: master
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/name: elasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: '2025-09-27T19:56:29Z'
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: '217'
+    uid: d9a4cf87-741b-4fcf-b1a2-d0b42dfd3551
+  spec:
+    clusterIP: 10.0.0.1
+    clusterIPs:
+    - 10.0.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 32764
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ''

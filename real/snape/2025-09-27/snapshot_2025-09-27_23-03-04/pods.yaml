@@ -1,0 +1,2303 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-coordinating-
+    labels:
+      app: coordinating-only
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '0'
+      controller-revision-hash: example-elasticsearch-coordinating-5cb657c887
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-coordinating-0
+    name: example-elasticsearch-coordinating-0
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-coordinating
+      uid: 8865446b-0737-4516-aa11-f2921333422f
+    resourceVersion: '772'
+    uid: 3828a27e-2a92-4073-a5b4-91c35d07dca2
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-coordinating-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-coordinating-0
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-database-tier-1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-coordinating
+    serviceAccountName: example-elasticsearch-coordinating
+    subdomain: example-elasticsearch-coordinating-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: empty-dir
+    - emptyDir: {}
+      name: data
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:58:46Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    phase: Running
+    podIP: 10.0.0.4
+    podIPs:
+    - ip: 10.0.0.4
+    qosClass: Burstable
+    startTime: '2025-09-27T19:58:46Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-coordinating-
+    labels:
+      app: coordinating-only
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '1'
+      controller-revision-hash: example-elasticsearch-coordinating-5cb657c887
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-coordinating-1
+    name: example-elasticsearch-coordinating-1
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-coordinating
+      uid: 8865446b-0737-4516-aa11-f2921333422f
+    resourceVersion: '785'
+    uid: 6416fe76-65c0-49b4-b706-fac4f01dfad8
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-coordinating-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-coordinating-1
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: master-3
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-coordinating
+    serviceAccountName: example-elasticsearch-coordinating
+    subdomain: example-elasticsearch-coordinating-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: empty-dir
+    - emptyDir: {}
+      name: data
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:58:46Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    phase: Running
+    podIP: 10.0.0.5
+    podIPs:
+    - ip: 10.0.0.5
+    qosClass: Burstable
+    startTime: '2025-09-27T19:58:46Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-data-
+    labels:
+      app: data
+      app.kubernetes.io/component: data
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '0'
+      controller-revision-hash: example-elasticsearch-data-6556795f67
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-data-0
+    name: example-elasticsearch-data-0
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-data
+      uid: 37ca8dbf-3d38-4dbe-9eb6-7d221c159a9f
+    resourceVersion: '961'
+    uid: c079acee-1c26-48e3-ad34-9d70c457cd8c
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: data
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-data-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 1024m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 1536Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dirs
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-data-0
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 1536Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: master-2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-data
+    serviceAccountName: example-elasticsearch-data
+    subdomain: example-elasticsearch-data-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-example-elasticsearch-data-0
+    - emptyDir: {}
+      name: empty-dir
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:59:04Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    phase: Running
+    podIP: 10.0.0.1
+    podIPs:
+    - ip: 10.0.0.1
+    qosClass: Burstable
+    startTime: '2025-09-27T19:59:04Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-data-
+    labels:
+      app: data
+      app.kubernetes.io/component: data
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '1'
+      controller-revision-hash: example-elasticsearch-data-6556795f67
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-data-1
+    name: example-elasticsearch-data-1
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-data
+      uid: 37ca8dbf-3d38-4dbe-9eb6-7d221c159a9f
+    resourceVersion: '955'
+    uid: 767ac584-4279-4fa3-affb-8fa14bed051e
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: data
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-data-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 1024m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 1536Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dirs
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-data-1
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 1536Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-backend-tier-1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-data
+    serviceAccountName: example-elasticsearch-data
+    subdomain: example-elasticsearch-data-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-example-elasticsearch-data-1
+    - emptyDir: {}
+      name: empty-dir
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:59:04Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    phase: Running
+    podIP: 10.0.0.3
+    podIPs:
+    - ip: 10.0.0.3
+    qosClass: Burstable
+    startTime: '2025-09-27T19:59:04Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-ingest-
+    labels:
+      app: ingest
+      app.kubernetes.io/component: ingest
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '0'
+      controller-revision-hash: example-elasticsearch-ingest-c64c5c97f
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-ingest-0
+    name: example-elasticsearch-ingest-0
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-ingest
+      uid: 77e92c77-14d1-439f-b39f-117d3c5ae566
+    resourceVersion: '813'
+    uid: 04b2fc10-3a7d-4f0d-b122-7fef38a333f0
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: ingest
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-ingest-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-ingest-0
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-frontend-tier-1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-ingest
+    serviceAccountName: example-elasticsearch-ingest
+    subdomain: example-elasticsearch-ingest-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: empty-dir
+    - emptyDir: {}
+      name: data
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:58:46Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    phase: Running
+    podIP: 10.0.0.6
+    podIPs:
+    - ip: 10.0.0.6
+    qosClass: Burstable
+    startTime: '2025-09-27T19:58:46Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-ingest-
+    labels:
+      app: ingest
+      app.kubernetes.io/component: ingest
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '1'
+      controller-revision-hash: example-elasticsearch-ingest-c64c5c97f
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-ingest-1
+    name: example-elasticsearch-ingest-1
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-ingest
+      uid: 77e92c77-14d1-439f-b39f-117d3c5ae566
+    resourceVersion: '814'
+    uid: 87cbc39a-2f46-45a4-b0b6-33d438e58173
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: ingest
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-ingest-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-ingest-1
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-frontend-tier-2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-ingest
+    serviceAccountName: example-elasticsearch-ingest
+    subdomain: example-elasticsearch-ingest-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: empty-dir
+    - emptyDir: {}
+      name: data
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:58:46Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:58:46Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:58:46Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:58:46Z'
+    phase: Running
+    podIP: 10.0.0.7
+    podIPs:
+    - ip: 10.0.0.7
+    qosClass: Burstable
+    startTime: '2025-09-27T19:58:46Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-master-
+    labels:
+      app: master
+      app.kubernetes.io/component: master
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '0'
+      controller-revision-hash: example-elasticsearch-master-7898944454
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-master-0
+    name: example-elasticsearch-master-0
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-master
+      uid: 2432b2a8-4655-422e-9438-331c9b45406b
+    resourceVersion: '962'
+    uid: 6a6dd14e-a057-4e91-b1eb-2b9d9c4be4af
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: master
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-master-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-master-0
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-backend-tier-1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-master
+    serviceAccountName: example-elasticsearch-master
+    subdomain: example-elasticsearch-master-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-example-elasticsearch-master-0
+    - emptyDir: {}
+      name: empty-dir
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:04Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:59:04Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:04Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:04Z'
+    phase: Running
+    podIP: 10.0.0.8
+    podIPs:
+    - ip: 10.0.0.8
+    qosClass: Burstable
+    startTime: '2025-09-27T19:59:04Z'
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: '2025-09-27T19:58:46Z'
+    generateName: example-elasticsearch-master-
+    labels:
+      app: master
+      app.kubernetes.io/component: master
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      apps.kubernetes.io/pod-index: '1'
+      controller-revision-hash: example-elasticsearch-master-7898944454
+      helm.sh/chart: elasticsearch-22.1.7
+      statefulset.kubernetes.io/pod-name: example-elasticsearch-master-1
+    name: example-elasticsearch-master-1
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: example-elasticsearch-master
+      uid: 2432b2a8-4655-422e-9438-331c9b45406b
+    resourceVersion: '944'
+    uid: 1e138f03-8a2e-4e5e-8c96-29c5f5572b28
+  spec:
+    affinity: {}
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: BITNAMI_DEBUG
+        value: 'false'
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: ELASTICSEARCH_IS_DEDICATED_NODE
+        value: 'yes'
+      - name: ELASTICSEARCH_NODE_ROLES
+        value: master
+      - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
+        value: '9300'
+      - name: ELASTICSEARCH_HTTP_PORT_NUMBER
+        value: '9200'
+      - name: ELASTICSEARCH_CLUSTER_NAME
+        value: elastic
+      - name: ELASTICSEARCH_CLUSTER_HOSTS
+        value: example-elasticsearch-master-hl.default.svc.cluster.local,example-elasticsearch-coordinating-hl.default.svc.cluster.local,example-elasticsearch-data-hl.default.svc.cluster.local,example-elasticsearch-ingest-hl.default.svc.cluster.local,
+      - name: ELASTICSEARCH_TOTAL_NODES
+        value: '4'
+      - name: ELASTICSEARCH_CLUSTER_MASTER_HOSTS
+        value: example-elasticsearch-master-0 example-elasticsearch-master-1
+      - name: ELASTICSEARCH_MINIMUM_MASTER_NODES
+        value: '2'
+      - name: ELASTICSEARCH_ADVERTISED_HOSTNAME
+        value: $(MY_POD_NAME).example-elasticsearch-master-hl.default.svc.cluster.local
+      - name: ELASTICSEARCH_HEAP_SIZE
+        value: 128m
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: rest-api
+        timeoutSeconds: 5
+      name: elasticsearch
+      ports:
+      - containerPort: 9200
+        name: rest-api
+        protocol: TCP
+      - containerPort: 9300
+        name: transport
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /opt/bitnami/scripts/elasticsearch/healthcheck.sh
+        failureThreshold: 5
+        initialDelaySeconds: 90
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/config
+        name: empty-dir
+        subPath: app-conf-dir
+      - mountPath: /opt/bitnami/elasticsearch/tmp
+        name: empty-dir
+        subPath: app-tmp-dir
+      - mountPath: /opt/bitnami/elasticsearch/logs
+        name: empty-dir
+        subPath: app-logs-dir
+      - mountPath: /opt/bitnami/elasticsearch/plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+      - mountPath: /bitnami/elasticsearch
+        name: empty-dir
+        subPath: app-volume-dir
+      - mountPath: /bitnami/elasticsearch/data
+        name: data
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: example-elasticsearch-master-1
+    initContainers:
+    - command:
+      - /bin/bash
+      - -ec
+      - "CURRENT=`sysctl -n vm.max_map_count`;\nDESIRED=\"262144\";\nif [ \"$DESIRED\"\
+        \ -gt \"$CURRENT\" ]; then\n    sysctl -w vm.max_map_count=262144;\nfi;\n\
+        CURRENT=`sysctl -n fs.file-max`;\nDESIRED=\"65536\";\nif [ \"$DESIRED\" -gt\
+        \ \"$CURRENT\" ]; then\n    sysctl -w fs.file-max=65536;\nfi;\n"
+      image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imagePullPolicy: IfNotPresent
+      name: sysctl
+      resources:
+        limits:
+          cpu: 150m
+          ephemeral-storage: 2Gi
+          memory: 192Mi
+        requests:
+          cpu: 100m
+          ephemeral-storage: 50Mi
+          memory: 128Mi
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    - args:
+      - -ec
+      - "#!/bin/bash\n\n. /opt/bitnami/scripts/libfs.sh\n. /opt/bitnami/scripts/elasticsearch-env.sh\n\
+        \nif ! is_dir_empty \"$DB_DEFAULT_PLUGINS_DIR\"; then\n    cp -nr \"$DB_DEFAULT_PLUGINS_DIR\"\
+        /* /plugins\nfi\n"
+      command:
+      - /bin/bash
+      image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imagePullPolicy: IfNotPresent
+      name: copy-default-plugins
+      resources:
+        limits:
+          cpu: 750m
+          ephemeral-storage: 2Gi
+          memory: 768Mi
+        requests:
+          cpu: 500m
+          ephemeral-storage: 50Mi
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+        seLinuxOptions: {}
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /tmp
+        name: empty-dir
+        subPath: tmp-dir
+      - mountPath: /plugins
+        name: empty-dir
+        subPath: app-plugins-dir
+    nodeName: worker-backend-tier-2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1001
+      fsGroupChangePolicy: Always
+    serviceAccount: example-elasticsearch-master
+    serviceAccountName: example-elasticsearch-master
+    subdomain: example-elasticsearch-master-hl
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-example-elasticsearch-master-1
+    - emptyDir: {}
+      name: empty-dir
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:02Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:02Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:02Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2025-09-27T19:59:02Z'
+      status: 'True'
+      type: PodScheduled
+    containerStatuses:
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: elasticsearch
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2025-09-27T19:59:02Z'
+    initContainerStatuses:
+    - image: docker.io/bitnami/os-shell:12-debian-12-r50
+      imageID: ''
+      lastState: {}
+      name: sysctl
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:02Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:02Z'
+    - image: docker.io/bitnami/elasticsearch:9.1.2-debian-12-r0
+      imageID: ''
+      lastState: {}
+      name: copy-default-plugins
+      ready: true
+      restartCount: 0
+      state:
+        terminated:
+          exitCode: 0
+          finishedAt: '2025-09-27T19:59:02Z'
+          reason: Completed
+          startedAt: '2025-09-27T19:59:02Z'
+    phase: Running
+    podIP: 10.0.0.2
+    podIPs:
+    - ip: 10.0.0.2
+    qosClass: Burstable
+    startTime: '2025-09-27T19:59:02Z'
+kind: List
+metadata:
+  resourceVersion: ''

@@ -1,0 +1,456 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/control-plane":"","node-role.kubernetes.io/master":"","node.kubernetes.io/instance-type":"m5.2xlarge","sensitivity":"critical","topology.kubernetes.io/zone":"zone-a"},"name":"master-1"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ''
+      node-role.kubernetes.io/master: ''
+      node.kubernetes.io/instance-type: m5.2xlarge
+      sensitivity: critical
+      topology.kubernetes.io/zone: zone-a
+    name: master-1
+    resourceVersion: '268'
+    uid: ebec6443-92b4-4a6a-b194-f9182ef820ac
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/control-plane":"","node-role.kubernetes.io/master":"","node.kubernetes.io/instance-type":"m5.large","sensitivity":"critical","topology.kubernetes.io/zone":"zone-b"},"name":"master-2"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ''
+      node-role.kubernetes.io/master: ''
+      node.kubernetes.io/instance-type: m5.large
+      sensitivity: critical
+      topology.kubernetes.io/zone: zone-b
+    name: master-2
+    resourceVersion: '264'
+    uid: 210cfeeb-fad5-45a9-a8c4-4cb5474ff1ae
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/control-plane":"","node-role.kubernetes.io/master":"","node.kubernetes.io/instance-type":"m5.xlarge","sensitivity":"critical","topology.kubernetes.io/zone":"zone-c"},"name":"master-3"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ''
+      node-role.kubernetes.io/master: ''
+      node.kubernetes.io/instance-type: m5.xlarge
+      sensitivity: critical
+      topology.kubernetes.io/zone: zone-c
+    name: master-3
+    resourceVersion: '270'
+    uid: c2769fc8-d7b9-42d6-bc76-02cfa896c588
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","node.kubernetes.io/instance-type":"m5.xlarge","subnet":"backend-tier","topology.kubernetes.io/zone":"zone-c"},"name":"worker-backend-tier-1"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/worker: ''
+      node.kubernetes.io/instance-type: m5.xlarge
+      subnet: backend-tier
+      topology.kubernetes.io/zone: zone-c
+    name: worker-backend-tier-1
+    resourceVersion: '269'
+    uid: 5c3a16f6-5f65-47de-9dbd-a4fe17bdec6d
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","node.kubernetes.io/instance-type":"m5.xlarge","subnet":"backend-tier","topology.kubernetes.io/zone":"zone-a"},"name":"worker-backend-tier-2"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/worker: ''
+      node.kubernetes.io/instance-type: m5.xlarge
+      subnet: backend-tier
+      topology.kubernetes.io/zone: zone-a
+    name: worker-backend-tier-2
+    resourceVersion: '267'
+    uid: 5451b3db-4860-4aa5-b750-70c327f33db9
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","node.kubernetes.io/instance-type":"m5.xlarge","subnet":"database-tier","topology.kubernetes.io/zone":"zone-b"},"name":"worker-database-tier-1"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/worker: ''
+      node.kubernetes.io/instance-type: m5.xlarge
+      subnet: database-tier
+      topology.kubernetes.io/zone: zone-b
+    name: worker-database-tier-1
+    resourceVersion: '245'
+    uid: 55bba201-907f-4579-a44c-4df249c4cb28
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","node.kubernetes.io/instance-type":"m5.large","subnet":"frontend-tier","topology.kubernetes.io/zone":"zone-a"},"name":"worker-frontend-tier-1"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/worker: ''
+      node.kubernetes.io/instance-type: m5.large
+      subnet: frontend-tier
+      topology.kubernetes.io/zone: zone-a
+    name: worker-frontend-tier-1
+    resourceVersion: '247'
+    uid: ecc5d9d4-cf2f-4a64-becc-7d538a079bc6
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Node","metadata":{"annotations":{"kwok.x-k8s.io/node":"true"},"labels":{"kubernetes.io/arch":"amd64","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","node.kubernetes.io/instance-type":"m5.2xlarge","subnet":"frontend-tier","topology.kubernetes.io/zone":"zone-b"},"name":"worker-frontend-tier-2"},"spec":{},"status":{"allocatable":{"cpu":"3.9","ephemeral-storage":"15990Gi","memory":"15990Gi","pods":"110"},"capacity":{"cpu":"4","ephemeral-storage":"16000Gi","memory":"16000Gi","pods":"110"},"conditions":[{"message":"kubelet
+        is posting ready status","reason":"KubeletReady","status":"True","type":"Ready"}]}}
+
+        '
+      kwok.x-k8s.io/node: 'true'
+      node.alpha.kubernetes.io/ttl: '0'
+    creationTimestamp: '2025-09-27T19:56:28Z'
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/worker: ''
+      node.kubernetes.io/instance-type: m5.2xlarge
+      subnet: frontend-tier
+      topology.kubernetes.io/zone: zone-b
+    name: worker-frontend-tier-2
+    resourceVersion: '246'
+    uid: 2a24f1e4-3da3-46d4-bb55-970936e7a5cb
+  spec: {}
+  status:
+    allocatable:
+      cpu: 3900m
+      ephemeral-storage: 15990Gi
+      memory: 15990Gi
+      pods: '110'
+    capacity:
+      cpu: '4'
+      ephemeral-storage: 16000Gi
+      memory: 16000Gi
+      pods: '110'
+    conditions:
+    - lastHeartbeatTime: null
+      lastTransitionTime: null
+      message: kubelet is posting ready status
+      reason: KubeletReady
+      status: 'True'
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      architecture: ''
+      bootID: ''
+      containerRuntimeVersion: ''
+      kernelVersion: ''
+      kubeProxyVersion: ''
+      kubeletVersion: ''
+      machineID: ''
+      operatingSystem: ''
+      osImage: ''
+      systemUUID: ''
+kind: List
+metadata:
+  resourceVersion: ''

@@ -1,0 +1,22 @@
+{
+  "snapshot_timestamp": "2025-09-27_23-03-04",
+  "snapshot_directory": "/home/ariel/Documents/thesis/CyberBattleSimCloudEnvironemtGenerator/real/snape/2025-09-27/snapshot_2025-09-27_23-03-04",
+  "resource_counts": {
+    "nodes": 8,
+    "pods": 8,
+    "services": 6,
+    "deployments": 0,
+    "replicasets": 0,
+    "configmaps": 6,
+    "secrets": 2,
+    "persistentvolumes": 32,
+    "persistentvolumeclaims": 20,
+    "networkpolicies": 10,
+    "serviceaccounts": 8,
+    "roles": 7,
+    "rolebindings": 7,
+    "clusterroles": 62,
+    "clusterrolebindings": 43
+  },
+  "total_resources": 219
+}

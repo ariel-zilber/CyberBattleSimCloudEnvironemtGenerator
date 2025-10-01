@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-tier-to-backend-tier
+spec:
+  podSelector:
+    matchLabels:
+      subnet: backend-tier
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          subnet: frontend-tier
+    - podSelector:
+        matchLabels:
+          subnet: frontend-tier
+          topology.kubernetes.io/zone: zone-a
+    - podSelector:
+        matchLabels:
+          subnet: frontend-tier
+          topology.kubernetes.io/zone: zone-b
+    - podSelector:
+        matchLabels:
+          subnet: frontend-tier
+          topology.kubernetes.io/zone: zone-c
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 9000

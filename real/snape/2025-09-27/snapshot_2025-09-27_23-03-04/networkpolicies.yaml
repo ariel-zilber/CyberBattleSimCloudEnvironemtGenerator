@@ -1,0 +1,312 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-backend-tier-to-database-tier","namespace":"default"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"subnet":"backend-tier"}}},{"podSelector":{"matchLabels":{"subnet":"backend-tier","topology.kubernetes.io/zone":"zone-a"}}},{"podSelector":{"matchLabels":{"subnet":"backend-tier","topology.kubernetes.io/zone":"zone-b"}}},{"podSelector":{"matchLabels":{"subnet":"backend-tier","topology.kubernetes.io/zone":"zone-c"}}}],"ports":[{"port":3306,"protocol":"TCP"},{"port":5432,"protocol":"TCP"}]}],"podSelector":{"matchLabels":{"subnet":"database-tier"}},"policyTypes":["Ingress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: allow-backend-tier-to-database-tier
+    namespace: default
+    resourceVersion: '275'
+    uid: 4f441380-eb54-4a7c-bc86-7a4d864aa903
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            subnet: backend-tier
+      - podSelector:
+          matchLabels:
+            subnet: backend-tier
+            topology.kubernetes.io/zone: zone-a
+      - podSelector:
+          matchLabels:
+            subnet: backend-tier
+            topology.kubernetes.io/zone: zone-b
+      - podSelector:
+          matchLabels:
+            subnet: backend-tier
+            topology.kubernetes.io/zone: zone-c
+      ports:
+      - port: 3306
+        protocol: TCP
+      - port: 5432
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        subnet: database-tier
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-frontend-tier-to-backend-tier","namespace":"default"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"subnet":"frontend-tier"}}},{"podSelector":{"matchLabels":{"subnet":"frontend-tier","topology.kubernetes.io/zone":"zone-a"}}},{"podSelector":{"matchLabels":{"subnet":"frontend-tier","topology.kubernetes.io/zone":"zone-b"}}},{"podSelector":{"matchLabels":{"subnet":"frontend-tier","topology.kubernetes.io/zone":"zone-c"}}}],"ports":[{"port":8080,"protocol":"TCP"},{"port":9000,"protocol":"TCP"}]}],"podSelector":{"matchLabels":{"subnet":"backend-tier"}},"policyTypes":["Ingress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: allow-frontend-tier-to-backend-tier
+    namespace: default
+    resourceVersion: '276'
+    uid: aee70653-0b1f-4fd9-b269-4a60cba3e5b9
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            subnet: frontend-tier
+      - podSelector:
+          matchLabels:
+            subnet: frontend-tier
+            topology.kubernetes.io/zone: zone-a
+      - podSelector:
+          matchLabels:
+            subnet: frontend-tier
+            topology.kubernetes.io/zone: zone-b
+      - podSelector:
+          matchLabels:
+            subnet: frontend-tier
+            topology.kubernetes.io/zone: zone-c
+      ports:
+      - port: 8080
+        protocol: TCP
+      - port: 9000
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        subnet: backend-tier
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-internet-to-frontend-tier","namespace":"default"},"spec":{"ingress":[{}],"podSelector":{"matchLabels":{"subnet":"frontend-tier"}},"policyTypes":["Ingress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: allow-internet-to-frontend-tier
+    namespace: default
+    resourceVersion: '277'
+    uid: 4715ea3b-294b-40d1-8196-c7c7d0a2466e
+  spec:
+    ingress:
+    - {}
+    podSelector:
+      matchLabels:
+        subnet: frontend-tier
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny-backend-tier","namespace":"default"},"spec":{"podSelector":{"matchLabels":{"subnet":"backend-tier"}},"policyTypes":["Ingress","Egress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: default-deny-backend-tier
+    namespace: default
+    resourceVersion: '278'
+    uid: 20354730-e0ed-4786-abd6-76767dccc8d6
+  spec:
+    podSelector:
+      matchLabels:
+        subnet: backend-tier
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny-database-tier","namespace":"default"},"spec":{"podSelector":{"matchLabels":{"subnet":"database-tier"}},"policyTypes":["Ingress","Egress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: default-deny-database-tier
+    namespace: default
+    resourceVersion: '279'
+    uid: 0571bada-b7e8-451a-b6cf-33c09ba0bbcb
+  spec:
+    podSelector:
+      matchLabels:
+        subnet: database-tier
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny-frontend-tier","namespace":"default"},"spec":{"podSelector":{"matchLabels":{"subnet":"frontend-tier"}},"policyTypes":["Ingress","Egress"]}}
+
+        '
+    creationTimestamp: '2025-09-27T19:56:36Z'
+    generation: 1
+    name: default-deny-frontend-tier
+    namespace: default
+    resourceVersion: '280'
+    uid: 578a3848-48c6-4392-be66-aaf50804b11d
+  spec:
+    podSelector:
+      matchLabels:
+        subnet: frontend-tier
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    generation: 1
+    labels:
+      app.kubernetes.io/component: coordinating-only
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-coordinating
+    namespace: default
+    resourceVersion: '716'
+    uid: e5c93f7c-6fe4-4f14-90e6-376b93e4ef00
+  spec:
+    egress:
+    - {}
+    ingress:
+    - ports:
+      - port: 9200
+        protocol: TCP
+      - port: 9300
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: coordinating-only
+        app.kubernetes.io/instance: example
+        app.kubernetes.io/name: elasticsearch
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    generation: 1
+    labels:
+      app.kubernetes.io/component: data
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-data
+    namespace: default
+    resourceVersion: '717'
+    uid: 63114882-b9cc-436b-9a8a-543145f5385d
+  spec:
+    egress:
+    - {}
+    ingress:
+    - ports:
+      - port: 9200
+        protocol: TCP
+      - port: 9300
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: data
+        app.kubernetes.io/instance: example
+        app.kubernetes.io/name: elasticsearch
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    generation: 1
+    labels:
+      app.kubernetes.io/component: ingest
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-ingest
+    namespace: default
+    resourceVersion: '718'
+    uid: dcbd9dbf-99f3-4ccc-913f-a2c53735d877
+  spec:
+    egress:
+    - {}
+    ingress:
+    - ports:
+      - port: 9200
+        protocol: TCP
+      - port: 9300
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: ingest
+        app.kubernetes.io/instance: example
+        app.kubernetes.io/name: elasticsearch
+    policyTypes:
+    - Ingress
+    - Egress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: example
+      meta.helm.sh/release-namespace: default
+    creationTimestamp: '2025-09-27T19:58:45Z'
+    generation: 1
+    labels:
+      app.kubernetes.io/component: master
+      app.kubernetes.io/instance: example
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: elasticsearch
+      app.kubernetes.io/version: 9.1.2
+      helm.sh/chart: elasticsearch-22.1.7
+    name: example-elasticsearch-master
+    namespace: default
+    resourceVersion: '719'
+    uid: 3b59050f-08c9-4481-9c00-04b729891a07
+  spec:
+    egress:
+    - {}
+    ingress:
+    - ports:
+      - port: 9200
+        protocol: TCP
+      - port: 9300
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: master
+        app.kubernetes.io/instance: example
+        app.kubernetes.io/name: elasticsearch
+    policyTypes:
+    - Ingress
+    - Egress
+kind: List
+metadata:
+  resourceVersion: ''

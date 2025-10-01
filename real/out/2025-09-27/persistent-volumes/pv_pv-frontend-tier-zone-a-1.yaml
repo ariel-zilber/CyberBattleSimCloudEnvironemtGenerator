@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-frontend-tier-zone-a-1
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ''
+  hostPath:
+    path: /mnt/data/pv-frontend-tier-zone-a-1
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    name: pvc-frontend-tier-zone-a-1

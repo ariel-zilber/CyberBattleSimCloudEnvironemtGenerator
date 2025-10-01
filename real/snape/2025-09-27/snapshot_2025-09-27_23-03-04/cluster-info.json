@@ -1,0 +1,18 @@
+{
+  "cluster_info": "Kubernetes control plane is running at http://127.0.0.1:8080\n\nTo further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.\n",
+  "kubectl_version": {
+    "clientVersion": {
+      "buildDate": "2025-07-15T18:06:34Z",
+      "compiler": "gc",
+      "gitCommit": "80779bd6ff08b451e1c165a338a7b69351e9b0b8",
+      "gitTreeState": "clean",
+      "gitVersion": "v1.33.3",
+      "goVersion": "go1.24.4",
+      "major": "1",
+      "minor": "33",
+      "platform": "linux/amd64"
+    },
+    "kustomizeVersion": "v5.6.0"
+  },
+  "nodes_summary": "NAME                     STATUS   ROLES                  AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE    KERNEL-VERSION   CONTAINER-RUNTIME\nmaster-1                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nmaster-2                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nmaster-3                 Ready    control-plane,master   6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nworker-backend-tier-1    Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nworker-backend-tier-2    Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nworker-database-tier-1   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nworker-frontend-tier-1   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\nworker-frontend-tier-2   Ready    worker                 6m37s             <none>        <none>        <unknown>   <unknown>        <unknown>\n"
+}

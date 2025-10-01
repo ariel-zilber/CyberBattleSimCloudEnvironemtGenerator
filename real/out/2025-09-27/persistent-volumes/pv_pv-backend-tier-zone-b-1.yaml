@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-backend-tier-zone-b-1
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ''
+  hostPath:
+    path: /mnt/data/pv-backend-tier-zone-b-1
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    name: pvc-backend-tier-zone-b-1

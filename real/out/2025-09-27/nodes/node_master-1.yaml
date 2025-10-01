@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Node
+metadata:
+  name: master-1
+  labels:
+    node-role.kubernetes.io/control-plane: ''
+    node-role.kubernetes.io/master: ''
+    topology.kubernetes.io/zone: zone-a
+    sensitivity: critical
+    kubernetes.io/arch: amd64
+    kubernetes.io/os: linux
+    node.kubernetes.io/instance-type: m5.2xlarge
+  annotations:
+    kwok.x-k8s.io/node: 'true'
+spec: {}
+status:
+  conditions:
+  - type: Ready
+    status: 'True'
+    reason: KubeletReady
+    message: kubelet is posting ready status
+  capacity:
+    cpu: '4'
+    memory: 16000Gi
+    ephemeral-storage: 16000Gi
+    pods: '110'
+  allocatable:
+    cpu: '3.9'
+    memory: 15990Gi
+    ephemeral-storage: 15990Gi
+    pods: '110'

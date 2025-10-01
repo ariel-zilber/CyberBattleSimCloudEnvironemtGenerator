@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-backend-tier-zone-a-2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ''
+  resources:
+    requests:
+      storage: 20Gi
