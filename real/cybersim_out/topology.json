@@ -1,0 +1,302 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/control-plane": "",
+        "node-role.kubernetes.io/master": "",
+        "node.kubernetes.io/instance-type": "m5.2xlarge",
+        "sensitivity": "critical",
+        "topology.kubernetes.io/zone": "zone-a"
+      },
+      "subnet": "default",
+      "id": "master-1"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/control-plane": "",
+        "node-role.kubernetes.io/master": "",
+        "node.kubernetes.io/instance-type": "m5.large",
+        "sensitivity": "critical",
+        "topology.kubernetes.io/zone": "zone-b"
+      },
+      "subnet": "default",
+      "id": "master-2"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/control-plane": "",
+        "node-role.kubernetes.io/master": "",
+        "node.kubernetes.io/instance-type": "m5.xlarge",
+        "sensitivity": "critical",
+        "topology.kubernetes.io/zone": "zone-c"
+      },
+      "subnet": "default",
+      "id": "master-3"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/worker": "",
+        "node.kubernetes.io/instance-type": "m5.xlarge",
+        "subnet": "backend-tier",
+        "topology.kubernetes.io/zone": "zone-c"
+      },
+      "subnet": "backend-tier",
+      "id": "worker-backend-tier-1"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/worker": "",
+        "node.kubernetes.io/instance-type": "m5.xlarge",
+        "subnet": "backend-tier",
+        "topology.kubernetes.io/zone": "zone-a"
+      },
+      "subnet": "backend-tier",
+      "id": "worker-backend-tier-2"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/worker": "",
+        "node.kubernetes.io/instance-type": "m5.xlarge",
+        "subnet": "database-tier",
+        "topology.kubernetes.io/zone": "zone-b"
+      },
+      "subnet": "database-tier",
+      "id": "worker-database-tier-1"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/worker": "",
+        "node.kubernetes.io/instance-type": "m5.large",
+        "subnet": "frontend-tier",
+        "topology.kubernetes.io/zone": "zone-a"
+      },
+      "subnet": "frontend-tier",
+      "id": "worker-frontend-tier-1"
+    },
+    {
+      "node_type": "k8s_node",
+      "labels": {
+        "beta.kubernetes.io/arch": "amd64",
+        "beta.kubernetes.io/os": "linux",
+        "kubernetes.io/arch": "amd64",
+        "kubernetes.io/os": "linux",
+        "node-role.kubernetes.io/worker": "",
+        "node.kubernetes.io/instance-type": "m5.2xlarge",
+        "subnet": "frontend-tier",
+        "topology.kubernetes.io/zone": "zone-b"
+      },
+      "subnet": "frontend-tier",
+      "id": "worker-frontend-tier-2"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-database-tier-1",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-coordinating-0"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "master-3",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-coordinating-1"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "master-2",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-data-0"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-backend-tier-1",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-data-1"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-frontend-tier-1",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-ingest-0"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-frontend-tier-2",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-ingest-1"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-backend-tier-1",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-master-0"
+    },
+    {
+      "node_type": "pod",
+      "host_node": "worker-backend-tier-2",
+      "namespace": "default",
+      "id": "default/example-elasticsearch-master-1"
+    },
+    {
+      "node_type": "service",
+      "selector": {
+        "app.kubernetes.io/component": "coordinating-only",
+        "app.kubernetes.io/instance": "example",
+        "app.kubernetes.io/name": "elasticsearch"
+      },
+      "id": "default/example-elasticsearch"
+    },
+    {
+      "node_type": "service",
+      "selector": {
+        "app.kubernetes.io/component": "coordinating-only",
+        "app.kubernetes.io/instance": "example",
+        "app.kubernetes.io/name": "elasticsearch"
+      },
+      "id": "default/example-elasticsearch-coordinating-hl"
+    },
+    {
+      "node_type": "service",
+      "selector": {
+        "app.kubernetes.io/component": "data",
+        "app.kubernetes.io/instance": "example",
+        "app.kubernetes.io/name": "elasticsearch"
+      },
+      "id": "default/example-elasticsearch-data-hl"
+    },
+    {
+      "node_type": "service",
+      "selector": {
+        "app.kubernetes.io/component": "ingest",
+        "app.kubernetes.io/instance": "example",
+        "app.kubernetes.io/name": "elasticsearch"
+      },
+      "id": "default/example-elasticsearch-ingest-hl"
+    },
+    {
+      "node_type": "service",
+      "selector": {
+        "app.kubernetes.io/component": "master",
+        "app.kubernetes.io/instance": "example",
+        "app.kubernetes.io/name": "elasticsearch"
+      },
+      "id": "default/example-elasticsearch-master-hl"
+    },
+    {
+      "node_type": "service",
+      "selector": {},
+      "id": "default/kubernetes"
+    }
+  ],
+  "links": [
+    {
+      "source": "master-2",
+      "target": "default/example-elasticsearch-data-0"
+    },
+    {
+      "source": "master-3",
+      "target": "default/example-elasticsearch-coordinating-1"
+    },
+    {
+      "source": "worker-backend-tier-1",
+      "target": "default/example-elasticsearch-data-1"
+    },
+    {
+      "source": "worker-backend-tier-1",
+      "target": "default/example-elasticsearch-master-0"
+    },
+    {
+      "source": "worker-backend-tier-2",
+      "target": "default/example-elasticsearch-master-1"
+    },
+    {
+      "source": "worker-database-tier-1",
+      "target": "default/example-elasticsearch-coordinating-0"
+    },
+    {
+      "source": "worker-frontend-tier-1",
+      "target": "default/example-elasticsearch-ingest-0"
+    },
+    {
+      "source": "worker-frontend-tier-2",
+      "target": "default/example-elasticsearch-ingest-1"
+    },
+    {
+      "source": "default/example-elasticsearch",
+      "target": "default/example-elasticsearch-coordinating-0"
+    },
+    {
+      "source": "default/example-elasticsearch",
+      "target": "default/example-elasticsearch-coordinating-1"
+    },
+    {
+      "source": "default/example-elasticsearch-coordinating-hl",
+      "target": "default/example-elasticsearch-coordinating-0"
+    },
+    {
+      "source": "default/example-elasticsearch-coordinating-hl",
+      "target": "default/example-elasticsearch-coordinating-1"
+    },
+    {
+      "source": "default/example-elasticsearch-data-hl",
+      "target": "default/example-elasticsearch-data-0"
+    },
+    {
+      "source": "default/example-elasticsearch-data-hl",
+      "target": "default/example-elasticsearch-data-1"
+    },
+    {
+      "source": "default/example-elasticsearch-ingest-hl",
+      "target": "default/example-elasticsearch-ingest-0"
+    },
+    {
+      "source": "default/example-elasticsearch-ingest-hl",
+      "target": "default/example-elasticsearch-ingest-1"
+    },
+    {
+      "source": "default/example-elasticsearch-master-hl",
+      "target": "default/example-elasticsearch-master-0"
+    },
+    {
+      "source": "default/example-elasticsearch-master-hl",
+      "target": "default/example-elasticsearch-master-1"
+    }
+  ]
+}

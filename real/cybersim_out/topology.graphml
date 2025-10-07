@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d5" for="node" attr.name="selector" attr.type="string" />
+  <key id="d4" for="node" attr.name="namespace" attr.type="string" />
+  <key id="d3" for="node" attr.name="host_node" attr.type="string" />
+  <key id="d2" for="node" attr.name="subnet" attr.type="string" />
+  <key id="d1" for="node" attr.name="labels" attr.type="string" />
+  <key id="d0" for="node" attr.name="node_type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="master-1">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/control-plane": "", "node-role.kubernetes.io/master": "", "node.kubernetes.io/instance-type": "m5.2xlarge", "sensitivity": "critical", "topology.kubernetes.io/zone": "zone-a"}</data>
+      <data key="d2">default</data>
+    </node>
+    <node id="master-2">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/control-plane": "", "node-role.kubernetes.io/master": "", "node.kubernetes.io/instance-type": "m5.large", "sensitivity": "critical", "topology.kubernetes.io/zone": "zone-b"}</data>
+      <data key="d2">default</data>
+    </node>
+    <node id="master-3">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/control-plane": "", "node-role.kubernetes.io/master": "", "node.kubernetes.io/instance-type": "m5.xlarge", "sensitivity": "critical", "topology.kubernetes.io/zone": "zone-c"}</data>
+      <data key="d2">default</data>
+    </node>
+    <node id="worker-backend-tier-1">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/worker": "", "node.kubernetes.io/instance-type": "m5.xlarge", "subnet": "backend-tier", "topology.kubernetes.io/zone": "zone-c"}</data>
+      <data key="d2">backend-tier</data>
+    </node>
+    <node id="worker-backend-tier-2">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/worker": "", "node.kubernetes.io/instance-type": "m5.xlarge", "subnet": "backend-tier", "topology.kubernetes.io/zone": "zone-a"}</data>
+      <data key="d2">backend-tier</data>
+    </node>
+    <node id="worker-database-tier-1">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/worker": "", "node.kubernetes.io/instance-type": "m5.xlarge", "subnet": "database-tier", "topology.kubernetes.io/zone": "zone-b"}</data>
+      <data key="d2">database-tier</data>
+    </node>
+    <node id="worker-frontend-tier-1">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/worker": "", "node.kubernetes.io/instance-type": "m5.large", "subnet": "frontend-tier", "topology.kubernetes.io/zone": "zone-a"}</data>
+      <data key="d2">frontend-tier</data>
+    </node>
+    <node id="worker-frontend-tier-2">
+      <data key="d0">k8s_node</data>
+      <data key="d1">{"beta.kubernetes.io/arch": "amd64", "beta.kubernetes.io/os": "linux", "kubernetes.io/arch": "amd64", "kubernetes.io/os": "linux", "node-role.kubernetes.io/worker": "", "node.kubernetes.io/instance-type": "m5.2xlarge", "subnet": "frontend-tier", "topology.kubernetes.io/zone": "zone-b"}</data>
+      <data key="d2">frontend-tier</data>
+    </node>
+    <node id="default/example-elasticsearch-coordinating-0">
+      <data key="d0">pod</data>
+      <data key="d3">worker-database-tier-1</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-coordinating-1">
+      <data key="d0">pod</data>
+      <data key="d3">master-3</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-data-0">
+      <data key="d0">pod</data>
+      <data key="d3">master-2</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-data-1">
+      <data key="d0">pod</data>
+      <data key="d3">worker-backend-tier-1</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-ingest-0">
+      <data key="d0">pod</data>
+      <data key="d3">worker-frontend-tier-1</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-ingest-1">
+      <data key="d0">pod</data>
+      <data key="d3">worker-frontend-tier-2</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-master-0">
+      <data key="d0">pod</data>
+      <data key="d3">worker-backend-tier-1</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch-master-1">
+      <data key="d0">pod</data>
+      <data key="d3">worker-backend-tier-2</data>
+      <data key="d4">default</data>
+    </node>
+    <node id="default/example-elasticsearch">
+      <data key="d0">service</data>
+      <data key="d5">{"app.kubernetes.io/component": "coordinating-only", "app.kubernetes.io/instance": "example", "app.kubernetes.io/name": "elasticsearch"}</data>
+    </node>
+    <node id="default/example-elasticsearch-coordinating-hl">
+      <data key="d0">service</data>
+      <data key="d5">{"app.kubernetes.io/component": "coordinating-only", "app.kubernetes.io/instance": "example", "app.kubernetes.io/name": "elasticsearch"}</data>
+    </node>
+    <node id="default/example-elasticsearch-data-hl">
+      <data key="d0">service</data>
+      <data key="d5">{"app.kubernetes.io/component": "data", "app.kubernetes.io/instance": "example", "app.kubernetes.io/name": "elasticsearch"}</data>
+    </node>
+    <node id="default/example-elasticsearch-ingest-hl">
+      <data key="d0">service</data>
+      <data key="d5">{"app.kubernetes.io/component": "ingest", "app.kubernetes.io/instance": "example", "app.kubernetes.io/name": "elasticsearch"}</data>
+    </node>
+    <node id="default/example-elasticsearch-master-hl">
+      <data key="d0">service</data>
+      <data key="d5">{"app.kubernetes.io/component": "master", "app.kubernetes.io/instance": "example", "app.kubernetes.io/name": "elasticsearch"}</data>
+    </node>
+    <node id="default/kubernetes">
+      <data key="d0">service</data>
+      <data key="d5">{}</data>
+    </node>
+    <edge source="master-2" target="default/example-elasticsearch-data-0" />
+    <edge source="master-3" target="default/example-elasticsearch-coordinating-1" />
+    <edge source="worker-backend-tier-1" target="default/example-elasticsearch-data-1" />
+    <edge source="worker-backend-tier-1" target="default/example-elasticsearch-master-0" />
+    <edge source="worker-backend-tier-2" target="default/example-elasticsearch-master-1" />
+    <edge source="worker-database-tier-1" target="default/example-elasticsearch-coordinating-0" />
+    <edge source="worker-frontend-tier-1" target="default/example-elasticsearch-ingest-0" />
+    <edge source="worker-frontend-tier-2" target="default/example-elasticsearch-ingest-1" />
+    <edge source="default/example-elasticsearch" target="default/example-elasticsearch-coordinating-0" />
+    <edge source="default/example-elasticsearch" target="default/example-elasticsearch-coordinating-1" />
+    <edge source="default/example-elasticsearch-coordinating-hl" target="default/example-elasticsearch-coordinating-0" />
+    <edge source="default/example-elasticsearch-coordinating-hl" target="default/example-elasticsearch-coordinating-1" />
+    <edge source="default/example-elasticsearch-data-hl" target="default/example-elasticsearch-data-0" />
+    <edge source="default/example-elasticsearch-data-hl" target="default/example-elasticsearch-data-1" />
+    <edge source="default/example-elasticsearch-ingest-hl" target="default/example-elasticsearch-ingest-0" />
+    <edge source="default/example-elasticsearch-ingest-hl" target="default/example-elasticsearch-ingest-1" />
+    <edge source="default/example-elasticsearch-master-hl" target="default/example-elasticsearch-master-0" />
+    <edge source="default/example-elasticsearch-master-hl" target="default/example-elasticsearch-master-1" />
+  </graph>
+</graphml>

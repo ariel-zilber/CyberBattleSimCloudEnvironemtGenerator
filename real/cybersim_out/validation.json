@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "warnings": [
+    "Node master-1 has no services"
+  ],
+  "errors": [],
+  "recommendations": []
+}

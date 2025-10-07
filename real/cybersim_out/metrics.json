@@ -1,0 +1,29 @@
+{
+  "total_nodes": 8,
+  "total_vulnerabilities": 106,
+  "total_credentials": 8,
+  "attack_surface_size": 2,
+  "average_path_length": 0.0,
+  "graph_density": 0.03896103896103896,
+  "vulnerability_diversity": 0.4528301886792453,
+  "credential_reuse_ratio": 0.0,
+  "firewall_restrictiveness": 0.25806451612903225,
+  "estimated_difficulty": 0.48100916125870474,
+  "cvss_distribution": {
+    "3": 11,
+    "0": 41,
+    "5": 25,
+    "6": 4,
+    "4": 6,
+    "7": 5,
+    "9": 3,
+    "8": 10,
+    "10": 1
+  },
+  "node_value_distribution": {
+    "100-119": 3,
+    "20-39": 2,
+    "40-59": 2,
+    "80-99": 1
+  }
+}
