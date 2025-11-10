@@ -1,0 +1,112 @@
+{
+  "summary": {
+    "total_clusters": 4,
+    "cluster_sizes": [
+      "50 nodes",
+      "8 nodes",
+      "8 nodes",
+      "8 nodes"
+    ],
+    "use_cases": [
+      "ecommerce",
+      "ml_platform",
+      "ml_platform",
+      "ml_platform"
+    ]
+  },
+  "service_analysis": {
+    "common_to_all": [
+      "argo-cd",
+      "etcd",
+      "kube-state-metrics",
+      "metrics-server",
+      "minio",
+      "postgresql",
+      "prometheus"
+    ],
+    "unique_per_cluster": [
+      {
+        "cluster_id": 1,
+        "use_case": "ecommerce",
+        "unique_services": [
+          "airflow",
+          "cassandra",
+          "cert-manager",
+          "fluent-bit",
+          "grafana-loki",
+          "harbor",
+          "kibana",
+          "mongodb",
+          "nginx-ingress-controller",
+          "redis",
+          "thanos",
+          "vault",
+          "zookeeper"
+        ]
+      },
+      {
+        "cluster_id": 2,
+        "use_case": "ml_platform",
+        "unique_services": [
+          "grafana",
+          "grafana-loki",
+          "jenkins",
+          "redis",
+          "vault"
+        ]
+      },
+      {
+        "cluster_id": 3,
+        "use_case": "ml_platform",
+        "unique_services": [
+          "fluent-bit",
+          "grafana",
+          "jenkins",
+          "nginx-ingress-controller"
+        ]
+      },
+      {
+        "cluster_id": 4,
+        "use_case": "ml_platform",
+        "unique_services": [
+          "grafana",
+          "keycloak",
+          "kong",
+          "rabbitmq"
+        ]
+      }
+    ],
+    "service_frequency": {
+      "prometheus": 4,
+      "metrics-server": 4,
+      "postgresql": 4,
+      "kube-state-metrics": 4,
+      "minio": 4,
+      "etcd": 4,
+      "argo-cd": 4,
+      "grafana": 3,
+      "grafana-loki": 2,
+      "nginx-ingress-controller": 2,
+      "redis": 2,
+      "fluent-bit": 2,
+      "vault": 2,
+      "jenkins": 2,
+      "thanos": 1,
+      "mongodb": 1,
+      "airflow": 1,
+      "zookeeper": 1,
+      "kibana": 1,
+      "cert-manager": 1,
+      "cassandra": 1,
+      "harbor": 1,
+      "rabbitmq": 1,
+      "kong": 1,
+      "keycloak": 1
+    }
+  },
+  "statistics": {
+    "avg_services": 13.5,
+    "avg_resource_util": "47.6%",
+    "observability_coverage": "75%"
+  }
+}

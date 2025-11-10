@@ -1,0 +1,84 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 10,
+    "cluster_size": "SMALL",
+    "use_case": "startup_mvp",
+    "total_services": 12,
+    "total_pods": 24,
+    "avg_pods_per_node": "2.4",
+    "total_resource_weight": 100,
+    "resource_utilization": "100.0%"
+  },
+  "services": [
+    "cert-manager",
+    "cilium",
+    "etcd",
+    "fluent-bit",
+    "grafana",
+    "grafana-loki",
+    "kube-state-metrics",
+    "metrics-server",
+    "nginx-ingress-controller",
+    "postgresql",
+    "prometheus",
+    "sealed-secrets"
+  ],
+  "service_instances": {
+    "cert-manager": 1,
+    "cilium": 1,
+    "etcd": 5,
+    "fluent-bit": 1,
+    "grafana": 1,
+    "grafana-loki": 3,
+    "kube-state-metrics": 1,
+    "metrics-server": 1,
+    "nginx-ingress-controller": 3,
+    "postgresql": 3,
+    "prometheus": 3,
+    "sealed-secrets": 1
+  },
+  "services_by_category": {
+    "control_plane_core": [
+      "etcd",
+      "kube-state-metrics",
+      "metrics-server"
+    ],
+    "control_plane_networking": [
+      "cilium",
+      "nginx-ingress-controller"
+    ],
+    "control_plane_security": [
+      "cert-manager",
+      "sealed-secrets"
+    ],
+    "data_sql": [
+      "postgresql"
+    ],
+    "observability_logging": [
+      "fluent-bit",
+      "grafana-loki"
+    ],
+    "observability_metrics": [
+      "grafana",
+      "prometheus"
+    ]
+  },
+  "deployment_stats": {
+    "observability_stack": {
+      "metrics": true,
+      "logging": true,
+      "tracing": false,
+      "completeness_score": 0.6666666666666666
+    },
+    "automation": {
+      "gitops_enabled": false,
+      "service_mesh": true
+    },
+    "data_layer": {
+      "sql_databases": 1,
+      "nosql_databases": 0,
+      "caching": false,
+      "messaging": false
+    }
+  }
+}

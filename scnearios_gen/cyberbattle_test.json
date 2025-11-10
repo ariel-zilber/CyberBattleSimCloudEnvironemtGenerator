@@ -1,0 +1,730 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 20,
+    "cluster_size": "MEDIUM",
+    "use_case": "microservices",
+    "total_services": 13,
+    "total_pods": 35,
+    "avg_pods_per_node": "1.8",
+    "total_resource_weight": 140,
+    "resource_utilization": "70.0%"
+  },
+  "services": [
+    "argo-cd",
+    "cert-manager",
+    "etcd",
+    "fluent-bit",
+    "grafana",
+    "grafana-loki",
+    "jaeger",
+    "kibana",
+    "kube-state-metrics",
+    "metrics-server",
+    "prometheus",
+    "redis",
+    "vault"
+  ],
+  "service_instances": {
+    "argo-cd": 4,
+    "cert-manager": 1,
+    "etcd": 5,
+    "fluent-bit": 1,
+    "grafana": 1,
+    "grafana-loki": 4,
+    "jaeger": 4,
+    "kibana": 1,
+    "kube-state-metrics": 1,
+    "metrics-server": 1,
+    "prometheus": 4,
+    "redis": 4,
+    "vault": 4
+  },
+  "services_by_category": {
+    "ci_cd": [
+      "argo-cd"
+    ],
+    "control_plane_core": [
+      "etcd",
+      "kube-state-metrics",
+      "metrics-server"
+    ],
+    "control_plane_security": [
+      "cert-manager",
+      "vault"
+    ],
+    "data_caching": [
+      "redis"
+    ],
+    "observability_logging": [
+      "fluent-bit",
+      "grafana-loki",
+      "kibana"
+    ],
+    "observability_metrics": [
+      "grafana",
+      "prometheus"
+    ],
+    "observability_tracing": [
+      "jaeger"
+    ]
+  },
+  "deployment_stats": {
+    "observability_stack": {
+      "metrics": true,
+      "logging": true,
+      "tracing": true,
+      "completeness_score": 1.0
+    },
+    "automation": {
+      "gitops_enabled": true,
+      "service_mesh": false
+    },
+    "data_layer": {
+      "sql_databases": 0,
+      "nosql_databases": 0,
+      "caching": true,
+      "messaging": false
+    }
+  },
+  "network_topology": {
+    "services": {
+      "argo-cd": {
+        "name": "argo-cd",
+        "category": "cicd",
+        "instance_count": 4,
+        "port": 8080,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.08638227818006881,
+        "vulnerabilities": []
+      },
+      "cert-manager": {
+        "name": "cert-manager",
+        "category": "security",
+        "instance_count": 1,
+        "port": 9402,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.1771916979996478,
+        "vulnerabilities": []
+      },
+      "etcd": {
+        "name": "etcd",
+        "category": "control_plane",
+        "instance_count": 5,
+        "port": 2380,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0,
+        "vulnerabilities": []
+      },
+      "fluent-bit": {
+        "name": "fluent-bit",
+        "category": "application",
+        "instance_count": 1,
+        "port": 2020,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.350767883119685,
+        "vulnerabilities": []
+      },
+      "grafana": {
+        "name": "grafana",
+        "category": "observability",
+        "instance_count": 1,
+        "port": 3000,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.07526897719475714,
+        "vulnerabilities": []
+      },
+      "grafana-loki": {
+        "name": "grafana-loki",
+        "category": "observability",
+        "instance_count": 4,
+        "port": 3100,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.2794919822240411,
+        "vulnerabilities": []
+      },
+      "jaeger": {
+        "name": "jaeger",
+        "category": "observability",
+        "instance_count": 4,
+        "port": 16686,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.24525855200193591,
+        "vulnerabilities": []
+      },
+      "kibana": {
+        "name": "kibana",
+        "category": "application",
+        "instance_count": 1,
+        "port": 5601,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.12892410873168866,
+        "vulnerabilities": []
+      },
+      "kube-state-metrics": {
+        "name": "kube-state-metrics",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 8080,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.24723795384096428,
+        "vulnerabilities": []
+      },
+      "metrics-server": {
+        "name": "metrics-server",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 4443,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.15121644967471362,
+        "vulnerabilities": []
+      },
+      "prometheus": {
+        "name": "prometheus",
+        "category": "observability",
+        "instance_count": 4,
+        "port": 9090,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.20271581422873913,
+        "vulnerabilities": []
+      },
+      "redis": {
+        "name": "redis",
+        "category": "database",
+        "instance_count": 4,
+        "port": 6379,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-45853",
+            "severity": "MEDIUM",
+            "exploitability": 0.8142,
+            "description": "Redis denial of service",
+            "published_date": "2023-10-12T08:00:00Z",
+            "cvss_score": 5.9,
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1,
+            "cvss_version": "3.1"
+          },
+          {
+            "cve_id": "CVE-2024-31081",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "description": "Redis authentication bypass",
+            "published_date": "2024-03-25T11:00:00Z",
+            "cvss_score": 7.4,
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedCredentials",
+            "privilege_level": 2,
+            "cvss_version": "3.1"
+          }
+        ]
+      },
+      "vault": {
+        "name": "vault",
+        "category": "security",
+        "instance_count": 4,
+        "port": 8200,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.03014464520063559,
+        "vulnerabilities": []
+      }
+    },
+    "knows_connectivity": [
+      {
+        "source": "argo-cd",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "etcd",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "fluent-bit",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "protocol": "TCP",
+        "port": 9090,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana-loki",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 16686,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 4443,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "vault",
+        "protocol": "TCP",
+        "port": 8200,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "cert-manager",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "grafana-loki",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "jaeger",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "kube-state-metrics",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "metrics-server",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "redis",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      }
+    ],
+    "knows_reachability": [
+      "redis",
+      "metrics-server",
+      "argo-cd",
+      "vault",
+      "jaeger",
+      "cert-manager",
+      "grafana-loki",
+      "grafana",
+      "etcd",
+      "fluent-bit",
+      "prometheus",
+      "kube-state-metrics"
+    ],
+    "access_connectivity": [
+      {
+        "source": "argo-cd",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "etcd",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "fluent-bit",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "protocol": "TCP",
+        "port": 9090,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana-loki",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 16686,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 4443,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "vault",
+        "protocol": "TCP",
+        "port": 8200,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "cert-manager",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "etcd",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "kube-state-metrics",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "metrics-server",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "redis",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 2020,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      }
+    ],
+    "access_reachability": [
+      "metrics-server",
+      "vault",
+      "jaeger",
+      "cert-manager",
+      "grafana-loki",
+      "grafana",
+      "fluent-bit",
+      "prometheus"
+    ],
+    "credential_flow": [
+      {
+        "source": "argo-cd",
+        "target": "redis",
+        "credential_level": "LocalUser",
+        "credential_type": "password",
+        "is_cached": true,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "fluent-bit",
+        "target": "grafana-loki",
+        "credential_level": "LocalUser",
+        "credential_type": "token",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "credential_level": "LocalUser",
+        "credential_type": "token",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "credential_level": "LocalUser",
+        "credential_type": "token",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana-loki",
+        "credential_level": "LocalUser",
+        "credential_type": "service_account",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "credential_level": "LocalUser",
+        "credential_type": "service_account",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "prometheus",
+        "target": "metrics-server",
+        "credential_level": "LocalUser",
+        "credential_type": "service_account",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "prometheus",
+        "target": "vault",
+        "credential_level": "LocalUser",
+        "credential_type": "service_account",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      }
+    ],
+    "metadata": {
+      "total_services": 13,
+      "total_edges": 24,
+      "firewall_blocked_edges": 9,
+      "entry_points": [
+        "cert-manager"
+      ],
+      "knowledge_completeness": 0.7,
+      "firewall_probability": 0.2,
+      "knows_reachability_count": 12,
+      "access_reachability_count": 8,
+      "connectivity_metrics": {
+        "avg_degree": 2.3076923076923075,
+        "density": 0.09615384615384616,
+        "is_connected": false,
+        "num_components": 2
+      },
+      "credential_metrics": {
+        "total_credentials": 8,
+        "cached_credentials": 1,
+        "shared_credentials": 0,
+        "pivot_credentials": 0,
+        "by_level": {
+          "LocalUser": 8
+        },
+        "by_type": {
+          "password": 1,
+          "token": 3,
+          "service_account": 4
+        },
+        "admin_or_system": 0
+      },
+      "vulnerability_stats": {
+        "total_vulnerabilities": 2,
+        "services_with_vulnerabilities": 1,
+        "services_without_vulnerabilities": 12,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 1,
+          "HIGH": 1,
+          "CRITICAL": 0
+        },
+        "total_critical": 0,
+        "total_high": 1,
+        "avg_cvss_score": 6.65,
+        "max_cvss_score": 7.4,
+        "avg_exploitability": 0.9071,
+        "avg_vulnerabilities_per_service": 0.15384615384615385
+      }
+    }
+  }
+}

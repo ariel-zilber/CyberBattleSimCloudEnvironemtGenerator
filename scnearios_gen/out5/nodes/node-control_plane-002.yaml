@@ -1,0 +1,398 @@
+services:
+- name: etcd-0
+  port: '2379'
+  allowedCredentials:
+  - etcd_0_creds
+  - cilium_to_etcd_key
+  - prometheus_to_etcd_key
+  running: true
+- name: etcd-3
+  port: '2379'
+  allowedCredentials:
+  - etcd_3_creds
+  - cilium_to_etcd_key
+  - prometheus_to_etcd_key
+  running: true
+vulnerabilities:
+  Exploit_etcd_0:
+    description: Exploit etcd service on node-control_plane-002
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-control_plane-002
+            port: '2379'
+            credential: etcd_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to etcd on node-control_plane-002
+  CVE-2022-0563_0:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 3
+    outcome:
+      type: system_escalation
+      kwargs:
+        level: 3
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.235
+    reward_string: Exploited CVE-2022-0563 on node-control_plane-002
+  CVE-2025-4802_0:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically
+      shared library in statically compiled setuid binaries that call dlopen (including
+      internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.634999999999999
+    reward_string: Exploited CVE-2025-4802 on node-control_plane-002
+  CVE-2025-8058_0:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if some previous allocation fails. It can be\
+      \ \naccomplished either by a malloc failure or by using an interposed malloc\n\
+      \ that injects random malloc failures. The double free can allow buffer \nmanipulation\
+      \ depending of how the regex is constructed. This issue \naffects all architectures\
+      \ and ABIs supported by the GNU C library."
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.94
+    reward_string: Exploited CVE-2025-8058 on node-control_plane-002
+  CVE-2022-3219_0:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-worker-000
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.541
+    reward_string: Exploited CVE-2022-3219 on node-control_plane-002
+  Exploit_etcd_3:
+    description: Exploit etcd service on node-control_plane-002
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-control_plane-002
+            port: '2379'
+            credential: etcd_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to etcd on node-control_plane-002
+  CVE-2022-0563_3:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 3
+    outcome:
+      type: system_escalation
+      kwargs:
+        level: 3
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.235
+    reward_string: Exploited CVE-2022-0563 on node-control_plane-002
+  CVE-2025-4802_3:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically
+      shared library in statically compiled setuid binaries that call dlopen (including
+      internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.634999999999999
+    reward_string: Exploited CVE-2025-4802 on node-control_plane-002
+  CVE-2025-8058_3:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if some previous allocation fails. It can be\
+      \ \naccomplished either by a malloc failure or by using an interposed malloc\n\
+      \ that injects random malloc failures. The double free can allow buffer \nmanipulation\
+      \ depending of how the regex is constructed. This issue \naffects all architectures\
+      \ and ABIs supported by the GNU C library."
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.94
+    reward_string: Exploited CVE-2025-8058 on node-control_plane-002
+  CVE-2022-3219_3:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-worker-000
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.541
+    reward_string: Exploited CVE-2022-3219 on node-control_plane-002
+value: 200
+network_info:
+- ip_address: 10.0.0.4
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- control_plane
+- zone-a
+- ip_10_0_0_4
+- service_etcd
+- running_etcd
+- service_etcd
+- running_etcd
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.0.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-memory-001
+    permission: 0
+    subnet:
+      network: 10.0.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.0.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-memory-001
+    permission: 0
+    subnet:
+      network: 10.0.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

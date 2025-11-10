@@ -1,0 +1,98 @@
+services: []
+vulnerabilities:
+  InitialScan:
+    description: Scan the internet to find public-facing services in the cluster.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - k8s-worker-6
+        - k8s-worker-2
+        - k8s-worker-5
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Initial scan revealed 3 public-facing worker nodes.
+value: 0
+network_info:
+- ip_address: 1.1.1.1
+  subnet:
+    network: 1.1.1.0/24
+    name: ''
+  interface: eth1
+properties:
+- attacker
+firewall:
+  outgoing:
+  - port: RDP
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: SSH
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: HTTPS
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: HTTP
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: RDP
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: SSH
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: HTTPS
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: HTTP
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: true
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

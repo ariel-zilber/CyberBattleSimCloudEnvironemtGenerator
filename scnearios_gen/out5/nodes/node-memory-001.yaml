@@ -1,0 +1,328 @@
+services:
+- name: mongodb-1
+  port: '27017'
+  allowedCredentials:
+  - mongodb_1_creds
+  running: true
+vulnerabilities:
+  Exploit_mongodb_1:
+    description: Exploit mongodb service on node-memory-001
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-memory-001
+            port: '27017'
+            credential: mongodb_1_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to mongodb on node-memory-001
+  CVE-2022-3219_1:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-001
+        - node-memory-000
+        - node-memory-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.541
+    reward_string: Exploited CVE-2022-3219 on node-memory-001
+  CVE-2025-0725_1:
+    description: 'When libcurl is asked to perform automatic gzip decompression of
+
+      content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option,
+
+      **using zlib 1.2.0.3 or older**, an attacker-controlled integer overflow would
+
+      make libcurl perform a buffer overflow.'
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.542
+    reward_string: Exploited CVE-2025-0725 on node-memory-001
+  CVE-2022-27943_1:
+    description: libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption
+      in demangle_const, as demonstrated by nm-new.
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.8702499999999995
+    reward_string: Exploited CVE-2022-27943 on node-memory-001
+  CVE-2025-6020_1:
+    description: A flaw was found in linux-pam. The module pam_namespace may use access
+      user-controlled paths without proper protection, allowing local users to elevate
+      their privileges to root via multiple symlink attacks and race conditions.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.006
+    reward_string: Exploited CVE-2025-6020 on node-memory-001
+  CVE-2015-3276_1:
+    description: The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP
+      does not properly parse OpenSSL-style multi-keyword mode cipher strings, which
+      might cause a weaker than intended cipher to be used and allow remote attackers
+      to have unspecified impact via unknown vectors.
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 10.0
+    reward_string: Exploited CVE-2015-3276 on node-memory-001
+  CVE-2019-1010022_1:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may bypass stack guard protection. The component is: nptl. The attack
+      vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability
+      to bypass stack guard. NOTE: Upstream comments indicate "this is being treated
+      as a non-security bug and no real threat.'
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 10.0
+    reward_string: Exploited CVE-2019-1010022 on node-memory-001
+  TEMP-0841856-B18BAF_1:
+    description: '[Privilege escalation possible to other user than root]'
+    type: 3
+    outcome:
+      type: system_escalation
+      kwargs:
+        level: 3
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 0.0
+    reward_string: Exploited TEMP-0841856-B18BAF on node-memory-001
+value: 50
+network_info:
+- ip_address: 10.0.0.6
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- memory
+- zone-a
+- ip_10_0_0_6
+- service_mongodb
+- running_mongodb
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.0.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.0.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.0.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.0.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

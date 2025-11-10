@@ -1,0 +1,780 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 20,
+    "cluster_size": "MEDIUM",
+    "use_case": "microservices",
+    "total_services": 17,
+    "total_pods": 45,
+    "avg_pods_per_node": "2.2",
+    "total_resource_weight": 207,
+    "resource_utilization": "103.5%"
+  },
+  "services": [
+    "argo-cd",
+    "cert-manager",
+    "elasticsearch",
+    "etcd",
+    "fluent-bit",
+    "grafana",
+    "jaeger",
+    "jenkins",
+    "kibana",
+    "kube-state-metrics",
+    "metrics-server",
+    "mongodb",
+    "nginx-ingress-controller",
+    "postgresql",
+    "prometheus",
+    "redis",
+    "sealed-secrets"
+  ],
+  "service_instances": {
+    "argo-cd": 4,
+    "cert-manager": 1,
+    "elasticsearch": 4,
+    "etcd": 5,
+    "fluent-bit": 1,
+    "grafana": 1,
+    "jaeger": 4,
+    "jenkins": 1,
+    "kibana": 1,
+    "kube-state-metrics": 1,
+    "metrics-server": 1,
+    "mongodb": 4,
+    "nginx-ingress-controller": 4,
+    "postgresql": 4,
+    "prometheus": 4,
+    "redis": 4,
+    "sealed-secrets": 1
+  },
+  "services_by_category": {
+    "ci_cd": [
+      "argo-cd",
+      "jenkins"
+    ],
+    "control_plane_core": [
+      "etcd",
+      "kube-state-metrics",
+      "metrics-server"
+    ],
+    "control_plane_networking": [
+      "nginx-ingress-controller"
+    ],
+    "control_plane_security": [
+      "cert-manager",
+      "sealed-secrets"
+    ],
+    "data_caching": [
+      "redis"
+    ],
+    "data_nosql": [
+      "mongodb"
+    ],
+    "data_sql": [
+      "postgresql"
+    ],
+    "observability_logging": [
+      "elasticsearch",
+      "fluent-bit",
+      "kibana"
+    ],
+    "observability_metrics": [
+      "grafana",
+      "prometheus"
+    ],
+    "observability_tracing": [
+      "jaeger"
+    ]
+  },
+  "deployment_stats": {
+    "observability_stack": {
+      "metrics": true,
+      "logging": true,
+      "tracing": true,
+      "completeness_score": 1.0
+    },
+    "automation": {
+      "gitops_enabled": true,
+      "service_mesh": false
+    },
+    "data_layer": {
+      "sql_databases": 1,
+      "nosql_databases": 1,
+      "caching": true,
+      "messaging": false
+    }
+  },
+  "network_topology": {
+    "services": {
+      "argo-cd": {
+        "name": "argo-cd",
+        "category": "cicd",
+        "instance_count": 4,
+        "port": 8080,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.08590938481015678
+      },
+      "cert-manager": {
+        "name": "cert-manager",
+        "category": "security",
+        "instance_count": 1,
+        "port": 8775,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.026213886013194604
+      },
+      "elasticsearch": {
+        "name": "elasticsearch",
+        "category": "application",
+        "instance_count": 4,
+        "port": 8990,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.15905310704221995
+      },
+      "etcd": {
+        "name": "etcd",
+        "category": "control_plane",
+        "instance_count": 5,
+        "port": 2379,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0
+      },
+      "fluent-bit": {
+        "name": "fluent-bit",
+        "category": "application",
+        "instance_count": 1,
+        "port": 8866,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.03254260586294186
+      },
+      "grafana": {
+        "name": "grafana",
+        "category": "observability",
+        "instance_count": 1,
+        "port": 3000,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.13098987773230134
+      },
+      "jaeger": {
+        "name": "jaeger",
+        "category": "observability",
+        "instance_count": 4,
+        "port": 8274,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.11358664626625528
+      },
+      "jenkins": {
+        "name": "jenkins",
+        "category": "cicd",
+        "instance_count": 1,
+        "port": 8698,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.005867361835247081
+      },
+      "kibana": {
+        "name": "kibana",
+        "category": "application",
+        "instance_count": 1,
+        "port": 8894,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.1198934927145186
+      },
+      "kube-state-metrics": {
+        "name": "kube-state-metrics",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 8442,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.06558742373113806
+      },
+      "metrics-server": {
+        "name": "metrics-server",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 8133,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.021766724325039497
+      },
+      "mongodb": {
+        "name": "mongodb",
+        "category": "database",
+        "instance_count": 4,
+        "port": 27017,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0
+      },
+      "nginx-ingress-controller": {
+        "name": "nginx-ingress-controller",
+        "category": "networking",
+        "instance_count": 4,
+        "port": 322,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": false,
+        "vulnerability_level": 0.4243338823760162
+      },
+      "postgresql": {
+        "name": "postgresql",
+        "category": "database",
+        "instance_count": 4,
+        "port": 5432,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.07164491493850139
+      },
+      "prometheus": {
+        "name": "prometheus",
+        "category": "observability",
+        "instance_count": 4,
+        "port": 9090,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.34529463716774583
+      },
+      "redis": {
+        "name": "redis",
+        "category": "database",
+        "instance_count": 4,
+        "port": 6379,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0
+      },
+      "sealed-secrets": {
+        "name": "sealed-secrets",
+        "category": "application",
+        "instance_count": 1,
+        "port": 8883,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.13154276544242388
+      }
+    },
+    "knows_connectivity": [
+      {
+        "source": "etcd",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "etcd",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 8133,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "protocol": "TCP",
+        "port": 9090,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "nginx-ingress-controller",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "argo-cd",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "cert-manager",
+        "protocol": "TCP",
+        "port": 8775,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "elasticsearch",
+        "protocol": "TCP",
+        "port": 8990,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "etcd",
+        "protocol": "TCP",
+        "port": 2379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 8274,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jenkins",
+        "protocol": "TCP",
+        "port": 8698,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 8133,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mongodb",
+        "protocol": "TCP",
+        "port": 27017,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "postgresql",
+        "protocol": "TCP",
+        "port": 5432,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "sealed-secrets",
+        "protocol": "TCP",
+        "port": 8883,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "argo-cd",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "cert-manager",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "jenkins",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "kibana",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "postgresql",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "sealed-secrets",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      }
+    ],
+    "knows_reachability": [
+      "mongodb",
+      "grafana",
+      "argo-cd",
+      "etcd",
+      "redis",
+      "prometheus",
+      "postgresql",
+      "elasticsearch",
+      "jenkins",
+      "kibana",
+      "kube-state-metrics",
+      "sealed-secrets",
+      "jaeger",
+      "fluent-bit",
+      "cert-manager",
+      "metrics-server",
+      "nginx-ingress-controller"
+    ],
+    "access_connectivity": [
+      {
+        "source": "etcd",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "etcd",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 8133,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "protocol": "TCP",
+        "port": 9090,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "nginx-ingress-controller",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "argo-cd",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "cert-manager",
+        "protocol": "TCP",
+        "port": 8775,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "elasticsearch",
+        "protocol": "TCP",
+        "port": 8990,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "etcd",
+        "protocol": "TCP",
+        "port": 2379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 8274,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8442,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 8133,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mongodb",
+        "protocol": "TCP",
+        "port": 27017,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "postgresql",
+        "protocol": "TCP",
+        "port": 5432,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "sealed-secrets",
+        "protocol": "TCP",
+        "port": 8883,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "argo-cd",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "cert-manager",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "kibana",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "postgresql",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "sealed-secrets",
+        "target": "fluent-bit",
+        "protocol": "TCP",
+        "port": 8866,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      }
+    ],
+    "access_reachability": [
+      "postgresql",
+      "elasticsearch",
+      "mongodb",
+      "kube-state-metrics",
+      "sealed-secrets",
+      "grafana",
+      "jaeger",
+      "fluent-bit",
+      "cert-manager",
+      "argo-cd",
+      "etcd",
+      "metrics-server",
+      "nginx-ingress-controller",
+      "redis",
+      "prometheus"
+    ],
+    "metadata": {
+      "total_services": 17,
+      "total_edges": 27,
+      "firewall_blocked_edges": 3,
+      "entry_points": [
+        "nginx-ingress-controller"
+      ],
+      "knowledge_completeness": 0.9,
+      "firewall_probability": 0.2,
+      "knows_reachability_count": 17,
+      "access_reachability_count": 15,
+      "connectivity_metrics": {
+        "avg_degree": 2.823529411764706,
+        "density": 0.08823529411764706,
+        "is_connected": false,
+        "num_components": 2
+      }
+    }
+  }
+}

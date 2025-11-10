@@ -1,0 +1,5 @@
+cluster_id,num_nodes,cluster_size,use_case,total_services,resource_utilization,has_metrics,has_logging,has_tracing,observability_score,gitops_enabled,service_mesh,sql_databases,nosql_databases,has_caching,has_messaging,services
+1,50,MEDIUM,ecommerce,20,18.0%,True,True,False,0.67,True,False,1,2,True,False,airflow; argo-cd; cassandra; cert-manager; etcd; fluent-bit; grafana-loki; harbor; kibana; kube-state-metrics; metrics-server; minio; mongodb; nginx-ingress-controller; postgresql; prometheus; redis; thanos; vault; zookeeper
+2,8,SMALL,ml_platform,12,62.5%,True,True,False,0.67,True,False,1,0,True,False,argo-cd; etcd; grafana; grafana-loki; jenkins; kube-state-metrics; metrics-server; minio; postgresql; prometheus; redis; vault
+3,8,SMALL,ml_platform,11,52.5%,True,True,False,0.67,True,False,1,0,False,False,argo-cd; etcd; fluent-bit; grafana; jenkins; kube-state-metrics; metrics-server; minio; nginx-ingress-controller; postgresql; prometheus
+4,8,SMALL,ml_platform,11,57.5%,True,False,False,0.33,True,False,1,0,False,True,argo-cd; etcd; grafana; keycloak; kong; kube-state-metrics; metrics-server; minio; postgresql; prometheus; rabbitmq

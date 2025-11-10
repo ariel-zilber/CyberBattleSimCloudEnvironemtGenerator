@@ -1,0 +1,1462 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 20,
+    "cluster_size": "MEDIUM",
+    "use_case": "microservices",
+    "total_services": 3,
+    "total_pods": 13,
+    "placed_pods": 13,
+    "unplaced_pods": 0
+  },
+  "services": [
+    "etcd",
+    "postgresql",
+    "prometheus"
+  ],
+  "service_instances": {
+    "etcd": 5,
+    "postgresql": 4,
+    "prometheus": 4
+  },
+  "physical_nodes": [
+    {
+      "node_id": "control-plane-0",
+      "node_type": "control_plane",
+      "zone": "zone-a",
+      "rack": "rack-1",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "allocated_cpu": 2.0,
+      "allocated_memory": 4.0,
+      "cpu_utilization_pct": 50.0,
+      "memory_utilization_pct": 25.0,
+      "pod_count": 1,
+      "running_pods": [
+        "etcd-0"
+      ]
+    },
+    {
+      "node_id": "control-plane-1",
+      "node_type": "control_plane",
+      "zone": "zone-b",
+      "rack": "rack-1",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "allocated_cpu": 2.0,
+      "allocated_memory": 4.0,
+      "cpu_utilization_pct": 50.0,
+      "memory_utilization_pct": 25.0,
+      "pod_count": 1,
+      "running_pods": [
+        "etcd-1"
+      ]
+    },
+    {
+      "node_id": "control-plane-2",
+      "node_type": "control_plane",
+      "zone": "zone-a",
+      "rack": "rack-1",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "allocated_cpu": 2.0,
+      "allocated_memory": 4.0,
+      "cpu_utilization_pct": 50.0,
+      "memory_utilization_pct": 25.0,
+      "pod_count": 1,
+      "running_pods": [
+        "etcd-2"
+      ]
+    },
+    {
+      "node_id": "control-plane-3",
+      "node_type": "control_plane",
+      "zone": "zone-b",
+      "rack": "rack-1",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "allocated_cpu": 2.0,
+      "allocated_memory": 4.0,
+      "cpu_utilization_pct": 50.0,
+      "memory_utilization_pct": 25.0,
+      "pod_count": 1,
+      "running_pods": [
+        "etcd-3"
+      ]
+    },
+    {
+      "node_id": "control-plane-4",
+      "node_type": "control_plane",
+      "zone": "zone-a",
+      "rack": "rack-1",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "allocated_cpu": 2.0,
+      "allocated_memory": 4.0,
+      "cpu_utilization_pct": 50.0,
+      "memory_utilization_pct": 25.0,
+      "pod_count": 1,
+      "running_pods": [
+        "etcd-4"
+      ]
+    },
+    {
+      "node_id": "worker_memory-5",
+      "node_type": "worker_memory",
+      "zone": "zone-b",
+      "rack": "rack-1",
+      "cpu_cores": 16,
+      "memory_gb": 256,
+      "allocated_cpu": 6.0,
+      "allocated_memory": 24.0,
+      "cpu_utilization_pct": 37.5,
+      "memory_utilization_pct": 9.38,
+      "pod_count": 3,
+      "running_pods": [
+        "postgresql-0",
+        "postgresql-3",
+        "prometheus-2"
+      ]
+    },
+    {
+      "node_id": "worker_memory-6",
+      "node_type": "worker_memory",
+      "zone": "zone-a",
+      "rack": "rack-1",
+      "cpu_cores": 16,
+      "memory_gb": 256,
+      "allocated_cpu": 6.0,
+      "allocated_memory": 24.0,
+      "cpu_utilization_pct": 37.5,
+      "memory_utilization_pct": 9.38,
+      "pod_count": 3,
+      "running_pods": [
+        "postgresql-1",
+        "prometheus-0",
+        "prometheus-3"
+      ]
+    },
+    {
+      "node_id": "worker_memory-7",
+      "node_type": "worker_memory",
+      "zone": "zone-b",
+      "rack": "rack-1",
+      "cpu_cores": 16,
+      "memory_gb": 256,
+      "allocated_cpu": 4.0,
+      "allocated_memory": 16.0,
+      "cpu_utilization_pct": 25.0,
+      "memory_utilization_pct": 6.25,
+      "pod_count": 2,
+      "running_pods": [
+        "postgresql-2",
+        "prometheus-1"
+      ]
+    },
+    {
+      "node_id": "worker_compute-8",
+      "node_type": "worker_compute",
+      "zone": "zone-a",
+      "rack": "rack-1",
+      "cpu_cores": 32,
+      "memory_gb": 64,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_compute-9",
+      "node_type": "worker_compute",
+      "zone": "zone-b",
+      "rack": "rack-1",
+      "cpu_cores": 32,
+      "memory_gb": 64,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-10",
+      "node_type": "worker_general",
+      "zone": "zone-a",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-11",
+      "node_type": "worker_general",
+      "zone": "zone-b",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-12",
+      "node_type": "worker_general",
+      "zone": "zone-a",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-13",
+      "node_type": "worker_general",
+      "zone": "zone-b",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-14",
+      "node_type": "worker_general",
+      "zone": "zone-a",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-15",
+      "node_type": "worker_general",
+      "zone": "zone-b",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-16",
+      "node_type": "worker_general",
+      "zone": "zone-a",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-17",
+      "node_type": "worker_general",
+      "zone": "zone-b",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-18",
+      "node_type": "worker_general",
+      "zone": "zone-a",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    },
+    {
+      "node_id": "worker_general-19",
+      "node_type": "worker_general",
+      "zone": "zone-b",
+      "rack": "rack-2",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "allocated_cpu": 0.0,
+      "allocated_memory": 0.0,
+      "cpu_utilization_pct": 0.0,
+      "memory_utilization_pct": 0.0,
+      "pod_count": 0,
+      "running_pods": []
+    }
+  ],
+  "node_topology": {
+    "nodes": [
+      {
+        "node_id": "control-plane-0",
+        "node_type": "control_plane",
+        "zone": "zone-a",
+        "rack": "rack-1",
+        "pod_count": 1
+      },
+      {
+        "node_id": "control-plane-1",
+        "node_type": "control_plane",
+        "zone": "zone-b",
+        "rack": "rack-1",
+        "pod_count": 1
+      },
+      {
+        "node_id": "control-plane-2",
+        "node_type": "control_plane",
+        "zone": "zone-a",
+        "rack": "rack-1",
+        "pod_count": 1
+      },
+      {
+        "node_id": "control-plane-3",
+        "node_type": "control_plane",
+        "zone": "zone-b",
+        "rack": "rack-1",
+        "pod_count": 1
+      },
+      {
+        "node_id": "control-plane-4",
+        "node_type": "control_plane",
+        "zone": "zone-a",
+        "rack": "rack-1",
+        "pod_count": 1
+      },
+      {
+        "node_id": "worker_memory-5",
+        "node_type": "worker_memory",
+        "zone": "zone-b",
+        "rack": "rack-1",
+        "pod_count": 3
+      },
+      {
+        "node_id": "worker_memory-6",
+        "node_type": "worker_memory",
+        "zone": "zone-a",
+        "rack": "rack-1",
+        "pod_count": 3
+      },
+      {
+        "node_id": "worker_memory-7",
+        "node_type": "worker_memory",
+        "zone": "zone-b",
+        "rack": "rack-1",
+        "pod_count": 2
+      },
+      {
+        "node_id": "worker_compute-8",
+        "node_type": "worker_compute",
+        "zone": "zone-a",
+        "rack": "rack-1",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_compute-9",
+        "node_type": "worker_compute",
+        "zone": "zone-b",
+        "rack": "rack-1",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-10",
+        "node_type": "worker_general",
+        "zone": "zone-a",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-11",
+        "node_type": "worker_general",
+        "zone": "zone-b",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-12",
+        "node_type": "worker_general",
+        "zone": "zone-a",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-13",
+        "node_type": "worker_general",
+        "zone": "zone-b",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-14",
+        "node_type": "worker_general",
+        "zone": "zone-a",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-15",
+        "node_type": "worker_general",
+        "zone": "zone-b",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-16",
+        "node_type": "worker_general",
+        "zone": "zone-a",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-17",
+        "node_type": "worker_general",
+        "zone": "zone-b",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-18",
+        "node_type": "worker_general",
+        "zone": "zone-a",
+        "rack": "rack-2",
+        "pod_count": 0
+      },
+      {
+        "node_id": "worker_general-19",
+        "node_type": "worker_general",
+        "zone": "zone-b",
+        "rack": "rack-2",
+        "pod_count": 0
+      }
+    ],
+    "edges": [
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.68,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.12,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_compute-9",
+        "edge_type": "inter_zone",
+        "latency_ms": 4.2,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-12",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.3,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-11",
+        "edge_type": "inter_zone",
+        "latency_ms": 7.89,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_compute-8",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.71,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-13",
+        "edge_type": "inter_zone",
+        "latency_ms": 9.14,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-17",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.7,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.48,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_memory-5",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.24,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-10",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.3,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-19",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.04,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_memory-7",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.21,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.28,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-0",
+        "target": "worker_general-15",
+        "edge_type": "inter_zone",
+        "latency_ms": 7.2,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-14",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.36,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-18",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.76,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_compute-9",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.63,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-12",
+        "edge_type": "inter_zone",
+        "latency_ms": 8.48,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-11",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.11,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_compute-8",
+        "edge_type": "inter_zone",
+        "latency_ms": 8.45,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-13",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.73,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.41,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_memory-6",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.24,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.96,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-10",
+        "edge_type": "inter_zone",
+        "latency_ms": 4.69,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.18,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.19,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-16",
+        "edge_type": "inter_zone",
+        "latency_ms": 8.78,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-1",
+        "target": "worker_general-15",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.64,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.83,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.76,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_compute-9",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.29,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-12",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.98,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-11",
+        "edge_type": "inter_zone",
+        "latency_ms": 5.03,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_compute-8",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.6,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-13",
+        "edge_type": "inter_zone",
+        "latency_ms": 8.64,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-17",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.95,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.88,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_memory-5",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.62,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-10",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.73,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-19",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.37,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_memory-7",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.82,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.36,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-2",
+        "target": "worker_general-15",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.64,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-14",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.86,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-18",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.81,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_compute-9",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.35,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-12",
+        "edge_type": "inter_zone",
+        "latency_ms": 7.09,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-11",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.43,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_compute-8",
+        "edge_type": "inter_zone",
+        "latency_ms": 4.96,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-13",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.29,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.34,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_memory-6",
+        "edge_type": "inter_zone",
+        "latency_ms": 9.49,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.68,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-10",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.87,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.25,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.76,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-16",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.31,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-3",
+        "target": "worker_general-15",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.44,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.99,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.68,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_compute-9",
+        "edge_type": "inter_zone",
+        "latency_ms": 6.46,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-12",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.72,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-11",
+        "edge_type": "inter_zone",
+        "latency_ms": 8.74,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_compute-8",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.8,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-13",
+        "edge_type": "inter_zone",
+        "latency_ms": 3.83,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-17",
+        "edge_type": "inter_zone",
+        "latency_ms": 2.26,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.38,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_memory-5",
+        "edge_type": "inter_zone",
+        "latency_ms": 4.14,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-10",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.29,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-19",
+        "edge_type": "inter_zone",
+        "latency_ms": 9.54,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_memory-7",
+        "edge_type": "inter_zone",
+        "latency_ms": 9.01,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.38,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "control-plane-4",
+        "target": "worker_general-15",
+        "edge_type": "inter_zone",
+        "latency_ms": 7.24,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_memory-5",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.46,
+        "bandwidth_gbps": 25
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.92,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.51,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_general-12",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.34,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.32,
+        "bandwidth_gbps": 25
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_general-10",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.61,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-8",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.34,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_general-11",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.63,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_general-13",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.91,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.46,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.3,
+        "bandwidth_gbps": 25
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 1.0,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.56,
+        "bandwidth_gbps": 25
+      },
+      {
+        "source": "worker_compute-9",
+        "target": "worker_general-15",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.18,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-10",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.14,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-10",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.2,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-10",
+        "target": "worker_general-12",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.66,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-10",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.81,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-10",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.48,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_general-13",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.16,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.44,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 1.0,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.58,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.97,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-11",
+        "target": "worker_general-15",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.87,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-12",
+        "target": "worker_general-14",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.11,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-12",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.75,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-12",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.71,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-12",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.58,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-13",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.34,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-13",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.68,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-13",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.2,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-13",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.49,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-13",
+        "target": "worker_general-15",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.51,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-14",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.96,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-14",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.89,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-14",
+        "target": "worker_general-16",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.34,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-15",
+        "target": "worker_general-17",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.55,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-15",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.26,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-15",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.92,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-15",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.88,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-16",
+        "target": "worker_general-18",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.37,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-16",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.68,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-17",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.65,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-17",
+        "target": "worker_general-19",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.24,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-17",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.79,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-18",
+        "target": "worker_memory-6",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.59,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-19",
+        "target": "worker_memory-5",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.8,
+        "bandwidth_gbps": 10
+      },
+      {
+        "source": "worker_general-19",
+        "target": "worker_memory-7",
+        "edge_type": "intra_zone",
+        "latency_ms": 0.58,
+        "bandwidth_gbps": 10
+      }
+    ],
+    "topology_stats": {
+      "total_nodes": 20,
+      "total_edges": 124,
+      "avg_degree": 12.4,
+      "zones": 2,
+      "control_plane_nodes": 5,
+      "worker_nodes": 15
+    }
+  },
+  "pod_placements": [
+    {
+      "pod_id": "postgresql-0",
+      "service_name": "postgresql",
+      "node_id": "worker_memory-5",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "postgresql-1",
+      "service_name": "postgresql",
+      "node_id": "worker_memory-6",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "postgresql-2",
+      "service_name": "postgresql",
+      "node_id": "worker_memory-7",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "postgresql-3",
+      "service_name": "postgresql",
+      "node_id": "worker_memory-5",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "prometheus-0",
+      "service_name": "prometheus",
+      "node_id": "worker_memory-6",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "prometheus-1",
+      "service_name": "prometheus",
+      "node_id": "worker_memory-7",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "prometheus-2",
+      "service_name": "prometheus",
+      "node_id": "worker_memory-5",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "prometheus-3",
+      "service_name": "prometheus",
+      "node_id": "worker_memory-6",
+      "cpu_request": 2.0,
+      "memory_request": 8.0
+    },
+    {
+      "pod_id": "etcd-0",
+      "service_name": "etcd",
+      "node_id": "control-plane-0",
+      "cpu_request": 2.0,
+      "memory_request": 4.0
+    },
+    {
+      "pod_id": "etcd-1",
+      "service_name": "etcd",
+      "node_id": "control-plane-1",
+      "cpu_request": 2.0,
+      "memory_request": 4.0
+    },
+    {
+      "pod_id": "etcd-2",
+      "service_name": "etcd",
+      "node_id": "control-plane-2",
+      "cpu_request": 2.0,
+      "memory_request": 4.0
+    },
+    {
+      "pod_id": "etcd-3",
+      "service_name": "etcd",
+      "node_id": "control-plane-3",
+      "cpu_request": 2.0,
+      "memory_request": 4.0
+    },
+    {
+      "pod_id": "etcd-4",
+      "service_name": "etcd",
+      "node_id": "control-plane-4",
+      "cpu_request": 2.0,
+      "memory_request": 4.0
+    }
+  ],
+  "node_utilization": {
+    "total_capacity": {
+      "cpu_cores": 212,
+      "memory_gb": 1296
+    },
+    "total_allocated": {
+      "cpu_cores": 26.0,
+      "memory_gb": 84.0
+    },
+    "utilization_pct": {
+      "cpu": 12.26,
+      "memory": 6.48
+    },
+    "nodes_by_type": {
+      "control_plane": 5,
+      "worker_general": 10,
+      "worker_compute": 2,
+      "worker_memory": 3,
+      "worker_storage": 0,
+      "worker_gpu": 0,
+      "edge": 0
+    }
+  }
+}

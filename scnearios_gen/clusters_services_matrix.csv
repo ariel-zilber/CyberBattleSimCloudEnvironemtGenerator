@@ -1,0 +1,5 @@
+cluster_id,use_case,num_nodes,airflow,argo-cd,cassandra,cert-manager,etcd,fluent-bit,grafana,grafana-loki,harbor,jenkins,keycloak,kibana,kong,kube-state-metrics,metrics-server,minio,mongodb,nginx-ingress-controller,postgresql,prometheus,rabbitmq,redis,thanos,vault,zookeeper
+1,ecommerce,50,✓,✓,✓,✓,✓,✓,,✓,✓,,,✓,,✓,✓,✓,✓,✓,✓,✓,,✓,✓,✓,✓
+2,ml_platform,8,,✓,,,✓,,✓,✓,,✓,,,,✓,✓,✓,,,✓,✓,,✓,,✓,
+3,ml_platform,8,,✓,,,✓,✓,✓,,,✓,,,,✓,✓,✓,,✓,✓,✓,,,,,
+4,ml_platform,8,,✓,,,✓,,✓,,,,✓,,✓,✓,✓,✓,,,✓,✓,✓,,,,

@@ -1,0 +1,58 @@
+graph NodeTopology {
+  layout=fdp;
+  node [shape=box, style=filled];
+
+  "control-plane-0" [label="control-plane-0\n1 pods\n50% CPU", fillcolor="lightblue"];
+  "control-plane-1" [label="control-plane-1\n1 pods\n50% CPU", fillcolor="lightblue"];
+  "control-plane-2" [label="control-plane-2\n1 pods\n50% CPU", fillcolor="lightblue"];
+  "worker_memory-3" [label="worker_memory-3\n3 pods\n38% CPU", fillcolor="yellow"];
+  "worker_compute-4" [label="worker_compute-4\n5 pods\n23% CPU", fillcolor="orange"];
+  "worker_general-5" [label="worker_general-5\n7 pods\n94% CPU", fillcolor="lightgreen"];
+  "worker_general-6" [label="worker_general-6\n7 pods\n94% CPU", fillcolor="lightgreen"];
+  "worker_general-7" [label="worker_general-7\n6 pods\n81% CPU", fillcolor="lightgreen"];
+  "worker_general-8" [label="worker_general-8\n1 pods\n25% CPU", fillcolor="lightgreen"];
+  "worker_general-9" [label="worker_general-9\n1 pods\n25% CPU", fillcolor="lightgreen"];
+
+  "control-plane-0" -- "worker_general-8" [label="0.96ms", style="solid"];
+  "control-plane-0" -- "worker_general-9" [label="0.89ms", style="solid"];
+  "control-plane-0" -- "worker_memory-3" [label="0.34ms", style="solid"];
+  "control-plane-0" -- "worker_general-6" [label="0.55ms", style="solid"];
+  "control-plane-0" -- "worker_general-7" [label="0.26ms", style="solid"];
+  "control-plane-0" -- "worker_compute-4" [label="0.92ms", style="solid"];
+  "control-plane-0" -- "worker_general-5" [label="0.88ms", style="solid"];
+  "control-plane-1" -- "worker_general-8" [label="0.37ms", style="solid"];
+  "control-plane-1" -- "worker_general-9" [label="0.68ms", style="solid"];
+  "control-plane-1" -- "worker_memory-3" [label="0.65ms", style="solid"];
+  "control-plane-1" -- "worker_general-6" [label="0.24ms", style="solid"];
+  "control-plane-1" -- "worker_general-7" [label="0.79ms", style="solid"];
+  "control-plane-1" -- "worker_compute-4" [label="0.59ms", style="solid"];
+  "control-plane-1" -- "worker_general-5" [label="0.8ms", style="solid"];
+  "control-plane-2" -- "worker_general-8" [label="0.58ms", style="solid"];
+  "control-plane-2" -- "worker_general-9" [label="0.1ms", style="solid"];
+  "control-plane-2" -- "worker_memory-3" [label="0.39ms", style="solid"];
+  "control-plane-2" -- "worker_general-6" [label="0.12ms", style="solid"];
+  "control-plane-2" -- "worker_general-7" [label="0.94ms", style="solid"];
+  "control-plane-2" -- "worker_compute-4" [label="0.89ms", style="solid"];
+  "control-plane-2" -- "worker_general-5" [label="0.85ms", style="solid"];
+  "worker_compute-4" -- "worker_general-8" [label="0.38ms", style="solid"];
+  "worker_compute-4" -- "worker_general-5" [label="0.15ms", style="solid"];
+  "worker_compute-4" -- "worker_general-9" [label="0.89ms", style="solid"];
+  "worker_compute-4" -- "worker_memory-3" [label="0.95ms", style="solid"];
+  "worker_compute-4" -- "worker_general-6" [label="0.18ms", style="solid"];
+  "worker_compute-4" -- "worker_general-7" [label="0.54ms", style="solid"];
+  "worker_general-5" -- "worker_general-8" [label="0.16ms", style="solid"];
+  "worker_general-5" -- "worker_general-9" [label="0.78ms", style="solid"];
+  "worker_general-5" -- "worker_memory-3" [label="0.79ms", style="solid"];
+  "worker_general-5" -- "worker_general-6" [label="0.22ms", style="solid"];
+  "worker_general-5" -- "worker_general-7" [label="0.53ms", style="solid"];
+  "worker_general-6" -- "worker_general-8" [label="0.59ms", style="solid"];
+  "worker_general-6" -- "worker_general-9" [label="0.34ms", style="solid"];
+  "worker_general-6" -- "worker_memory-3" [label="0.89ms", style="solid"];
+  "worker_general-6" -- "worker_general-7" [label="0.48ms", style="solid"];
+  "worker_general-7" -- "worker_general-8" [label="0.29ms", style="solid"];
+  "worker_general-7" -- "worker_general-9" [label="0.59ms", style="solid"];
+  "worker_general-7" -- "worker_memory-3" [label="0.76ms", style="solid"];
+  "worker_general-8" -- "worker_general-9" [label="0.28ms", style="solid"];
+  "worker_general-8" -- "worker_memory-3" [label="0.38ms", style="solid"];
+  "worker_general-9" -- "worker_memory-3" [label="1.0ms", style="solid"];
+}

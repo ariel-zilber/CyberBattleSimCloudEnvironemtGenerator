@@ -1,0 +1,37 @@
+CYBERBATTLESIM ATTACK ANALYSIS REPORT
+==================================================
+
+BASIC STATISTICS:
+Total target nodes: 10
+Total vulnerabilities: 273
+Total properties: 175
+Attacker entry points: 1
+
+ATTACK PATH ANALYSIS:
+------------------------------
+❌ Full ownership not achievable with current vulnerabilities
+
+BEST PARTIAL PATHS:
+
+PROPERTY ANALYSIS:
+------------------------------
+attacker: 1 properties
+control: 3 properties
+external: 1 properties
+ip: 10 properties
+kubernetes: 10 properties
+memory: 2 properties
+reconnaissance: 1 properties
+running: 56 properties
+service: 56 properties
+subnet: 10 properties
+worker: 5 properties
+zone: 10 properties
+zone-a: 10 properties
+
+CRITICAL NODES:
+------------------------------
+node-control_plane-002: value 200, properties 10
+node-control_plane-000: value 175, properties 8
+node-control_plane-001: value 175, properties 12
+node-worker-001: value 125, properties 40

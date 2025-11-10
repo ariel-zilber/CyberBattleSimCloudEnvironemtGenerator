@@ -1,0 +1,62 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 5,
+    "cluster_size": "SMALL",
+    "use_case": "ml_platform",
+    "total_services": 6,
+    "total_pods": 14,
+    "avg_pods_per_node": "2.8",
+    "total_resource_weight": 56,
+    "resource_utilization": "112.0%"
+  },
+  "services": [
+    "cert-manager",
+    "etcd",
+    "kube-state-metrics",
+    "metrics-server",
+    "nginx-ingress-controller",
+    "prometheus"
+  ],
+  "service_instances": {
+    "cert-manager": 1,
+    "etcd": 5,
+    "kube-state-metrics": 1,
+    "metrics-server": 1,
+    "nginx-ingress-controller": 3,
+    "prometheus": 3
+  },
+  "services_by_category": {
+    "control_plane_core": [
+      "etcd",
+      "kube-state-metrics",
+      "metrics-server"
+    ],
+    "control_plane_networking": [
+      "nginx-ingress-controller"
+    ],
+    "control_plane_security": [
+      "cert-manager"
+    ],
+    "observability_metrics": [
+      "prometheus"
+    ]
+  },
+  "deployment_stats": {
+    "observability_stack": {
+      "metrics": true,
+      "logging": false,
+      "tracing": false,
+      "completeness_score": 0.3333333333333333
+    },
+    "automation": {
+      "gitops_enabled": false,
+      "service_mesh": false
+    },
+    "data_layer": {
+      "sql_databases": 0,
+      "nosql_databases": 0,
+      "caching": false,
+      "messaging": false
+    }
+  }
+}

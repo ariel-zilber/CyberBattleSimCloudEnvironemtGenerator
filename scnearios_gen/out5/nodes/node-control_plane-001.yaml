@@ -1,0 +1,447 @@
+services:
+- name: etcd-1
+  port: '2379'
+  allowedCredentials:
+  - etcd_1_creds
+  - cilium_to_etcd_key
+  - prometheus_to_etcd_key
+  running: true
+- name: kube-state-metrics-0
+  port: '8080'
+  allowedCredentials:
+  - kube-state-metrics_0_creds
+  - prometheus_to_kube-state-metrics_key
+  running: true
+- name: metrics-server-0
+  port: '443'
+  allowedCredentials:
+  - metrics-server_0_creds
+  - prometheus_to_metrics-server_key
+  running: true
+vulnerabilities:
+  Exploit_etcd_1:
+    description: Exploit etcd service on node-control_plane-001
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-control_plane-001
+            port: '2379'
+            credential: etcd_1_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to etcd on node-control_plane-001
+  CVE-2022-0563_1:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 3
+    outcome:
+      type: system_escalation
+      kwargs:
+        level: 3
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.235
+    reward_string: Exploited CVE-2022-0563 on node-control_plane-001
+  CVE-2025-4802_1:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically
+      shared library in statically compiled setuid binaries that call dlopen (including
+      internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.634999999999999
+    reward_string: Exploited CVE-2025-4802 on node-control_plane-001
+  CVE-2025-8058_1:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if some previous allocation fails. It can be\
+      \ \naccomplished either by a malloc failure or by using an interposed malloc\n\
+      \ that injects random malloc failures. The double free can allow buffer \nmanipulation\
+      \ depending of how the regex is constructed. This issue \naffects all architectures\
+      \ and ABIs supported by the GNU C library."
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.94
+    reward_string: Exploited CVE-2025-8058 on node-control_plane-001
+  CVE-2022-3219_1:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-worker-000
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.541
+    reward_string: Exploited CVE-2022-3219 on node-control_plane-001
+  Exploit_kube-state-metrics_0:
+    description: Exploit kube-state-metrics service on node-control_plane-001
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-control_plane-001
+            port: '8080'
+            credential: kube-state-metrics_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to kube-state-metrics on node-control_plane-001
+  CVE-2013-4392_0:
+    description: systemd, when updating file permissions, allows local users to change
+      the permissions and SELinux security contexts for arbitrary files via a symlink
+      attack on unspecified files.
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.3099999999999996
+    reward_string: Exploited CVE-2013-4392 on node-control_plane-001
+  CVE-2023-31439_0:
+    description: 'An issue was discovered in systemd 253. An attacker can modify the
+      contents of past events in a sealed log file and then adjust the file such that
+      checking the integrity shows no error, despite modifications. NOTE: the vendor
+      reportedly sent "a reply denying that any of the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.0454
+    reward_string: Exploited CVE-2023-31439 on node-control_plane-001
+  CVE-2023-4016_0:
+    description: "Under some circumstances, this weakness allows a user who has access\
+      \ to run the \u201Cps\u201D utility on a machine, the ability to write almost\
+      \ unlimited amounts of unfiltered data into the process heap."
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.541
+    reward_string: Exploited CVE-2023-4016 on node-control_plane-001
+  Exploit_metrics-server_0:
+    description: Exploit metrics-server service on node-control_plane-001
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-control_plane-001
+            port: '443'
+            credential: metrics-server_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 5.0
+    reward_string: Gained access to metrics-server on node-control_plane-001
+  CVE-2025-6297_0:
+    description: 'It was discovered that dpkg-deb does not properly sanitize directory
+      permissions when extracting a control member into a temporary directory, which
+      is
+
+      documented as being a safe operation even on untrusted data. This may result
+      in leaving temporary files behind on cleanup. Given automated and repeated execution
+      of dpkg-deb commands on
+
+      adversarial .deb packages or with well compressible files, placed
+
+      inside a directory with permissions not allowing removal by a non-root
+
+      user, this can end up in a DoS scenario due to causing disk quota
+
+      exhaustion or disk full conditions.'
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-003
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-control_plane-002
+        - node-worker-002
+        - node-worker-001
+        - node-worker-004
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 0.0
+    reward_string: Exploited CVE-2025-6297 on node-control_plane-001
+value: 175
+network_info:
+- ip_address: 10.0.0.3
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- control_plane
+- zone-a
+- ip_10_0_0_3
+- service_etcd
+- running_etcd
+- service_kube-state-metrics
+- running_kube-state-metrics
+- service_metrics-server
+- running_metrics-server
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.0.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-memory-001
+    permission: 0
+    subnet:
+      network: 10.0.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.0.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-memory-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-memory-001
+    permission: 0
+    subnet:
+      network: 10.0.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.0.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.0.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-004
+    permission: 0
+    subnet:
+      network: 10.0.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

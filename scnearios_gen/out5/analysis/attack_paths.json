@@ -1,0 +1,418 @@
+{
+  "maximal_achievement": {
+    "best_state": {
+      "discovered": [
+        "node-worker-003",
+        "node-worker-000",
+        "node-control_plane-000",
+        "node-control_plane-001",
+        "node-control_plane-002",
+        "node-worker-002",
+        "attacker",
+        "node-worker-001",
+        "node-worker-004"
+      ],
+      "owned": [
+        "node-worker-003",
+        "node-worker-000",
+        "node-worker-002",
+        "node-control_plane-001",
+        "attacker"
+      ],
+      "creds": [
+        [
+          "node-worker-001",
+          "9000",
+          "thanos_to_minio_key"
+        ],
+        [
+          "node-worker-003",
+          "7000",
+          "cassandra_3_creds"
+        ],
+        [
+          "node-worker-000",
+          "7000",
+          "cassandra_1_creds"
+        ],
+        [
+          "node-worker-002",
+          "9090",
+          "prometheus_1_creds"
+        ],
+        [
+          "node-worker-000",
+          "80",
+          "kibana_0_creds"
+        ],
+        [
+          "node-worker-002",
+          "5432",
+          "postgresql_3_creds"
+        ],
+        [
+          "node-worker-001",
+          "7000",
+          "cassandra_0_creds"
+        ],
+        [
+          "node-worker-000",
+          "7000",
+          "prometheus_to_cassandra_key"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "grafana-loki_3_creds"
+        ],
+        [
+          "node-worker-002",
+          "7000",
+          "jaeger_to_cassandra_key"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "grafana_to_grafana-loki_key"
+        ],
+        [
+          "node-worker-002",
+          "7000",
+          "cassandra_2_creds"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "prometheus_to_nginx-ingress-controller_key"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "argo-cd_0_creds"
+        ],
+        [
+          "node-worker-003",
+          "7000",
+          "prometheus_to_cassandra_key"
+        ],
+        [
+          "node-worker-000",
+          "6379",
+          "prometheus_to_redis_key"
+        ],
+        [
+          "node-worker-001",
+          "80",
+          "prometheus_to_nginx-ingress-controller_key"
+        ],
+        [
+          "node-worker-000",
+          "7000",
+          "jaeger_to_cassandra_key"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "fluent-bit_to_grafana-loki_key"
+        ],
+        [
+          "node-worker-003",
+          "9090",
+          "grafana_to_prometheus_key"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "nginx-ingress-controller_1_creds"
+        ],
+        [
+          "node-control_plane-001",
+          "2379",
+          "prometheus_to_etcd_key"
+        ],
+        [
+          "node-worker-003",
+          "6379",
+          "prometheus_to_redis_key"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "cert-manager_0_creds"
+        ],
+        [
+          "node-control_plane-001",
+          "443",
+          "prometheus_to_metrics-server_key"
+        ],
+        [
+          "node-worker-003",
+          "7000",
+          "jaeger_to_cassandra_key"
+        ],
+        [
+          "node-control_plane-001",
+          "2379",
+          "etcd_1_creds"
+        ],
+        [
+          "node-control_plane-000",
+          "2379",
+          "prometheus_to_etcd_key"
+        ],
+        [
+          "node-control_plane-001",
+          "8080",
+          "kube-state-metrics_0_creds"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "prometheus_to_cert-manager_key"
+        ],
+        [
+          "node-control_plane-001",
+          "2379",
+          "cilium_to_etcd_key"
+        ],
+        [
+          "node-control_plane-001",
+          "443",
+          "metrics-server_0_creds"
+        ],
+        [
+          "node-worker-000",
+          "80",
+          "prometheus_to_cilium_key"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "nginx-ingress-controller_3_creds"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "fluent-bit_to_grafana-loki_key"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "prometheus_to_nginx-ingress-controller_key"
+        ],
+        [
+          "node-worker-003",
+          "9090",
+          "prometheus_3_creds"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "grafana_to_grafana-loki_key"
+        ],
+        [
+          "node-worker-001",
+          "3000",
+          "prometheus_to_grafana_key"
+        ],
+        [
+          "node-worker-003",
+          "6379",
+          "redis_0_creds"
+        ],
+        [
+          "node-control_plane-001",
+          "8080",
+          "prometheus_to_kube-state-metrics_key"
+        ],
+        [
+          "node-worker-002",
+          "9090",
+          "grafana_to_prometheus_key"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "grafana-loki_0_creds"
+        ],
+        [
+          "node-worker-002",
+          "80",
+          "argo-cd_2_creds"
+        ],
+        [
+          "node-worker-002",
+          "6831",
+          "jaeger_3_creds"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "thanos_1_creds"
+        ],
+        [
+          "node-worker-003",
+          "80",
+          "thanos_3_creds"
+        ],
+        [
+          "node-worker-000",
+          "80",
+          "cilium_0_creds"
+        ],
+        [
+          "node-worker-000",
+          "6379",
+          "redis_2_creds"
+        ],
+        [
+          "node-worker-002",
+          "7000",
+          "prometheus_to_cassandra_key"
+        ],
+        [
+          "node-worker-003",
+          "9000",
+          "minio_1_creds"
+        ],
+        [
+          "node-worker-003",
+          "9000",
+          "thanos_to_minio_key"
+        ],
+        [
+          "node-worker-003",
+          "5432",
+          "postgresql_1_creds"
+        ]
+      ],
+      "props": {
+        "node-worker-002": [
+          "running_argo-cd",
+          "running_postgresql",
+          "worker",
+          "ip_10_0_0_7",
+          "running_nginx-ingress-controller",
+          "zone_zone-a",
+          "running_jaeger",
+          "running_grafana-loki",
+          "service_jaeger",
+          "service_grafana-loki",
+          "zone-a",
+          "service_postgresql",
+          "subnet_10.0.0.0_16",
+          "kubernetes",
+          "service_cassandra",
+          "service_prometheus",
+          "service_argo-cd",
+          "running_cassandra",
+          "running_prometheus",
+          "service_nginx-ingress-controller"
+        ],
+        "node-worker-003": [
+          "running_argo-cd",
+          "running_postgresql",
+          "worker",
+          "service_minio",
+          "running_thanos",
+          "running_nginx-ingress-controller",
+          "zone_zone-a",
+          "service_thanos",
+          "ip_10_0_0_11",
+          "running_redis",
+          "running_grafana-loki",
+          "running_minio",
+          "running_cert-manager",
+          "service_grafana-loki",
+          "zone-a",
+          "service_postgresql",
+          "subnet_10.0.0.0_16",
+          "service_redis",
+          "kubernetes",
+          "service_cassandra",
+          "service_prometheus",
+          "service_cert-manager",
+          "running_cassandra",
+          "service_argo-cd",
+          "running_prometheus",
+          "service_nginx-ingress-controller"
+        ],
+        "node-worker-004": [
+          "kubernetes"
+        ],
+        "node-control_plane-000": [
+          "kubernetes"
+        ],
+        "node-control_plane-001": [
+          "zone-a",
+          "control_plane",
+          "service_etcd",
+          "ip_10_0_0_3",
+          "running_metrics-server",
+          "subnet_10.0.0.0_16",
+          "running_etcd",
+          "kubernetes",
+          "running_kube-state-metrics",
+          "zone_zone-a",
+          "service_kube-state-metrics",
+          "service_metrics-server"
+        ],
+        "node-control_plane-002": [
+          "kubernetes"
+        ],
+        "node-worker-000": [
+          "service_kibana",
+          "worker",
+          "zone-a",
+          "running_cilium",
+          "service_cilium",
+          "subnet_10.0.0.0_16",
+          "service_redis",
+          "running_kibana",
+          "kubernetes",
+          "zone_zone-a",
+          "service_cassandra",
+          "running_cassandra",
+          "ip_10_0_0_8",
+          "running_redis"
+        ],
+        "attacker": [
+          "attacker",
+          "external",
+          "reconnaissance"
+        ],
+        "node-worker-001": [
+          "kubernetes"
+        ]
+      }
+    },
+    "nodes_owned": 4,
+    "computation_time": "3.01s",
+    "steps": [
+      "InitialScan on attacker",
+      "Exploit_cassandra_3 on node-worker-003",
+      "CVE-2023-45853_3 on node-worker-003",
+      "Exploit_minio_1 on node-worker-003",
+      "CVE-2017-18018_1 on node-worker-003",
+      "CredentialLeak_thanos_to_minio on node-worker-003",
+      "CredentialLeak_prometheus_to_cassandra on node-worker-003",
+      "CredentialLeak_prometheus_to_cilium on node-worker-003",
+      "CredentialLeak_prometheus_to_etcd on node-worker-003",
+      "CredentialLeak_prometheus_to_grafana on node-worker-003",
+      "CredentialLeak_prometheus_to_kube-state-metrics on node-worker-003",
+      "CredentialLeak_prometheus_to_metrics-server on node-worker-003",
+      "CredentialLeak_prometheus_to_nginx-ingress-controller on node-worker-003",
+      "CredentialLeak_prometheus_to_redis on node-worker-003",
+      "Exploit_cassandra_1 on node-worker-000",
+      "Exploit_cilium_0 on node-worker-000",
+      "CVE-2024-56433_0 on node-worker-000",
+      "Exploit_cassandra_2 on node-worker-002",
+      "Exploit_postgresql_3 on node-worker-002",
+      "Exploit_grafana-loki_0 on node-worker-002",
+      "CVE-2011-3374_0 on node-worker-002",
+      "Exploit_cassandra_0 on node-worker-001",
+      "CVE-2022-3219_4 on node-worker-001",
+      "CVE-2022-0563_1 on node-control_plane-001"
+    ]
+  }
+}

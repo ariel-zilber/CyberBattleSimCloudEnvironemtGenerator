@@ -1,0 +1,613 @@
+services:
+- name: etcd-2379-0
+  port: '2379'
+  allowedCredentials:
+  - etcd_0_creds
+  - cilium_to_etcd_key
+  - prometheus_to_etcd_key
+  running: true
+- name: argo-cd-8080-2
+  port: '8080'
+  allowedCredentials:
+  - argo-cd_2_creds
+  running: true
+- name: jaeger-16686-1
+  port: '16686'
+  allowedCredentials: []
+  running: true
+- name: metrics-server-4443-0
+  port: '4443'
+  allowedCredentials:
+  - metrics-server_0_creds
+  - prometheus_to_metrics-server_key
+  running: true
+- name: etcd-2379-4
+  port: '2379'
+  allowedCredentials:
+  - etcd_4_creds
+  - cilium_to_etcd_key
+  - prometheus_to_etcd_key
+  running: true
+vulnerabilities:
+  Exploit_etcd_0:
+    description: 'Exploit etcd (instance 0) on this node. Vuln Level: 0.04'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '2379'
+            credential: etcd_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.567960774155193
+    reward_string: Gained foothold on k8s-worker-10 via etcd!
+  CVE-2022-0563-0:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 2
+    outcome:
+      kwargs:
+        level: 3
+      type: system_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 11.530000000000001
+    reward_string: Successfully exploited CVE-2022-0563!
+  CVE-2025-4802-0:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically
+      shared library in statically compiled setuid binaries that call dlopen (including
+      internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.730000000000002
+    reward_string: Successfully exploited CVE-2025-4802!
+  CVE-2025-8058-0:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if some previous allocation fails. It can be\
+      \ \naccomplished either by a malloc failure or by using an interposed malloc\n\
+      \ that injects random malloc failures. The double free can allow buffer \nmanipulation\
+      \ depending of how the regex is constructed. This issue \naffects all architectures\
+      \ and ABIs supported by the GNU C library."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.12
+    reward_string: Successfully exploited CVE-2025-8058!
+  CVE-2022-3219-0:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2022-3219!
+  Exploit_argo-cd_2:
+    description: 'Exploit argo-cd (instance 2) on this node. Vuln Level: 0.01'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '8080'
+            credential: argo-cd_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.949978489554667
+    reward_string: Gained foothold on k8s-worker-10 via argo-cd!
+  CVE-2022-3219-2:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2022-3219!
+  CVE-2022-0563-2:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 2
+    outcome:
+      kwargs:
+        level: 3
+      type: system_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 11.530000000000001
+    reward_string: Successfully exploited CVE-2022-0563!
+  CVE-2017-18018-2:
+    description: In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does
+      not prevent replacement of a plain file with a symlink during use of the POSIX
+      "-R -L" options, which allows local users to modify the ownership of arbitrary
+      files by leveraging a race condition.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Successfully exploited CVE-2017-18018!
+  Exploit_jaeger_1:
+    description: 'Exploit jaeger (instance 1) on this node. Vuln Level: 0.39'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '16686'
+            credential: jaeger_1_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.053768472041259
+    reward_string: Gained foothold on k8s-worker-10 via jaeger!
+  CVE-2011-4116-1:
+    description: _is_safe in the File::Temp module for Perl does not properly handle
+      symlinks.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2011-4116!
+  CVE-2025-5278-1:
+    description: A flaw was found in GNU Coreutils. The sort utility's begfield()
+      function is vulnerable to a heap buffer under-read. The program may access memory
+      outside the allocated buffer if a user runs a crafted command using the traditional
+      key format. A malicious input could lead to a crash or leak sensitive data.
+    type: 2
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 12.2076
+    reward_string: Successfully exploited CVE-2025-5278!
+  CVE-2023-31437-1:
+    description: 'An issue was discovered in systemd 253. An attacker can modify a
+      sealed log file such that, in some views, not all existing and sealed log messages
+      are displayed. NOTE: the vendor reportedly sent "a reply denying that any of
+      the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Successfully exploited CVE-2023-31437!
+  TEMP-0628843-DBAD28-1:
+    description: '[more related to CVE-2005-4890]'
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 20.0
+    reward_string: Successfully exploited TEMP-0628843-DBAD28!
+  Exploit_metrics-server_0:
+    description: 'Exploit metrics-server (instance 0) on this node. Vuln Level: 0.13'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '4443'
+            credential: metrics-server_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.659649651244614
+    reward_string: Gained foothold on k8s-worker-10 via metrics-server!
+  CVE-2025-6297-0:
+    description: 'It was discovered that dpkg-deb does not properly sanitize directory
+      permissions when extracting a control member into a temporary directory, which
+      is
+
+      documented as being a safe operation even on untrusted data. This may result
+      in leaving temporary files behind on cleanup. Given automated and repeated execution
+      of dpkg-deb commands on
+
+      adversarial .deb packages or with well compressible files, placed
+
+      inside a directory with permissions not allowing removal by a non-root
+
+      user, this can end up in a DoS scenario due to causing disk quota
+
+      exhaustion or disk full conditions.'
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 20.0
+    reward_string: Successfully exploited CVE-2025-6297!
+  Exploit_etcd_4:
+    description: 'Exploit etcd (instance 4) on this node. Vuln Level: 0.04'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '2379'
+            credential: etcd_4_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.567960774155193
+    reward_string: Gained foothold on k8s-worker-10 via etcd!
+  CVE-2022-0563-4:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 2
+    outcome:
+      kwargs:
+        level: 3
+      type: system_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 11.530000000000001
+    reward_string: Successfully exploited CVE-2022-0563!
+  CVE-2025-4802-4:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically
+      shared library in statically compiled setuid binaries that call dlopen (including
+      internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.730000000000002
+    reward_string: Successfully exploited CVE-2025-4802!
+  CVE-2025-8058-4:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if some previous allocation fails. It can be\
+      \ \naccomplished either by a malloc failure or by using an interposed malloc\n\
+      \ that injects random malloc failures. The double free can allow buffer \nmanipulation\
+      \ depending of how the regex is constructed. This issue \naffects all architectures\
+      \ and ABIs supported by the GNU C library."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.12
+    reward_string: Successfully exploited CVE-2025-8058!
+  CVE-2022-3219-4:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2022-3219!
+  Leaked_Cred_jaeger_to_cassandra:
+    description: Found key for cassandra stored on this node (used by jaeger).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-6
+            port: '9042'
+            credential: jaeger_to_cassandra_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to cassandra!
+value: 100
+network_info:
+- ip_address: 10.1.0.20
+  subnet:
+    network: 10.1.0.0/24
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- worker-node
+- physical_node_10
+- etcd
+- argo-cd
+- jaeger
+- metrics-server
+firewall:
+  outgoing:
+  - port: '*'
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '8080'
+    reason: 'K8s network policy: etcd to kube-state-metrics'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.16/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.19/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: etcd to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: ''
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: cilium to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: etcd to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: etcd to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: etcd to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.19/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: prometheus to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: prometheus to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: prometheus to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.19/32
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: true
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

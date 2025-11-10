@@ -1,0 +1,989 @@
+services:
+- name: grafana-loki-3100-0
+  port: '3100'
+  allowedCredentials:
+  - fluent-bit_to_grafana-loki_key
+  - grafana_to_grafana-loki_key
+  running: true
+- name: minio-9000-1
+  port: '9000'
+  allowedCredentials:
+  - minio_1_creds
+  - thanos_to_minio_key
+  running: true
+- name: redis-6379-0
+  port: '6379'
+  allowedCredentials:
+  - redis_0_creds
+  - prometheus_to_redis_key
+  running: true
+- name: cert-manager-9402-0
+  port: '9402'
+  allowedCredentials:
+  - prometheus_to_cert-manager_key
+  running: true
+- name: cassandra-9042-2
+  port: '9042'
+  allowedCredentials:
+  - cassandra_2_creds
+  - jaeger_to_cassandra_key
+  - prometheus_to_cassandra_key
+  running: true
+- name: postgresql-5432-0
+  port: '5432'
+  allowedCredentials:
+  - postgresql_0_creds
+  running: true
+- name: nginx-ingress-controller-96-2
+  port: '96'
+  allowedCredentials:
+  - prometheus_to_nginx-ingress-controller_key
+  running: true
+- name: grafana-loki-3100-3
+  port: '3100'
+  allowedCredentials:
+  - fluent-bit_to_grafana-loki_key
+  - grafana_to_grafana-loki_key
+  running: true
+- name: cassandra-9042-3
+  port: '9042'
+  allowedCredentials:
+  - cassandra_3_creds
+  - jaeger_to_cassandra_key
+  - prometheus_to_cassandra_key
+  running: true
+- name: argo-cd-8080-3
+  port: '8080'
+  allowedCredentials:
+  - argo-cd_3_creds
+  running: true
+- name: postgresql-5432-2
+  port: '5432'
+  allowedCredentials:
+  - postgresql_2_creds
+  running: true
+vulnerabilities:
+  Exploit_grafana-loki_0:
+    description: 'Exploit grafana-loki (instance 0) on this node. Vuln Level: 0.37'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '3100'
+            credential: grafana-loki_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.30501126730508
+    reward_string: Gained foothold on k8s-worker-2 via grafana-loki!
+  CVE-2011-3374-0:
+    description: It was found that apt-key in apt, all versions, do not correctly
+      validate gpg keys with the master keyring, leading to a potential man-in-the-middle
+      attack.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.788
+    reward_string: Successfully exploited CVE-2011-3374!
+  CVE-2024-2236-0:
+    description: A timing-based side-channel flaw was found in libgcrypt's RSA implementation.
+      This issue may allow a remote attacker to initiate a Bleichenbacher-style attack,
+      which can lead to the decryption of RSA ciphertexts.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.7159999999999993
+    reward_string: Successfully exploited CVE-2024-2236!
+  CVE-2025-6020-0:
+    description: A flaw was found in linux-pam. The module pam_namespace may use access
+      user-controlled paths without proper protection, allowing local users to elevate
+      their privileges to root via multiple symlink attacks and race conditions.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.9879999999999995
+    reward_string: Successfully exploited CVE-2025-6020!
+  Exploit_minio_1:
+    description: 'Exploit minio (instance 1) on this node. Vuln Level: 0.11'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9000'
+            credential: minio_1_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.931720245940584
+    reward_string: Gained foothold on k8s-worker-2 via minio!
+  CVE-2017-18018-1:
+    description: In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does
+      not prevent replacement of a plain file with a symlink during use of the POSIX
+      "-R -L" options, which allows local users to modify the ownership of arbitrary
+      files by leveraging a race condition.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Successfully exploited CVE-2017-18018!
+  CVE-2023-4016-1:
+    description: "Under some circumstances, this weakness allows a user who has access\
+      \ to run the \u201Cps\u201D utility on a machine, the ability to write almost\
+      \ unlimited amounts of unfiltered data into the process heap."
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2023-4016!
+  CVE-2023-31437-1:
+    description: 'An issue was discovered in systemd 253. An attacker can modify a
+      sealed log file such that, in some views, not all existing and sealed log messages
+      are displayed. NOTE: the vendor reportedly sent "a reply denying that any of
+      the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Successfully exploited CVE-2023-31437!
+  Exploit_redis_0:
+    description: 'Exploit redis (instance 0) on this node. Vuln Level: 0.05'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '6379'
+            credential: redis_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.505972376695484
+    reward_string: Gained foothold on k8s-worker-2 via redis!
+  CVE-2025-30258-0:
+    description: In GnuPG before 2.5.5, if a user chooses to import a certificate
+      with certain crafted subkey data that lacks a valid backsig or that has incorrect
+      usage flags, the user loses the ability to verify signatures made from certain
+      other signing keys, aka a "verification DoS."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 15.653000000000002
+    reward_string: Successfully exploited CVE-2025-30258!
+  CVE-2023-31439-0:
+    description: 'An issue was discovered in systemd 253. An attacker can modify the
+      contents of past events in a sealed log file and then adjust the file such that
+      checking the integrity shows no error, despite modifications. NOTE: the vendor
+      reportedly sent "a reply denying that any of the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Successfully exploited CVE-2023-31439!
+  CVE-2022-0563-0:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 2
+    outcome:
+      kwargs:
+        level: 3
+      type: system_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 11.530000000000001
+    reward_string: Successfully exploited CVE-2022-0563!
+  CVE-2019-1010023-0:
+    description: 'GNU Libc current is affected by: Re-mapping current loaded library
+      with malicious ELF file. The impact is: In worst case attacker may evaluate
+      privileges. The component is: libld. The attack vector is: Attacker sends 2
+      ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream
+      comments indicate "this is being treated as a non-security bug and no real threat.'
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2019-1010023!
+  Exploit_cert-manager_0:
+    description: 'Exploit cert-manager (instance 0) on this node. Vuln Level: 0.11'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9402'
+            credential: cert-manager_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.936434641036433
+    reward_string: Gained foothold on k8s-worker-2 via cert-manager!
+  CVE-2019-1010024-0:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may bypass ASLR using cache of thread stack and heap. The component
+      is: glibc. NOTE: Upstream comments indicate "this is being treated as a non-security
+      bug and no real threat.'
+    type: 3
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Successfully exploited CVE-2019-1010024!
+  Exploit_cassandra_2:
+    description: 'Exploit cassandra (instance 2) on this node. Vuln Level: 0.04'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9042'
+            credential: cassandra_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.646601025154178
+    reward_string: Gained foothold on k8s-worker-2 via cassandra!
+  CVE-2023-45853-2:
+    description: 'MiniZip in zlib through 1.3 has an integer overflow and resultant
+      heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment,
+      or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE:
+      pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib
+      version, and exposes the applicable MiniZip code through its compress API.'
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2023-45853!
+  Exploit_postgresql_0:
+    description: 'Exploit postgresql (instance 0) on this node. Vuln Level: 0.00'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '5432'
+            credential: postgresql_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 10.0
+    reward_string: Gained foothold on k8s-worker-2 via postgresql!
+  Exploit_nginx-ingress-controller_2:
+    description: 'Exploit nginx-ingress-controller (instance 2) on this node. Vuln
+      Level: 0.56'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '96'
+            credential: nginx-ingress-controller_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.38990839845757
+    reward_string: Gained foothold on k8s-worker-2 via nginx-ingress-controller!
+  CVE-2023-31124-2:
+    description: c-ares is an asynchronous resolver library. When cross-compiling
+      c-ares and using the autotools build system, CARES_RANDOM_FILE will not be set,
+      as seen when cross compiling aarch64 android.  This will downgrade to using
+      rand() as a fallback which could allow an attacker to take advantage of the
+      lack of entropy by not using a CSPRNG. This issue was patched in version 1.19.1.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.788
+    reward_string: Successfully exploited CVE-2023-31124!
+  CVE-2017-14159-2:
+    description: slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping
+      privileges to a non-root account, which might allow local users to kill arbitrary
+      processes by leveraging access to this non-root account for PID file modification
+      before a root script executes a "kill `cat /pathname`" command, as demonstrated
+      by openldap-initscript.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Successfully exploited CVE-2017-14159!
+  CVE-2023-31437-2:
+    description: 'An issue was discovered in systemd 253. An attacker can modify a
+      sealed log file such that, in some views, not all existing and sealed log messages
+      are displayed. NOTE: the vendor reportedly sent "a reply denying that any of
+      the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Successfully exploited CVE-2023-31437!
+  CVE-2024-11407-2:
+    description: "There exists a denial of service through Data corruption in gRPC-C++\
+      \ -\_gRPC-C++ servers with transmit zero copy enabled through the channel arg\
+      \ GRPC_ARG_TCP_TX_ZEROCOPY_ENABLED can experience data corruption issues. The\
+      \ data sent by the application may be corrupted before transmission over the\
+      \ network thus leading the receiver to receive an incorrect set of bytes causing\
+      \ RPC requests to fail. We recommend upgrading past commit\_e9046b2bbebc0cb7f5dc42008f807f6c7e98e791"
+    type: 3
+    outcome:
+      kwargs:
+        level: 2
+      type: admin_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2024-11407!
+  CVE-2025-6021-2:
+    description: A flaw was found in libxml2's xmlBuildQName function, where integer
+      overflows in buffer size calculations can lead to a stack-based buffer overflow.
+      This issue can result in memory corruption or a denial of service when processing
+      crafted input.
+    type: 3
+    outcome:
+      kwargs:
+        level: 2
+      type: admin_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2025-6021!
+  CVE-2023-4785-2:
+    description: "Lack of error handling in the TCP server in Google's gRPC starting\
+      \ version 1.23 on posix-compatible platforms (ex. Linux) allows an attacker\
+      \ to cause a denial of service by initiating a significant number of connections\
+      \ with the server. Note that gRPC C++ Python, and Ruby are affected, but gRPC\
+      \ Java, and Go are NOT affected.\_"
+    type: 3
+    outcome:
+      kwargs:
+        level: 2
+      type: admin_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2023-4785!
+  CVE-2022-27943-2:
+    description: libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption
+      in demangle_const, as demonstrated by nm-new.
+    type: 2
+    outcome:
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 10.2595
+    reward_string: Successfully exploited CVE-2022-27943!
+  Exploit_grafana-loki_3:
+    description: 'Exploit grafana-loki (instance 3) on this node. Vuln Level: 0.37'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '3100'
+            credential: grafana-loki_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.30501126730508
+    reward_string: Gained foothold on k8s-worker-2 via grafana-loki!
+  CVE-2011-3374-3:
+    description: It was found that apt-key in apt, all versions, do not correctly
+      validate gpg keys with the master keyring, leading to a potential man-in-the-middle
+      attack.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.788
+    reward_string: Successfully exploited CVE-2011-3374!
+  CVE-2024-2236-3:
+    description: A timing-based side-channel flaw was found in libgcrypt's RSA implementation.
+      This issue may allow a remote attacker to initiate a Bleichenbacher-style attack,
+      which can lead to the decryption of RSA ciphertexts.
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.7159999999999993
+    reward_string: Successfully exploited CVE-2024-2236!
+  CVE-2025-6020-3:
+    description: A flaw was found in linux-pam. The module pam_namespace may use access
+      user-controlled paths without proper protection, allowing local users to elevate
+      their privileges to root via multiple symlink attacks and race conditions.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.9879999999999995
+    reward_string: Successfully exploited CVE-2025-6020!
+  Exploit_cassandra_3:
+    description: 'Exploit cassandra (instance 3) on this node. Vuln Level: 0.04'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9042'
+            credential: cassandra_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.646601025154178
+    reward_string: Gained foothold on k8s-worker-2 via cassandra!
+  CVE-2023-45853-3:
+    description: 'MiniZip in zlib through 1.3 has an integer overflow and resultant
+      heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment,
+      or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE:
+      pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib
+      version, and exposes the applicable MiniZip code through its compress API.'
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Successfully exploited CVE-2023-45853!
+  Exploit_argo-cd_3:
+    description: 'Exploit argo-cd (instance 3) on this node. Vuln Level: 0.01'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '8080'
+            credential: argo-cd_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.949978489554667
+    reward_string: Gained foothold on k8s-worker-2 via argo-cd!
+  CVE-2022-3219-3:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with thousands of signatures attached, compressed down
+      to just a few KB.
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes: []
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Successfully exploited CVE-2022-3219!
+  CVE-2022-0563-3:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The Readline library uses an "INPUTRC" environment variable
+      to get a path to the library config file. When the library cannot parse the
+      specified file, it prints an error message containing data from the file. This
+      flaw allows an unprivileged user to read root-owned files, potentially leading
+      to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.
+    type: 2
+    outcome:
+      kwargs:
+        level: 3
+      type: system_escalation
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 11.530000000000001
+    reward_string: Successfully exploited CVE-2022-0563!
+  CVE-2017-18018-3:
+    description: In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does
+      not prevent replacement of a plain file with a symlink during use of the POSIX
+      "-R -L" options, which allows local users to modify the ownership of arbitrary
+      files by leveraging a race condition.
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Successfully exploited CVE-2017-18018!
+  Exploit_postgresql_2:
+    description: 'Exploit postgresql (instance 2) on this node. Vuln Level: 0.00'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '5432'
+            credential: postgresql_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 10.0
+    reward_string: Gained foothold on k8s-worker-2 via postgresql!
+value: 160
+network_info:
+- ip_address: 10.1.0.12
+  subnet:
+    network: 10.1.0.0/24
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- worker-node
+- physical_node_2
+- grafana-loki
+- minio
+- redis
+- cert-manager
+- cassandra
+- postgresql
+- nginx-ingress-controller
+- argo-cd
+firewall:
+  outgoing:
+  - port: '*'
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: grafana-loki to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '3000'
+    reason: 'K8s network policy: grafana-loki to grafana'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: minio to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: redis to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: ''
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '3100'
+    reason: 'K8s network policy: fluent-bit to grafana-loki'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '3100'
+    reason: 'K8s network policy: grafana to grafana-loki'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: jaeger to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '9402'
+    reason: 'K8s network policy: prometheus to cert-manager'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '9402'
+    reason: 'K8s network policy: prometheus to cert-manager'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '9402'
+    reason: 'K8s network policy: prometheus to cert-manager'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.11/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: true
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

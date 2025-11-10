@@ -1,0 +1,921 @@
+services:
+- name: prometheus-9090-0
+  port: '9090'
+  allowedCredentials:
+  - grafana_to_prometheus_key
+  running: true
+- name: fluent-bit-2020-0
+  port: '2020'
+  allowedCredentials: []
+  running: true
+- name: minio-9000-3
+  port: '9000'
+  allowedCredentials:
+  - minio_3_creds
+  - thanos_to_minio_key
+  running: true
+- name: thanos-10902-2
+  port: '10902'
+  allowedCredentials: []
+  running: true
+- name: cilium-9090-0
+  port: '9090'
+  allowedCredentials:
+  - prometheus_to_cilium_key
+  running: true
+- name: postgresql-5432-2
+  port: '5432'
+  allowedCredentials:
+  - postgresql_2_creds
+  running: true
+vulnerabilities:
+  CVE-2019-9192-0:
+    description: 'In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1
+      in posix/regexec.c has Uncontrolled Recursion, as demonstrated by ''(|)(\\1\\1)*''
+      in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer
+      disputes that this is a vulnerability because the behavior occurs only with
+      a crafted pattern'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9090'
+            credential: prometheus_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 1.0
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2019-9192!
+  TEMP-0841856-B18BAF-0:
+    description: '[Privilege escalation possible to other user than root]'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9090'
+            credential: prometheus_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 20.0
+    reward_string: Gained foothold on k8s-worker-2 via TEMP-0841856-B18BAF!
+  CVE-2024-10041-0:
+    description: A vulnerability was found in PAM. The secret information is stored
+      in memory, where the attacker can trigger the victim program to execute by sending
+      characters to its standard input (stdin). As this occurs, the attacker can train
+      the branch predictor to execute an ROP chain speculatively. This flaw could
+      result in leaked passwords, such as those found in /etc/shadow while performing
+      authentications.
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '2020'
+            credential: fluent-bit_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2024-10041!
+  CVE-2023-31439-0:
+    description: 'An issue was discovered in systemd 253. An attacker can modify the
+      contents of past events in a sealed log file and then adjust the file such that
+      checking the integrity shows no error, despite modifications. NOTE: the vendor
+      reportedly sent "a reply denying that any of the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '2020'
+            credential: fluent-bit_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2023-31439!
+  CVE-2017-18018-3:
+    description: In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does
+      not prevent replacement of a plain file with a symlink during use of the POSIX
+      "-R -L" options, which allows local users to modify the ownership of arbitrary
+      files by leveraging a race condition.
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9000'
+            credential: minio_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 13.420000000000002
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2017-18018!
+  CVE-2023-4016-3:
+    description: "Under some circumstances, this weakness allows a user who has access\
+      \ to run the \u201Cps\u201D utility on a machine, the ability to write almost\
+      \ unlimited amounts of unfiltered data into the process heap."
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9000'
+            credential: minio_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.918
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2023-4016!
+  CVE-2023-31437-3:
+    description: 'An issue was discovered in systemd 253. An attacker can modify a
+      sealed log file such that, in some views, not all existing and sealed log messages
+      are displayed. NOTE: the vendor reportedly sent "a reply denying that any of
+      the finding was a security vulnerability."'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9000'
+            credential: minio_3_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.9091999999999993
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2023-31437!
+  Generic_Exploit_thanos-2:
+    description: A generic, unlisted vulnerability in thanos.
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '10902'
+            credential: thanos_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.0
+    reward_string: Gained foothold on k8s-worker-2 via Generic_Exploit_thanos!
+  CVE-2024-56433-0:
+    description: 'shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default
+      /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account)
+      that can realistically conflict with the uids of users defined on locally administered
+      networks, potentially leading to account takeover, e.g., by leveraging newuidmap
+      for access to an NFS home directory (or same-host resources in the case of remote
+      logins by these local network users). NOTE: it may also be argued that system
+      administrators should not have assigned uids, within local networks, that are
+      within the range that can occur in /etc/subuid.'
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '9090'
+            credential: cilium_0_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.96
+    reward_string: Gained foothold on k8s-worker-2 via CVE-2024-56433!
+  Generic_Exploit_postgresql-2:
+    description: A generic, unlisted vulnerability in postgresql.
+    type: 3
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-2
+            port: '5432'
+            credential: postgresql_2_creds
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 14.0
+    reward_string: Gained foothold on k8s-worker-2 via Generic_Exploit_postgresql!
+  Leaked_Cred_cilium_to_etcd:
+    description: Found key for etcd stored on this node (used by cilium).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-5
+            port: '2379'
+            credential: cilium_to_etcd_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to etcd!
+  Leaked_Cred_fluent-bit_to_grafana-loki:
+    description: Found key for grafana-loki stored on this node (used by fluent-bit).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-6
+            port: '3100'
+            credential: fluent-bit_to_grafana-loki_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to grafana-loki!
+  Leaked_Cred_thanos_to_minio:
+    description: Found key for minio stored on this node (used by thanos).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-4
+            port: '9000'
+            credential: thanos_to_minio_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to minio!
+  Leaked_Cred_prometheus_to_cassandra:
+    description: Found key for cassandra stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-5
+            port: '9042'
+            credential: prometheus_to_cassandra_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to cassandra!
+  Leaked_Cred_prometheus_to_cert-manager:
+    description: Found key for cert-manager stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-7
+            port: '9402'
+            credential: prometheus_to_cert-manager_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to cert-manager!
+  Leaked_Cred_prometheus_to_etcd:
+    description: Found key for etcd stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-5
+            port: '2379'
+            credential: prometheus_to_etcd_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to etcd!
+  Leaked_Cred_prometheus_to_grafana:
+    description: Found key for grafana stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-6
+            port: '3000'
+            credential: prometheus_to_grafana_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to grafana!
+  Leaked_Cred_prometheus_to_kube-state-metrics:
+    description: Found key for kube-state-metrics stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-4
+            port: '8080'
+            credential: prometheus_to_kube-state-metrics_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to kube-state-metrics!
+  Leaked_Cred_prometheus_to_metrics-server:
+    description: Found key for metrics-server stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-3
+            port: '4443'
+            credential: prometheus_to_metrics-server_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to metrics-server!
+  Leaked_Cred_prometheus_to_nginx-ingress-controller:
+    description: Found key for nginx-ingress-controller stored on this node (used
+      by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-10
+            port: '96'
+            credential: prometheus_to_nginx-ingress-controller_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to nginx-ingress-controller!
+  Leaked_Cred_prometheus_to_redis:
+    description: Found key for redis stored on this node (used by prometheus).
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: k8s-worker-3
+            port: '6379'
+            credential: prometheus_to_redis_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Found key to pivot to redis!
+value: 110
+network_info:
+- ip_address: 10.1.0.11
+  subnet:
+    network: 10.1.0.0/24
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- worker-node
+- physical_node_2
+- prometheus
+- fluent-bit
+- minio
+- thanos
+- cilium
+- postgresql
+firewall:
+  outgoing:
+  - port: '*'
+    reason: ''
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: cilium to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: cilium to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: cilium to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: cilium to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '3100'
+    reason: 'K8s network policy: fluent-bit to grafana-loki'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '3100'
+    reason: 'K8s network policy: fluent-bit to grafana-loki'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '3100'
+    reason: 'K8s network policy: fluent-bit to grafana-loki'
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '8080'
+    reason: 'K8s network policy: prometheus to kube-state-metrics'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '3000'
+    reason: 'K8s network policy: prometheus to grafana'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.19/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '9042'
+    reason: 'K8s network policy: prometheus to cassandra'
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '9402'
+    reason: 'K8s network policy: prometheus to cert-manager'
+    permission: 0
+    subnet:
+      network: 10.1.0.16/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '2379'
+    reason: 'K8s network policy: prometheus to etcd'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '8080'
+    reason: 'K8s network policy: prometheus to kube-state-metrics'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '4443'
+    reason: 'K8s network policy: prometheus to metrics-server'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.19/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '96'
+    reason: 'K8s network policy: prometheus to nginx-ingress-controller'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.16/32
+      name: ''
+    priority: 1
+  - port: '6379'
+    reason: 'K8s network policy: prometheus to redis'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: ''
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  - port: '9090'
+    reason: 'K8s network policy: grafana to prometheus'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: grafana-loki to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: grafana-loki to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: grafana-loki to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '9000'
+    reason: 'K8s network policy: thanos to minio'
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '9090'
+    reason: 'K8s network policy: prometheus to cilium'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '9090'
+    reason: 'K8s network policy: prometheus to cilium'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '9090'
+    reason: 'K8s network policy: prometheus to cilium'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: etcd to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.14/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: etcd to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: etcd to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: etcd to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: grafana to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: kibana to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.16/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: kube-state-metrics to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: minio to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.13/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: minio to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: minio to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: redis to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: redis to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.10/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: redis to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.16/32
+      name: ''
+    priority: 1
+  - port: '2020'
+    reason: 'K8s network policy: redis to fluent-bit'
+    permission: 0
+    subnet:
+      network: 10.1.0.17/32
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: true
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

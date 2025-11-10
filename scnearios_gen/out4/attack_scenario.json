@@ -1,0 +1,4025 @@
+{
+  "nodes": {
+    "node-control_plane-000": {
+      "services": [
+        {
+          "name": "etcd-2",
+          "port": "2379",
+          "allowedCredentials": [
+            "etcd_2_creds",
+            "cilium_to_etcd_key",
+            "prometheus_to_etcd_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_etcd_2": {
+          "description": "Exploit etcd service on node-control_plane-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe2218baf20>",
+          "reward_string": "Gained access to etcd on node-control_plane-000"
+        },
+        "CVE-2022-0563_2": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b3b040>",
+          "reward_string": "Exploited CVE-2022-0563 on node-control_plane-000"
+        },
+        "CVE-2025-4802_2": {
+          "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically shared library in statically compiled setuid binaries that call dlopen (including internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).",
+          "type": "REMOTE",
+          "cost": 5.634999999999999,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b3b010>",
+          "reward_string": "Exploited CVE-2025-4802 on node-control_plane-000"
+        },
+        "CVE-2025-8058_2": {
+          "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if some previous allocation fails. It can be \naccomplished either by a malloc failure or by using an interposed malloc\n that injects random malloc failures. The double free can allow buffer \nmanipulation depending of how the regex is constructed. This issue \naffects all architectures and ABIs supported by the GNU C library.",
+          "type": "REMOTE",
+          "cost": 2.94,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b38ee0>",
+          "reward_string": "Exploited CVE-2025-8058 on node-control_plane-000"
+        },
+        "CVE-2022-3219_2": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b3b580>",
+          "reward_string": "Exploited CVE-2022-3219 on node-control_plane-000"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "control_plane",
+        "zone-a",
+        "ip_10_0_0_2"
+      ],
+      "value": 100,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.2",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-control_plane-001": {
+      "services": [
+        {
+          "name": "etcd-1",
+          "port": "2379",
+          "allowedCredentials": [
+            "etcd_1_creds",
+            "cilium_to_etcd_key",
+            "prometheus_to_etcd_key"
+          ]
+        },
+        {
+          "name": "kube-state-metrics-0",
+          "port": "8080",
+          "allowedCredentials": [
+            "kube-state-metrics_0_creds",
+            "prometheus_to_kube-state-metrics_key"
+          ]
+        },
+        {
+          "name": "metrics-server-0",
+          "port": "443",
+          "allowedCredentials": [
+            "metrics-server_0_creds",
+            "prometheus_to_metrics-server_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_etcd_1": {
+          "description": "Exploit etcd service on node-control_plane-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5c460>",
+          "reward_string": "Gained access to etcd on node-control_plane-001"
+        },
+        "CVE-2022-0563_1": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7c5e9e0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-control_plane-001"
+        },
+        "CVE-2025-4802_1": {
+          "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically shared library in statically compiled setuid binaries that call dlopen (including internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).",
+          "type": "REMOTE",
+          "cost": 5.634999999999999,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5e980>",
+          "reward_string": "Exploited CVE-2025-4802 on node-control_plane-001"
+        },
+        "CVE-2025-8058_1": {
+          "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if some previous allocation fails. It can be \naccomplished either by a malloc failure or by using an interposed malloc\n that injects random malloc failures. The double free can allow buffer \nmanipulation depending of how the regex is constructed. This issue \naffects all architectures and ABIs supported by the GNU C library.",
+          "type": "REMOTE",
+          "cost": 2.94,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5e920>",
+          "reward_string": "Exploited CVE-2025-8058 on node-control_plane-001"
+        },
+        "CVE-2022-3219_1": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5ff70>",
+          "reward_string": "Exploited CVE-2022-3219 on node-control_plane-001"
+        },
+        "Exploit_kube-state-metrics_0": {
+          "description": "Exploit kube-state-metrics service on node-control_plane-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5eec0>",
+          "reward_string": "Gained access to kube-state-metrics on node-control_plane-001"
+        },
+        "CVE-2013-4392_0": {
+          "description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files.",
+          "type": "REMOTE",
+          "cost": 2.3099999999999996,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5ee00>",
+          "reward_string": "Exploited CVE-2013-4392 on node-control_plane-001"
+        },
+        "CVE-2023-31439_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5eaa0>",
+          "reward_string": "Exploited CVE-2023-31439 on node-control_plane-001"
+        },
+        "CVE-2023-4016_0": {
+          "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5ea40>",
+          "reward_string": "Exploited CVE-2023-4016 on node-control_plane-001"
+        },
+        "Exploit_metrics-server_0": {
+          "description": "Exploit metrics-server service on node-control_plane-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5e3e0>",
+          "reward_string": "Gained access to metrics-server on node-control_plane-001"
+        },
+        "CVE-2025-6297_0": {
+          "description": "It was discovered that dpkg-deb does not properly sanitize directory permissions when extracting a control member into a temporary directory, which is\ndocumented as being a safe operation even on untrusted data. This may result in leaving temporary files behind on cleanup. Given automated and repeated execution of dpkg-deb commands on\nadversarial .deb packages or with well compressible files, placed\ninside a directory with permissions not allowing removal by a non-root\nuser, this can end up in a DoS scenario due to causing disk quota\nexhaustion or disk full conditions.",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7c5e260>",
+          "reward_string": "Exploited CVE-2025-6297 on node-control_plane-001"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "control_plane",
+        "zone-a",
+        "ip_10_0_0_3"
+      ],
+      "value": 100,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.3",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-control_plane-002": {
+      "services": [
+        {
+          "name": "etcd-0",
+          "port": "2379",
+          "allowedCredentials": [
+            "etcd_0_creds",
+            "cilium_to_etcd_key",
+            "prometheus_to_etcd_key"
+          ]
+        },
+        {
+          "name": "etcd-3",
+          "port": "2379",
+          "allowedCredentials": [
+            "etcd_3_creds",
+            "cilium_to_etcd_key",
+            "prometheus_to_etcd_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_etcd_0": {
+          "description": "Exploit etcd service on node-control_plane-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b370a0>",
+          "reward_string": "Gained access to etcd on node-control_plane-002"
+        },
+        "CVE-2022-0563_0": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b36fe0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-control_plane-002"
+        },
+        "CVE-2025-4802_0": {
+          "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically shared library in statically compiled setuid binaries that call dlopen (including internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).",
+          "type": "REMOTE",
+          "cost": 5.634999999999999,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36f80>",
+          "reward_string": "Exploited CVE-2025-4802 on node-control_plane-002"
+        },
+        "CVE-2025-8058_0": {
+          "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if some previous allocation fails. It can be \naccomplished either by a malloc failure or by using an interposed malloc\n that injects random malloc failures. The double free can allow buffer \nmanipulation depending of how the regex is constructed. This issue \naffects all architectures and ABIs supported by the GNU C library.",
+          "type": "REMOTE",
+          "cost": 2.94,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36f20>",
+          "reward_string": "Exploited CVE-2025-8058 on node-control_plane-002"
+        },
+        "CVE-2022-3219_0": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36ef0>",
+          "reward_string": "Exploited CVE-2022-3219 on node-control_plane-002"
+        },
+        "Exploit_etcd_3": {
+          "description": "Exploit etcd service on node-control_plane-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36e60>",
+          "reward_string": "Gained access to etcd on node-control_plane-002"
+        },
+        "CVE-2022-0563_3": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b36da0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-control_plane-002"
+        },
+        "CVE-2025-4802_3": {
+          "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically shared library in statically compiled setuid binaries that call dlopen (including internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).",
+          "type": "REMOTE",
+          "cost": 5.634999999999999,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36d40>",
+          "reward_string": "Exploited CVE-2025-4802 on node-control_plane-002"
+        },
+        "CVE-2025-8058_3": {
+          "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if some previous allocation fails. It can be \naccomplished either by a malloc failure or by using an interposed malloc\n that injects random malloc failures. The double free can allow buffer \nmanipulation depending of how the regex is constructed. This issue \naffects all architectures and ABIs supported by the GNU C library.",
+          "type": "REMOTE",
+          "cost": 2.94,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36ce0>",
+          "reward_string": "Exploited CVE-2025-8058 on node-control_plane-002"
+        },
+        "CVE-2022-3219_3": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b36680>",
+          "reward_string": "Exploited CVE-2022-3219 on node-control_plane-002"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "control_plane",
+        "zone-a",
+        "ip_10_0_0_4"
+      ],
+      "value": 100,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.4",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-memory-000": {
+      "services": [
+        {
+          "name": "mongodb-0",
+          "port": "27017",
+          "allowedCredentials": [
+            "mongodb_0_creds"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_mongodb_0": {
+          "description": "Exploit mongodb service on node-memory-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce2b00>",
+          "reward_string": "Gained access to mongodb on node-memory-000"
+        },
+        "CVE-2022-3219_0": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1d50>",
+          "reward_string": "Exploited CVE-2022-3219 on node-memory-000"
+        },
+        "CVE-2025-0725_0": {
+          "description": "When libcurl is asked to perform automatic gzip decompression of\ncontent-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option,\n**using zlib 1.2.0.3 or older**, an attacker-controlled integer overflow would\nmake libcurl perform a buffer overflow.",
+          "type": "REMOTE",
+          "cost": 3.542,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1cf0>",
+          "reward_string": "Exploited CVE-2025-0725 on node-memory-000"
+        },
+        "CVE-2022-27943_0": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1c90>",
+          "reward_string": "Exploited CVE-2022-27943 on node-memory-000"
+        },
+        "CVE-2025-6020_0": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1ba0>",
+          "reward_string": "Exploited CVE-2025-6020 on node-memory-000"
+        },
+        "CVE-2015-3276_0": {
+          "description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7ce0160>",
+          "reward_string": "Exploited CVE-2015-3276 on node-memory-000"
+        },
+        "CVE-2019-1010022_0": {
+          "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce01c0>",
+          "reward_string": "Exploited CVE-2019-1010022 on node-memory-000"
+        },
+        "TEMP-0841856-B18BAF_0": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7ce0220>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-memory-000"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "memory",
+        "zone-a",
+        "ip_10_0_0_5"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.5",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-memory-001": {
+      "services": [
+        {
+          "name": "mongodb-1",
+          "port": "27017",
+          "allowedCredentials": [
+            "mongodb_1_creds"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_mongodb_1": {
+          "description": "Exploit mongodb service on node-memory-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce16f0>",
+          "reward_string": "Gained access to mongodb on node-memory-001"
+        },
+        "CVE-2022-3219_1": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce15d0>",
+          "reward_string": "Exploited CVE-2022-3219 on node-memory-001"
+        },
+        "CVE-2025-0725_1": {
+          "description": "When libcurl is asked to perform automatic gzip decompression of\ncontent-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option,\n**using zlib 1.2.0.3 or older**, an attacker-controlled integer overflow would\nmake libcurl perform a buffer overflow.",
+          "type": "REMOTE",
+          "cost": 3.542,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1660>",
+          "reward_string": "Exploited CVE-2025-0725 on node-memory-001"
+        },
+        "CVE-2022-27943_1": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1720>",
+          "reward_string": "Exploited CVE-2022-27943 on node-memory-001"
+        },
+        "CVE-2025-6020_1": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce17e0>",
+          "reward_string": "Exploited CVE-2025-6020 on node-memory-001"
+        },
+        "CVE-2015-3276_1": {
+          "description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7ce0790>",
+          "reward_string": "Exploited CVE-2015-3276 on node-memory-001"
+        },
+        "CVE-2019-1010022_1": {
+          "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7ce1330>",
+          "reward_string": "Exploited CVE-2019-1010022 on node-memory-001"
+        },
+        "TEMP-0841856-B18BAF_1": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7ce14e0>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-memory-001"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "memory",
+        "zone-a",
+        "ip_10_0_0_6"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.6",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-worker-000": {
+      "services": [
+        {
+          "name": "cassandra-1",
+          "port": "7000",
+          "allowedCredentials": [
+            "cassandra_1_creds",
+            "jaeger_to_cassandra_key",
+            "prometheus_to_cassandra_key"
+          ]
+        },
+        {
+          "name": "cilium-0",
+          "port": "80",
+          "allowedCredentials": [
+            "cilium_0_creds",
+            "prometheus_to_cilium_key"
+          ]
+        },
+        {
+          "name": "redis-2",
+          "port": "6379",
+          "allowedCredentials": [
+            "redis_2_creds",
+            "prometheus_to_redis_key"
+          ]
+        },
+        {
+          "name": "kibana-0",
+          "port": "80",
+          "allowedCredentials": [
+            "kibana_0_creds"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_cassandra_1": {
+          "description": "Exploit cassandra service on node-worker-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b301c0>",
+          "reward_string": "Gained access to cassandra on node-worker-000"
+        },
+        "CVE-2023-45853_1": {
+          "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment, or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE: pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib version, and exposes the applicable MiniZip code through its compress API.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b30280>",
+          "reward_string": "Exploited CVE-2023-45853 on node-worker-000"
+        },
+        "Exploit_cilium_0": {
+          "description": "Exploit cilium service on node-worker-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b302e0>",
+          "reward_string": "Gained access to cilium on node-worker-000"
+        },
+        "CVE-2024-56433_0": {
+          "description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
+          "type": "REMOTE",
+          "cost": 2.52,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b31f60>",
+          "reward_string": "Exploited CVE-2024-56433 on node-worker-000"
+        },
+        "Exploit_redis_2": {
+          "description": "Exploit redis service on node-worker-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33fa0>",
+          "reward_string": "Gained access to redis on node-worker-000"
+        },
+        "CVE-2025-30258_2": {
+          "description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data that lacks a valid backsig or that has incorrect usage flags, the user loses the ability to verify signatures made from certain other signing keys, aka a \"verification DoS.\"",
+          "type": "REMOTE",
+          "cost": 2.1734999999999998,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33ee0>",
+          "reward_string": "Exploited CVE-2025-30258 on node-worker-000"
+        },
+        "CVE-2023-31439_2": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33e80>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-000"
+        },
+        "CVE-2022-0563_2": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b33e20>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-000"
+        },
+        "CVE-2019-1010023_2": {
+          "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33dc0>",
+          "reward_string": "Exploited CVE-2019-1010023 on node-worker-000"
+        },
+        "CVE-2025-6020_2": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33b20>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-000"
+        },
+        "Exploit_kibana_0": {
+          "description": "Exploit kibana service on node-worker-000",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33ac0>",
+          "reward_string": "Gained access to kibana on node-worker-000"
+        },
+        "CVE-2011-4116_0": {
+          "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33a00>",
+          "reward_string": "Exploited CVE-2011-4116 on node-worker-000"
+        },
+        "CVE-2011-3389_0": {
+          "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Explorer, Mozilla Firefox, Google Chrome, Opera, and other products, encrypts data by using CBC mode with chained initialization vectors, which allows man-in-the-middle attackers to obtain plaintext HTTP headers via a blockwise chosen-boundary attack (BCBA) on an HTTPS session, in conjunction with JavaScript code that uses (1) the HTML5 WebSocket API, (2) the Java URLConnection API, or (3) the Silverlight WebClient API, aka a \"BEAST\" attack.",
+          "type": "REMOTE",
+          "cost": 5.16,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b339a0>",
+          "reward_string": "Exploited CVE-2011-3389 on node-worker-000"
+        },
+        "CVE-2023-31439_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33940>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-000"
+        },
+        "CVE-2019-1010023_0": {
+          "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b338e0>",
+          "reward_string": "Exploited CVE-2019-1010023 on node-worker-000"
+        },
+        "CVE-2017-11696_0": {
+          "description": "Heap-based buffer overflow in the __hash_open function in lib/dbm/src/hash.c in Mozilla Network Security Services (NSS) allows context-dependent attackers to have unspecified impact using a crafted cert8.db file.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33430>",
+          "reward_string": "Exploited CVE-2017-11696 on node-worker-000"
+        },
+        "CVE-2023-31486_0": {
+          "description": "HTTP::Tiny before 0.083, a Perl core module since 5.13.9 and available standalone on CPAN, has an insecure default TLS configuration where users must opt in to verify certificates.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b333d0>",
+          "reward_string": "Exploited CVE-2023-31486 on node-worker-000"
+        },
+        "CVE-2017-18018_0": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b33370>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-000"
+        },
+        "CredentialLeak_cilium_to_etcd": {
+          "description": "Stored credentials for etcd",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74970>",
+          "reward_string": "Found credentials for etcd"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "worker",
+        "zone-a",
+        "ip_10_0_0_8"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.8",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-worker-001": {
+      "services": [
+        {
+          "name": "cassandra-0",
+          "port": "7000",
+          "allowedCredentials": [
+            "cassandra_0_creds",
+            "jaeger_to_cassandra_key",
+            "prometheus_to_cassandra_key"
+          ]
+        },
+        {
+          "name": "mongodb-3",
+          "port": "27017",
+          "allowedCredentials": [
+            "mongodb_3_creds"
+          ]
+        },
+        {
+          "name": "minio-2",
+          "port": "9000",
+          "allowedCredentials": [
+            "minio_2_creds",
+            "thanos_to_minio_key"
+          ]
+        },
+        {
+          "name": "postgresql-0",
+          "port": "5432",
+          "allowedCredentials": [
+            "postgresql_0_creds"
+          ]
+        },
+        {
+          "name": "postgresql-2",
+          "port": "5432",
+          "allowedCredentials": [
+            "postgresql_2_creds"
+          ]
+        },
+        {
+          "name": "thanos-2",
+          "port": "80",
+          "allowedCredentials": [
+            "thanos_2_creds"
+          ]
+        },
+        {
+          "name": "etcd-4",
+          "port": "2379",
+          "allowedCredentials": [
+            "etcd_4_creds",
+            "cilium_to_etcd_key",
+            "prometheus_to_etcd_key"
+          ]
+        },
+        {
+          "name": "grafana-loki-2",
+          "port": "80",
+          "allowedCredentials": [
+            "grafana-loki_2_creds",
+            "fluent-bit_to_grafana-loki_key",
+            "grafana_to_grafana-loki_key",
+            "prometheus_to_grafana_key"
+          ]
+        },
+        {
+          "name": "prometheus-0",
+          "port": "9090",
+          "allowedCredentials": [
+            "prometheus_0_creds",
+            "grafana_to_prometheus_key"
+          ]
+        },
+        {
+          "name": "jaeger-0",
+          "port": "6831",
+          "allowedCredentials": [
+            "jaeger_0_creds"
+          ]
+        },
+        {
+          "name": "jaeger-1",
+          "port": "6831",
+          "allowedCredentials": [
+            "jaeger_1_creds"
+          ]
+        },
+        {
+          "name": "jaeger-2",
+          "port": "6831",
+          "allowedCredentials": [
+            "jaeger_2_creds"
+          ]
+        },
+        {
+          "name": "redis-3",
+          "port": "6379",
+          "allowedCredentials": [
+            "redis_3_creds",
+            "prometheus_to_redis_key"
+          ]
+        },
+        {
+          "name": "argo-cd-1",
+          "port": "80",
+          "allowedCredentials": [
+            "argo-cd_1_creds"
+          ]
+        },
+        {
+          "name": "grafana-0",
+          "port": "3000",
+          "allowedCredentials": [
+            "grafana_0_creds",
+            "prometheus_to_grafana_key"
+          ]
+        },
+        {
+          "name": "nginx-ingress-controller-0",
+          "port": "80",
+          "allowedCredentials": [
+            "nginx-ingress-controller_0_creds",
+            "prometheus_to_nginx-ingress-controller_key"
+          ]
+        },
+        {
+          "name": "fluent-bit-0",
+          "port": "80",
+          "allowedCredentials": [
+            "fluent-bit_0_creds"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_cassandra_0": {
+          "description": "Exploit cassandra service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf610>",
+          "reward_string": "Gained access to cassandra on node-worker-001"
+        },
+        "CVE-2023-45853_0": {
+          "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment, or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE: pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib version, and exposes the applicable MiniZip code through its compress API.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf490>",
+          "reward_string": "Exploited CVE-2023-45853 on node-worker-001"
+        },
+        "Exploit_mongodb_3": {
+          "description": "Exploit mongodb service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf400>",
+          "reward_string": "Gained access to mongodb on node-worker-001"
+        },
+        "CVE-2022-3219_3": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf550>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-001"
+        },
+        "CVE-2025-0725_3": {
+          "description": "When libcurl is asked to perform automatic gzip decompression of\ncontent-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option,\n**using zlib 1.2.0.3 or older**, an attacker-controlled integer overflow would\nmake libcurl perform a buffer overflow.",
+          "type": "REMOTE",
+          "cost": 3.542,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cded10>",
+          "reward_string": "Exploited CVE-2025-0725 on node-worker-001"
+        },
+        "CVE-2022-27943_3": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdecb0>",
+          "reward_string": "Exploited CVE-2022-27943 on node-worker-001"
+        },
+        "CVE-2025-6020_3": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdee00>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-001"
+        },
+        "CVE-2015-3276_3": {
+          "description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cdebf0>",
+          "reward_string": "Exploited CVE-2015-3276 on node-worker-001"
+        },
+        "CVE-2019-1010022_3": {
+          "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdeb90>",
+          "reward_string": "Exploited CVE-2019-1010022 on node-worker-001"
+        },
+        "TEMP-0841856-B18BAF_3": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cdeb30>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-worker-001"
+        },
+        "Exploit_minio_2": {
+          "description": "Exploit minio service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdead0>",
+          "reward_string": "Gained access to minio on node-worker-001"
+        },
+        "CVE-2017-18018_2": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdea10>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-001"
+        },
+        "CVE-2023-4016_2": {
+          "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde710>",
+          "reward_string": "Exploited CVE-2023-4016 on node-worker-001"
+        },
+        "CVE-2023-31437_2": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc6a0>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-001"
+        },
+        "Exploit_postgresql_0": {
+          "description": "Exploit postgresql service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde650>",
+          "reward_string": "Gained access to postgresql on node-worker-001"
+        },
+        "Exploit_postgresql_2": {
+          "description": "Exploit postgresql service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde590>",
+          "reward_string": "Gained access to postgresql on node-worker-001"
+        },
+        "Exploit_thanos_2": {
+          "description": "Exploit thanos service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde8c0>",
+          "reward_string": "Gained access to thanos on node-worker-001"
+        },
+        "Exploit_etcd_4": {
+          "description": "Exploit etcd service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde980>",
+          "reward_string": "Gained access to etcd on node-worker-001"
+        },
+        "CVE-2022-0563_4": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cdf100>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-001"
+        },
+        "CVE-2025-4802_4": {
+          "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2.38 allows attacker controlled loading of dynamically shared library in statically compiled setuid binaries that call dlopen (including internal dlopen calls after setlocale or calls to NSS functions such as getaddrinfo).",
+          "type": "REMOTE",
+          "cost": 5.634999999999999,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf0a0>",
+          "reward_string": "Exploited CVE-2025-4802 on node-worker-001"
+        },
+        "CVE-2025-8058_4": {
+          "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if some previous allocation fails. It can be \naccomplished either by a malloc failure or by using an interposed malloc\n that injects random malloc failures. The double free can allow buffer \nmanipulation depending of how the regex is constructed. This issue \naffects all architectures and ABIs supported by the GNU C library.",
+          "type": "REMOTE",
+          "cost": 2.94,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdf040>",
+          "reward_string": "Exploited CVE-2025-8058 on node-worker-001"
+        },
+        "CVE-2022-3219_4": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdefe0>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-001"
+        },
+        "Exploit_grafana-loki_2": {
+          "description": "Exploit grafana-loki service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdef80>",
+          "reward_string": "Gained access to grafana-loki on node-worker-001"
+        },
+        "CVE-2011-3374_2": {
+          "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cddab0>",
+          "reward_string": "Exploited CVE-2011-3374 on node-worker-001"
+        },
+        "CVE-2024-2236_2": {
+          "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+          "type": "REMOTE",
+          "cost": 8.142,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdda50>",
+          "reward_string": "Exploited CVE-2024-2236 on node-worker-001"
+        },
+        "CVE-2025-6020_2": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdd9f0>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-001"
+        },
+        "Exploit_prometheus_0": {
+          "description": "Exploit prometheus service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdd990>",
+          "reward_string": "Gained access to prometheus on node-worker-001"
+        },
+        "CVE-2019-9192_0": {
+          "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cdd8d0>",
+          "reward_string": "Exploited CVE-2019-9192 on node-worker-001"
+        },
+        "TEMP-0841856-B18BAF_0": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cdc070>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-worker-001"
+        },
+        "Exploit_jaeger_0": {
+          "description": "Exploit jaeger service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc0a0>",
+          "reward_string": "Gained access to jaeger on node-worker-001"
+        },
+        "CVE-2011-4116_0": {
+          "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc8e0>",
+          "reward_string": "Exploited CVE-2011-4116 on node-worker-001"
+        },
+        "CVE-2025-5278_0": {
+          "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
+          "type": "REMOTE",
+          "cost": 3.8962000000000003,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc1c0>",
+          "reward_string": "Exploited CVE-2025-5278 on node-worker-001"
+        },
+        "CVE-2023-31437_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcb80>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-001"
+        },
+        "TEMP-0628843-DBAD28_0": {
+          "description": "[more related to CVE-2005-4890]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc280>",
+          "reward_string": "Exploited TEMP-0628843-DBAD28 on node-worker-001"
+        },
+        "Exploit_jaeger_1": {
+          "description": "Exploit jaeger service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc2e0>",
+          "reward_string": "Gained access to jaeger on node-worker-001"
+        },
+        "CVE-2011-4116_1": {
+          "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc3a0>",
+          "reward_string": "Exploited CVE-2011-4116 on node-worker-001"
+        },
+        "CVE-2025-5278_1": {
+          "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
+          "type": "REMOTE",
+          "cost": 3.8962000000000003,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc400>",
+          "reward_string": "Exploited CVE-2025-5278 on node-worker-001"
+        },
+        "CVE-2023-31437_1": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc460>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-001"
+        },
+        "TEMP-0628843-DBAD28_1": {
+          "description": "[more related to CVE-2005-4890]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc4c0>",
+          "reward_string": "Exploited TEMP-0628843-DBAD28 on node-worker-001"
+        },
+        "Exploit_jaeger_2": {
+          "description": "Exploit jaeger service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc520>",
+          "reward_string": "Gained access to jaeger on node-worker-001"
+        },
+        "CVE-2011-4116_2": {
+          "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc5e0>",
+          "reward_string": "Exploited CVE-2011-4116 on node-worker-001"
+        },
+        "CVE-2025-5278_2": {
+          "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
+          "type": "REMOTE",
+          "cost": 3.8962000000000003,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc640>",
+          "reward_string": "Exploited CVE-2025-5278 on node-worker-001"
+        },
+        "TEMP-0628843-DBAD28_2": {
+          "description": "[more related to CVE-2005-4890]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde6b0>",
+          "reward_string": "Exploited TEMP-0628843-DBAD28 on node-worker-001"
+        },
+        "Exploit_redis_3": {
+          "description": "Exploit redis service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc700>",
+          "reward_string": "Gained access to redis on node-worker-001"
+        },
+        "CVE-2025-30258_3": {
+          "description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data that lacks a valid backsig or that has incorrect usage flags, the user loses the ability to verify signatures made from certain other signing keys, aka a \"verification DoS.\"",
+          "type": "REMOTE",
+          "cost": 2.1734999999999998,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc7c0>",
+          "reward_string": "Exploited CVE-2025-30258 on node-worker-001"
+        },
+        "CVE-2023-31439_3": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc820>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-001"
+        },
+        "CVE-2022-0563_3": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cded40>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-001"
+        },
+        "CVE-2019-1010023_3": {
+          "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdeda0>",
+          "reward_string": "Exploited CVE-2019-1010023 on node-worker-001"
+        },
+        "Exploit_argo-cd_1": {
+          "description": "Exploit argo-cd service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdec50>",
+          "reward_string": "Gained access to argo-cd on node-worker-001"
+        },
+        "CVE-2022-3219_1": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde740>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-001"
+        },
+        "CVE-2022-0563_1": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cde7a0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-001"
+        },
+        "CVE-2017-18018_1": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde800>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-001"
+        },
+        "Exploit_grafana_0": {
+          "description": "Exploit grafana service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cde860>",
+          "reward_string": "Gained access to grafana on node-worker-001"
+        },
+        "CVE-2011-3389_0": {
+          "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Explorer, Mozilla Firefox, Google Chrome, Opera, and other products, encrypts data by using CBC mode with chained initialization vectors, which allows man-in-the-middle attackers to obtain plaintext HTTP headers via a blockwise chosen-boundary attack (BCBA) on an HTTPS session, in conjunction with JavaScript code that uses (1) the HTML5 WebSocket API, (2) the Java URLConnection API, or (3) the Silverlight WebClient API, aka a \"BEAST\" attack.",
+          "type": "REMOTE",
+          "cost": 5.16,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc160>",
+          "reward_string": "Exploited CVE-2011-3389 on node-worker-001"
+        },
+        "CVE-2024-8176_0": {
+          "description": "A stack overflow vulnerability exists in the libexpat library due to the way it handles recursive entity expansion in XML documents. When parsing an XML document with deeply nested entity references, libexpat can be forced to recurse indefinitely, exhausting the stack space and causing a crash. This issue could lead to denial of service (DoS) or, in some cases, exploitable memory corruption, depending on the environment and library usage.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc940>",
+          "reward_string": "Exploited CVE-2024-8176 on node-worker-001"
+        },
+        "CVE-2018-6829_0": {
+          "description": "cipher/elgamal.c in Libgcrypt through 1.8.2, when used to encrypt messages directly, improperly encodes plaintexts, which allows attackers to obtain sensitive information by reading ciphertext data (i.e., it does not have semantic security in face of a ciphertext-only attack). The Decisional Diffie-Hellman (DDH) assumption does not hold for Libgcrypt's ElGamal implementation.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdc9a0>",
+          "reward_string": "Exploited CVE-2018-6829 on node-worker-001"
+        },
+        "Exploit_nginx-ingress-controller_0": {
+          "description": "Exploit nginx-ingress-controller service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdca00>",
+          "reward_string": "Gained access to nginx-ingress-controller on node-worker-001"
+        },
+        "CVE-2023-31124_0": {
+          "description": "c-ares is an asynchronous resolver library. When cross-compiling c-ares and using the autotools build system, CARES_RANDOM_FILE will not be set, as seen when cross compiling aarch64 android.  This will downgrade to using rand() as a fallback which could allow an attacker to take advantage of the lack of entropy by not using a CSPRNG. This issue was patched in version 1.19.1.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcac0>",
+          "reward_string": "Exploited CVE-2023-31124 on node-worker-001"
+        },
+        "CVE-2017-14159_0": {
+          "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcb20>",
+          "reward_string": "Exploited CVE-2017-14159 on node-worker-001"
+        },
+        "CVE-2024-11407_0": {
+          "description": "There exists a denial of service through Data corruption in gRPC-C++ -\u00a0gRPC-C++ servers with transmit zero copy enabled through the channel arg GRPC_ARG_TCP_TX_ZEROCOPY_ENABLED can experience data corruption issues. The data sent by the application may be corrupted before transmission over the network thus leading the receiver to receive an incorrect set of bytes causing RPC requests to fail. We recommend upgrading past commit\u00a0e9046b2bbebc0cb7f5dc42008f807f6c7e98e791",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cdc220>",
+          "reward_string": "Exploited CVE-2024-11407 on node-worker-001"
+        },
+        "CVE-2025-6021_0": {
+          "description": "A flaw was found in libxml2's xmlBuildQName function, where integer overflows in buffer size calculations can lead to a stack-based buffer overflow. This issue can result in memory corruption or a denial of service when processing crafted input.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cdcbe0>",
+          "reward_string": "Exploited CVE-2025-6021 on node-worker-001"
+        },
+        "CVE-2023-4785_0": {
+          "description": "Lack of error handling in the TCP server in Google's gRPC starting version 1.23 on posix-compatible platforms (ex. Linux) allows an attacker to cause a denial of service by initiating a significant number of connections with the server. Note that gRPC C++ Python, and Ruby are affected, but gRPC Java, and Go are NOT affected.\u00a0",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cdcc40>",
+          "reward_string": "Exploited CVE-2023-4785 on node-worker-001"
+        },
+        "CVE-2022-27943_0": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcca0>",
+          "reward_string": "Exploited CVE-2022-27943 on node-worker-001"
+        },
+        "Exploit_fluent-bit_0": {
+          "description": "Exploit fluent-bit service on node-worker-001",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcd00>",
+          "reward_string": "Gained access to fluent-bit on node-worker-001"
+        },
+        "CVE-2024-10041_0": {
+          "description": "A vulnerability was found in PAM. The secret information is stored in memory, where the attacker can trigger the victim program to execute by sending characters to its standard input (stdin). As this occurs, the attacker can train the branch predictor to execute an ROP chain speculatively. This flaw could result in leaked passwords, such as those found in /etc/shadow while performing authentications.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdcdc0>",
+          "reward_string": "Exploited CVE-2024-10041 on node-worker-001"
+        },
+        "CVE-2023-31439_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cdce20>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-001"
+        },
+        "CredentialLeak_fluent-bit_to_grafana-loki": {
+          "description": "Stored credentials for grafana-loki",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b764d0>",
+          "reward_string": "Found credentials for grafana-loki"
+        },
+        "CredentialLeak_grafana_to_prometheus": {
+          "description": "Stored credentials for prometheus",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b76470>",
+          "reward_string": "Found credentials for prometheus"
+        },
+        "CredentialLeak_grafana_to_grafana-loki": {
+          "description": "Stored credentials for grafana-loki",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b76410>",
+          "reward_string": "Found credentials for grafana-loki"
+        },
+        "CredentialLeak_jaeger_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b763b0>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_thanos_to_minio": {
+          "description": "Stored credentials for minio",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b756f0>",
+          "reward_string": "Found credentials for minio"
+        },
+        "CredentialLeak_prometheus_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b755d0>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_prometheus_to_cert-manager": {
+          "description": "Stored credentials for cert-manager",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75450>",
+          "reward_string": "Found credentials for cert-manager"
+        },
+        "CredentialLeak_prometheus_to_cilium": {
+          "description": "Stored credentials for cilium",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b752d0>",
+          "reward_string": "Found credentials for cilium"
+        },
+        "CredentialLeak_prometheus_to_etcd": {
+          "description": "Stored credentials for etcd",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74070>",
+          "reward_string": "Found credentials for etcd"
+        },
+        "CredentialLeak_prometheus_to_grafana": {
+          "description": "Stored credentials for grafana",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b741f0>",
+          "reward_string": "Found credentials for grafana"
+        },
+        "CredentialLeak_prometheus_to_kube-state-metrics": {
+          "description": "Stored credentials for kube-state-metrics",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74370>",
+          "reward_string": "Found credentials for kube-state-metrics"
+        },
+        "CredentialLeak_prometheus_to_metrics-server": {
+          "description": "Stored credentials for metrics-server",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b744f0>",
+          "reward_string": "Found credentials for metrics-server"
+        },
+        "CredentialLeak_prometheus_to_nginx-ingress-controller": {
+          "description": "Stored credentials for nginx-ingress-controller",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74670>",
+          "reward_string": "Found credentials for nginx-ingress-controller"
+        },
+        "CredentialLeak_prometheus_to_redis": {
+          "description": "Stored credentials for redis",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b747f0>",
+          "reward_string": "Found credentials for redis"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "worker",
+        "zone-a",
+        "ip_10_0_0_9"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.9",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-worker-002": {
+      "services": [
+        {
+          "name": "cassandra-2",
+          "port": "7000",
+          "allowedCredentials": [
+            "cassandra_2_creds",
+            "jaeger_to_cassandra_key",
+            "prometheus_to_cassandra_key"
+          ]
+        },
+        {
+          "name": "postgresql-3",
+          "port": "5432",
+          "allowedCredentials": [
+            "postgresql_3_creds"
+          ]
+        },
+        {
+          "name": "grafana-loki-0",
+          "port": "80",
+          "allowedCredentials": [
+            "grafana-loki_0_creds",
+            "fluent-bit_to_grafana-loki_key",
+            "grafana_to_grafana-loki_key"
+          ]
+        },
+        {
+          "name": "prometheus-1",
+          "port": "9090",
+          "allowedCredentials": [
+            "prometheus_1_creds",
+            "grafana_to_prometheus_key"
+          ]
+        },
+        {
+          "name": "jaeger-3",
+          "port": "6831",
+          "allowedCredentials": [
+            "jaeger_3_creds"
+          ]
+        },
+        {
+          "name": "argo-cd-2",
+          "port": "80",
+          "allowedCredentials": [
+            "argo-cd_2_creds"
+          ]
+        },
+        {
+          "name": "nginx-ingress-controller-1",
+          "port": "80",
+          "allowedCredentials": [
+            "nginx-ingress-controller_1_creds",
+            "prometheus_to_nginx-ingress-controller_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_cassandra_2": {
+          "description": "Exploit cassandra service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4a60>",
+          "reward_string": "Gained access to cassandra on node-worker-002"
+        },
+        "CVE-2023-45853_2": {
+          "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment, or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE: pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib version, and exposes the applicable MiniZip code through its compress API.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4b20>",
+          "reward_string": "Exploited CVE-2023-45853 on node-worker-002"
+        },
+        "Exploit_postgresql_3": {
+          "description": "Exploit postgresql service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4b80>",
+          "reward_string": "Gained access to postgresql on node-worker-002"
+        },
+        "Exploit_grafana-loki_0": {
+          "description": "Exploit grafana-loki service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4c40>",
+          "reward_string": "Gained access to grafana-loki on node-worker-002"
+        },
+        "CVE-2011-3374_0": {
+          "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4d00>",
+          "reward_string": "Exploited CVE-2011-3374 on node-worker-002"
+        },
+        "CVE-2024-2236_0": {
+          "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+          "type": "REMOTE",
+          "cost": 8.142,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4d60>",
+          "reward_string": "Exploited CVE-2024-2236 on node-worker-002"
+        },
+        "CVE-2025-6020_0": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4dc0>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-002"
+        },
+        "Exploit_prometheus_1": {
+          "description": "Exploit prometheus service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4e20>",
+          "reward_string": "Gained access to prometheus on node-worker-002"
+        },
+        "CVE-2019-9192_1": {
+          "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cf4ee0>",
+          "reward_string": "Exploited CVE-2019-9192 on node-worker-002"
+        },
+        "TEMP-0841856-B18BAF_1": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cf4f40>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-worker-002"
+        },
+        "Exploit_jaeger_3": {
+          "description": "Exploit jaeger service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf4fa0>",
+          "reward_string": "Gained access to jaeger on node-worker-002"
+        },
+        "CVE-2011-4116_3": {
+          "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5060>",
+          "reward_string": "Exploited CVE-2011-4116 on node-worker-002"
+        },
+        "CVE-2025-5278_3": {
+          "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
+          "type": "REMOTE",
+          "cost": 3.8962000000000003,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf50c0>",
+          "reward_string": "Exploited CVE-2025-5278 on node-worker-002"
+        },
+        "CVE-2023-31437_3": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5120>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-002"
+        },
+        "TEMP-0628843-DBAD28_3": {
+          "description": "[more related to CVE-2005-4890]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5180>",
+          "reward_string": "Exploited TEMP-0628843-DBAD28 on node-worker-002"
+        },
+        "Exploit_argo-cd_2": {
+          "description": "Exploit argo-cd service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf51e0>",
+          "reward_string": "Gained access to argo-cd on node-worker-002"
+        },
+        "CVE-2022-3219_2": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf52a0>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-002"
+        },
+        "CVE-2022-0563_2": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7cf5300>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-002"
+        },
+        "CVE-2017-18018_2": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5360>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-002"
+        },
+        "Exploit_nginx-ingress-controller_1": {
+          "description": "Exploit nginx-ingress-controller service on node-worker-002",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf53c0>",
+          "reward_string": "Gained access to nginx-ingress-controller on node-worker-002"
+        },
+        "CVE-2023-31124_1": {
+          "description": "c-ares is an asynchronous resolver library. When cross-compiling c-ares and using the autotools build system, CARES_RANDOM_FILE will not be set, as seen when cross compiling aarch64 android.  This will downgrade to using rand() as a fallback which could allow an attacker to take advantage of the lack of entropy by not using a CSPRNG. This issue was patched in version 1.19.1.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5480>",
+          "reward_string": "Exploited CVE-2023-31124 on node-worker-002"
+        },
+        "CVE-2017-14159_1": {
+          "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf54e0>",
+          "reward_string": "Exploited CVE-2017-14159 on node-worker-002"
+        },
+        "CVE-2023-31437_1": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf5540>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-002"
+        },
+        "CVE-2024-11407_1": {
+          "description": "There exists a denial of service through Data corruption in gRPC-C++ -\u00a0gRPC-C++ servers with transmit zero copy enabled through the channel arg GRPC_ARG_TCP_TX_ZEROCOPY_ENABLED can experience data corruption issues. The data sent by the application may be corrupted before transmission over the network thus leading the receiver to receive an incorrect set of bytes causing RPC requests to fail. We recommend upgrading past commit\u00a0e9046b2bbebc0cb7f5dc42008f807f6c7e98e791",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cf55a0>",
+          "reward_string": "Exploited CVE-2024-11407 on node-worker-002"
+        },
+        "CVE-2025-6021_1": {
+          "description": "A flaw was found in libxml2's xmlBuildQName function, where integer overflows in buffer size calculations can lead to a stack-based buffer overflow. This issue can result in memory corruption or a denial of service when processing crafted input.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cf5600>",
+          "reward_string": "Exploited CVE-2025-6021 on node-worker-002"
+        },
+        "CVE-2023-4785_1": {
+          "description": "Lack of error handling in the TCP server in Google's gRPC starting version 1.23 on posix-compatible platforms (ex. Linux) allows an attacker to cause a denial of service by initiating a significant number of connections with the server. Note that gRPC C++ Python, and Ruby are affected, but gRPC Java, and Go are NOT affected.\u00a0",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7cf5660>",
+          "reward_string": "Exploited CVE-2023-4785 on node-worker-002"
+        },
+        "CVE-2022-27943_1": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7cf56c0>",
+          "reward_string": "Exploited CVE-2022-27943 on node-worker-002"
+        },
+        "CredentialLeak_jaeger_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75750>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_prometheus_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75570>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_prometheus_to_cert-manager": {
+          "description": "Stored credentials for cert-manager",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b753f0>",
+          "reward_string": "Found credentials for cert-manager"
+        },
+        "CredentialLeak_prometheus_to_cilium": {
+          "description": "Stored credentials for cilium",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75270>",
+          "reward_string": "Found credentials for cilium"
+        },
+        "CredentialLeak_prometheus_to_etcd": {
+          "description": "Stored credentials for etcd",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b740d0>",
+          "reward_string": "Found credentials for etcd"
+        },
+        "CredentialLeak_prometheus_to_grafana": {
+          "description": "Stored credentials for grafana",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74250>",
+          "reward_string": "Found credentials for grafana"
+        },
+        "CredentialLeak_prometheus_to_kube-state-metrics": {
+          "description": "Stored credentials for kube-state-metrics",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b743d0>",
+          "reward_string": "Found credentials for kube-state-metrics"
+        },
+        "CredentialLeak_prometheus_to_metrics-server": {
+          "description": "Stored credentials for metrics-server",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74550>",
+          "reward_string": "Found credentials for metrics-server"
+        },
+        "CredentialLeak_prometheus_to_nginx-ingress-controller": {
+          "description": "Stored credentials for nginx-ingress-controller",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b746d0>",
+          "reward_string": "Found credentials for nginx-ingress-controller"
+        },
+        "CredentialLeak_prometheus_to_redis": {
+          "description": "Stored credentials for redis",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74850>",
+          "reward_string": "Found credentials for redis"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "worker",
+        "zone-a",
+        "ip_10_0_0_7"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.7",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-worker-003": {
+      "services": [
+        {
+          "name": "cassandra-3",
+          "port": "7000",
+          "allowedCredentials": [
+            "cassandra_3_creds",
+            "jaeger_to_cassandra_key",
+            "prometheus_to_cassandra_key"
+          ]
+        },
+        {
+          "name": "minio-1",
+          "port": "9000",
+          "allowedCredentials": [
+            "minio_1_creds",
+            "thanos_to_minio_key"
+          ]
+        },
+        {
+          "name": "postgresql-1",
+          "port": "5432",
+          "allowedCredentials": [
+            "postgresql_1_creds"
+          ]
+        },
+        {
+          "name": "thanos-1",
+          "port": "80",
+          "allowedCredentials": [
+            "thanos_1_creds"
+          ]
+        },
+        {
+          "name": "thanos-3",
+          "port": "80",
+          "allowedCredentials": [
+            "thanos_3_creds"
+          ]
+        },
+        {
+          "name": "grafana-loki-3",
+          "port": "80",
+          "allowedCredentials": [
+            "grafana-loki_3_creds",
+            "fluent-bit_to_grafana-loki_key",
+            "grafana_to_grafana-loki_key"
+          ]
+        },
+        {
+          "name": "prometheus-3",
+          "port": "9090",
+          "allowedCredentials": [
+            "prometheus_3_creds",
+            "grafana_to_prometheus_key"
+          ]
+        },
+        {
+          "name": "redis-0",
+          "port": "6379",
+          "allowedCredentials": [
+            "redis_0_creds",
+            "prometheus_to_redis_key"
+          ]
+        },
+        {
+          "name": "argo-cd-0",
+          "port": "80",
+          "allowedCredentials": [
+            "argo-cd_0_creds"
+          ]
+        },
+        {
+          "name": "cert-manager-0",
+          "port": "80",
+          "allowedCredentials": [
+            "cert-manager_0_creds",
+            "prometheus_to_cert-manager_key"
+          ]
+        },
+        {
+          "name": "nginx-ingress-controller-3",
+          "port": "80",
+          "allowedCredentials": [
+            "nginx-ingress-controller_3_creds",
+            "prometheus_to_nginx-ingress-controller_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_cassandra_3": {
+          "description": "Exploit cassandra service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21fc0>",
+          "reward_string": "Gained access to cassandra on node-worker-003"
+        },
+        "CVE-2023-45853_3": {
+          "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, comment, or extra field. NOTE: MiniZip is not a supported part of the zlib product. NOTE: pyminizip through 0.2.6 is also vulnerable because it bundles an affected zlib version, and exposes the applicable MiniZip code through its compress API.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b20e20>",
+          "reward_string": "Exploited CVE-2023-45853 on node-worker-003"
+        },
+        "Exploit_minio_1": {
+          "description": "Exploit minio service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b20e50>",
+          "reward_string": "Gained access to minio on node-worker-003"
+        },
+        "CVE-2017-18018_1": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b218d0>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-003"
+        },
+        "CVE-2023-4016_1": {
+          "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21930>",
+          "reward_string": "Exploited CVE-2023-4016 on node-worker-003"
+        },
+        "CVE-2023-31437_1": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21990>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-003"
+        },
+        "Exploit_postgresql_1": {
+          "description": "Exploit postgresql service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b219f0>",
+          "reward_string": "Gained access to postgresql on node-worker-003"
+        },
+        "Exploit_thanos_1": {
+          "description": "Exploit thanos service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22440>",
+          "reward_string": "Gained access to thanos on node-worker-003"
+        },
+        "Exploit_thanos_3": {
+          "description": "Exploit thanos service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22500>",
+          "reward_string": "Gained access to thanos on node-worker-003"
+        },
+        "Exploit_grafana-loki_3": {
+          "description": "Exploit grafana-loki service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b225c0>",
+          "reward_string": "Gained access to grafana-loki on node-worker-003"
+        },
+        "CVE-2011-3374_3": {
+          "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22680>",
+          "reward_string": "Exploited CVE-2011-3374 on node-worker-003"
+        },
+        "CVE-2024-2236_3": {
+          "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+          "type": "REMOTE",
+          "cost": 8.142,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b226e0>",
+          "reward_string": "Exploited CVE-2024-2236 on node-worker-003"
+        },
+        "CVE-2025-6020_3": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23910>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-003"
+        },
+        "Exploit_prometheus_3": {
+          "description": "Exploit prometheus service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23970>",
+          "reward_string": "Gained access to prometheus on node-worker-003"
+        },
+        "CVE-2019-9192_3": {
+          "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b23a30>",
+          "reward_string": "Exploited CVE-2019-9192 on node-worker-003"
+        },
+        "TEMP-0841856-B18BAF_3": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b23a90>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-worker-003"
+        },
+        "Exploit_redis_0": {
+          "description": "Exploit redis service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23af0>",
+          "reward_string": "Gained access to redis on node-worker-003"
+        },
+        "CVE-2025-30258_0": {
+          "description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data that lacks a valid backsig or that has incorrect usage flags, the user loses the ability to verify signatures made from certain other signing keys, aka a \"verification DoS.\"",
+          "type": "REMOTE",
+          "cost": 2.1734999999999998,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23bb0>",
+          "reward_string": "Exploited CVE-2025-30258 on node-worker-003"
+        },
+        "CVE-2023-31439_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23c10>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-003"
+        },
+        "CVE-2022-0563_0": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b221d0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-003"
+        },
+        "CVE-2019-1010023_0": {
+          "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23cd0>",
+          "reward_string": "Exploited CVE-2019-1010023 on node-worker-003"
+        },
+        "CVE-2025-6020_0": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21810>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-003"
+        },
+        "Exploit_argo-cd_0": {
+          "description": "Exploit argo-cd service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b220b0>",
+          "reward_string": "Gained access to argo-cd on node-worker-003"
+        },
+        "CVE-2022-3219_0": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22170>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-003"
+        },
+        "CVE-2017-18018_0": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23c70>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-003"
+        },
+        "Exploit_cert-manager_0": {
+          "description": "Exploit cert-manager service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22e30>",
+          "reward_string": "Gained access to cert-manager on node-worker-003"
+        },
+        "CVE-2019-1010024_0": {
+          "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22ef0>",
+          "reward_string": "Exploited CVE-2019-1010024 on node-worker-003"
+        },
+        "Exploit_nginx-ingress-controller_3": {
+          "description": "Exploit nginx-ingress-controller service on node-worker-003",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b22f50>",
+          "reward_string": "Gained access to nginx-ingress-controller on node-worker-003"
+        },
+        "CVE-2023-31124_3": {
+          "description": "c-ares is an asynchronous resolver library. When cross-compiling c-ares and using the autotools build system, CARES_RANDOM_FILE will not be set, as seen when cross compiling aarch64 android.  This will downgrade to using rand() as a fallback which could allow an attacker to take advantage of the lack of entropy by not using a CSPRNG. This issue was patched in version 1.19.1.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23010>",
+          "reward_string": "Exploited CVE-2023-31124 on node-worker-003"
+        },
+        "CVE-2017-14159_3": {
+          "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23070>",
+          "reward_string": "Exploited CVE-2017-14159 on node-worker-003"
+        },
+        "CVE-2023-31437_3": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b230d0>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-003"
+        },
+        "CVE-2024-11407_3": {
+          "description": "There exists a denial of service through Data corruption in gRPC-C++ -\u00a0gRPC-C++ servers with transmit zero copy enabled through the channel arg GRPC_ARG_TCP_TX_ZEROCOPY_ENABLED can experience data corruption issues. The data sent by the application may be corrupted before transmission over the network thus leading the receiver to receive an incorrect set of bytes causing RPC requests to fail. We recommend upgrading past commit\u00a0e9046b2bbebc0cb7f5dc42008f807f6c7e98e791",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b23130>",
+          "reward_string": "Exploited CVE-2024-11407 on node-worker-003"
+        },
+        "CVE-2025-6021_3": {
+          "description": "A flaw was found in libxml2's xmlBuildQName function, where integer overflows in buffer size calculations can lead to a stack-based buffer overflow. This issue can result in memory corruption or a denial of service when processing crafted input.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b23190>",
+          "reward_string": "Exploited CVE-2025-6021 on node-worker-003"
+        },
+        "CVE-2023-4785_3": {
+          "description": "Lack of error handling in the TCP server in Google's gRPC starting version 1.23 on posix-compatible platforms (ex. Linux) allows an attacker to cause a denial of service by initiating a significant number of connections with the server. Note that gRPC C++ Python, and Ruby are affected, but gRPC Java, and Go are NOT affected.\u00a0",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b231f0>",
+          "reward_string": "Exploited CVE-2023-4785 on node-worker-003"
+        },
+        "CVE-2022-27943_3": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b23250>",
+          "reward_string": "Exploited CVE-2022-27943 on node-worker-003"
+        },
+        "CredentialLeak_thanos_to_minio": {
+          "description": "Stored credentials for minio",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75690>",
+          "reward_string": "Found credentials for minio"
+        },
+        "CredentialLeak_prometheus_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75510>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_prometheus_to_cert-manager": {
+          "description": "Stored credentials for cert-manager",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75390>",
+          "reward_string": "Found credentials for cert-manager"
+        },
+        "CredentialLeak_prometheus_to_cilium": {
+          "description": "Stored credentials for cilium",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75210>",
+          "reward_string": "Found credentials for cilium"
+        },
+        "CredentialLeak_prometheus_to_etcd": {
+          "description": "Stored credentials for etcd",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74130>",
+          "reward_string": "Found credentials for etcd"
+        },
+        "CredentialLeak_prometheus_to_grafana": {
+          "description": "Stored credentials for grafana",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b742b0>",
+          "reward_string": "Found credentials for grafana"
+        },
+        "CredentialLeak_prometheus_to_kube-state-metrics": {
+          "description": "Stored credentials for kube-state-metrics",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74430>",
+          "reward_string": "Found credentials for kube-state-metrics"
+        },
+        "CredentialLeak_prometheus_to_metrics-server": {
+          "description": "Stored credentials for metrics-server",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b745b0>",
+          "reward_string": "Found credentials for metrics-server"
+        },
+        "CredentialLeak_prometheus_to_nginx-ingress-controller": {
+          "description": "Stored credentials for nginx-ingress-controller",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74730>",
+          "reward_string": "Found credentials for nginx-ingress-controller"
+        },
+        "CredentialLeak_prometheus_to_redis": {
+          "description": "Stored credentials for redis",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b748b0>",
+          "reward_string": "Found credentials for redis"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "worker",
+        "zone-a",
+        "ip_10_0_0_11"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed from node-worker-004"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.12/32",
+            "reason": "Allowed to node-worker-004"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.11",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "node-worker-004": {
+      "services": [
+        {
+          "name": "mongodb-2",
+          "port": "27017",
+          "allowedCredentials": [
+            "mongodb_2_creds"
+          ]
+        },
+        {
+          "name": "minio-0",
+          "port": "9000",
+          "allowedCredentials": [
+            "minio_0_creds",
+            "thanos_to_minio_key"
+          ]
+        },
+        {
+          "name": "minio-3",
+          "port": "9000",
+          "allowedCredentials": [
+            "minio_3_creds",
+            "thanos_to_minio_key"
+          ]
+        },
+        {
+          "name": "thanos-0",
+          "port": "80",
+          "allowedCredentials": [
+            "thanos_0_creds"
+          ]
+        },
+        {
+          "name": "grafana-loki-1",
+          "port": "80",
+          "allowedCredentials": [
+            "grafana-loki_1_creds",
+            "fluent-bit_to_grafana-loki_key",
+            "grafana_to_grafana-loki_key"
+          ]
+        },
+        {
+          "name": "prometheus-2",
+          "port": "9090",
+          "allowedCredentials": [
+            "prometheus_2_creds",
+            "grafana_to_prometheus_key"
+          ]
+        },
+        {
+          "name": "redis-1",
+          "port": "6379",
+          "allowedCredentials": [
+            "redis_1_creds",
+            "prometheus_to_redis_key"
+          ]
+        },
+        {
+          "name": "argo-cd-3",
+          "port": "80",
+          "allowedCredentials": [
+            "argo-cd_3_creds"
+          ]
+        },
+        {
+          "name": "nginx-ingress-controller-2",
+          "port": "80",
+          "allowedCredentials": [
+            "nginx-ingress-controller_2_creds",
+            "prometheus_to_nginx-ingress-controller_key"
+          ]
+        }
+      ],
+      "vulnerabilities": {
+        "Exploit_mongodb_2": {
+          "description": "Exploit mongodb service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21060>",
+          "reward_string": "Gained access to mongodb on node-worker-004"
+        },
+        "CVE-2022-3219_2": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21420>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-004"
+        },
+        "CVE-2025-0725_2": {
+          "description": "When libcurl is asked to perform automatic gzip decompression of\ncontent-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option,\n**using zlib 1.2.0.3 or older**, an attacker-controlled integer overflow would\nmake libcurl perform a buffer overflow.",
+          "type": "REMOTE",
+          "cost": 3.542,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21e70>",
+          "reward_string": "Exploited CVE-2025-0725 on node-worker-004"
+        },
+        "CVE-2022-27943_2": {
+          "description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
+          "type": "REMOTE",
+          "cost": 4.8702499999999995,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a110>",
+          "reward_string": "Exploited CVE-2022-27943 on node-worker-004"
+        },
+        "CVE-2025-6020_2": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b21f60>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-004"
+        },
+        "CVE-2015-3276_2": {
+          "description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b21f00>",
+          "reward_string": "Exploited CVE-2015-3276 on node-worker-004"
+        },
+        "CVE-2019-1010022_2": {
+          "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09b10>",
+          "reward_string": "Exploited CVE-2019-1010022 on node-worker-004"
+        },
+        "TEMP-0841856-B18BAF_2": {
+          "description": "[Privilege escalation possible to other user than root]",
+          "type": "REMOTE",
+          "cost": 0.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b0a5f0>",
+          "reward_string": "Exploited TEMP-0841856-B18BAF on node-worker-004"
+        },
+        "Exploit_minio_0": {
+          "description": "Exploit minio service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09a50>",
+          "reward_string": "Gained access to minio on node-worker-004"
+        },
+        "CVE-2017-18018_0": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09ba0>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-004"
+        },
+        "CVE-2023-4016_0": {
+          "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09c00>",
+          "reward_string": "Exploited CVE-2023-4016 on node-worker-004"
+        },
+        "CVE-2023-31437_0": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09c60>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-004"
+        },
+        "Exploit_minio_3": {
+          "description": "Exploit minio service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09cc0>",
+          "reward_string": "Gained access to minio on node-worker-004"
+        },
+        "CVE-2017-18018_3": {
+          "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09810>",
+          "reward_string": "Exploited CVE-2017-18018 on node-worker-004"
+        },
+        "CVE-2023-4016_3": {
+          "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09de0>",
+          "reward_string": "Exploited CVE-2023-4016 on node-worker-004"
+        },
+        "CVE-2023-31437_3": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09e40>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-004"
+        },
+        "Exploit_thanos_0": {
+          "description": "Exploit thanos service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09ea0>",
+          "reward_string": "Gained access to thanos on node-worker-004"
+        },
+        "Exploit_grafana-loki_1": {
+          "description": "Exploit grafana-loki service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a2f0>",
+          "reward_string": "Gained access to grafana-loki on node-worker-004"
+        },
+        "CVE-2011-3374_1": {
+          "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a3b0>",
+          "reward_string": "Exploited CVE-2011-3374 on node-worker-004"
+        },
+        "CVE-2024-2236_1": {
+          "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+          "type": "REMOTE",
+          "cost": 8.142,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a410>",
+          "reward_string": "Exploited CVE-2024-2236 on node-worker-004"
+        },
+        "CVE-2025-6020_1": {
+          "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without proper protection, allowing local users to elevate their privileges to root via multiple symlink attacks and race conditions.",
+          "type": "REMOTE",
+          "cost": 6.006,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0b8b0>",
+          "reward_string": "Exploited CVE-2025-6020 on node-worker-004"
+        },
+        "Exploit_prometheus_2": {
+          "description": "Exploit prometheus service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a4d0>",
+          "reward_string": "Gained access to prometheus on node-worker-004"
+        },
+        "CVE-2019-9192_2": {
+          "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b0a590>",
+          "reward_string": "Exploited CVE-2019-9192 on node-worker-004"
+        },
+        "Exploit_redis_1": {
+          "description": "Exploit redis service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09ab0>",
+          "reward_string": "Gained access to redis on node-worker-004"
+        },
+        "CVE-2025-30258_1": {
+          "description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data that lacks a valid backsig or that has incorrect usage flags, the user loses the ability to verify signatures made from certain other signing keys, aka a \"verification DoS.\"",
+          "type": "REMOTE",
+          "cost": 2.1734999999999998,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a6b0>",
+          "reward_string": "Exploited CVE-2025-30258 on node-worker-004"
+        },
+        "CVE-2023-31439_1": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0b520>",
+          "reward_string": "Exploited CVE-2023-31439 on node-worker-004"
+        },
+        "CVE-2022-0563_1": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b0b640>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-004"
+        },
+        "CVE-2019-1010023_1": {
+          "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0b6a0>",
+          "reward_string": "Exploited CVE-2019-1010023 on node-worker-004"
+        },
+        "Exploit_argo-cd_3": {
+          "description": "Exploit argo-cd service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b0a470>",
+          "reward_string": "Gained access to argo-cd on node-worker-004"
+        },
+        "CVE-2022-3219_3": {
+          "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "type": "REMOTE",
+          "cost": 2.541,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09750>",
+          "reward_string": "Exploited CVE-2022-3219 on node-worker-004"
+        },
+        "CVE-2022-0563_3": {
+          "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
+          "type": "REMOTE",
+          "cost": 4.235,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.SystemEscalation object at 0x7fe1c7b097b0>",
+          "reward_string": "Exploited CVE-2022-0563 on node-worker-004"
+        },
+        "Exploit_nginx-ingress-controller_2": {
+          "description": "Exploit nginx-ingress-controller service on node-worker-004",
+          "type": "REMOTE",
+          "cost": 5.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09d80>",
+          "reward_string": "Gained access to nginx-ingress-controller on node-worker-004"
+        },
+        "CVE-2023-31124_2": {
+          "description": "c-ares is an asynchronous resolver library. When cross-compiling c-ares and using the autotools build system, CARES_RANDOM_FILE will not be set, as seen when cross compiling aarch64 android.  This will downgrade to using rand() as a fallback which could allow an attacker to take advantage of the lack of entropy by not using a CSPRNG. This issue was patched in version 1.19.1.",
+          "type": "REMOTE",
+          "cost": 5.106,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b098d0>",
+          "reward_string": "Exploited CVE-2023-31124 on node-worker-004"
+        },
+        "CVE-2017-14159_2": {
+          "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript.",
+          "type": "REMOTE",
+          "cost": 3.29,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09f30>",
+          "reward_string": "Exploited CVE-2017-14159 on node-worker-004"
+        },
+        "CVE-2023-31437_2": {
+          "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
+          "type": "REMOTE",
+          "cost": 8.0454,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b09f90>",
+          "reward_string": "Exploited CVE-2023-31437 on node-worker-004"
+        },
+        "CVE-2024-11407_2": {
+          "description": "There exists a denial of service through Data corruption in gRPC-C++ -\u00a0gRPC-C++ servers with transmit zero copy enabled through the channel arg GRPC_ARG_TCP_TX_ZEROCOPY_ENABLED can experience data corruption issues. The data sent by the application may be corrupted before transmission over the network thus leading the receiver to receive an incorrect set of bytes causing RPC requests to fail. We recommend upgrading past commit\u00a0e9046b2bbebc0cb7f5dc42008f807f6c7e98e791",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b09ff0>",
+          "reward_string": "Exploited CVE-2024-11407 on node-worker-004"
+        },
+        "CVE-2025-6021_2": {
+          "description": "A flaw was found in libxml2's xmlBuildQName function, where integer overflows in buffer size calculations can lead to a stack-based buffer overflow. This issue can result in memory corruption or a denial of service when processing crafted input.",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b0a050>",
+          "reward_string": "Exploited CVE-2025-6021 on node-worker-004"
+        },
+        "CVE-2023-4785_2": {
+          "description": "Lack of error handling in the TCP server in Google's gRPC starting version 1.23 on posix-compatible platforms (ex. Linux) allows an attacker to cause a denial of service by initiating a significant number of connections with the server. Note that gRPC C++ Python, and Ruby are affected, but gRPC Java, and Go are NOT affected.\u00a0",
+          "type": "REMOTE",
+          "cost": 10.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.AdminEscalation object at 0x7fe1c7b0a0b0>",
+          "reward_string": "Exploited CVE-2023-4785 on node-worker-004"
+        },
+        "CredentialLeak_thanos_to_minio": {
+          "description": "Stored credentials for minio",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75630>",
+          "reward_string": "Found credentials for minio"
+        },
+        "CredentialLeak_prometheus_to_cassandra": {
+          "description": "Stored credentials for cassandra",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b754b0>",
+          "reward_string": "Found credentials for cassandra"
+        },
+        "CredentialLeak_prometheus_to_cert-manager": {
+          "description": "Stored credentials for cert-manager",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b75330>",
+          "reward_string": "Found credentials for cert-manager"
+        },
+        "CredentialLeak_prometheus_to_cilium": {
+          "description": "Stored credentials for cilium",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b751b0>",
+          "reward_string": "Found credentials for cilium"
+        },
+        "CredentialLeak_prometheus_to_etcd": {
+          "description": "Stored credentials for etcd",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74190>",
+          "reward_string": "Found credentials for etcd"
+        },
+        "CredentialLeak_prometheus_to_grafana": {
+          "description": "Stored credentials for grafana",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74310>",
+          "reward_string": "Found credentials for grafana"
+        },
+        "CredentialLeak_prometheus_to_kube-state-metrics": {
+          "description": "Stored credentials for kube-state-metrics",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74490>",
+          "reward_string": "Found credentials for kube-state-metrics"
+        },
+        "CredentialLeak_prometheus_to_metrics-server": {
+          "description": "Stored credentials for metrics-server",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74610>",
+          "reward_string": "Found credentials for metrics-server"
+        },
+        "CredentialLeak_prometheus_to_nginx-ingress-controller": {
+          "description": "Stored credentials for nginx-ingress-controller",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74790>",
+          "reward_string": "Found credentials for nginx-ingress-controller"
+        },
+        "CredentialLeak_prometheus_to_redis": {
+          "description": "Stored credentials for redis",
+          "type": "LOCAL",
+          "cost": 3.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedCredentials object at 0x7fe1c7b74910>",
+          "reward_string": "Found credentials for redis"
+        }
+      },
+      "properties": [
+        "kubernetes",
+        "worker",
+        "zone-a",
+        "ip_10_0_0_12"
+      ],
+      "value": 50,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed from node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed from node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed from node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed from node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed from node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed from node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed from node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed from node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed from node-worker-003"
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.2/32",
+            "reason": "Allowed to node-control_plane-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.3/32",
+            "reason": "Allowed to node-control_plane-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.4/32",
+            "reason": "Allowed to node-control_plane-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.5/32",
+            "reason": "Allowed to node-memory-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.6/32",
+            "reason": "Allowed to node-memory-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.8/32",
+            "reason": "Allowed to node-worker-000"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.9/32",
+            "reason": "Allowed to node-worker-001"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.7/32",
+            "reason": "Allowed to node-worker-002"
+          },
+          {
+            "port": "*",
+            "permission": "ALLOW",
+            "subnet": "10.0.0.11/32",
+            "reason": "Allowed to node-worker-003"
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "10.0.0.12",
+          "subnet": "10.0.0.0/16"
+        }
+      ],
+      "agent_installed": false,
+      "reimagable": false
+    },
+    "attacker": {
+      "services": [],
+      "vulnerabilities": {
+        "InitialScan": {
+          "description": "Initial network reconnaissance",
+          "type": "LOCAL",
+          "cost": 1.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedNodesId object at 0x7fe1c7b0ae30>",
+          "reward_string": "Discovered public-facing nodes"
+        }
+      },
+      "properties": [
+        "attacker",
+        "external"
+      ],
+      "value": 0,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "192.168.1.100",
+          "subnet": "192.168.1.0/24"
+        }
+      ],
+      "agent_installed": true,
+      "reimagable": false
+    },
+    "attacker_entry_1": {
+      "services": [],
+      "vulnerabilities": {
+        "InitialAccess": {
+          "description": "Initial access through node-worker-003",
+          "type": "LOCAL",
+          "cost": 2.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedNodesId object at 0x7fe1c7b0a8c0>",
+          "reward_string": "Gained initial access via node-worker-003"
+        }
+      },
+      "properties": [
+        "attacker",
+        "compromised",
+        "beachhead"
+      ],
+      "value": 10,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "192.168.1.101",
+          "subnet": "192.168.1.0/24"
+        }
+      ],
+      "agent_installed": true,
+      "reimagable": false
+    },
+    "attacker_entry_2": {
+      "services": [],
+      "vulnerabilities": {
+        "InitialAccess": {
+          "description": "Initial access through node-worker-001",
+          "type": "LOCAL",
+          "cost": 2.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedNodesId object at 0x7fe1c7b094e0>",
+          "reward_string": "Gained initial access via node-worker-001"
+        }
+      },
+      "properties": [
+        "attacker",
+        "compromised",
+        "beachhead"
+      ],
+      "value": 10,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "192.168.1.102",
+          "subnet": "192.168.1.0/24"
+        }
+      ],
+      "agent_installed": true,
+      "reimagable": false
+    },
+    "attacker_entry_3": {
+      "services": [],
+      "vulnerabilities": {
+        "InitialAccess": {
+          "description": "Initial access through node-worker-002",
+          "type": "LOCAL",
+          "cost": 2.0,
+          "outcome": "<cyberbattle.simulation.vulenrabilites.LeakedNodesId object at 0x7fe1c7b77790>",
+          "reward_string": "Gained initial access via node-worker-002"
+        }
+      },
+      "properties": [
+        "attacker",
+        "compromised",
+        "beachhead"
+      ],
+      "value": 10,
+      "firewall": {
+        "incoming": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "port": "RDP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "SSH",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTPS",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          },
+          {
+            "port": "HTTP",
+            "permission": "ALLOW",
+            "subnet": "0.0.0.0/0",
+            "reason": ""
+          }
+        ]
+      },
+      "network_info": [
+        {
+          "interface": "ETH1",
+          "ip_address": "192.168.1.103",
+          "subnet": "192.168.1.0/24"
+        }
+      ],
+      "agent_installed": true,
+      "reimagable": false
+    }
+  },
+  "vulnerability_library": {}
+}
