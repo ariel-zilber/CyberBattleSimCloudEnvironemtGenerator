@@ -1,415 +1,302 @@
-# Kubernetes Realistic Cluster Generator
+# Enhanced Kubernetes Cluster Generator - Complete Package
 
-A sophisticated tool that generates realistic Kubernetes service deployments based on cluster size, use case patterns, and real-world probability distributions.
+## ⚡ **100% BACKWARDS COMPATIBLE** ⚡
 
-## 🎯 Overview
+**This enhanced version is a drop-in replacement for the original generator.**
 
-This tool simulates real-world Kubernetes cluster configurations by considering:
-- **Cluster size** (1-1000+ nodes)
-- **Use case patterns** (10 predefined scenarios)
-- **Service dependencies** (automatic dependency resolution)
-- **Resource constraints** (weighted capacity planning)
-- **Conflict resolution** (mutually exclusive services)
-- **Probability distributions** (realistic deployment patterns)
+```python
+# OLD CODE - Works exactly the same!
+from k8s_cluster_generator_enhanced import K8sClusterGenerator, UseCase
 
-## 🚀 Features
+generator = K8sClusterGenerator(num_nodes=10, use_case=UseCase.MICROSERVICES)
+cluster = generator.generate()
+```
 
-### Service Profiles
-Each service includes:
-- **Resource weight**: Relative resource consumption (1-10 scale)
-- **HA requirements**: Whether service needs high availability setup
-- **Dependencies**: Automatically resolved service dependencies
-- **Conflicts**: Mutually exclusive services (e.g., redis vs valkey)
-- **Probability by use case**: Realistic deployment likelihood per scenario
-- **Minimum cluster size**: Required cluster size for service
+**Migration: Just change the import. That's it. Everything else stays the same.**
 
-### Use Cases
+---
 
-The generator supports 10 pre-configured use case patterns:
+## 📦 What's Included
 
-| Use Case | Description | Typical Services |
-|----------|-------------|------------------|
-| `startup_mvp` | Minimal viable product for startups | Basic observability, single DB, simple networking |
-| `microservices` | Modern microservices architecture | Full observability, service mesh, GitOps, multiple DBs |
-| `data_analytics` | Big data processing and analytics | Spark/Flink, data lakes, ClickHouse, Kafka |
-| `ml_platform` | Machine learning and AI workloads | MLflow, JupyterHub, GPU support, object storage |
-| `web_hosting` | Multi-tenant web hosting | Web servers, CMS platforms, CDN |
-| `enterprise_internal` | Internal enterprise applications | ERP, PKI, collaboration tools |
-| `ecommerce` | E-commerce platforms | High availability DBs, caching, payment processing |
-| `saas_platform` | Software-as-a-Service platform | Multi-tenancy, API gateways, full observability |
-| `iot_platform` | IoT data ingestion and processing | Time-series DBs, Kafka, stream processing |
-| `gaming_backend` | Gaming backend services | Low-latency caching, real-time messaging |
+This package provides an enhanced version of the K8s cluster generator with dynamic configuration capabilities similar to network simulation YAML configs.
 
-### Cluster Sizes
+### Core Files
 
-| Size | Node Range | Typical Use |
-|------|-----------|-------------|
-| TINY | 1-3 | Development, testing |
-| SMALL | 3-10 | Small production, startups |
-| MEDIUM | 10-50 | Growing companies |
-| LARGE | 50-200 | Enterprise deployments |
-| XLARGE | 200+ | Hyperscale operations |
+1. **k8s_cluster_generator_enhanced.py** - Main enhanced generator with all new features
+2. **example_cluster_config.yaml** - Example YAML configuration file
+3. **usage_examples.py** - Comprehensive usage examples demonstrating all features
+4. **TUTORIAL.py** - 5 real-world scenarios with complete implementations
+5. **COMPARISON.py** - Side-by-side comparison of original vs enhanced
+6. **ENHANCED_README.md** - Complete documentation
+7. **QUICKSTART.sh** - Quick reference commands
+8. **test_backwards_compatibility.py** - Proves 100% backwards compatibility
 
-## 📦 Installation
+## 🔄 Backwards Compatibility
 
-No installation required! Just Python 3.7+
+**The enhanced generator maintains 100% backwards compatibility with the original.**
+
+### Original Interface (Still Works!)
+
+```python
+from k8s_cluster_generator_enhanced import K8sClusterGenerator, UseCase
+
+# Use exactly like the original - no changes needed
+generator = K8sClusterGenerator(
+    num_nodes=10,
+    use_case=UseCase.MICROSERVICES,
+    seed=42
+)
+
+cluster = generator.generate()
+# Returns same format as original generator
+```
+
+### Enhanced Interface (New Features!)
+
+```python
+from k8s_cluster_generator_enhanced import (
+    EnhancedK8sClusterGenerator,
+    ClusterDynamicConfig,
+    SubnetConfig,
+    NetworkTopologyConfig
+)
+
+# Use new features when you need them
+config = ClusterDynamicConfig(
+    num_nodes=20,
+    use_case=UseCase.MICROSERVICES,
+    subnet_config=SubnetConfig(
+        subnet_ranges=[1, (2,4), (3,6)],
+        subnet_labels={1: "dmz", 2: "app", 3: "db"}
+    ),
+    network_topology=NetworkTopologyConfig(topology_type="hub_spoke")
+)
+
+generator = EnhancedK8sClusterGenerator(config)
+result = generator.generate()
+# Returns enhanced format with network topology, firewall rules, etc.
+```
+
+### Verify Compatibility
 
 ```bash
-# Clone or download the script
-python k8s_cluster_generator.py --help
+# Run backwards compatibility tests
+python test_backwards_compatibility.py
 ```
 
-## 🔧 Usage
+## 🚀 Quick Start
 
-### Basic Usage
+### Option 1: Original Interface (Backwards Compatible)
+```python
+from k8s_cluster_generator_enhanced import K8sClusterGenerator, UseCase
 
+# Works exactly like the original!
+generator = K8sClusterGenerator(
+    num_nodes=10,
+    use_case=UseCase.MICROSERVICES,
+    seed=42
+)
+cluster = generator.generate()
+```
+
+### Option 2: Command Line (Original Interface)
 ```bash
-# Generate a 10-node microservices cluster
-python k8s_cluster_generator.py --nodes 10 --use-case microservices
-
-# Generate a 5-node startup cluster with seed for reproducibility
-python k8s_cluster_generator.py --nodes 5 --use-case startup_mvp --seed 42
-
-# Generate with verbose output
-python k8s_cluster_generator.py --nodes 20 --use-case saas_platform --verbose
+python k8s_cluster_generator_enhanced.py \
+  --nodes 20 \
+  --use-case microservices \
+  --output cluster.json
 ```
 
-### Output to File
-
+### Option 3: YAML Configuration (Enhanced)
 ```bash
-# Save to JSON file
-python k8s_cluster_generator.py --nodes 50 --use-case ecommerce -o cluster.json
-
-# Generate multiple variations
-python k8s_cluster_generator.py --nodes 15 --use-case microservices --count 5 -o clusters.json
+python k8s_cluster_generator_enhanced.py \
+  --config example_cluster_config.yaml \
+  --output cluster.json
 ```
 
-### Command-Line Options
+### Option 4: Enhanced Interface with Custom Topology
+```python
+from k8s_cluster_generator_enhanced import *
 
+config = ClusterDynamicConfig(
+    num_nodes=20,
+    use_case=UseCase.MICROSERVICES,
+    subnet_config=SubnetConfig(
+        subnet_ranges=[1, (2,4), (3,6)],
+        subnet_labels={1: "dmz", 2: "app", 3: "db"}
+    ),
+    network_topology=NetworkTopologyConfig(
+        topology_type="hub_spoke"
+    ),
+    seed=42
+)
+
+generator = EnhancedK8sClusterGenerator(config)
+result = generator.generate()
 ```
---nodes, -n          Number of nodes in the cluster (required)
---use-case, -u       Primary use case (required)
-                     Choices: startup_mvp, microservices, data_analytics,
-                              ml_platform, web_hosting, enterprise_internal,
-                              ecommerce, saas_platform, iot_platform, gaming_backend
---seed, -s           Random seed for reproducibility (optional)
---count, -c          Number of clusters to generate (default: 1)
---output, -o         Output file path (JSON format)
---verbose, -v        Show detailed statistics
---help, -h           Show help message
-```
 
-## 📊 Output Format
+## ✨ Key New Features
 
-The generator produces JSON with the following structure:
+### 1. Dynamic Subnet Configuration
+- Define subnets with ranges: `[1, (1,4), (2,6)]`
+- Label subnets for clarity
+- Set sensitive data probabilities per subnet
+
+### 2. Network Topology Options
+- Predefined: mesh, star, hub_spoke, random
+- Custom adjacency matrices
+- Control connectivity between subnets
+
+### 3. Service Distribution Control
+- Multiple strategies: probability, required, graph_theory_random
+- Service-subnet affinity mapping
+- Required and excluded service lists
+
+### 4. Firewall Rules
+- Policies: _all, _none, _subnets
+- Per-service exceptions
+- Random blocking simulation
+
+### 5. OSINT Visibility
+- Control what attackers can discover
+- Service visibility configuration
+- Multiple discovery strategies
+
+## 📚 Learning Path
+
+1. **Start Here**: Read ENHANCED_README.md for complete documentation
+2. **Quick Examples**: Run `python usage_examples.py`
+3. **Real Scenarios**: Study TUTORIAL.py for practical use cases
+4. **Compare**: Check COMPARISON.py to understand differences
+5. **Experiment**: Modify example_cluster_config.yaml and generate
+
+## 🎯 Use Cases
+
+### When to Use Enhanced Generator
+
+✅ Security research and penetration testing
+✅ Network topology optimization  
+✅ Compliance testing (DMZ, data tiers)
+✅ Multi-tenant cluster simulation
+✅ Attack graph generation
+✅ Chaos engineering experiments
+✅ Need YAML-based configuration
+✅ Multiple scenario generation
+
+### Real-World Scenarios Included
+
+1. **Secure E-Commerce** - DMZ, web tier, app tier, database isolation
+2. **Data Science Platform** - Ingestion, processing, storage, analytics
+3. **Multi-Tenant SaaS** - Tenant isolation with shared services
+4. **IoT Edge Platform** - Edge devices, queues, processing, time-series
+5. **Gaming Backend** - API gateway, game servers, state management
+
+## 📊 Output Structure
 
 ```json
 {
   "cluster_metadata": {
-    "num_nodes": 10,
-    "cluster_size": "SMALL",
-    "use_case": "microservices",
-    "total_services": 18,
-    "total_resource_weight": 73,
-    "resource_utilization": "73.0%"
+    "num_nodes": 20,
+    "num_subnets": 4,
+    "total_services": 12,
+    "total_pods": 48
   },
-  "services": [
-    "argo-cd",
-    "cert-manager",
-    "etcd",
-    "grafana",
-    "prometheus",
-    ...
-  ],
-  "services_by_category": {
-    "control_plane_core": ["etcd", "kube-state-metrics", "metrics-server"],
-    "observability_metrics": ["prometheus", "grafana"],
-    ...
+  "network": {
+    "subnets": [...],
+    "topology_matrix": [[0,1,1,0], ...]
   },
-  "deployment_stats": {
-    "observability_stack": {
-      "metrics": true,
-      "logging": true,
-      "tracing": true,
-      "completeness_score": 1.0
-    },
-    "automation": {
-      "gitops_enabled": true,
-      "service_mesh": true
-    },
-    "data_layer": {
-      "sql_databases": 1,
-      "nosql_databases": 1,
-      "caching": true,
-      "messaging": true
+  "service_distribution": {
+    "nginx": {
+      "instances": 8,
+      "subnets": [0, 1]
     }
-  }
+  },
+  "firewall": {...},
+  "osint": {...}
 }
 ```
 
-## 🎲 Examples
+## 🔧 Configuration Options
 
-### Example 1: Startup MVP (5 nodes)
+### Topology Types
+- `mesh` - Fully connected
+- `star` - Central hub
+- `hub_spoke` - Hub with limited inter-spoke
+- `random` - Probabilistic connections
 
-```bash
-python k8s_cluster_generator.py --nodes 5 --use-case startup_mvp --seed 100
-```
+### Service Strategies  
+- `probability` - Use case-based probabilities
+- `required` - Only specified services
+- `graph_theory_random` - Random with connectivity
 
-**Output**: 14 services including essentials:
-- Core: etcd, metrics-server, kube-state-metrics
-- Networking: nginx-ingress-controller
-- Security: cert-manager, sealed-secrets
-- Observability: prometheus, grafana, loki
-- Data: postgresql, redis
-- GitOps: argo-cd
+### Firewall Policies
+- `_all` - Allow all traffic
+- `_none` - Block all traffic  
+- `_subnets` - Same-subnet only
 
-### Example 2: Microservices Platform (20 nodes)
+## 📖 Documentation
 
-```bash
-python k8s_cluster_generator.py --nodes 20 --use-case microservices --seed 200
-```
+- **ENHANCED_README.md** - Complete feature documentation
+- **COMPARISON.py** - Feature comparison table
+- **TUTORIAL.py** - Real-world scenario implementations
+- **QUICKSTART.sh** - Quick reference commands
 
-**Output**: 25+ services including:
-- Full observability stack (metrics, logging, tracing)
-- Service mesh (Cilium)
-- Multiple databases (PostgreSQL, MongoDB, Redis)
-- Message queuing (Kafka or RabbitMQ)
-- Container registry (Harbor)
-- Advanced networking (API gateway)
-
-### Example 3: Data Analytics Platform (100 nodes)
+## 🔬 Running Examples
 
 ```bash
-python k8s_cluster_generator.py --nodes 100 --use-case data_analytics --seed 300 --verbose
+# Run all usage examples
+python usage_examples.py
+
+# Run real-world scenarios
+python TUTORIAL.py
+
+# View comparison
+python COMPARISON.py
+
+# Quick start guide
+bash QUICKSTART.sh
 ```
 
-**Output**: 30+ services including:
-- Big data processing (Spark, Flink)
-- Analytics databases (ClickHouse)
-- Data lakes (Minio, Dremio)
-- Workflow orchestration (Airflow)
-- ML platform (MLflow, JupyterHub)
-- Streaming (Kafka)
+## 💡 Tips
 
-### Example 4: E-commerce Platform (50 nodes)
+1. Always use `--seed` for reproducible configurations
+2. Start with example_cluster_config.yaml and modify
+3. Use `--verbose` to see detailed generation info
+4. Generate multiple scenarios with `--count`
+5. Combine with network topology generator for full attack graphs
 
+## 🎓 Examples by Complexity
+
+### Basic
 ```bash
-python k8s_cluster_generator.py --nodes 50 --use-case ecommerce --seed 400 -o ecommerce.json
+python k8s_cluster_generator_enhanced.py --nodes 10 --use-case startup_mvp
 ```
 
-**Output**: High-availability stack with:
-- HA databases (PostgreSQL-HA, Redis Cluster)
-- Caching layers (Redis, Memcached)
-- Full observability
-- Advanced security (Vault, Keycloak)
-- CDN and edge caching
+### Intermediate
+```bash
+python k8s_cluster_generator_enhanced.py \
+  --config example_cluster_config.yaml \
+  --count 5 \
+  --verbose
+```
 
-## 🔬 Technical Details
-
-### Dependency Resolution
-
-The generator automatically resolves service dependencies. For example:
-- If **Harbor** is selected, it automatically includes **PostgreSQL** and **Redis**
-- If **Kafka** is selected, it automatically includes **Zookeeper**
-- If **Keycloak** is selected, it automatically includes **PostgreSQL**
-
-### Conflict Management
-
-Mutually exclusive services are handled intelligently:
-- **Redis** conflicts with **Valkey** and **KeyDB** (choose one caching solution)
-- **Vault** conflicts with **Sealed-Secrets** (choose one secrets management)
-- **Prometheus** conflicts with **VictoriaMetrics** (choose one metrics backend)
-- Ingress controllers are mutually exclusive
-
-### Resource Capacity Planning
-
-Each service has a resource weight (1-10), and the generator ensures:
-- Total resource weight doesn't exceed `num_nodes × 10`
-- Heavier services (like Cassandra, Spark) are only added to larger clusters
-- Resource utilization is reported in the output
-
-### Probability Distributions
-
-Services have use-case-specific probabilities:
-- **Core services** (etcd, metrics-server): 95-100% probability
-- **Common services** (prometheus, grafana): 80-95% probability
-- **Specialized services** (Spark, Cassandra): 5-60% probability depending on use case
-
-## 📈 Use Cases in Detail
-
-### Startup MVP
-**Philosophy**: Minimize complexity, maximize velocity
-- Minimal observability (Prometheus + Grafana)
-- Single database (PostgreSQL or MySQL)
-- Simple secrets management (Sealed Secrets)
-- Basic CI/CD (ArgoCD or Jenkins)
-
-### Microservices
-**Philosophy**: Full observability, resilience, automation
-- Complete observability stack (metrics, logs, traces)
-- Service mesh for traffic management
-- Multiple data stores (SQL, NoSQL, caching)
-- GitOps workflows
-- Container registry
-
-### Data Analytics
-**Philosophy**: Big data processing at scale
-- Distributed processing (Spark, Flink)
-- Analytics databases (ClickHouse)
-- Data lakes (MinIO, Dremio)
-- Workflow orchestration (Airflow)
-- Time-series and search engines
-
-### ML Platform
-**Philosophy**: End-to-end ML lifecycle
-- Experiment tracking (MLflow)
-- Notebook environments (JupyterHub)
-- Distributed training (Ray, PyTorch)
-- Model serving infrastructure
-- Large object storage
-
-### E-commerce
-**Philosophy**: High availability, low latency, security
-- HA databases with clustering
-- Multi-layer caching
-- Advanced security (Vault, Keycloak)
-- Real-time inventory systems
-- Payment processing infrastructure
-
-## 🛠️ Programmatic Usage
-
-You can also use the generator as a Python library:
-
+### Advanced
 ```python
-from k8s_cluster_generator import K8sClusterGenerator, UseCase
-
-# Create generator
-generator = K8sClusterGenerator(
-    num_nodes=20,
-    use_case=UseCase.MICROSERVICES,
-    seed=42  # Optional: for reproducibility
-)
-
-# Generate cluster
-cluster = generator.generate()
-
-# Access results
-print(f"Services: {cluster['services']}")
-print(f"Resource utilization: {cluster['cluster_metadata']['resource_utilization']}")
-
-# Get services by category
-for category, services in cluster['services_by_category'].items():
-    print(f"{category}: {', '.join(services)}")
+# See usage_examples.py or TUTORIAL.py for complete examples
 ```
 
-## 🎯 Advanced Scenarios
+## 🤝 Integration
 
-### Generate Multiple Variations
-
-Generate 10 different variations of a 15-node microservices cluster:
-
-```bash
-for i in {1..10}; do
-  python k8s_cluster_generator.py \
-    --nodes 15 \
-    --use-case microservices \
-    --seed $i \
-    -o "cluster_${i}.json"
-done
-```
-
-### Compare Cluster Sizes
-
-Generate the same use case across different cluster sizes:
-
-```bash
-for size in 5 10 20 50 100; do
-  python k8s_cluster_generator.py \
-    --nodes $size \
-    --use-case saas_platform \
-    --seed 1000 \
-    -o "saas_${size}nodes.json" \
-    --verbose
-done
-```
-
-### Batch Generation
-
-Generate multiple use cases at once:
-
-```bash
-for use_case in startup_mvp microservices data_analytics ml_platform; do
-  python k8s_cluster_generator.py \
-    --nodes 20 \
-    --use-case $use_case \
-    --seed 5000 \
-    -o "${use_case}_cluster.json"
-done
-```
-
-## 📋 Service Catalog
-
-The generator includes 60+ Kubernetes services across categories:
-
-- **Control Plane** (10): etcd, cert-manager, vault, cilium, nginx-ingress, etc.
-- **Observability** (14): prometheus, grafana, loki, tempo, jaeger, etc.
-- **Databases - SQL** (8): postgresql, mysql, mariadb, clickhouse, etc.
-- **Databases - NoSQL** (12): mongodb, elasticsearch, cassandra, redis, etc.
-- **Messaging** (6): kafka, rabbitmq, nats, zookeeper
-- **Data Processing** (5): spark, flink, airflow, dremio
-- **ML/AI** (6): mlflow, jupyterhub, kuberay, pytorch, tensorflow
-- **Web & Apps** (10+): nginx, wordpress, drupal, ghost, etc.
-
-## 🔍 Validation & Testing
-
-The generator implements several validation mechanisms:
-
-1. **Dependency validation**: Ensures all dependencies are met
-2. **Conflict detection**: Prevents incompatible services
-3. **Resource constraints**: Respects cluster capacity limits
-4. **Minimum cluster size**: Enforces size requirements per service
-
-## 🤝 Contributing
-
-To add new services to the catalog:
-
-1. Add service profile to `SERVICE_CATALOG` dictionary
-2. Set appropriate probabilities for each use case
-3. Define dependencies and conflicts
-4. Set resource weight and HA requirements
-
-Example:
-
-```python
-"my-service": ServiceProfile(
-    name="my-service",
-    category="data_processing",
-    resource_weight=7,
-    requires_ha=True,
-    dependencies=["postgresql"],
-    conflicts_with=["other-service"],
-    probability_by_use_case={
-        UseCase.STARTUP_MVP.value: 0.1,
-        UseCase.MICROSERVICES.value: 0.3,
-        # ... other use cases
-    },
-    min_cluster_size=ClusterSize.MEDIUM
-)
-```
+Works with:
+- Original K8s cluster generator
+- Network topology generator
+- Vulnerability assignment system
+- Attack graph tools
 
 ## 📝 License
 
-This tool is provided as-is for generating realistic Kubernetes test scenarios.
-
-## 🙏 Acknowledgments
-
-Based on real-world Kubernetes deployment patterns and best practices from:
-- Cloud Native Computing Foundation (CNCF)
-- Kubernetes production deployment surveys
-- Enterprise architecture patterns
-- SaaS and platform engineering teams
+Auto-generated for research purposes.
 
 ---
 
-**Generated configurations are for testing and simulation purposes.**
-**Always validate configurations against your specific requirements and constraints.**
+**Questions?** Check the documentation files or run with `--help`

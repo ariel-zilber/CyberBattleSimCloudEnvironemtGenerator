@@ -1301,24 +1301,24 @@
       }
     ],
     "knows_reachability": [
-      "etcd",
-      "kibana",
-      "cert-manager",
       "redis",
       "jaeger",
       "grafana-loki",
-      "minio",
-      "grafana",
-      "nginx-ingress-controller",
-      "fluent-bit",
-      "postgresql",
-      "thanos",
-      "metrics-server",
-      "mongodb",
+      "kibana",
       "kube-state-metrics",
-      "cassandra",
+      "cert-manager",
+      "grafana",
+      "prometheus",
       "cilium",
-      "prometheus"
+      "fluent-bit",
+      "metrics-server",
+      "thanos",
+      "nginx-ingress-controller",
+      "cassandra",
+      "postgresql",
+      "mongodb",
+      "minio",
+      "etcd"
     ],
     "access_connectivity": [
       {
@@ -1777,12 +1777,12 @@
         "nodes_by_type": {
           "control_plane": {
             "count": 3,
-            "pods": 6,
+            "pods": 5,
             "healthy": 3
           },
           "worker": {
             "count": 1,
-            "pods": 50,
+            "pods": 51,
             "healthy": 1
           }
         },
@@ -1794,20 +1794,20 @@
           }
         },
         "total_resources": {
-          "cpu_cores": 22,
-          "memory_gb": 112,
-          "disk_gb": 909,
+          "cpu_cores": 30,
+          "memory_gb": 128,
+          "disk_gb": 660,
           "gpu_count": 0
         },
         "resource_utilization": {
-          "avg_cpu_utilization": 1456.25,
-          "avg_memory_utilization": 718.75
+          "avg_cpu_utilization": 622.5,
+          "avg_memory_utilization": 221.09
         },
         "network_statistics": {
           "total_connections": 12,
           "firewalled_connections": 0,
           "firewall_percentage": 0.0,
-          "avg_latency_ms": 0.23
+          "avg_latency_ms": 0.35
         },
         "ip_addresses": {
           "zone-a": {
@@ -1837,21 +1837,21 @@
       },
       "ip_allocations": {
         "zone-a": [
-          "10.0.0.2",
           "10.0.0.4",
           "10.0.0.3",
+          "10.0.0.2",
           "10.0.0.5"
         ]
       }
     },
     "security_groups": {
       "zone-a": {
-        "group_id": "sg-zone-a-4629",
+        "group_id": "sg-zone-a-6875",
         "zone": "zone-a",
         "name": "security-group-zone-a",
         "rules": [
           {
-            "rule_id": "sg-zone-a-4629-ingress-ssh",
+            "rule_id": "sg-zone-a-6875-ingress-ssh",
             "direction": "ingress",
             "protocol": "tcp",
             "port_range": [
@@ -1864,7 +1864,7 @@
             "description": "SSH access within VPC"
           },
           {
-            "rule_id": "sg-zone-a-4629-ingress-internal",
+            "rule_id": "sg-zone-a-6875-ingress-internal",
             "direction": "ingress",
             "protocol": "all",
             "port_range": null,
@@ -1874,7 +1874,7 @@
             "description": "Allow all traffic within zone"
           },
           {
-            "rule_id": "sg-zone-a-4629-ingress-k8s-api",
+            "rule_id": "sg-zone-a-6875-ingress-k8s-api",
             "direction": "ingress",
             "protocol": "tcp",
             "port_range": [
@@ -1887,7 +1887,7 @@
             "description": "Kubernetes API server"
           },
           {
-            "rule_id": "sg-zone-a-4629-egress-all",
+            "rule_id": "sg-zone-a-6875-egress-all",
             "direction": "egress",
             "protocol": "all",
             "port_range": null,
@@ -1911,9 +1911,9 @@
           "cidr": "10.0.0.0/16"
         },
         "characteristics": {
-          "cpu_cores": 6,
-          "memory_gb": 32,
-          "disk_gb": 140,
+          "cpu_cores": 8,
+          "memory_gb": 16,
+          "disk_gb": 153,
           "network_bandwidth_gbps": 10.0,
           "has_gpu": false,
           "gpu_count": 0
@@ -1921,15 +1921,11 @@
         "assigned_pods": [
           {
             "service": "etcd",
-            "instance": 1
+            "instance": 2
           },
           {
-            "service": "kube-state-metrics",
-            "instance": 0
-          },
-          {
-            "service": "metrics-server",
-            "instance": 0
+            "service": "etcd",
+            "instance": 4
           }
         ],
         "labels": {
@@ -1940,8 +1936,8 @@
         },
         "is_healthy": true,
         "cpu_utilization": 1.0,
-        "memory_utilization": 0.38,
-        "pod_count": 3,
+        "memory_utilization": 1.0,
+        "pod_count": 2,
         "security_groups": [
           "sg-zone-a"
         ]
@@ -1957,9 +1953,9 @@
           "cidr": "10.0.0.0/16"
         },
         "characteristics": {
-          "cpu_cores": 4,
-          "memory_gb": 32,
-          "disk_gb": 198,
+          "cpu_cores": 8,
+          "memory_gb": 24,
+          "disk_gb": 140,
           "network_bandwidth_gbps": 10.0,
           "has_gpu": false,
           "gpu_count": 0
@@ -1967,7 +1963,11 @@
         "assigned_pods": [
           {
             "service": "etcd",
-            "instance": 2
+            "instance": 0
+          },
+          {
+            "service": "etcd",
+            "instance": 3
           }
         ],
         "labels": {
@@ -1978,8 +1978,8 @@
         },
         "is_healthy": true,
         "cpu_utilization": 1.0,
-        "memory_utilization": 0.25,
-        "pod_count": 1,
+        "memory_utilization": 0.67,
+        "pod_count": 2,
         "security_groups": [
           "sg-zone-a"
         ]
@@ -1995,9 +1995,9 @@
           "cidr": "10.0.0.0/16"
         },
         "characteristics": {
-          "cpu_cores": 8,
-          "memory_gb": 32,
-          "disk_gb": 193,
+          "cpu_cores": 4,
+          "memory_gb": 24,
+          "disk_gb": 160,
           "network_bandwidth_gbps": 10.0,
           "has_gpu": false,
           "gpu_count": 0
@@ -2005,11 +2005,7 @@
         "assigned_pods": [
           {
             "service": "etcd",
-            "instance": 0
-          },
-          {
-            "service": "etcd",
-            "instance": 3
+            "instance": 1
           }
         ],
         "labels": {
@@ -2020,8 +2016,8 @@
         },
         "is_healthy": true,
         "cpu_utilization": 1.0,
-        "memory_utilization": 0.5,
-        "pod_count": 2,
+        "memory_utilization": 0.33,
+        "pod_count": 1,
         "security_groups": [
           "sg-zone-a"
         ]
@@ -2037,9 +2033,9 @@
           "cidr": "10.0.0.0/16"
         },
         "characteristics": {
-          "cpu_cores": 4,
-          "memory_gb": 16,
-          "disk_gb": 378,
+          "cpu_cores": 10,
+          "memory_gb": 64,
+          "disk_gb": 207,
           "network_bandwidth_gbps": 10.0,
           "has_gpu": false,
           "gpu_count": 0
@@ -2124,10 +2120,6 @@
           {
             "service": "thanos",
             "instance": 3
-          },
-          {
-            "service": "etcd",
-            "instance": 4
           },
           {
             "service": "grafana-loki",
@@ -2244,6 +2236,14 @@
           {
             "service": "fluent-bit",
             "instance": 0
+          },
+          {
+            "service": "kube-state-metrics",
+            "instance": 0
+          },
+          {
+            "service": "metrics-server",
+            "instance": 0
           }
         ],
         "labels": {
@@ -2253,9 +2253,9 @@
           "ipv4": "10.0.0.5"
         },
         "is_healthy": true,
-        "cpu_utilization": 55.25,
-        "memory_utilization": 27.62,
-        "pod_count": 50,
+        "cpu_utilization": 21.9,
+        "memory_utilization": 6.84,
+        "pod_count": 51,
         "security_groups": [
           "sg-zone-a"
         ]
@@ -2267,9 +2267,9 @@
         "to": "node-control_plane-001",
         "from_ip": "10.0.0.2",
         "to_ip": "10.0.0.3",
-        "latency_ms": 0.25,
+        "latency_ms": 0.37,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0006,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2279,11 +2279,7 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ]
       },
       {
@@ -2291,9 +2287,9 @@
         "to": "node-control_plane-000",
         "from_ip": "10.0.0.3",
         "to_ip": "10.0.0.2",
-        "latency_ms": 0.25,
+        "latency_ms": 0.37,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0006,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2303,11 +2299,7 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ]
       },
       {
@@ -2315,9 +2307,9 @@
         "to": "node-control_plane-002",
         "from_ip": "10.0.0.2",
         "to_ip": "10.0.0.4",
-        "latency_ms": 0.16,
+        "latency_ms": 0.54,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0007,
+        "packet_loss": 0.0005,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2327,11 +2319,7 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ]
       },
       {
@@ -2339,9 +2327,9 @@
         "to": "node-control_plane-000",
         "from_ip": "10.0.0.4",
         "to_ip": "10.0.0.2",
-        "latency_ms": 0.16,
+        "latency_ms": 0.54,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0007,
+        "packet_loss": 0.0005,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2351,11 +2339,7 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ]
       },
       {
@@ -2363,9 +2347,9 @@
         "to": "node-worker-000",
         "from_ip": "10.0.0.2",
         "to_ip": "10.0.0.5",
-        "latency_ms": 0.22,
+        "latency_ms": 0.1,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0002,
+        "packet_loss": 0.001,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2401,9 +2385,9 @@
         "to": "node-control_plane-000",
         "from_ip": "10.0.0.5",
         "to_ip": "10.0.0.2",
-        "latency_ms": 0.22,
+        "latency_ms": 0.1,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0002,
+        "packet_loss": 0.001,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2439,9 +2423,9 @@
         "to": "node-control_plane-002",
         "from_ip": "10.0.0.3",
         "to_ip": "10.0.0.4",
-        "latency_ms": 0.12,
+        "latency_ms": 0.5,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0002,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2459,9 +2443,9 @@
         "to": "node-control_plane-001",
         "from_ip": "10.0.0.4",
         "to_ip": "10.0.0.3",
-        "latency_ms": 0.12,
+        "latency_ms": 0.5,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0002,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2479,9 +2463,9 @@
         "to": "node-worker-000",
         "from_ip": "10.0.0.3",
         "to_ip": "10.0.0.5",
-        "latency_ms": 0.43,
+        "latency_ms": 0.41,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0005,
+        "packet_loss": 0.0004,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2490,6 +2474,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2497,14 +2483,16 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ]
       },
@@ -2513,9 +2501,9 @@
         "to": "node-control_plane-001",
         "from_ip": "10.0.0.5",
         "to_ip": "10.0.0.3",
-        "latency_ms": 0.43,
+        "latency_ms": 0.41,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0005,
+        "packet_loss": 0.0004,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2524,6 +2512,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2531,14 +2521,16 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ]
       },
@@ -2547,9 +2539,9 @@
         "to": "node-worker-000",
         "from_ip": "10.0.0.4",
         "to_ip": "10.0.0.5",
-        "latency_ms": 0.21,
+        "latency_ms": 0.19,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0009,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2558,6 +2550,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2565,14 +2559,16 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ]
       },
@@ -2581,9 +2577,9 @@
         "to": "node-control_plane-002",
         "from_ip": "10.0.0.5",
         "to_ip": "10.0.0.4",
-        "latency_ms": 0.21,
+        "latency_ms": 0.19,
         "bandwidth_gbps": 10.0,
-        "packet_loss": 0.0009,
+        "packet_loss": 0.0003,
         "is_firewalled": false,
         "firewall_rules": [],
         "allowed_ports": [
@@ -2592,6 +2588,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2599,14 +2597,16 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ]
       }
@@ -2625,14 +2625,10 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ],
         "blocked_ports": [],
-        "path_latency": 0.25,
+        "path_latency": 0.37,
         "firewall_rules_applied": []
       },
       {
@@ -2648,14 +2644,10 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ],
         "blocked_ports": [],
-        "path_latency": 0.16,
+        "path_latency": 0.54,
         "firewall_rules_applied": []
       },
       {
@@ -2692,7 +2684,7 @@
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.22,
+        "path_latency": 0.1,
         "firewall_rules_applied": []
       },
       {
@@ -2708,14 +2700,10 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ],
         "blocked_ports": [],
-        "path_latency": 0.25,
+        "path_latency": 0.37,
         "firewall_rules_applied": []
       },
       {
@@ -2734,7 +2722,7 @@
           22
         ],
         "blocked_ports": [],
-        "path_latency": 0.12,
+        "path_latency": 0.5,
         "firewall_rules_applied": []
       },
       {
@@ -2749,6 +2737,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2756,18 +2746,20 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.43,
+        "path_latency": 0.41,
         "firewall_rules_applied": []
       },
       {
@@ -2783,14 +2775,10 @@
           2380,
           10255,
           10256,
-          8080,
-          8081,
-          4443,
-          22,
-          443
+          22
         ],
         "blocked_ports": [],
-        "path_latency": 0.16,
+        "path_latency": 0.54,
         "firewall_rules_applied": []
       },
       {
@@ -2809,7 +2797,7 @@
           22
         ],
         "blocked_ports": [],
-        "path_latency": 0.12,
+        "path_latency": 0.5,
         "firewall_rules_applied": []
       },
       {
@@ -2824,6 +2812,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2831,18 +2821,20 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.21,
+        "path_latency": 0.19,
         "firewall_rules_applied": []
       },
       {
@@ -2879,7 +2871,7 @@
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.22,
+        "path_latency": 0.1,
         "firewall_rules_applied": []
       },
       {
@@ -2894,6 +2886,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2901,18 +2895,20 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.43,
+        "path_latency": 0.41,
         "firewall_rules_applied": []
       },
       {
@@ -2927,6 +2923,8 @@
           10250,
           10255,
           10256,
+          8080,
+          8081,
           22,
           9000,
           9001,
@@ -2934,25 +2932,27 @@
           16686,
           6831,
           6832,
-          3000,
           5432,
+          3000,
+          443,
           14268,
           2379,
           2380,
           9042,
           7000,
           7001,
+          4443,
           6379
         ],
         "blocked_ports": [],
-        "path_latency": 0.21,
+        "path_latency": 0.19,
         "firewall_rules_applied": []
       }
     ],
     "node_to_service_mapping": {
       "etcd": [
         {
-          "pod_id": "etcd-1",
+          "pod_id": "etcd-2",
           "node_id": "node-control_plane-000",
           "zone": "zone-a",
           "node_ip": "10.0.0.2",
@@ -2962,7 +2962,17 @@
           ]
         },
         {
-          "pod_id": "etcd-2",
+          "pod_id": "etcd-4",
+          "node_id": "node-control_plane-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.2",
+          "services_ports": [
+            2379,
+            2380
+          ]
+        },
+        {
+          "pod_id": "etcd-0",
           "node_id": "node-control_plane-001",
           "zone": "zone-a",
           "node_ip": "10.0.0.3",
@@ -2972,57 +2982,23 @@
           ]
         },
         {
-          "pod_id": "etcd-0",
-          "node_id": "node-control_plane-002",
-          "zone": "zone-a",
-          "node_ip": "10.0.0.4",
-          "services_ports": [
-            2379,
-            2380
-          ]
-        },
-        {
           "pod_id": "etcd-3",
-          "node_id": "node-control_plane-002",
+          "node_id": "node-control_plane-001",
           "zone": "zone-a",
-          "node_ip": "10.0.0.4",
+          "node_ip": "10.0.0.3",
           "services_ports": [
             2379,
             2380
           ]
         },
         {
-          "pod_id": "etcd-4",
-          "node_id": "node-worker-000",
+          "pod_id": "etcd-1",
+          "node_id": "node-control_plane-002",
           "zone": "zone-a",
-          "node_ip": "10.0.0.5",
+          "node_ip": "10.0.0.4",
           "services_ports": [
             2379,
             2380
-          ]
-        }
-      ],
-      "kube-state-metrics": [
-        {
-          "pod_id": "kube-state-metrics-0",
-          "node_id": "node-control_plane-000",
-          "zone": "zone-a",
-          "node_ip": "10.0.0.2",
-          "services_ports": [
-            8080,
-            8081
-          ]
-        }
-      ],
-      "metrics-server": [
-        {
-          "pod_id": "metrics-server-0",
-          "node_id": "node-control_plane-000",
-          "zone": "zone-a",
-          "node_ip": "10.0.0.2",
-          "services_ports": [
-            443,
-            4443
           ]
         }
       ],
@@ -3481,6 +3457,30 @@
           "zone": "zone-a",
           "node_ip": "10.0.0.5",
           "services_ports": []
+        }
+      ],
+      "kube-state-metrics": [
+        {
+          "pod_id": "kube-state-metrics-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            8080,
+            8081
+          ]
+        }
+      ],
+      "metrics-server": [
+        {
+          "pod_id": "metrics-server-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            443,
+            4443
+          ]
         }
       ]
     }

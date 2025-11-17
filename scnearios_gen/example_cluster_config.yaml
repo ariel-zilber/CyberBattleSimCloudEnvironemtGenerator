@@ -1,0 +1,135 @@
+# Example Kubernetes Cluster Configuration
+# This file demonstrates the dynamic configuration capabilities
+# similar to network simulation YAML configs
+
+# Basic cluster parameters
+num_nodes: 15
+use_case: microservices  # startup_mvp, microservices, data_analytics, ml_platform, etc.
+seed: 42  # For reproducibility
+
+# Network subnet configuration
+# Can specify exact numbers or ranges (min-max)
+subnets: [1, 1-4, 1-4, 1-6, 2-9, 1-4, 1-4, 1-4]
+
+# Maximum bounds for address space
+# (max_number_of_subnets, max_hosts_per_subnet)
+address_space_bounds: [10, 10]
+
+# Network topology between subnets
+# Can specify a custom adjacency matrix or use a topology type
+topology_type: hub_spoke  # mesh, star, hub_spoke, random
+# connectivity_probability: 0.3  # Only used if topology_type is 'random'
+
+# Or specify an exact topology matrix (comment out topology_type to use this):
+# topology:
+#   [
+#     [0, 1, 1, 0, 0, 0, 0, 0],
+#     [1, 0, 1, 0, 0, 0, 0, 0],
+#     [1, 1, 0, 1, 1, 1, 1, 1],
+#     [0, 0, 1, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 0, 0, 0, 0],
+#   ]
+
+# Subnet labels (useful for visualization and debugging)
+subnet_labels:
+  1: public_dmz
+  2: web_tier
+  3: application_tier
+  4: data_tier
+  5: cache_tier
+  6: messaging_tier
+  7: analytics_tier
+  8: management
+
+# Probabilities of sensitive hosts/data in specific subnets
+sensitive_hosts:
+  1: 0.0   # DMZ has no sensitive data
+  2: 0.1   # Web tier
+  3: 0.3   # Application tier
+  4: 0.8   # Data tier - high sensitivity
+  5: 0.2   # Cache tier
+  6: 0.3   # Messaging tier
+  7: 0.5   # Analytics tier
+  8: 0.6   # Management tier
+
+# Operating system distribution
+os:
+  - linux
+  - windows
+
+# Services to deploy (these will be mapped to K8s services)
+services:
+  - nginx
+  - postgresql
+  - redis
+  - prometheus
+  - grafana
+  - kafka
+  - elasticsearch
+  - mongodb
+
+# Services that should definitely NOT be included
+excluded_services:
+  - wordpress
+  - mysql
+
+# Firewall configuration
+firewall:
+  incoming: _subnets  # _all, _none, _subnets (only allow from same subnet)
+  incoming_exceptions:  # Services that can accept traffic from any subnet
+    - nginx
+    - kong
+    - prometheus
+    - grafana
+  outgoing: _all  # _all, _none, _subnets
+  outgoing_exceptions: []  # Services exempt from outgoing restrictions
+  default_block_probability: 0.2  # Random blocking probability
+
+# OSINT (Open Source Intelligence) configuration
+# Simulates what an external attacker can discover
+osint:
+  status: enabled  # enabled, disabled
+  services:
+    strategy: graph_theory_random  # all, none, random, graph_theory_random
+    values:  # Explicitly visible services
+      - nginx
+      - kong
+      - grafana
+  visibility_probability: 0.3  # For random strategy
+
+# Service distribution strategy
+service_distribution:
+  strategy: graph_theory_random  # probability, required, graph_theory_random
+  
+  # Subnet-service affinity (which services prefer which subnets)
+  subnet_affinity:
+    0:  # DMZ
+      - nginx
+      - kong
+    1:  # Web tier
+      - nginx
+    2:  # Application tier
+      - redis
+      - rabbitmq
+    3:  # Data tier
+      - postgresql
+      - mongodb
+      - elasticsearch
+    4:  # Cache tier
+      - redis
+      - memcached
+    5:  # Messaging tier
+      - kafka
+      - rabbitmq
+    6:  # Analytics tier
+      - spark
+      - flink
+      - clickhouse
+    7:  # Management
+      - prometheus
+      - grafana
+      - jenkins
+      - argo-cd

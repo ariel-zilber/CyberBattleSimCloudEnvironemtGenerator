@@ -1301,24 +1301,24 @@
       }
     ],
     "knows_reachability": [
-      "etcd",
-      "kibana",
-      "cert-manager",
       "redis",
       "jaeger",
       "grafana-loki",
-      "minio",
-      "grafana",
-      "nginx-ingress-controller",
-      "fluent-bit",
-      "postgresql",
-      "thanos",
-      "metrics-server",
-      "mongodb",
+      "kibana",
       "kube-state-metrics",
-      "cassandra",
+      "cert-manager",
+      "grafana",
+      "prometheus",
       "cilium",
-      "prometheus"
+      "fluent-bit",
+      "metrics-server",
+      "thanos",
+      "nginx-ingress-controller",
+      "cassandra",
+      "postgresql",
+      "mongodb",
+      "minio",
+      "etcd"
     ],
     "access_connectivity": [
       {

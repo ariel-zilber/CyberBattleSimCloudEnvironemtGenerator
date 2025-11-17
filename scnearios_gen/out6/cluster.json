@@ -1,0 +1,351 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 15,
+    "cluster_size": "MEDIUM",
+    "use_case": "microservices",
+    "total_services": 9,
+    "total_pods": 64,
+    "avg_pods_per_node": "4.3",
+    "total_resource_weight": 64,
+    "resource_utilization": "42.7%",
+    "num_subnets": 8,
+    "total_hosts": 21
+  },
+  "services": [
+    "elasticsearch",
+    "grafana",
+    "kafka",
+    "mongodb",
+    "nginx",
+    "postgresql",
+    "prometheus",
+    "rabbitmq",
+    "redis"
+  ],
+  "service_instances": {
+    "elasticsearch": 4,
+    "grafana": 8,
+    "kafka": 12,
+    "mongodb": 8,
+    "nginx": 4,
+    "postgresql": 12,
+    "prometheus": 8,
+    "rabbitmq": 4,
+    "redis": 4
+  },
+  "services_by_category": {
+    "data_caching": [
+      "redis"
+    ],
+    "data_messaging": [
+      "kafka",
+      "rabbitmq"
+    ],
+    "data_nosql": [
+      "mongodb"
+    ],
+    "data_sql": [
+      "postgresql"
+    ],
+    "observability_logging": [
+      "elasticsearch"
+    ],
+    "observability_metrics": [
+      "grafana",
+      "prometheus"
+    ],
+    "web_servers": [
+      "nginx"
+    ]
+  },
+  "deployment_stats": {
+    "observability_stack": {
+      "metrics": true,
+      "logging": true,
+      "tracing": false,
+      "completeness_score": 0.6666666666666666
+    },
+    "automation": {
+      "gitops_enabled": false,
+      "service_mesh": false
+    },
+    "data_layer": {
+      "sql_databases": 1,
+      "nosql_databases": 1,
+      "caching": true,
+      "messaging": true
+    }
+  },
+  "network": {
+    "subnets": [
+      {
+        "id": 1,
+        "label": "public_dmz",
+        "host_count": 1,
+        "sensitive_probability": 0.0,
+        "services": [
+          "kafka"
+        ],
+        "num_services": 1
+      },
+      {
+        "id": 2,
+        "label": "web_tier",
+        "host_count": 1,
+        "sensitive_probability": 0.1,
+        "services": [
+          "postgresql",
+          "grafana",
+          "nginx",
+          "mongodb"
+        ],
+        "num_services": 4
+      },
+      {
+        "id": 3,
+        "label": "application_tier",
+        "host_count": 1,
+        "sensitive_probability": 0.3,
+        "services": [
+          "mongodb"
+        ],
+        "num_services": 1
+      },
+      {
+        "id": 4,
+        "label": "data_tier",
+        "host_count": 6,
+        "sensitive_probability": 0.8,
+        "services": [
+          "postgresql"
+        ],
+        "num_services": 1
+      },
+      {
+        "id": 5,
+        "label": "cache_tier",
+        "host_count": 6,
+        "sensitive_probability": 0.2,
+        "services": [
+          "kafka",
+          "grafana",
+          "prometheus"
+        ],
+        "num_services": 3
+      },
+      {
+        "id": 6,
+        "label": "messaging_tier",
+        "host_count": 2,
+        "sensitive_probability": 0.3,
+        "services": [
+          "redis"
+        ],
+        "num_services": 1
+      },
+      {
+        "id": 7,
+        "label": "analytics_tier",
+        "host_count": 2,
+        "sensitive_probability": 0.5,
+        "services": [
+          "postgresql",
+          "kafka",
+          "elasticsearch",
+          "prometheus"
+        ],
+        "num_services": 4
+      },
+      {
+        "id": 8,
+        "label": "management",
+        "host_count": 2,
+        "sensitive_probability": 0.6,
+        "services": [
+          "rabbitmq"
+        ],
+        "num_services": 1
+      }
+    ],
+    "topology_matrix": [
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "address_space_bounds": [
+      10,
+      10
+    ]
+  },
+  "service_distribution": {
+    "elasticsearch": {
+      "instances": 4,
+      "subnets": [
+        6
+      ]
+    },
+    "grafana": {
+      "instances": 8,
+      "subnets": [
+        4,
+        1
+      ]
+    },
+    "kafka": {
+      "instances": 12,
+      "subnets": [
+        4,
+        6,
+        0
+      ]
+    },
+    "mongodb": {
+      "instances": 8,
+      "subnets": [
+        1,
+        2
+      ]
+    },
+    "nginx": {
+      "instances": 4,
+      "subnets": [
+        1
+      ]
+    },
+    "postgresql": {
+      "instances": 12,
+      "subnets": [
+        6,
+        1,
+        3
+      ]
+    },
+    "prometheus": {
+      "instances": 8,
+      "subnets": [
+        4,
+        6
+      ]
+    },
+    "rabbitmq": {
+      "instances": 4,
+      "subnets": [
+        7
+      ]
+    },
+    "redis": {
+      "instances": 4,
+      "subnets": [
+        5
+      ]
+    }
+  },
+  "firewall": {
+    "incoming_policy": "_subnets",
+    "outgoing_policy": "_all",
+    "incoming_exceptions": [
+      "nginx",
+      "kong",
+      "prometheus",
+      "grafana"
+    ],
+    "outgoing_exceptions": [],
+    "default_block_probability": 0.2
+  },
+  "osint": {
+    "status": "enabled",
+    "strategy": "graph_theory_random",
+    "visible_services": [
+      "nginx",
+      "kong",
+      "grafana"
+    ],
+    "visibility_probability": 0.5
+  },
+  "os_distribution": {
+    "linux": 0.5,
+    "windows": 0.5
+  },
+  "configuration": {
+    "service_selection_strategy": "graph_theory_random",
+    "topology_type": "hub_spoke",
+    "seed": 42
+  }
+}

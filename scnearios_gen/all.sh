@@ -1,7 +1,11 @@
 
 
-python k8s_cluster_generator.py   --nodes 50   --use-case microservices   --seed 42   --generate-topology   --cve-json final.json   --vuln-db vulnerability_db.yml   -o out4/cluster.json;
+python k8s_cluster_generator_enhanced.py.py   --config /home/ariel/Documents/thesis/CyberBattleSimExperimentsConfigs/cloud_generators/example.yaml --cve-json final.json   --vuln-db vulnerability_db.yml   -o out6/cluster.json;
 python visualize_topology.py out4/cluster.json
+
+
+
+
 
 # python physical_node_generator.py --input out4/cluster.json --output out4/cluster_with_nodes_balanced.json -v --nodes 5 --zone-distribution balanced
 # python physical_node_generator.py --input out4/cluster.json --output out4/cluster_with_nodes.json -v --nodes 5 --zone-distribution balanced
