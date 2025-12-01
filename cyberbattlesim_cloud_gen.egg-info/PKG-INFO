@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: cyberbattlesim-cloud-gen
+Version: 0.1.0
+Summary: A framework for network generation and visualization in CyberBattleSim.
+Home-page: https://github.com/your_username/cyberbattlesim-network-gen
+Author: Your Name or Team Name
+Author-email: your_email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.8
+Provides-Extra: dev

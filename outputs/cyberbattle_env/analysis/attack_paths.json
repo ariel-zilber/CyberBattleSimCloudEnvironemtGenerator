@@ -1,0 +1,28 @@
+{
+  "maximal_achievement": {
+    "best_state": {
+      "discovered": [
+        "attacker",
+        "node-worker-000"
+      ],
+      "owned": [
+        "attacker"
+      ],
+      "creds_count": 0,
+      "props": {
+        "attacker": [
+          "external",
+          "attacker",
+          "reconnaissance"
+        ]
+      },
+      "current_source": "attacker",
+      "current_destination": "attacker"
+    },
+    "nodes_owned": 0,
+    "computation_time": "0.00s",
+    "steps": [
+      "local_exploit InitialScan"
+    ]
+  }
+}

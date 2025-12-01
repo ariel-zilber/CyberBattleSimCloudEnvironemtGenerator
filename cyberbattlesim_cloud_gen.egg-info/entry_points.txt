@@ -1,0 +1,2 @@
+[console_scripts]
+generate-network = cyberbattlesim.network_generators.main:main
