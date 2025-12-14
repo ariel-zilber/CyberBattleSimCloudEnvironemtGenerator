@@ -1,0 +1,108 @@
+# ==============================================================================
+# PHYSICAL NODE TYPES & PROFILES
+# ==============================================================================
+node_profiles:
+  control_plane:
+    description: "Master nodes"
+    cpu: { min: 4, max: 8, distribution: "performance" }
+    memory_gb: { min: 16, max: 32, distribution: "performance" }
+    disk_gb: { min: 100, max: 200, distribution: "uniform" }
+    bandwidth_gbps: 10.0
+    min_count: 3
+    ha_required: true
+
+  worker:
+    description: "General workload nodes"
+    cpu: { min: 4, max: 32, distribution: "log_normal" }
+    memory_gb: { min: 16, max: 64, distribution: "log_normal" }
+    disk_gb: { min: 100, max: 500, distribution: "uniform" }
+    bandwidth_gbps: 10.0
+    min_count: 2
+    ha_required: false
+
+  compute:
+    description: "High CPU nodes"
+    cpu: { min: 16, max: 64, distribution: "performance" }
+    memory_gb: { min: 32, max: 128, distribution: "uniform" }
+    disk_gb: { min: 200, max: 1000, distribution: "uniform" }
+    bandwidth_gbps: 25.0
+    min_count: 0
+    ha_required: false
+
+  memory:
+    description: "High memory nodes"
+    cpu: { min: 8, max: 32, distribution: "uniform" }
+    memory_gb: { min: 128, max: 512, distribution: "performance" }
+    disk_gb: { min: 200, max: 1000, distribution: "uniform" }
+    bandwidth_gbps: 25.0
+    min_count: 0
+    ha_required: false
+
+  storage:
+    description: "High disk I/O nodes"
+    cpu: { min: 8, max: 16, distribution: "uniform" }
+    memory_gb: { min: 32, max: 128, distribution: "uniform" }
+    disk_gb: { min: 1000, max: 10000, distribution: "performance" }
+    bandwidth_gbps: 10.0
+    min_count: 0
+    ha_required: false
+
+  gpu:
+    description: "GPU-enabled nodes"
+    cpu: { min: 16, max: 32, distribution: "performance" }
+    memory_gb: { min: 64, max: 256, distribution: "performance" }
+    disk_gb: { min: 500, max: 2000, distribution: "uniform" }
+    bandwidth_gbps: 25.0
+    min_count: 0
+    ha_required: false
+    gpu_count: { min: 1, max: 8, distribution: "uniform" }
+    has_gpu: true
+
+  edge:
+    description: "Edge computing nodes"
+    cpu: { min: 2, max: 8, distribution: "efficiency" }
+    memory_gb: { min: 8, max: 32, distribution: "efficiency" }
+    disk_gb: { min: 50, max: 200, distribution: "efficiency" }
+    bandwidth_gbps: 1.0
+    min_count: 0
+    ha_required: false
+
+  internet:
+    description: "Virtual node representing the Internet/Attacker"
+    cpu: { min: 0, max: 0, distribution: "uniform" }
+    memory_gb: { min: 0, max: 0, distribution: "uniform" }
+    disk_gb: { min: 0, max: 0, distribution: "uniform" }
+    bandwidth_gbps: 1000.0
+    min_count: 0
+    ha_required: false
+
+# ==============================================================================
+# VALUE STRATEGIES (CyberBattleSim Rewards)
+# ==============================================================================
+value_strategy:
+  base_value: 50
+  multipliers:
+    node_type:
+      control_plane: 3.0    # Base 50 * 3.0 = 150
+      gpu: 1.5
+      storage: 1.2
+      worker: 1.0
+      edge: 0.8
+      internet: 0.0
+    
+    # Category-based multipliers (applied if service matches category)
+    services:
+      database: 1.5
+      security: 2.0
+      critical: 2.0
+    
+    # Exact service name exceptions (Overrides category if matched)
+    specific_services:
+      vault: 5.0            # High value target (Secrets)
+      etcd: 4.0             # High value target (Cluster State)
+      gitlab: 2.5           # Source code
+      jenkins: 2.5          # CI/CD pipelines
+      # Example: 'nginx' is web_server (low value), but maybe we value it higher specifically
+      nginx-ingress-controller: 1.2 
+  
+  noise_percentage: 0.1

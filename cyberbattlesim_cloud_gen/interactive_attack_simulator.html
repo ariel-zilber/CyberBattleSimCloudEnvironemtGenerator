@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERATTACK PATH SIMULATOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --accent-cyan: #00f5ff;
+            --accent-magenta: #ff00ff;
+            --accent-green: #00ff88;
+            --accent-red: #ff3366;
+            --accent-yellow: #ffcc00;
+            --text-primary: #e0e0e8;
+            --text-secondary: #8888aa;
+            --text-dim: #4a4a5a;
+            --border-color: #2a2a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px),
+                        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            animation: gridScroll 20s linear infinite;
+        }
+        @keyframes gridScroll { to { transform: translate(50px, 50px); } }
+        .container { position: relative; z-index: 1; max-width: 1900px; margin: 0 auto; padding: 15px; }
+        header { text-align: center; padding: 20px 0; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.5em; margin-top: 5px; }
+        .connection-status { position: absolute; top: 15px; right: 15px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-red); }
+        .status-dot.connected { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); }
+        .main-content { display: grid; grid-template-columns: 300px 1fr 400px; gap: 15px; margin-top: 15px; }
+        .panel { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 4px; position: relative; }
+        .panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); }
+        .panel-header { padding: 12px 15px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px; }
+        .panel-header h2 { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; color: var(--accent-cyan); }
+        .panel-content { padding: 12px; }
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .status-item { background: var(--bg-tertiary); padding: 10px; border-radius: 4px; border-left: 3px solid var(--accent-cyan); }
+        .status-item.highlight { border-left-color: var(--accent-green); }
+        .status-item.warning { border-left-color: var(--accent-yellow); }
+        .status-label { font-size: 0.65rem; color: var(--text-secondary); margin-bottom: 3px; }
+        .status-value { font-size: 1.2rem; font-weight: 700; font-family: 'Orbitron', sans-serif; }
+        .status-value.cyan { color: var(--accent-cyan); }
+        .status-value.green { color: var(--accent-green); }
+        .status-value.yellow { color: var(--accent-yellow); }
+        .status-value.magenta { color: var(--accent-magenta); }
+        .progress-container { margin-top: 12px; background: var(--bg-tertiary); padding: 12px; border-radius: 4px; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.7rem; }
+        .progress-bar { height: 6px; background: var(--bg-primary); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green)); transition: width 0.5s; }
+        .canvas-container { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 4px; padding: 15px; min-height: 550px; position: relative; }
+        .canvas-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-magenta), var(--accent-cyan)); }
+        canvas { display: block; width: 100%; height: 100%; background: radial-gradient(ellipse at center, var(--bg-tertiary), var(--bg-primary)); border-radius: 4px; }
+        
+        /* Actions list - INCREASED HEIGHT */
+        .actions-list { max-height: 600px; overflow-y: auto; }
+        .actions-list::-webkit-scrollbar { width: 8px; }
+        .actions-list::-webkit-scrollbar-track { background: var(--bg-primary); }
+        .actions-list::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 4px; }
+        
+        .action-category { margin-bottom: 12px; }
+        .action-category-title { font-size: 0.7rem; color: var(--accent-cyan); padding: 6px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .action-count { background: var(--accent-cyan); color: var(--bg-primary); padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; }
+        
+        .action-btn { width: 100%; padding: 10px 12px; margin-bottom: 6px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-family: inherit; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; position: relative; }
+        .action-btn:hover { background: var(--bg-primary); border-color: var(--accent-cyan); transform: translateX(3px); }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .action-btn::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px; background: var(--accent-cyan); }
+        .action-btn.exploit::before { background: var(--accent-red); }
+        .action-btn.connect::before { background: var(--accent-green); }
+        .action-btn.movement::before { background: var(--accent-yellow); }
+        .action-type { font-size: 0.6rem; color: var(--text-dim); margin-bottom: 2px; text-transform: uppercase; }
+        .action-name { font-weight: 600; margin-bottom: 2px; word-break: break-all; }
+        .action-target { font-size: 0.65rem; color: var(--accent-yellow); }
+        .action-cost { position: absolute; top: 8px; right: 8px; font-size: 0.65rem; color: var(--accent-yellow); background: rgba(255,204,0,0.1); padding: 2px 6px; border-radius: 8px; }
+        
+        .controls { display: flex; gap: 8px; margin-top: 12px; }
+        .ctrl-btn { flex: 1; padding: 10px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-family: inherit; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .ctrl-btn:hover:not(:disabled) { background: var(--bg-primary); border-color: var(--accent-cyan); }
+        .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .ctrl-btn.undo { border-color: var(--accent-red); color: var(--accent-red); }
+        .ctrl-btn.reset { border-color: var(--accent-yellow); color: var(--accent-yellow); }
+        
+        .history-list { max-height: 250px; overflow-y: auto; }
+        .history-item { padding: 8px; background: var(--bg-tertiary); border-radius: 4px; margin-bottom: 6px; border-left: 3px solid var(--accent-cyan); position: relative; font-size: 0.75rem; }
+        .history-item.exploit { border-left-color: var(--accent-red); }
+        .history-item.connect { border-left-color: var(--accent-green); }
+        .history-item.movement { border-left-color: var(--accent-yellow); }
+        .history-step { position: absolute; top: 8px; right: 8px; font-size: 0.65rem; color: var(--text-dim); background: var(--bg-primary); padding: 2px 6px; border-radius: 8px; }
+        .history-action { font-weight: 600; margin-bottom: 2px; }
+        .history-details { font-size: 0.65rem; color: var(--text-secondary); }
+        .history-progress { font-size: 0.6rem; color: var(--accent-green); margin-top: 3px; }
+        
+        .api-url-input { width: 100%; padding: 8px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-family: inherit; font-size: 0.75rem; margin-bottom: 8px; }
+        .api-url-input:focus { outline: none; border-color: var(--accent-cyan); }
+        .empty-state { text-align: center; padding: 30px 15px; color: var(--text-secondary); }
+        .empty-state .icon { font-size: 2rem; margin-bottom: 10px; opacity: 0.5; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.7rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 3px; }
+        .notification { position: fixed; bottom: 20px; right: 20px; background: var(--bg-secondary); border: 1px solid var(--accent-cyan); border-radius: 4px; padding: 12px 16px; z-index: 200; animation: slideIn 0.3s; max-width: 300px; font-size: 0.8rem; }
+        .notification.success { border-color: var(--accent-green); }
+        .notification.error { border-color: var(--accent-red); }
+        .notification.warning { border-color: var(--accent-yellow); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,15,0.9); display: flex; align-items: center; justify-content: center; z-index: 500; }
+        .loading-overlay.hidden { display: none; }
+        .loading-spinner { width: 50px; height: 50px; border: 4px solid var(--border-color); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .node-tooltip { position: fixed; background: var(--bg-primary); border: 1px solid var(--accent-cyan); border-radius: 4px; padding: 12px; max-width: 280px; z-index: 100; display: none; box-shadow: 0 0 20px rgba(0,245,255,0.3); font-size: 0.75rem; }
+        .node-tooltip.visible { display: block; }
+        .node-tooltip h3 { color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; font-size: 0.85rem; margin-bottom: 8px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .info-label { color: var(--text-secondary); }
+        
+        /* Summary stats */
+        .action-summary { background: var(--bg-tertiary); padding: 10px; border-radius: 4px; margin-bottom: 12px; font-size: 0.7rem; }
+        .action-summary-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .action-summary-row:last-child { margin-bottom: 0; }
+        
+        @media (max-width: 1200px) { .main-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div></div>
+    <div class="container">
+        <header>
+            <h1>CYBERATTACK PATH</h1>
+            <p class="subtitle">INTERACTIVE PENETRATION SIMULATION</p>
+            <div class="connection-status">
+                <div class="status-dot" id="connectionDot"></div>
+                <span id="connectionText">Disconnected</span>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="panel">
+                    <div class="panel-header"><span>📊</span><h2>SYSTEM STATUS</h2></div>
+                    <div class="panel-content">
+                        <div class="status-grid">
+                            <div class="status-item highlight"><div class="status-label">NODES OWNED</div><div class="status-value green" id="nodesOwned">0</div></div>
+                            <div class="status-item"><div class="status-label">TOTAL TARGETS</div><div class="status-value cyan" id="totalTargets">0</div></div>
+                            <div class="status-item warning"><div class="status-label">NODES KNOWN</div><div class="status-value yellow" id="nodesKnown">0</div></div>
+                            <div class="status-item"><div class="status-label">CREDENTIALS</div><div class="status-value magenta" id="credentials">0</div></div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-header"><span>PENETRATION PROGRESS</span><span id="progressPercent">0%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+                        </div>
+                        <div class="status-grid" style="margin-top:12px">
+                            <div class="status-item"><div class="status-label">CURRENT SOURCE</div><div class="status-value" id="currentSource" style="font-size:0.7rem">-</div></div>
+                            <div class="status-item"><div class="status-label">CURRENT TARGET</div><div class="status-value" id="currentTarget" style="font-size:0.7rem;color:var(--accent-red)">-</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel" style="margin-top:12px">
+                    <div class="panel-header"><span>📜</span><h2>ATTACK HISTORY</h2></div>
+                    <div class="panel-content"><div class="history-list" id="historyList"><div class="empty-state"><div class="icon">🔍</div><p>No actions yet</p></div></div></div>
+                </div>
+                <div class="panel" style="margin-top:12px">
+                    <div class="panel-header"><span>📋</span><h2>LEGEND</h2></div>
+                    <div class="panel-content">
+                        <div class="legend-item"><div class="legend-color" style="background:var(--accent-green)"></div><span>Owned Node</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:var(--accent-yellow)"></div><span>Known Node</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:var(--text-dim)"></div><span>Unknown Node</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:var(--accent-magenta)"></div><span>Current Source</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:var(--accent-red)"></div><span>Current Target</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="networkCanvas"></canvas>
+                <div class="node-tooltip" id="nodeTooltip"><h3 id="tooltipTitle">Node</h3><div id="tooltipContent"></div></div>
+            </div>
+            <div class="right-panel">
+                <div class="panel">
+                    <div class="panel-header"><span>🔌</span><h2>CONNECTION</h2></div>
+                    <div class="panel-content">
+                        <input type="text" class="api-url-input" id="apiUrl" placeholder="API URL" value="http://localhost:5000">
+                        <button class="ctrl-btn" onclick="connectToAPI()" style="width:100%;margin-bottom:8px"><span>🔗</span> Connect</button>
+                        <input type="file" id="fileInput" accept=".json" style="display:none">
+                        <button class="ctrl-btn" onclick="document.getElementById('fileInput').click()" style="width:100%"><span>📁</span> Load JSON</button>
+                    </div>
+                </div>
+                <div class="panel" style="margin-top:12px">
+                    <div class="panel-header"><span>⚔️</span><h2>AVAILABLE ACTIONS</h2></div>
+                    <div class="panel-content">
+                        <div class="action-summary" id="actionSummary">
+                            <div class="action-summary-row"><span>Total Actions:</span><span id="totalActions">0</span></div>
+                            <div class="action-summary-row"><span>Exploits:</span><span id="exploitCount">0</span></div>
+                            <div class="action-summary-row"><span>Connections:</span><span id="connectCount">0</span></div>
+                            <div class="action-summary-row"><span>Movements:</span><span id="moveCount">0</span></div>
+                        </div>
+                        <div class="actions-list" id="actionsList"><div class="empty-state"><div class="icon">⏳</div><p>Connect to solver</p></div></div>
+                        <div class="controls">
+                            <button class="ctrl-btn undo" id="btnUndo" onclick="undoAction()" disabled><span>↩️</span> UNDO</button>
+                            <button class="ctrl-btn reset" id="btnReset" onclick="resetSimulation()" disabled><span>🔄</span> RESET</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let simulationData = null, apiUrl = null, isConnected = false;
+        const canvas = document.getElementById('networkCanvas'), ctx = canvas.getContext('2d');
+        let nodePositions = {}, hoveredNode = null;
+
+        async function connectToAPI() {
+            const url = document.getElementById('apiUrl').value.trim();
+            if (!url) { showNotification('Enter API URL', 'error'); return; }
+            showLoading(true);
+            try {
+                const r = await fetch(url + '/api/export');
+                if (!r.ok) throw new Error('Connection failed');
+                const data = await r.json();
+                apiUrl = url; isConnected = true;
+                loadSimulationData(data);
+                updateConnectionStatus(true);
+                showNotification('Connected!', 'success');
+            } catch (e) { showNotification('Failed: ' + e.message, 'error'); updateConnectionStatus(false); }
+            finally { showLoading(false); }
+        }
+
+        async function executeActionAPI(actionId) {
+            if (!isConnected) { showNotification('Not connected', 'error'); return; }
+            showLoading(true);
+            try {
+                const r = await fetch(apiUrl + '/api/action/' + actionId, { method: 'POST' });
+                const result = await r.json();
+                if (result.success) {
+                    await refreshFullState();
+                    showNotification(result.message, 'success');
+                    if (result.progress?.progress_made) showNotification('🎯 BREAKTHROUGH!', 'success');
+                } else showNotification(result.message, 'error');
+            } catch (e) { showNotification('Error: ' + e.message, 'error'); }
+            finally { showLoading(false); }
+        }
+
+        async function undoAction() {
+            if (!isConnected) return;
+            showLoading(true);
+            try {
+                await fetch(apiUrl + '/api/undo', { method: 'POST' });
+                await refreshFullState();
+                showNotification('Undone', 'warning');
+            } catch (e) { showNotification('Error: ' + e.message, 'error'); }
+            finally { showLoading(false); }
+        }
+
+        async function resetSimulation() {
+            if (!isConnected) return;
+            showLoading(true);
+            try {
+                await fetch(apiUrl + '/api/reset', { method: 'POST' });
+                await refreshFullState();
+                showNotification('Reset', 'warning');
+            } catch (e) { showNotification('Error: ' + e.message, 'error'); }
+            finally { showLoading(false); }
+        }
+
+        async function refreshFullState() {
+            if (!isConnected) return;
+            try {
+                const r = await fetch(apiUrl + '/api/export');
+                if (r.ok) { simulationData = await r.json(); updateDisplay(); }
+            } catch (e) { console.error(e); }
+        }
+
+        function loadSimulationData(data) {
+            simulationData = data;
+            initCanvas(); calculateNodePositions(); updateDisplay();
+        }
+
+        function initCanvas() {
+            const c = canvas.parentElement;
+            canvas.width = c.clientWidth - 30;
+            canvas.height = c.clientHeight - 30;
+        }
+
+        function calculateNodePositions() {
+            if (!simulationData) return;
+            const nodes = simulationData.nodes, n = nodes.length;
+            const cx = canvas.width / 2, cy = canvas.height / 2, r = Math.min(canvas.width, canvas.height) * 0.38;
+            nodePositions = {};
+            nodes.forEach((node, i) => {
+                const a = (2 * Math.PI * i) / n - Math.PI / 2;
+                nodePositions[node.id] = { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+            });
+        }
+
+        function drawNetwork() {
+            if (!simulationData) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const state = simulationData.current_state || {}, src = state.current_source, dst = state.current_destination;
+            const ownedSet = new Set(state.owned_nodes || []), knownSet = new Set(state.known_nodes || []);
+
+            if (simulationData.edges) {
+                simulationData.edges.forEach(e => {
+                    const p1 = nodePositions[e.source], p2 = nodePositions[e.target];
+                    if (!p1 || !p2) return;
+                    ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = (e.source === src || e.target === src) ? '#00f5ff' : '#2a2a3a';
+                    ctx.lineWidth = (e.source === src || e.target === src) ? 2 : 1;
+                    ctx.setLineDash((e.source === src || e.target === src) ? [] : [5,5]);
+                    ctx.stroke(); ctx.setLineDash([]);
+                });
+            }
+
+            simulationData.nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                if (!pos) return;
+                const isOwned = ownedSet.has(node.id), isKnown = knownSet.has(node.id);
+                const isSrc = node.id === src, isDst = node.id === dst, isAtk = node.is_attacker;
+
+                if (isOwned || isSrc || isDst) {
+                    ctx.beginPath(); ctx.arc(pos.x, pos.y, 32, 0, Math.PI * 2);
+                    const g = ctx.createRadialGradient(pos.x, pos.y, 18, pos.x, pos.y, 32);
+                    g.addColorStop(0, isSrc ? 'rgba(255,0,255,0.5)' : isDst ? 'rgba(255,51,102,0.5)' : 'rgba(0,255,136,0.5)');
+                    g.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = g; ctx.fill();
+                }
+
+                ctx.beginPath(); ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
+                ctx.fillStyle = isOwned ? '#00ff88' : isKnown ? '#ffcc00' : '#4a4a5a';
+                ctx.fill();
+                ctx.lineWidth = (isSrc || isDst) ? 4 : 2;
+                ctx.strokeStyle = isSrc ? '#ff00ff' : isDst ? '#ff3366' : isAtk ? '#00f5ff' : '#1a1a24';
+                ctx.stroke();
+
+                ctx.fillStyle = isOwned ? '#0a0a0f' : '#e0e0e8';
+                ctx.font = 'bold 9px JetBrains Mono';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                let lbl = node.id.length > 10 ? node.id.slice(0,8) + '..' : node.id;
+                ctx.fillText(lbl.toUpperCase(), pos.x, pos.y);
+
+                if ((isKnown || isOwned) && node.ip_address) {
+                    ctx.fillStyle = '#8888aa'; ctx.font = '8px JetBrains Mono';
+                    ctx.fillText(node.ip_address, pos.x, pos.y + 32);
+                }
+                if ((isKnown || isOwned) && node.vulnerabilities?.length) {
+                    ctx.fillStyle = '#ff3366'; ctx.font = 'bold 9px JetBrains Mono';
+                    ctx.fillText('⚠' + node.vulnerabilities.length, pos.x + 26, pos.y - 18);
+                }
+            });
+        }
+
+        function updateDisplay() {
+            drawNetwork();
+            if (simulationData.status) updateStatusDisplay(simulationData.status);
+            if (simulationData.available_actions) updateActionsDisplay(simulationData.available_actions);
+            updateHistoryDisplay();
+            updateControls();
+        }
+
+        function updateStatusDisplay(s) {
+            document.getElementById('nodesOwned').textContent = s.owned_nodes || 0;
+            document.getElementById('totalTargets').textContent = s.total_target_nodes || 0;
+            document.getElementById('nodesKnown').textContent = s.known_nodes_count || 0;
+            document.getElementById('credentials').textContent = s.credentials_count || 0;
+            document.getElementById('currentSource').textContent = s.current_source || '-';
+            document.getElementById('currentTarget').textContent = s.current_destination || '-';
+            const pct = Math.round(s.completion_percentage || 0);
+            document.getElementById('progressPercent').textContent = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
+        }
+
+        function updateActionsDisplay(actions) {
+            const c = document.getElementById('actionsList');
+            
+            // Count actions by type
+            const exploits = actions.filter(a => a.action_type === 'local_exploit' || a.action_type === 'remote_exploit');
+            const connects = actions.filter(a => a.action_type === 'connect');
+            const srcMoves = actions.filter(a => a.action_type === 'change_source');
+            const dstMoves = actions.filter(a => a.action_type === 'change_destination');
+            
+            // Update summary
+            document.getElementById('totalActions').textContent = actions.length;
+            document.getElementById('exploitCount').textContent = exploits.length;
+            document.getElementById('connectCount').textContent = connects.length;
+            document.getElementById('moveCount').textContent = srcMoves.length + dstMoves.length;
+            
+            if (!actions?.length) { 
+                c.innerHTML = '<div class="empty-state"><div class="icon">✅</div><p>No actions available</p></div>'; 
+                return; 
+            }
+            
+            let html = '';
+            
+            // Exploits
+            if (exploits.length) {
+                html += '<div class="action-category">';
+                html += '<div class="action-category-title"><span>⚔️ EXPLOITS</span><span class="action-count">' + exploits.length + '</span></div>';
+                html += exploits.map(a => actionBtn(a, 'exploit')).join('');
+                html += '</div>';
+            }
+            
+            // Connections
+            if (connects.length) {
+                html += '<div class="action-category">';
+                html += '<div class="action-category-title"><span>🔗 CONNECTIONS</span><span class="action-count">' + connects.length + '</span></div>';
+                html += connects.map(a => actionBtn(a, 'connect')).join('');
+                html += '</div>';
+            }
+            
+            // Change Destination (most common movement)
+            if (dstMoves.length) {
+                html += '<div class="action-category">';
+                html += '<div class="action-category-title"><span>🎯 SELECT TARGET</span><span class="action-count">' + dstMoves.length + '</span></div>';
+                html += dstMoves.map(a => actionBtn(a, 'movement')).join('');
+                html += '</div>';
+            }
+            
+            // Change Source
+            if (srcMoves.length) {
+                html += '<div class="action-category">';
+                html += '<div class="action-category-title"><span>📍 CHANGE POSITION</span><span class="action-count">' + srcMoves.length + '</span></div>';
+                html += srcMoves.map(a => actionBtn(a, 'movement')).join('');
+                html += '</div>';
+            }
+            
+            c.innerHTML = html;
+        }
+
+        function actionBtn(a, cls) {
+            const targetInfo = a.action_type.includes('change') ? 
+                '<div class="action-target">→ ' + a.target_node + '</div>' : 
+                '<div class="action-target">' + a.source_node + ' → ' + a.target_node + '</div>';
+            
+            return '<button class="action-btn ' + cls + '" onclick="executeActionAPI(\'' + a.action_id + '\')" ' + (isConnected ? '' : 'disabled') + '>' +
+                '<div class="action-type">' + a.action_type.replace('_', ' ') + '</div>' +
+                '<div class="action-name">' + (a.vuln_name || '') + '</div>' +
+                targetInfo +
+                '<div class="action-cost">⚡ ' + a.cost + '</div></button>';
+        }
+
+        function updateHistoryDisplay() {
+            const c = document.getElementById('historyList'), h = simulationData?.history || [];
+            if (!h.length) { c.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>No actions yet</p></div>'; return; }
+            c.innerHTML = h.slice().reverse().map(e => {
+                const a = e.action, cls = a.action_type.includes('exploit') ? 'exploit' : a.action_type === 'connect' ? 'connect' : 'movement';
+                let prog = '';
+                if (e.progress_made) {
+                    const parts = [];
+                    if (e.progress_made.owned_delta > 0) parts.push('+' + e.progress_made.owned_delta + ' owned');
+                    if (e.progress_made.known_delta > 0) parts.push('+' + e.progress_made.known_delta + ' known');
+                    if (e.progress_made.creds_delta > 0) parts.push('+' + e.progress_made.creds_delta + ' creds');
+                    if (parts.length) prog = '<div class="history-progress">🎯 ' + parts.join(', ') + '</div>';
+                }
+                return '<div class="history-item ' + cls + '"><div class="history-step">#' + e.step + '</div><div class="history-action">' + (a.vuln_name || '') + '</div><div class="history-details">' + a.source_node + ' → ' + a.target_node + '</div>' + prog + '</div>';
+            }).join('');
+        }
+
+        function updateControls() {
+            const h = simulationData?.history || [];
+            document.getElementById('btnUndo').disabled = !isConnected || !h.length;
+            document.getElementById('btnReset').disabled = !isConnected;
+        }
+
+        function updateConnectionStatus(c) {
+            document.getElementById('connectionDot').classList.toggle('connected', c);
+            document.getElementById('connectionText').textContent = c ? 'Connected' : 'Disconnected';
+        }
+
+        function showLoading(s) { document.getElementById('loadingOverlay').classList.toggle('hidden', !s); }
+
+        function showNotification(msg, type) {
+            document.querySelectorAll('.notification').forEach(n => n.remove());
+            const n = document.createElement('div');
+            n.className = 'notification ' + type;
+            n.textContent = msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 3000);
+        }
+
+        canvas.addEventListener('mousemove', e => {
+            if (!simulationData) return;
+            const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+            let found = null;
+            for (const [id, p] of Object.entries(nodePositions)) {
+                if (Math.hypot(x - p.x, y - p.y) < 25) { found = id; break; }
+            }
+            if (found !== hoveredNode) { hoveredNode = found; drawNetwork(); showTooltip(found, e.clientX, e.clientY); }
+        });
+
+        canvas.addEventListener('click', () => {
+            if (!simulationData || !hoveredNode || !isConnected) return;
+            const state = simulationData.current_state || {};
+            if (hoveredNode === state.current_destination) return;
+            const knownSet = new Set(state.known_nodes || []);
+            if (!knownSet.has(hoveredNode)) return;
+            const actions = simulationData.available_actions || [];
+            const a = actions.find(x => x.action_type === 'change_destination' && x.target_node === hoveredNode);
+            if (a) executeActionAPI(a.action_id);
+        });
+
+        function showTooltip(id, mx, my) {
+            const t = document.getElementById('nodeTooltip');
+            if (!id) { t.classList.remove('visible'); return; }
+            const node = simulationData.nodes.find(n => n.id === id);
+            if (!node) return;
+            const state = simulationData.current_state || {};
+            const isOwned = new Set(state.owned_nodes || []).has(id);
+            const isKnown = new Set(state.known_nodes || []).has(id);
+            document.getElementById('tooltipTitle').textContent = id;
+            let html = '<div class="info-row"><span class="info-label">Status:</span><span style="color:' + (isOwned ? '#00ff88' : isKnown ? '#ffcc00' : '#8888aa') + '">' + (isOwned ? 'OWNED' : isKnown ? 'KNOWN' : 'UNKNOWN') + '</span></div>';
+            if (isKnown || isOwned) {
+                html += '<div class="info-row"><span class="info-label">IP:</span><span>' + (node.ip_address || 'N/A') + '</span></div>';
+                html += '<div class="info-row"><span class="info-label">Vulns:</span><span style="color:#ff3366">' + (node.vulnerabilities?.length || 0) + '</span></div>';
+                html += '<div class="info-row"><span class="info-label">Services:</span><span>' + (node.services?.length || 0) + '</span></div>';
+            }
+            document.getElementById('tooltipContent').innerHTML = html;
+            t.style.left = (mx + 15) + 'px'; t.style.top = (my + 15) + 'px';
+            t.classList.add('visible');
+        }
+
+        document.getElementById('fileInput').addEventListener('change', e => {
+            const f = e.target.files[0];
+            if (!f) return;
+            const r = new FileReader();
+            r.onload = ev => {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    isConnected = false; apiUrl = null;
+                    updateConnectionStatus(false);
+                    loadSimulationData(data);
+                    showNotification('Loaded (offline)', 'success');
+                } catch (e) { showNotification('Invalid JSON', 'error'); }
+            };
+            r.readAsText(f);
+        });
+
+        window.addEventListener('load', () => { initCanvas(); showLoading(false); });
+        window.addEventListener('resize', () => { initCanvas(); if (simulationData) { calculateNodePositions(); drawNetwork(); } });
+    </script>
+</body>
+</html>

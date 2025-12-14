@@ -1,0 +1,898 @@
+# ==============================================================================
+# CLUSTER SIZING DEFINITIONS
+# ==============================================================================
+cluster_sizes:
+  TINY: [1, 3]          # Dev/testing
+  SMALL: [3, 10]        # Small production/startup
+  MEDIUM: [10, 50]      # Growing company
+  LARGE: [50, 200]      # Enterprise
+  XLARGE: [200, 1000]   # Hyperscale
+
+# ==============================================================================
+# SERVICE CATALOG PROFILES (Bitnami Aligned)
+# ==============================================================================
+services:
+  # ----------------------------------------------------------------------------
+  # CONTROL PLANE CORE
+  # ----------------------------------------------------------------------------
+  etcd:
+    category: control_plane_core
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 3 # Bitnami Default: 3 node cluster for quorum
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 1.0
+      microservices: 1.0
+      data_analytics: 1.0
+      ml_platform: 1.0
+      web_hosting: 1.0
+      enterprise_internal: 1.0
+      ecommerce: 1.0
+      saas_platform: 1.0
+      iot_platform: 1.0
+      gaming_backend: 1.0
+
+  kube-state-metrics:
+    category: control_plane_core
+    resource_weight: 2
+    requires_ha: false
+    min_cluster_size: TINY
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.9
+      microservices: 0.95
+      data_analytics: 0.9
+      ml_platform: 0.85
+      web_hosting: 0.9
+      enterprise_internal: 0.95
+      ecommerce: 0.95
+      saas_platform: 0.95
+      iot_platform: 0.9
+      gaming_backend: 0.9
+
+  metrics-server:
+    category: control_plane_core
+    resource_weight: 2
+    requires_ha: false
+    min_cluster_size: TINY
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.95
+      microservices: 0.98
+      data_analytics: 0.95
+      ml_platform: 0.9
+      web_hosting: 0.95
+      enterprise_internal: 0.98
+      ecommerce: 0.98
+      saas_platform: 0.98
+      iot_platform: 0.95
+      gaming_backend: 0.95
+
+  # ----------------------------------------------------------------------------
+  # SECURITY
+  # ----------------------------------------------------------------------------
+  cert-manager:
+    category: control_plane_security
+    resource_weight: 3
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 1 # Bitnami: Controller + Webhook + Cainjector
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.7
+      microservices: 0.9
+      data_analytics: 0.6
+      ml_platform: 0.5
+      web_hosting: 0.95
+      enterprise_internal: 0.9
+      ecommerce: 0.98
+      saas_platform: 0.95
+      iot_platform: 0.7
+      gaming_backend: 0.8
+
+  vault:
+    category: control_plane_security
+    resource_weight: 4
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 3 # Bitnami HA: 3 replicas with Raft storage
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["sealed-secrets"]
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.5
+      data_analytics: 0.3
+      ml_platform: 0.3
+      web_hosting: 0.4
+      enterprise_internal: 0.7
+      ecommerce: 0.8
+      saas_platform: 0.7
+      iot_platform: 0.5
+      gaming_backend: 0.6
+
+  sealed-secrets:
+    category: control_plane_security
+    resource_weight: 2
+    requires_ha: false
+    min_cluster_size: TINY
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: ["vault"]
+    probability_by_use_case:
+      startup_mvp: 0.5
+      microservices: 0.3
+      data_analytics: 0.4
+      ml_platform: 0.4
+      web_hosting: 0.3
+      enterprise_internal: 0.2
+      ecommerce: 0.1
+      saas_platform: 0.2
+      iot_platform: 0.3
+      gaming_backend: 0.2
+
+  keycloak:
+    category: control_plane_security
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 2 # Bitnami HA: 2 replicas + PostgreSQL
+    scale_with_cluster: true
+    dependencies: ["postgresql"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.4
+      data_analytics: 0.2
+      ml_platform: 0.3
+      web_hosting: 0.3
+      enterprise_internal: 0.7
+      ecommerce: 0.6
+      saas_platform: 0.8
+      iot_platform: 0.4
+      gaming_backend: 0.5
+
+  # ----------------------------------------------------------------------------
+  # NETWORKING
+  # ----------------------------------------------------------------------------
+  nginx-ingress-controller:
+    category: control_plane_networking
+    resource_weight: 3
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 2 # Bitnami: 2 replicas for high availability
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["kong", "apisix", "contour", "haproxy"]
+    probability_by_use_case:
+      startup_mvp: 0.8
+      microservices: 0.7
+      data_analytics: 0.5
+      ml_platform: 0.4
+      web_hosting: 0.9
+      enterprise_internal: 0.6
+      ecommerce: 0.7
+      saas_platform: 0.6
+      iot_platform: 0.5
+      gaming_backend: 0.6
+
+  kong:
+    category: control_plane_networking
+    resource_weight: 4
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 2 # Bitnami: 2 Kong proxies + 1 Controller
+    scale_with_cluster: true
+    dependencies: ["postgresql"]
+    conflicts_with: ["nginx-ingress-controller", "apisix"]
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.25
+      data_analytics: 0.1
+      ml_platform: 0.2
+      web_hosting: 0.1
+      enterprise_internal: 0.2
+      ecommerce: 0.3
+      saas_platform: 0.35
+      iot_platform: 0.3
+      gaming_backend: 0.25
+
+  cilium:
+    category: control_plane_networking
+    resource_weight: 4
+    requires_ha: false
+    min_cluster_size: MEDIUM
+    base_instance_count: 1 # DaemonSet (1 per node)
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.3
+      data_analytics: 0.2
+      ml_platform: 0.2
+      web_hosting: 0.2
+      enterprise_internal: 0.4
+      ecommerce: 0.35
+      saas_platform: 0.4
+      iot_platform: 0.25
+      gaming_backend: 0.3
+
+  # ----------------------------------------------------------------------------
+  # OBSERVABILITY: METRICS
+  # ----------------------------------------------------------------------------
+  prometheus:
+    category: observability_metrics
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 2 # Bitnami: 1 Server + 1 Alertmanager
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["victoriametrics"]
+    probability_by_use_case:
+      startup_mvp: 0.85
+      microservices: 0.95
+      data_analytics: 0.8
+      ml_platform: 0.8
+      web_hosting: 0.9
+      enterprise_internal: 0.9
+      ecommerce: 0.95
+      saas_platform: 0.95
+      iot_platform: 0.85
+      gaming_backend: 0.9
+
+  grafana:
+    category: observability_metrics
+    resource_weight: 3
+    requires_ha: false
+    min_cluster_size: TINY
+    base_instance_count: 1 # Bitnami default
+    scale_with_cluster: false
+    dependencies: ["prometheus"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.9
+      microservices: 0.95
+      data_analytics: 0.9
+      ml_platform: 0.85
+      web_hosting: 0.9
+      enterprise_internal: 0.95
+      ecommerce: 0.98
+      saas_platform: 0.98
+      iot_platform: 0.9
+      gaming_backend: 0.95
+
+  thanos:
+    category: observability_metrics
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 3 # Bitnami: Query + Store + Compact components
+    scale_with_cluster: true
+    dependencies: ["prometheus", "minio"]
+    conflicts_with: ["victoriametrics"]
+    probability_by_use_case:
+      startup_mvp: 0.05
+      microservices: 0.3
+      data_analytics: 0.2
+      ml_platform: 0.15
+      web_hosting: 0.2
+      enterprise_internal: 0.5
+      ecommerce: 0.4
+      saas_platform: 0.45
+      iot_platform: 0.3
+      gaming_backend: 0.35
+
+  # ----------------------------------------------------------------------------
+  # OBSERVABILITY: LOGGING
+  # ----------------------------------------------------------------------------
+  grafana-loki:
+    category: observability_logging
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 2 # Bitnami: Gateway + Distributor + Ingester
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["elasticsearch"]
+    probability_by_use_case:
+      startup_mvp: 0.6
+      microservices: 0.7
+      data_analytics: 0.5
+      ml_platform: 0.5
+      web_hosting: 0.65
+      enterprise_internal: 0.5
+      ecommerce: 0.6
+      saas_platform: 0.65
+      iot_platform: 0.55
+      gaming_backend: 0.6
+
+  fluent-bit:
+    category: observability_logging
+    resource_weight: 2
+    requires_ha: false
+    min_cluster_size: SMALL
+    base_instance_count: 1 # DaemonSet usually
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: ["fluentd"]
+    probability_by_use_case:
+      startup_mvp: 0.7
+      microservices: 0.8
+      data_analytics: 0.7
+      ml_platform: 0.65
+      web_hosting: 0.75
+      enterprise_internal: 0.7
+      ecommerce: 0.8
+      saas_platform: 0.8
+      iot_platform: 0.75
+      gaming_backend: 0.75
+
+  elasticsearch:
+    category: observability_logging
+    resource_weight: 8 # Java Heap Heavy
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 3 # Bitnami: 3 Master-eligible nodes by default
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["grafana-loki", "opensearch"]
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.3
+      data_analytics: 0.4
+      ml_platform: 0.3
+      web_hosting: 0.25
+      enterprise_internal: 0.45
+      ecommerce: 0.5
+      saas_platform: 0.4
+      iot_platform: 0.35
+      gaming_backend: 0.35
+
+  kibana:
+    category: observability_logging
+    resource_weight: 3
+    requires_ha: false
+    min_cluster_size: MEDIUM
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: ["elasticsearch"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.95
+      microservices: 0.95
+      data_analytics: 0.95
+      ml_platform: 0.9
+      web_hosting: 0.95
+      enterprise_internal: 0.98
+      ecommerce: 0.98
+      saas_platform: 0.98
+      iot_platform: 0.95
+      gaming_backend: 0.95
+
+  # ----------------------------------------------------------------------------
+  # OBSERVABILITY: TRACING
+  # ----------------------------------------------------------------------------
+  jaeger:
+    category: observability_tracing
+    resource_weight: 4
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 2 # Collector + Query
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["zipkin", "grafana-tempo"]
+    probability_by_use_case:
+      startup_mvp: 0.15
+      microservices: 0.6
+      data_analytics: 0.2
+      ml_platform: 0.25
+      web_hosting: 0.3
+      enterprise_internal: 0.4
+      ecommerce: 0.7
+      saas_platform: 0.65
+      iot_platform: 0.4
+      gaming_backend: 0.5
+
+  grafana-tempo:
+    category: observability_tracing
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 2
+    scale_with_cluster: true
+    dependencies: ["grafana"]
+    conflicts_with: ["jaeger", "zipkin"]
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.3
+      data_analytics: 0.15
+      ml_platform: 0.15
+      web_hosting: 0.2
+      enterprise_internal: 0.25
+      ecommerce: 0.35
+      saas_platform: 0.35
+      iot_platform: 0.25
+      gaming_backend: 0.3
+
+  # ----------------------------------------------------------------------------
+  # CI/CD
+  # ----------------------------------------------------------------------------
+  argo-cd:
+    category: ci_cd
+    resource_weight: 3
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 3 # Bitnami: Server + RepoServer + AppController
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["flux"]
+    probability_by_use_case:
+      startup_mvp: 0.5
+      microservices: 0.7
+      data_analytics: 0.4
+      ml_platform: 0.5
+      web_hosting: 0.6
+      enterprise_internal: 0.65
+      ecommerce: 0.7
+      saas_platform: 0.75
+      iot_platform: 0.55
+      gaming_backend: 0.65
+
+  jenkins:
+    category: ci_cd
+    resource_weight: 5 # Java Heap
+    requires_ha: false
+    min_cluster_size: SMALL
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.3
+      microservices: 0.4
+      data_analytics: 0.3
+      ml_platform: 0.35
+      web_hosting: 0.35
+      enterprise_internal: 0.6
+      ecommerce: 0.45
+      saas_platform: 0.5
+      iot_platform: 0.4
+      gaming_backend: 0.45
+
+  harbor:
+    category: ci_cd
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 5 # Bitnami: Core, JobService, Registry, Portal, DB
+    scale_with_cluster: true
+    dependencies: ["postgresql", "redis"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.5
+      data_analytics: 0.3
+      ml_platform: 0.4
+      web_hosting: 0.35
+      enterprise_internal: 0.6
+      ecommerce: 0.55
+      saas_platform: 0.65
+      iot_platform: 0.45
+      gaming_backend: 0.5
+
+  # ----------------------------------------------------------------------------
+  # DATABASES: SQL
+  # ----------------------------------------------------------------------------
+  postgresql:
+    category: data_sql
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 3 # Bitnami HA: 1 Primary + 2 Read Replicas
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["mysql", "mariadb"]
+    probability_by_use_case:
+      startup_mvp: 0.7
+      microservices: 0.75
+      data_analytics: 0.6
+      ml_platform: 0.5
+      web_hosting: 0.65
+      enterprise_internal: 0.7
+      ecommerce: 0.8
+      saas_platform: 0.85
+      iot_platform: 0.6
+      gaming_backend: 0.7
+
+  mysql:
+    category: data_sql
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 3 # Bitnami HA: 1 Master + 2 Slaves
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["postgresql", "mariadb"]
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.15
+      data_analytics: 0.2
+      ml_platform: 0.2
+      web_hosting: 0.3
+      enterprise_internal: 0.2
+      ecommerce: 0.15
+      saas_platform: 0.1
+      iot_platform: 0.2
+      gaming_backend: 0.2
+
+  clickhouse:
+    category: data_analytics
+    resource_weight: 8
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 2 # 2 Shards
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.05
+      microservices: 0.15
+      data_analytics: 0.6
+      ml_platform: 0.3
+      web_hosting: 0.1
+      enterprise_internal: 0.3
+      ecommerce: 0.4
+      saas_platform: 0.35
+      iot_platform: 0.5
+      gaming_backend: 0.3
+
+  # ----------------------------------------------------------------------------
+  # DATABASES: NoSQL
+  # ----------------------------------------------------------------------------
+  mongodb:
+    category: data_nosql
+    resource_weight: 7
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 3 # Bitnami: 1 Primary + 1 Secondary + 1 Arbiter
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.4
+      microservices: 0.5
+      data_analytics: 0.3
+      ml_platform: 0.4
+      web_hosting: 0.45
+      enterprise_internal: 0.4
+      ecommerce: 0.6
+      saas_platform: 0.65
+      iot_platform: 0.7
+      gaming_backend: 0.7
+
+  cassandra:
+    category: data_nosql
+    resource_weight: 9
+    requires_ha: true
+    min_cluster_size: LARGE
+    base_instance_count: 3 # Minimum 3 nodes for quorum
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["scylladb"]
+    probability_by_use_case:
+      startup_mvp: 0.02
+      microservices: 0.1
+      data_analytics: 0.15
+      ml_platform: 0.1
+      web_hosting: 0.05
+      enterprise_internal: 0.15
+      ecommerce: 0.2
+      saas_platform: 0.25
+      iot_platform: 0.4
+      gaming_backend: 0.3
+
+  # ----------------------------------------------------------------------------
+  # CACHING
+  # ----------------------------------------------------------------------------
+  redis:
+    category: data_caching
+    resource_weight: 4
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 3 # Bitnami HA: 3 nodes (Master+Slaves) + Sentinel
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["valkey", "keydb"]
+    probability_by_use_case:
+      startup_mvp: 0.6
+      microservices: 0.85
+      data_analytics: 0.5
+      ml_platform: 0.6
+      web_hosting: 0.7
+      enterprise_internal: 0.75
+      ecommerce: 0.95
+      saas_platform: 0.9
+      iot_platform: 0.7
+      gaming_backend: 0.9
+
+  valkey:
+    category: data_caching
+    resource_weight: 4
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 3
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: ["redis", "keydb"]
+    probability_by_use_case:
+      startup_mvp: 0.15
+      microservices: 0.1
+      data_analytics: 0.1
+      ml_platform: 0.1
+      web_hosting: 0.1
+      enterprise_internal: 0.1
+      ecommerce: 0.05
+      saas_platform: 0.08
+      iot_platform: 0.1
+      gaming_backend: 0.08
+
+  # ----------------------------------------------------------------------------
+  # MESSAGING
+  # ----------------------------------------------------------------------------
+  kafka:
+    category: data_messaging
+    resource_weight: 8
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 3 # Bitnami: 3 Brokers (default)
+    scale_with_cluster: true
+    dependencies: ["zookeeper"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.5
+      data_analytics: 0.7
+      ml_platform: 0.5
+      web_hosting: 0.2
+      enterprise_internal: 0.5
+      ecommerce: 0.6
+      saas_platform: 0.65
+      iot_platform: 0.8
+      gaming_backend: 0.5
+
+  zookeeper:
+    category: data_messaging
+    resource_weight: 3
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 3 # Bitnami: 3 nodes for quorum
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.1
+      microservices: 0.5
+      data_analytics: 0.7
+      ml_platform: 0.5
+      web_hosting: 0.2
+      enterprise_internal: 0.5
+      ecommerce: 0.6
+      saas_platform: 0.65
+      iot_platform: 0.8
+      gaming_backend: 0.5
+
+  rabbitmq:
+    category: data_messaging
+    resource_weight: 5
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 3 # Bitnami: 3 nodes for HA
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.3
+      microservices: 0.4
+      data_analytics: 0.3
+      ml_platform: 0.35
+      web_hosting: 0.3
+      enterprise_internal: 0.45
+      ecommerce: 0.5
+      saas_platform: 0.45
+      iot_platform: 0.4
+      gaming_backend: 0.4
+
+  # ----------------------------------------------------------------------------
+  # OBJECT STORAGE
+  # ----------------------------------------------------------------------------
+  minio:
+    category: data_storage
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: SMALL
+    base_instance_count: 4 # Bitnami: 4 drives/nodes minimum for erasure coding
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.4
+      data_analytics: 0.7
+      ml_platform: 0.8
+      web_hosting: 0.35
+      enterprise_internal: 0.5
+      ecommerce: 0.5
+      saas_platform: 0.55
+      iot_platform: 0.6
+      gaming_backend: 0.45
+
+  # ----------------------------------------------------------------------------
+  # BIG DATA
+  # ----------------------------------------------------------------------------
+  spark:
+    category: data_processing
+    resource_weight: 9
+    requires_ha: false
+    min_cluster_size: LARGE
+    base_instance_count: 3 # 1 Master + 2 Workers
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.01
+      microservices: 0.05
+      data_analytics: 0.6
+      ml_platform: 0.7
+      web_hosting: 0.02
+      enterprise_internal: 0.3
+      ecommerce: 0.2
+      saas_platform: 0.15
+      iot_platform: 0.4
+      gaming_backend: 0.1
+
+  flink:
+    category: data_processing
+    resource_weight: 8
+    requires_ha: true
+    min_cluster_size: LARGE
+    base_instance_count: 3 # 1 JobManager + 2 TaskManagers
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.01
+      microservices: 0.05
+      data_analytics: 0.4
+      ml_platform: 0.3
+      web_hosting: 0.02
+      enterprise_internal: 0.2
+      ecommerce: 0.15
+      saas_platform: 0.15
+      iot_platform: 0.5
+      gaming_backend: 0.2
+
+  airflow:
+    category: data_orchestration
+    resource_weight: 6
+    requires_ha: true
+    min_cluster_size: MEDIUM
+    base_instance_count: 4 # Web + Scheduler + Worker + Triggerer
+    scale_with_cluster: true
+    dependencies: ["postgresql"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.05
+      microservices: 0.15
+      data_analytics: 0.7
+      ml_platform: 0.75
+      web_hosting: 0.1
+      enterprise_internal: 0.4
+      ecommerce: 0.3
+      saas_platform: 0.35
+      iot_platform: 0.5
+      gaming_backend: 0.2
+
+  # ----------------------------------------------------------------------------
+  # ML/AI
+  # ----------------------------------------------------------------------------
+  mlflow:
+    category: ml_platform
+    resource_weight: 5
+    requires_ha: false
+    min_cluster_size: MEDIUM
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: ["postgresql", "minio"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.02
+      microservices: 0.05
+      data_analytics: 0.3
+      ml_platform: 0.8
+      web_hosting: 0.02
+      enterprise_internal: 0.2
+      ecommerce: 0.15
+      saas_platform: 0.2
+      iot_platform: 0.25
+      gaming_backend: 0.1
+
+  jupyterhub:
+    category: ml_platform
+    resource_weight: 5
+    requires_ha: false
+    min_cluster_size: MEDIUM
+    base_instance_count: 1 # Hub + Proxy
+    scale_with_cluster: false
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.05
+      microservices: 0.1
+      data_analytics: 0.6
+      ml_platform: 0.9
+      web_hosting: 0.05
+      enterprise_internal: 0.3
+      ecommerce: 0.2
+      saas_platform: 0.2
+      iot_platform: 0.3
+      gaming_backend: 0.1
+
+  # ----------------------------------------------------------------------------
+  # WEB APPLICATIONS
+  # ----------------------------------------------------------------------------
+  nginx:
+    category: web_servers
+    resource_weight: 2
+    requires_ha: true
+    min_cluster_size: TINY
+    base_instance_count: 2
+    scale_with_cluster: true
+    dependencies: []
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.5
+      microservices: 0.4
+      data_analytics: 0.2
+      ml_platform: 0.2
+      web_hosting: 0.9
+      enterprise_internal: 0.5
+      ecommerce: 0.6
+      saas_platform: 0.5
+      iot_platform: 0.3
+      gaming_backend: 0.4
+
+  wordpress:
+    category: web_cms
+    resource_weight: 3
+    requires_ha: false
+    min_cluster_size: TINY
+    base_instance_count: 1
+    scale_with_cluster: false
+    dependencies: ["mysql", "redis"]
+    conflicts_with: []
+    probability_by_use_case:
+      startup_mvp: 0.2
+      microservices: 0.05
+      data_analytics: 0.02
+      ml_platform: 0.02
+      web_hosting: 0.7
+      enterprise_internal: 0.15
+      ecommerce: 0.1
+      saas_platform: 0.05
+      iot_platform: 0.05
+      gaming_backend: 0.05

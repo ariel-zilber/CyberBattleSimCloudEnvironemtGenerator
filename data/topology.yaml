@@ -1,0 +1,86 @@
+# ==============================================================================
+# NETWORK TOPOLOGY CONFIGURATION
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# GLOBAL SETTINGS
+# ------------------------------------------------------------------------------
+# Default topology type. 
+# Options: "mesh", "star", "hub_spoke", "random", "exact"
+topology_type: "exact"
+
+# Probability of a connection existing between two random nodes (used for 'random' type)
+connectivity_probability: 0.3
+
+# ------------------------------------------------------------------------------
+# EXACT TOPOLOGY MATRIX
+# ------------------------------------------------------------------------------
+# ONLY USED IF topology_type is "exact".
+# Represents an adjacency matrix where 1 = connection, 0 = no connection.
+# Row indices correspond to the subnet definitions below.
+# Example: 3 subnets (0: Public, 1: App, 2: DB)
+topology_matrix:
+  - [0, 1, 0] # Subnet 0 connects to Subnet 1
+  - [1, 0, 1] # Subnet 1 connects to Subnet 0 and 2
+  - [0, 1, 0] # Subnet 2 connects to Subnet 1 only
+
+# ------------------------------------------------------------------------------
+# SUBNET DEFINITIONS
+# ------------------------------------------------------------------------------
+subnets:
+  # Bounds for validation
+  bounds:
+    max_subnets: 10
+    max_hosts_per_subnet: 254
+
+  # Subnet ranges define how many hosts per subnet
+  # Can be a single int or a [min, max] range for random selection
+  # This list MUST match the size of your topology_matrix if using "exact"
+  ranges:
+    - 10              # Subnet 0 (DMZ)
+    - [5, 15]         # Subnet 1 (Internal/App)
+    - [10, 30]        # Subnet 2 (Data/DB)
+
+  # Labels for visualization and logic
+  labels:
+    0: "Public/DMZ"
+    1: "Application Layer"
+    2: "Database Layer"
+
+  # Probability that a subnet contains sensitive assets (High Value Targets)
+  sensitivity_probabilities:
+    0: 0.1   # DMZ (Low)
+    1: 0.5   # App (Medium)
+    2: 0.9   # DB (High)
+
+# ------------------------------------------------------------------------------
+# FIREWALL CONFIGURATION (Logical Layer)
+# ------------------------------------------------------------------------------
+# These settings control the Kubernetes NetworkPolicies generated for the cluster.
+firewall:
+  default_block_probability: 0.2
+  
+  # Default Rule: Allow incoming traffic?
+  incoming: true
+  # Exceptions: Block incoming from these subnet indices (if incoming=true)
+  # or Allow incoming from these (if incoming=false)
+  incoming_exceptions: []
+
+  # Default Rule: Allow outgoing traffic?
+  outgoing: true
+  outgoing_exceptions: []
+
+# ------------------------------------------------------------------------------
+# PHYSICAL INFRASTRUCTURE (Optional)
+# ------------------------------------------------------------------------------
+# Zone configuration for physical node distribution
+zones:
+  - name: "zone-a"
+    region: "us-east-1"
+    is_dmz: true
+  - name: "zone-b"
+    region: "us-east-1"
+    is_dmz: false
+  - name: "zone-c"
+    region: "us-west-2"
+    is_dmz: false

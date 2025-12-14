@@ -1,0 +1,531 @@
+defaults:
+  connectivity_probability: 0.5
+  requires_auth: true
+  is_critical: false
+  is_public: false
+  # Default fallback (matches your "default" rule)
+  node_affinity: ["WORKER", "COMPUTE_OPTIMIZED"]
+  category: ["application"]
+services:
+  # ============================================================================
+  # CONTROL PLANE SERVICES
+  # ============================================================================
+  etcd:
+    ports: [2379, 2380]
+    node_affinity: ["CONTROL_PLANE"]
+    tags: ["control_plane", "critical"]
+    connectivity:
+      connects_to: ["kube-state-metrics", "metrics-server"]
+      probability: 0.9
+
+  kube-state-metrics:
+    ports: [8080, 8081]
+    node_affinity: ["CONTROL_PLANE", "WORKER"]
+    connectivity:
+      probability: 1.0
+      requires_auth: false
+    category: ["control_plane"]
+
+  metrics-server:
+    ports: [443, 4443]
+    node_affinity: ["CONTROL_PLANE", "WORKER"]
+    connectivity:
+      probability: 1.0
+    category: ["control_plane"]
+
+  kube-apiserver:
+    ports: [6443]
+    node_affinity: ["CONTROL_PLANE"]
+    tags: ["control_plane", "public", "critical"]
+    category: ["control_plane"]
+
+  kube-controller-manager:
+    ports: [10257]
+    node_affinity: ["CONTROL_PLANE"]
+    tags: ["control_plane", "critical"]
+    category: ["control_plane"]
+
+  kube-scheduler:
+    ports: [10259]
+    node_affinity: ["CONTROL_PLANE"]
+    tags: ["control_plane", "critical"]
+    category: ["control_plane"]
+
+  # ============================================================================
+  # DATA SERVICES (Memory/Storage Optimized)
+  # ============================================================================
+  postgresql:
+    ports: [5432]
+    node_affinity: ["MEMORY_OPTIMIZED", "STORAGE_OPTIMIZED", "WORKER"]
+    tags: ["critical"]
+    category: ["database"]
+    connectivity:
+      probability: 1.0
+
+  mysql:
+    ports: [3306]
+    node_affinity: ["MEMORY_OPTIMIZED", "STORAGE_OPTIMIZED", "WORKER"]
+    tags: ["critical"]
+    category: ["database"]
+
+  mongodb:
+    ports: [27017]
+    node_affinity: ["MEMORY_OPTIMIZED", "STORAGE_OPTIMIZED", "WORKER"]
+    tags: ["critical"]
+    connectivity:
+      probability: 1.0
+    category: ["database"]
+
+  redis:
+    ports: [6379]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    tags: ["critical"]
+    connectivity:
+      probability: 1.0
+    category: ["database"]
+
+  valkey:
+    ports: [6379]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+
+  elasticsearch:
+    ports: [9200, 9300]
+    node_affinity: ["MEMORY_OPTIMIZED", "STORAGE_OPTIMIZED"]
+    connectivity:
+      probability: 1.0
+
+  clickhouse:
+    ports: [8123, 9000]
+    node_affinity: ["MEMORY_OPTIMIZED", "STORAGE_OPTIMIZED"]
+
+  cassandra:
+    ports: [7000, 7001, 9042]
+    node_affinity: ["STORAGE_OPTIMIZED", "MEMORY_OPTIMIZED"]
+    category: ["database"]
+
+  # ============================================================================
+  # BIG DATA / ML (Compute/GPU Optimized)
+  # ============================================================================
+  spark:
+      ports: [7077, 8080, 8081]
+      tags: ["credential_caching"]
+      node_affinity: ["COMPUTE_OPTIMIZED", "GPU", "WORKER"]
+      credential_access:
+        minio:
+          level: 1
+          type: "access_key"
+          roles: ["s3_credentials"]
+        kafka:
+          level: 1
+          type: "password"
+          roles: ["consumer_credentials"]
+
+  flink:
+    ports: [6123, 8081]
+    node_affinity: ["COMPUTE_OPTIMIZED", "WORKER"]
+    tags: ["credential_caching"]
+
+  airflow:
+    ports: [8080]
+    tags: ["credential_caching"]
+    node_affinity: ["COMPUTE_OPTIMIZED", "WORKER"]
+    connectivity:
+      connects_to: ["postgresql", "redis"]
+      probability: 0.9
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+      redis:
+        level: 1
+        type: "password"
+        roles: ["celery_broker"]
+      rabbitmq:
+        level: 1
+        type: "password"
+        roles: ["message_queue"]
+
+  mlflow:
+    ports: [5000]
+    node_affinity: ["GPU", "COMPUTE_OPTIMIZED", "WORKER"]
+    connectivity:
+      connects_to: ["minio", "postgresql"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+      minio:
+        level: 1
+        type: "access_key"
+        roles: ["s3_credentials"]
+
+  jupyterhub:
+    ports: [8000, 8081]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["GPU", "COMPUTE_OPTIMIZED"]
+    credential_access:
+      prometheus:
+        level: 1
+        type: "token"
+        roles: ["readonly"]
+  # ============================================================================
+  # MESSAGING SYSTEMS
+  # ============================================================================
+  # ==========================================
+  # KAFKA (Event Streaming)
+  # ==========================================
+  kafka:
+    ports: [9092, 9093]
+    tags: ["critical"]
+    node_affinity: ["STORAGE_OPTIMIZED", "MEMORY_OPTIMIZED", "WORKER"]
+    category: ["messaging"]
+    connectivity:
+      connects_to: ["zookeeper", "schema-registry"]
+      probability: 0.9
+    credential_access:
+      zookeeper:
+        level: 2
+        type: "password"
+        roles: ["cluster_coordination"]
+
+  rabbitmq:
+    ports: [5672, 15672]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    category: ["messaging"]
+
+  zookeeper:
+    ports: [2181, 2888, 3888]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    tags: ["critical"]
+    connectivity:
+      probability: 1.0
+      requires_auth: false
+    category: ["messaging"]
+
+  # ============================================================================
+  # OBJECT STORAGE
+  # ============================================================================
+  minio:
+    ports: [9000, 9001]
+    node_affinity: ["STORAGE_OPTIMIZED", "WORKER"]
+    connectivity:
+      probability: 1.0
+    category: ["storage"]
+
+
+  # ============================================================================
+  # OBSERVABILITY & MONITORING
+  # ============================================================================
+  prometheus:
+    ports: [9090]
+    category: ["observability"]
+    connectivity:
+      connects_to: ["node-exporter", "kube-state-metrics", "cadvisor", "grafana"]
+      probability: 0.95
+      requires_auth: false
+  grafana:
+    ports: [3000]
+    tags: ["public"]
+    category: ["observability"]
+
+    connectivity:
+      connects_to: ["prometheus", "grafana-loki", "grafana-tempo", "grafana-mimir"]
+      probability: 0.9
+      requires_auth: true
+    credential_access:
+      prometheus:
+        level: 1
+        type: "token"
+        roles: ["readonly"]
+      grafana-loki:
+        level: 1
+        type: "token"
+        roles: ["readonly"]
+
+  grafana-loki:
+    ports: [3100]
+    category: ["observability"]
+    node_affinity: ["STORAGE_OPTIMIZED", "WORKER"]
+    connectivity:
+      connects_to: ["fluent-bit", "fluentd", "grafana"]
+      probability: 0.85
+      requires_auth: false
+
+  jaeger:
+    ports: [6831, 6832, 14268, 16686]
+    connectivity:
+      connects_to: ["elasticsearch", "cassandra"]
+    category: ["observability"]
+  tempo:
+    ports: [3200, 9095]
+    node_affinity: ["STORAGE_OPTIMIZED", "WORKER"]
+    category: ["observability"]
+
+  # ============================================================================
+  # WEB / INGRESS / PUBLIC ACCESS
+  # ============================================================================
+  nginx-ingress-controller:
+    ports: [80, 443]
+    tags: ["public", "critical"]
+    node_affinity: ["WORKER"]
+    connectivity:
+      connects_to: ["nginx", "wordpress", "ghost", "grafana"]
+      probability: 0.85
+      requires_auth: false
+
+  nginx:
+    ports: [80, 443]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+    connectivity:
+      probability: 1.0
+      requires_auth: false
+    category: ["networking"]
+
+  apache:
+    ports: [80, 443]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+
+  traefik:
+    ports: [80, 443, 8080]
+    tags: ["public", "critical"]
+    node_affinity: ["WORKER", "CONTROL_PLANE"]
+
+  haproxy:
+    ports: [80, 443, 8404]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+    category: ["networking"]
+    
+
+  kong:
+    ports: [8000, 8001, 8443, 8444]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+    category: ["networking"]
+    
+
+  ambassador:
+    ports: [80, 443, 8877]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+
+  frontend:
+    ports: [80]
+    tags: ["public"]
+
+  web:
+    ports: [80, 443]
+    tags: ["public"]
+
+  api-gateway:
+    ports: [8080]
+    tags: ["public"]
+  vault:
+    ports: [8200]
+    tags: ["critical"]
+    node_affinity: ["CONTROL_PLANE", "WORKER"]
+    credential_access:
+      postgresql:
+        level: 2 # Admin access
+        type: "password"
+        roles: ["database_admin"]
+      etcd:
+        level: 2 # Root access
+        type: "certificate"
+        roles: ["etcd_root"]
+    category: ["security"]
+  kibana:
+    ports: [5601]
+    tags: ["public"]
+    connectivity:
+      connects_to: ["elasticsearch"]
+      probability: 1.0
+
+  jenkins:
+    ports: [8080, 50000]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["COMPUTE_OPTIMIZED", "WORKER"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+    category: ["jenkins"]
+
+  gitlab:
+    ports: [80, 443, 22]
+    tags: ["public"]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    category: ["ci_cd"]
+  ssh:
+    ports: [22]
+    tags: ["public"]
+    node_affinity: ["WORKER", "CONTROL_PLANE"]
+
+  rdp:
+    ports: [3389]
+    tags: ["public"]
+    node_affinity: ["WORKER"]
+
+  # ==========================================
+  # HARBOR (Container Registry)
+  # ==========================================
+  harbor:
+    ports: [80, 443]
+    tags: ["critical", "credential_caching"]
+    node_affinity: ["STORAGE_OPTIMIZED", "WORKER"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+      redis:
+        level: 1
+        type: "password"
+        roles: ["cache_credentials"]
+    category: ["ci_cd"]
+
+
+# ==========================================
+  # KEYCLOAK (Identity and Access Management)
+  # ==========================================
+  keycloak:
+    ports: [8080]
+    tags: ["critical"]
+    node_affinity: ["WORKER"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+
+
+# ==========================================
+  # ARGO CD (GitOps Continuous Delivery)
+  # ==========================================
+  argo-cd:
+    ports: [80, 443]
+    tags: ["credential_caching"]
+    node_affinity: ["WORKER"]
+    credential_access:
+      redis:
+        level: 1
+        type: "password"
+        roles: ["cache_credentials"]
+    category: ["ci_cd"]
+
+  gitlab-runner:
+    ports: [8093] 
+    tags: ["credential_caching"]
+    node_affinity: ["WORKER"]
+    category: ["ci_cd"]
+
+  wordpress:
+    ports: [80, 443]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["WORKER"]
+    connectivity:
+      connects_to: ["mysql", "redis"]
+      probability: 1.0
+    credential_access:
+      mysql:
+        level: 1
+        type: "password"
+        roles: ["database_credentials"]
+      redis:
+        level: 1
+        type: "password"
+        roles: ["cache_credentials"]
+
+  superset:
+    ports: [8088]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["COMPUTE_OPTIMIZED", "WORKER"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["readonly"]
+      prometheus:
+        level: 1
+        type: "token"
+        roles: ["readonly"]
+
+  metabase:
+    ports: [3000]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["readonly"]
+
+  redash:
+    ports: [5000]
+    tags: ["public", "credential_caching"]
+    node_affinity: ["WORKER"]
+    connectivity:
+      connects_to: ["postgresql", "redis"]
+    credential_access:
+      postgresql:
+        level: 1
+        type: "password"
+        roles: ["readonly"]
+      redis:
+        level: 1
+        type: "password"
+        roles: ["cache_credentials"]
+  # MESSAGING (from ["nats"])
+  nats:
+    ports: [4222, 6222, 8222]
+    tags: ["critical"]
+    node_affinity: ["MEMORY_OPTIMIZED", "WORKER"]
+    category: ["messaging"]
+    connectivity:
+      probability: 1.0
+      requires_auth: true
+
+  # NETWORKING (from ["apisix"])
+  apisix:
+    ports: [9080, 9443, 9180]
+    tags: ["public", "critical"]
+    node_affinity: ["WORKER"]
+    category: ["networking"]
+    connectivity:
+      connects_to: ["etcd"]
+      probability: 1.0
+    credential_access:
+      etcd:
+        level: 1
+        type: "password"
+        roles: ["configuration_store"]
+
+  # SECURITY (from ["cert-manager"])
+  cert-manager:
+    ports: [9402] # Metrics port
+    tags: ["critical"]
+    node_affinity: ["CONTROL_PLANE", "WORKER"]
+    category: ["security"]
+    connectivity:
+      probability: 1.0
+      requires_auth: false
+
+  # STORAGE (from ["seaweedfs"])
+  seaweedfs:
+    ports: [9333, 8080, 8888]
+    node_affinity: ["STORAGE_OPTIMIZED", "WORKER"]
+    tags: ["credential_caching"]
+    category: ["storage"]
+    connectivity:
+      probability: 1.0
+      requires_auth: true
+shared_credentials:
+  prometheus_readonly: ["grafana", "superset", "jupyterhub"]
+  minio_data_pipeline: ["spark", "flink", "mlflow", "airflow"]
+  kafka_consumer: ["spark", "flink"]
+  postgresql_readonly: ["superset", "metabase", "redash"]
