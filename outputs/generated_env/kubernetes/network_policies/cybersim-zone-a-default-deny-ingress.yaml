@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: cyberbattlesim
+    cybersim/generated: 'true'
+  name: default-deny-ingress
+  namespace: cybersim-zone-a
+spec:
+  ingress: []
+  podSelector: {}
+  policyTypes:
+  - Ingress

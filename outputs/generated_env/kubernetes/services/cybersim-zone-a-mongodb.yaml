@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: mongodb-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: mongodb
+    cybersim/generated: 'true'
+  name: mongodb
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    app.kubernetes.io/name: mongodb
+  type: ClusterIP

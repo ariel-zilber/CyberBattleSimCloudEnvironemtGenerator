@@ -1,0 +1,4902 @@
+{
+  "cluster_metadata": {
+    "num_nodes": 6,
+    "cluster_size": "SMALL",
+    "use_case": "web_hosting",
+    "total_services": 23,
+    "total_pods": 54,
+    "avg_pods_per_node": "9.0",
+    "num_subnets": 3,
+    "total_hosts": 38
+  },
+  "services": [
+    "argo-cd",
+    "cert-manager",
+    "elasticsearch",
+    "etcd",
+    "grafana",
+    "grafana-loki",
+    "harbor",
+    "jaeger",
+    "jenkins",
+    "jupyterhub",
+    "keycloak",
+    "kibana",
+    "kube-state-metrics",
+    "metrics-server",
+    "minio",
+    "mongodb",
+    "mysql",
+    "nginx",
+    "nginx-ingress-controller",
+    "postgresql",
+    "prometheus",
+    "redis",
+    "wordpress"
+  ],
+  "service_instances": {
+    "argo-cd": 3,
+    "cert-manager": 1,
+    "elasticsearch": 3,
+    "etcd": 4,
+    "grafana": 1,
+    "grafana-loki": 3,
+    "harbor": 3,
+    "jaeger": 3,
+    "jenkins": 1,
+    "jupyterhub": 1,
+    "keycloak": 3,
+    "kibana": 1,
+    "kube-state-metrics": 1,
+    "metrics-server": 1,
+    "minio": 3,
+    "mongodb": 3,
+    "mysql": 3,
+    "nginx": 3,
+    "nginx-ingress-controller": 3,
+    "postgresql": 3,
+    "prometheus": 3,
+    "redis": 3,
+    "wordpress": 1
+  },
+  "network": {
+    "subnets": [
+      {
+        "id": 1,
+        "label": "subnet_1",
+        "host_count": 10,
+        "sensitive_probability": 0.0,
+        "services": [
+          "kube-state-metrics",
+          "nginx-ingress-controller",
+          "postgresql",
+          "minio",
+          "etcd",
+          "metrics-server",
+          "jaeger",
+          "grafana-loki",
+          "mongodb",
+          "grafana",
+          "nginx",
+          "harbor",
+          "cert-manager",
+          "prometheus",
+          "redis"
+        ],
+        "num_services": 15
+      },
+      {
+        "id": 2,
+        "label": "subnet_2",
+        "host_count": 15,
+        "sensitive_probability": 0.0,
+        "services": [
+          "kube-state-metrics",
+          "nginx-ingress-controller",
+          "postgresql",
+          "keycloak",
+          "minio",
+          "etcd",
+          "mysql",
+          "wordpress",
+          "jaeger",
+          "grafana-loki",
+          "nginx",
+          "kibana",
+          "harbor",
+          "cert-manager",
+          "jupyterhub",
+          "prometheus",
+          "redis"
+        ],
+        "num_services": 17
+      },
+      {
+        "id": 3,
+        "label": "subnet_3",
+        "host_count": 13,
+        "sensitive_probability": 0.0,
+        "services": [
+          "kube-state-metrics",
+          "postgresql",
+          "argo-cd",
+          "etcd",
+          "mysql",
+          "jaeger",
+          "grafana-loki",
+          "elasticsearch",
+          "mongodb",
+          "nginx",
+          "kibana",
+          "harbor",
+          "cert-manager",
+          "jenkins",
+          "redis"
+        ],
+        "num_services": 15
+      }
+    ],
+    "topology_matrix": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "address_space_bounds": [
+      10,
+      254
+    ]
+  },
+  "service_distribution": {
+    "argo-cd": {
+      "instances": 3,
+      "subnets": [
+        2
+      ]
+    },
+    "cert-manager": {
+      "instances": 1,
+      "subnets": [
+        2,
+        1,
+        0
+      ]
+    },
+    "elasticsearch": {
+      "instances": 3,
+      "subnets": [
+        2
+      ]
+    },
+    "etcd": {
+      "instances": 4,
+      "subnets": [
+        1,
+        0,
+        2
+      ]
+    },
+    "grafana": {
+      "instances": 1,
+      "subnets": [
+        0
+      ]
+    },
+    "grafana-loki": {
+      "instances": 3,
+      "subnets": [
+        1,
+        2,
+        0
+      ]
+    },
+    "harbor": {
+      "instances": 3,
+      "subnets": [
+        1,
+        0,
+        2
+      ]
+    },
+    "jaeger": {
+      "instances": 3,
+      "subnets": [
+        2,
+        1,
+        0
+      ]
+    },
+    "jenkins": {
+      "instances": 1,
+      "subnets": [
+        2
+      ]
+    },
+    "jupyterhub": {
+      "instances": 1,
+      "subnets": [
+        1
+      ]
+    },
+    "keycloak": {
+      "instances": 3,
+      "subnets": [
+        1
+      ]
+    },
+    "kibana": {
+      "instances": 1,
+      "subnets": [
+        1,
+        2
+      ]
+    },
+    "kube-state-metrics": {
+      "instances": 1,
+      "subnets": [
+        0,
+        2,
+        1
+      ]
+    },
+    "metrics-server": {
+      "instances": 1,
+      "subnets": [
+        0
+      ]
+    },
+    "minio": {
+      "instances": 3,
+      "subnets": [
+        1,
+        0
+      ]
+    },
+    "mongodb": {
+      "instances": 3,
+      "subnets": [
+        0,
+        2
+      ]
+    },
+    "mysql": {
+      "instances": 3,
+      "subnets": [
+        2,
+        1
+      ]
+    },
+    "nginx": {
+      "instances": 3,
+      "subnets": [
+        0,
+        1,
+        2
+      ]
+    },
+    "nginx-ingress-controller": {
+      "instances": 3,
+      "subnets": [
+        1,
+        0
+      ]
+    },
+    "postgresql": {
+      "instances": 3,
+      "subnets": [
+        1,
+        0,
+        2
+      ]
+    },
+    "prometheus": {
+      "instances": 3,
+      "subnets": [
+        0,
+        1
+      ]
+    },
+    "redis": {
+      "instances": 3,
+      "subnets": [
+        1,
+        0,
+        2
+      ]
+    },
+    "wordpress": {
+      "instances": 1,
+      "subnets": [
+        1
+      ]
+    }
+  },
+  "firewall": {
+    "incoming": true,
+    "incoming_exceptions": [],
+    "outgoing": true,
+    "outgoing_exceptions": [],
+    "default_block_probability": 0.2
+  },
+  "osint": {
+    "status": "enabled",
+    "services_strategy": "graph_theory_random",
+    "visible_services": [],
+    "visibility_probability": 0.5
+  },
+  "os_distribution": {
+    "linux": 0.7,
+    "windows": 0.3
+  },
+  "network_topology": {
+    "services": {
+      "argo-cd": {
+        "name": "argo-cd",
+        "category": "ci_cd",
+        "instance_count": 3,
+        "port": 407,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.022266213633136078,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2022-3219",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with th...",
+            "published_date": "2023-02-23T20:15:12.393Z",
+            "last_modified_date": "2025-03-12T21:15:38.207Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2022-0563",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.5,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The ...",
+            "published_date": "2022-02-21T19:15:08.393Z",
+            "last_modified_date": "2025-06-09T16:15:33.237Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.42350000000000004,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2017-18018",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 4.7,
+              "vector_string": "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:N",
+              "version": "3.0"
+            },
+            "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a pla...",
+            "published_date": "2018-01-04T04:29:00.19Z",
+            "last_modified_date": "2025-06-09T16:15:27.25Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.329,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "cert-manager": {
+        "name": "cert-manager",
+        "category": "security",
+        "instance_count": 1,
+        "port": 9402,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.2353398974845823,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2025-6141",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This...",
+            "published_date": "2025-06-16T22:16:41.527Z",
+            "last_modified_date": "2025-06-17T20:50:23.507Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "elasticsearch": {
+        "name": "elasticsearch",
+        "category": "observability_logging",
+        "instance_count": 3,
+        "port": 9254,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0063565358963567214,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2019-1010025",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addre...",
+            "published_date": "2019-07-15T04:15:13.537Z",
+            "last_modified_date": "2024-11-21T04:17:55.96Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec...",
+            "published_date": "2019-02-26T18:29:00.34Z",
+            "last_modified_date": "2024-11-21T04:51:10.53Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2025-22872",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 6.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:L",
+              "version": "3.1"
+            },
+            "description": "The tokenizer incorrectly interprets tags with unquoted attribute values that end with a solidus cha...",
+            "published_date": "2025-04-16T18:16:04.183Z",
+            "last_modified_date": "2025-05-16T23:15:19.707Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.8969999999999999,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "etcd": {
+        "name": "etcd",
+        "category": "control_plane_core",
+        "instance_count": 4,
+        "port": 2379,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.012249012587722596,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2022-0563",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.5,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The ...",
+            "published_date": "2022-02-21T19:15:08.393Z",
+            "last_modified_date": "2025-06-09T16:15:33.237Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.42350000000000004,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-4802",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.0,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2....",
+            "published_date": "2025-05-16T20:15:22.28Z",
+            "last_modified_date": "2025-06-17T14:09:23.137Z",
+            "severity": "HIGH",
+            "exploitability": 0.5634999999999999,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-8058",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 4.2,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:L",
+              "version": "3.1"
+            },
+            "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if s...",
+            "published_date": "2025-07-23T20:15:27.747Z",
+            "last_modified_date": "2025-07-25T15:29:44.523Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.294,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2022-3219",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with th...",
+            "published_date": "2023-02-23T20:15:12.393Z",
+            "last_modified_date": "2025-03-12T21:15:38.207Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "grafana": {
+        "name": "grafana",
+        "category": "observability",
+        "instance_count": 1,
+        "port": 3000,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": true,
+        "vulnerability_level": 0.4517614734259535,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2024-26461",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sea...",
+            "published_date": "2024-02-29T01:44:18.82Z",
+            "last_modified_date": "2025-05-23T15:30:30.847Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.8142,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-5278",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 4.4,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap bu...",
+            "published_date": "2025-05-27T21:15:23.197Z",
+            "last_modified_date": "2025-05-29T18:15:24.29Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.38962,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-56433",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.6,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 1...",
+            "published_date": "2024-12-26T09:15:07.267Z",
+            "last_modified_date": "2024-12-26T09:15:07.267Z",
+            "severity": "LOW",
+            "exploitability": 0.252,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "grafana-loki": {
+        "name": "grafana-loki",
+        "category": "observability",
+        "instance_count": 3,
+        "port": 3100,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.23109589996235635,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2011-4116",
+            "cvss_v2": {
+              "base_score": 1.5,
+              "vector_string": "AV:L/AC:M/Au:S/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+            "published_date": "2020-01-31T18:15:11.343Z",
+            "last_modified_date": "2025-08-04T19:04:38.29Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2011-3389",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Expl...",
+            "published_date": "2011-09-06T19:55:03.197Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.516,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-50495",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 6.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "NCurse v6.4-20230418 was discovered to contain a segmentation fault via the component _nc_wrap_entry...",
+            "published_date": "2023-12-12T15:15:07.867Z",
+            "last_modified_date": "2024-11-21T08:37:04.243Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.9867,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "harbor": {
+        "name": "harbor",
+        "category": "ci_cd",
+        "instance_count": 3,
+        "port": 129,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-4016",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a ma...",
+            "published_date": "2023-08-02T05:15:09.85Z",
+            "last_modified_date": "2024-11-21T08:34:14.073Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "cvss_v2": {
+              "base_score": 4.0,
+              "vector_string": "AV:N/AC:L/Au:S/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users ...",
+            "published_date": "2011-03-02T20:00:01.037Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.528,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-2236",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a...",
+            "published_date": "2024-03-06T22:15:57.977Z",
+            "last_modified_date": "2025-04-02T17:15:37.79Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.8142,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2018-6829",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "cipher/elgamal.c in Libgcrypt through 1.8.2, when used to encrypt messages directly, improperly enco...",
+            "published_date": "2018-02-07T23:29:01.703Z",
+            "last_modified_date": "2024-11-21T04:11:15.41Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-10041",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 4.7,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A vulnerability was found in PAM. The secret information is stored in memory, where the attacker can...",
+            "published_date": "2024-10-23T14:15:03.97Z",
+            "last_modified_date": "2024-12-18T10:15:05.85Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.329,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "jaeger": {
+        "name": "jaeger",
+        "category": "observability",
+        "instance_count": 3,
+        "port": 8122,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.11040812625464541,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2022-3219",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with th...",
+            "published_date": "2023-02-23T20:15:12.393Z",
+            "last_modified_date": "2025-03-12T21:15:38.207Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2011-3389",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Expl...",
+            "published_date": "2011-09-06T19:55:03.197Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.516,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "cvss_v2": {
+              "base_score": 4.0,
+              "vector_string": "AV:N/AC:L/Au:S/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users ...",
+            "published_date": "2011-03-02T20:00:01.037Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.528,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "jenkins": {
+        "name": "jenkins",
+        "category": "jenkins",
+        "instance_count": 1,
+        "port": 23015,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": true,
+        "vulnerability_level": 0.4546136681577384,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2019-6110",
+            "cvss_v2": {
+              "base_score": 4.0,
+              "vector_string": "AV:N/AC:H/Au:N/C:P/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 6.8,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "version": "3.1"
+            },
+            "description": "In OpenSSH 7.9, due to accepting and displaying arbitrary stderr output from the server, a malicious...",
+            "published_date": "2019-01-31T18:29:00.807Z",
+            "last_modified_date": "2024-11-21T04:45:57.737Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.9383999999999999,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "version": "3.0"
+            },
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_k...",
+            "published_date": "2018-01-16T09:29:00.5Z",
+            "last_modified_date": "2024-11-21T04:09:13.037Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2024-2236",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a...",
+            "published_date": "2024-03-06T22:15:57.977Z",
+            "last_modified_date": "2025-04-02T17:15:37.79Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.8142,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-2953",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "A vulnerability was found in openldap. This security flaw causes a null pointer dereference in ber_m...",
+            "published_date": "2023-05-30T22:15:10.613Z",
+            "last_modified_date": "2025-01-10T22:15:23.557Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2024-8176",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "A stack overflow vulnerability exists in the libexpat library due to the way it handles recursive en...",
+            "published_date": "2025-03-14T09:15:14.157Z",
+            "last_modified_date": "2025-08-14T16:15:31.497Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          }
+        ]
+      },
+      "jupyterhub": {
+        "name": "jupyterhub",
+        "category": "ml_platform",
+        "instance_count": 1,
+        "port": 8081,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": true,
+        "vulnerability_level": 0.46682208532815006,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-31484",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 8.1,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "CPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS.",
+            "published_date": "2023-04-29T00:15:09Z",
+            "last_modified_date": "2024-11-21T08:01:57.707Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31439",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a seal...",
+            "published_date": "2023-06-13T17:15:14.753Z",
+            "last_modified_date": "2024-11-21T08:01:52.097Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "keycloak": {
+        "name": "keycloak",
+        "category": "control_plane_security",
+        "instance_count": 3,
+        "port": 8080,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.03403503487553866,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2025-6141",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This...",
+            "published_date": "2025-06-16T22:16:41.527Z",
+            "last_modified_date": "2025-06-17T20:50:23.507Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-40909",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "version": "3.1"
+            },
+            "description": "Perl threads have a working directory race condition where file operations may target unintended pat...",
+            "published_date": "2025-05-30T13:15:22.35Z",
+            "last_modified_date": "2025-09-05T14:15:44.947Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.522445,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2011-3389",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Expl...",
+            "published_date": "2011-09-06T19:55:03.197Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.516,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-4802",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.0,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "Untrusted LD_LIBRARY_PATH environment variable vulnerability in the GNU C Library version 2.27 to 2....",
+            "published_date": "2025-05-16T20:15:22.28Z",
+            "last_modified_date": "2025-06-17T14:09:23.137Z",
+            "severity": "HIGH",
+            "exploitability": 0.5634999999999999,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6020",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.8,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without...",
+            "published_date": "2025-06-17T13:15:21.66Z",
+            "last_modified_date": "2025-09-11T16:15:34.16Z",
+            "severity": "HIGH",
+            "exploitability": 0.6006,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "cvss_v2": {
+              "base_score": 7.5,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 9.8,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard p...",
+            "published_date": "2019-07-15T04:15:13.317Z",
+            "last_modified_date": "2024-11-21T04:17:55.5Z",
+            "severity": "CRITICAL",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-56433",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.6,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 1...",
+            "published_date": "2024-12-26T09:15:07.267Z",
+            "last_modified_date": "2024-12-26T09:15:07.267Z",
+            "severity": "LOW",
+            "exploitability": 0.252,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "kibana": {
+        "name": "kibana",
+        "category": "observability_logging",
+        "instance_count": 1,
+        "port": 5601,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": true,
+        "vulnerability_level": 0.3326804987523857,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-4016",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a ma...",
+            "published_date": "2023-08-02T05:15:09.85Z",
+            "last_modified_date": "2024-11-21T08:34:14.073Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31439",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a seal...",
+            "published_date": "2023-06-13T17:15:14.753Z",
+            "last_modified_date": "2024-11-21T08:01:52.097Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-2236",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a...",
+            "published_date": "2024-03-06T22:15:57.977Z",
+            "last_modified_date": "2025-04-02T17:15:37.79Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.8142,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2017-11695",
+            "cvss_v2": {
+              "base_score": 4.6,
+              "vector_string": "AV:L/AC:L/Au:N/C:P/I:P/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.8,
+              "vector_string": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.0"
+            },
+            "description": "Heap-based buffer overflow in the alloc_segs function in lib/dbm/src/hash.c in Mozilla Network Secur...",
+            "published_date": "2017-12-27T19:29:00.503Z",
+            "last_modified_date": "2025-04-20T01:37:25.86Z",
+            "severity": "HIGH",
+            "exploitability": 0.6006,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31437",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some ...",
+            "published_date": "2023-06-13T17:15:14.657Z",
+            "last_modified_date": "2025-01-03T20:15:26.457Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "kube-state-metrics": {
+        "name": "kube-state-metrics",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 8080,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.3610091601542429,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-4016",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "Under some circumstances, this weakness allows a user who has access to run the \u201cps\u201d utility on a ma...",
+            "published_date": "2023-08-02T05:15:09.85Z",
+            "last_modified_date": "2024-11-21T08:34:14.073Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2011-3389",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Expl...",
+            "published_date": "2011-09-06T19:55:03.197Z",
+            "last_modified_date": "2025-04-11T00:51:21.963Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.516,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addre...",
+            "published_date": "2019-07-15T04:15:13.537Z",
+            "last_modified_date": "2024-11-21T04:17:55.96Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6297",
+            "cvss_v2": null,
+            "cvss_v3": null,
+            "description": "It was discovered that dpkg-deb does not properly sanitize directory permissions when extracting a c...",
+            "published_date": "2025-07-01T17:15:30.177Z",
+            "last_modified_date": "2025-08-19T17:50:38.047Z",
+            "severity": "NONE",
+            "exploitability": 0.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "metrics-server": {
+        "name": "metrics-server",
+        "category": "control_plane",
+        "instance_count": 1,
+        "port": 4032,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.1435828541437952,
+        "vulnerabilities": [
+          {
+            "cve_id": "TEMP-0517018-A83CE6",
+            "cvss_v2": null,
+            "cvss_v3": null,
+            "description": "[sysvinit: no-root option in expert installer exposes locally exploitable security flaw]",
+            "published_date": null,
+            "last_modified_date": null,
+            "severity": "NONE",
+            "exploitability": 0.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-27587",
+            "cvss_v2": null,
+            "cvss_v3": null,
+            "description": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitab...",
+            "published_date": "2025-06-16T22:15:44.093Z",
+            "last_modified_date": "2025-06-26T17:15:30.497Z",
+            "severity": "NONE",
+            "exploitability": 0.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "minio": {
+        "name": "minio",
+        "category": "storage",
+        "instance_count": 3,
+        "port": 9001,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.1769366307773405,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2013-4392",
+            "cvss_v2": {
+              "base_score": 3.3,
+              "vector_string": "AV:L/AC:M/Au:N/C:P/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux se...",
+            "published_date": "2013-10-28T22:55:03.773Z",
+            "last_modified_date": "2025-06-09T16:15:23.763Z",
+            "severity": "LOW",
+            "exploitability": 0.23099999999999996,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2020-15719",
+            "cvss_v2": {
+              "base_score": 4.0,
+              "vector_string": "AV:N/AC:H/Au:N/C:P/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 4.2,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "libldap in certain third-party OpenLDAP packages has a certificate-validation flaw when the third-pa...",
+            "published_date": "2020-07-14T14:15:17.667Z",
+            "last_modified_date": "2024-11-21T05:06:05.903Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.5796,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2017-14159",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 4.7,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root acco...",
+            "published_date": "2017-09-05T18:29:00.133Z",
+            "last_modified_date": "2025-04-20T01:37:25.86Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.329,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "version": "3.0"
+            },
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_k...",
+            "published_date": "2018-01-16T09:29:00.5Z",
+            "last_modified_date": "2024-11-21T04:09:13.037Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This...",
+            "published_date": "2025-06-16T22:16:41.527Z",
+            "last_modified_date": "2025-06-17T20:50:23.507Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "mongodb": {
+        "name": "mongodb",
+        "category": "database",
+        "instance_count": 3,
+        "port": 27017,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.04940276233045157,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2025-30258",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 2.7,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data th...",
+            "published_date": "2025-03-19T20:15:20.14Z",
+            "last_modified_date": "2025-03-19T20:15:20.14Z",
+            "severity": "LOW",
+            "exploitability": 0.21735,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31437",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some ...",
+            "published_date": "2023-06-13T17:15:14.657Z",
+            "last_modified_date": "2025-01-03T20:15:26.457Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addre...",
+            "published_date": "2019-07-15T04:15:13.537Z",
+            "last_modified_date": "2024-11-21T04:17:55.96Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec...",
+            "published_date": "2019-02-26T02:29:00.45Z",
+            "last_modified_date": "2024-11-21T04:02:11.827Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2024-22365",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.5,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "linux-pam (aka Linux PAM) before 1.6.0 allows attackers to cause a denial of service (blocked login ...",
+            "published_date": "2024-02-06T08:15:52.203Z",
+            "last_modified_date": "2025-06-05T17:15:27.617Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.42350000000000004,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "mysql": {
+        "name": "mysql",
+        "category": "database",
+        "instance_count": 3,
+        "port": 3306,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2018-20712",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 6.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "A heap-based buffer over-read exists in the function d_expression_1 in cp-demangle.c in GNU libibert...",
+            "published_date": "2019-01-15T00:29:00.257Z",
+            "last_modified_date": "2024-11-21T04:02:00.663Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.9867,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec...",
+            "published_date": "2019-02-26T18:29:00.34Z",
+            "last_modified_date": "2024-11-21T04:51:10.53Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2020-36325",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in Jansson through 2.13.1. Due to a parsing error in json_loads, there's an ...",
+            "published_date": "2021-04-26T18:15:07.493Z",
+            "last_modified_date": "2024-11-21T05:29:17.143Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          }
+        ]
+      },
+      "nginx": {
+        "name": "nginx",
+        "category": "networking",
+        "instance_count": 3,
+        "port": 428,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": false,
+        "vulnerability_level": 0.5844319933599369,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2024-22365",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.5,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "linux-pam (aka Linux PAM) before 1.6.0 allows attackers to cause a denial of service (blocked login ...",
+            "published_date": "2024-02-06T08:15:52.203Z",
+            "last_modified_date": "2025-06-05T17:15:27.617Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.42350000000000004,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-0725",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 4.0,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "When libcurl is asked to perform automatic gzip decompression of\ncontent-encoded HTTP responses with...",
+            "published_date": "2025-02-05T10:15:22.98Z",
+            "last_modified_date": "2025-06-27T19:24:08.327Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.35419999999999996,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-8058",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 4.2,
+              "vector_string": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:L",
+              "version": "3.1"
+            },
+            "description": "The regcomp function in the GNU C library version from 2.4 to 2.41 is \nsubject to a double free if s...",
+            "published_date": "2025-07-23T20:15:27.747Z",
+            "last_modified_date": "2025-07-25T15:29:44.523Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.294,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "nginx-ingress-controller": {
+        "name": "nginx-ingress-controller",
+        "category": "control_plane_networking",
+        "instance_count": 3,
+        "port": 350,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": false,
+        "vulnerability_level": 0.45028282399636277,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2011-3374",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 3.7,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master k...",
+            "published_date": "2019-11-26T00:15:11.03Z",
+            "last_modified_date": "2024-11-21T01:30:22.61Z",
+            "severity": "LOW",
+            "exploitability": 0.5105999999999999,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using ca...",
+            "published_date": "2019-07-15T04:15:13.473Z",
+            "last_modified_date": "2024-11-21T04:17:55.843Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-50495",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 6.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "NCurse v6.4-20230418 was discovered to contain a segmentation fault via the component _nc_wrap_entry...",
+            "published_date": "2023-12-12T15:15:07.867Z",
+            "last_modified_date": "2024-11-21T08:37:04.243Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.9867,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2024-2379",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.4,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when buil...",
+            "published_date": "2024-03-27T08:15:41.23Z",
+            "last_modified_date": "2025-07-30T19:42:09.087Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.7128000000000001,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2017-17740",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when both the nops module and the memb...",
+            "published_date": "2017-12-18T06:29:00.397Z",
+            "last_modified_date": "2025-04-20T01:37:25.86Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "cvss_v2": {
+              "base_score": 6.8,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 8.8,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impa...",
+            "published_date": "2019-07-15T04:15:13.397Z",
+            "last_modified_date": "2024-11-21T04:17:55.643Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-40909",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.9,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "version": "3.1"
+            },
+            "description": "Perl threads have a working directory race condition where file operations may target unintended pat...",
+            "published_date": "2025-05-30T13:15:22.35Z",
+            "last_modified_date": "2025-09-05T14:15:44.947Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.522445,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-20838",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "libpcre in PCRE before 8.43 allows a subject buffer over-read in JIT when UTF is disabled, and \\X or...",
+            "published_date": "2020-06-15T17:15:09.683Z",
+            "last_modified_date": "2024-11-21T04:39:29.857Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          }
+        ]
+      },
+      "postgresql": {
+        "name": "postgresql",
+        "category": "database",
+        "instance_count": 3,
+        "port": 5432,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.0,
+        "vulnerabilities": []
+      },
+      "prometheus": {
+        "name": "prometheus",
+        "category": "observability",
+        "instance_count": 3,
+        "port": 9090,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": false,
+        "vulnerability_level": 0.3943776197740229,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2025-22869",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.1"
+            },
+            "description": "SSH servers which implement file transfer protocols are vulnerable to a denial of service attack fro...",
+            "published_date": "2025-02-26T08:14:24.997Z",
+            "last_modified_date": "2025-05-01T19:28:20.74Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2013-4392",
+            "cvss_v2": {
+              "base_score": 3.3,
+              "vector_string": "AV:L/AC:M/Au:N/C:P/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": null,
+            "description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux se...",
+            "published_date": "2013-10-28T22:55:03.773Z",
+            "last_modified_date": "2025-06-09T16:15:23.763Z",
+            "severity": "LOW",
+            "exploitability": 0.23099999999999996,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "redis": {
+        "name": "redis",
+        "category": "database",
+        "instance_count": 3,
+        "port": 6379,
+        "protocol": "TCP",
+        "is_public": false,
+        "has_authentication": true,
+        "vulnerability_level": 0.06833386963449342,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2022-3219",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with th...",
+            "published_date": "2023-02-23T20:15:12.393Z",
+            "last_modified_date": "2025-03-12T21:15:38.207Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2017-18018",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 4.7,
+              "vector_string": "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:N",
+              "version": "3.0"
+            },
+            "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a pla...",
+            "published_date": "2018-01-04T04:29:00.19Z",
+            "last_modified_date": "2025-06-09T16:15:27.25Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.329,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31439",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a seal...",
+            "published_date": "2023-06-13T17:15:14.753Z",
+            "last_modified_date": "2024-11-21T08:01:52.097Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "cvss_v2": {
+              "base_score": 6.8,
+              "vector_string": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 8.8,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "version": "3.0"
+            },
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impa...",
+            "published_date": "2019-07-15T04:15:13.397Z",
+            "last_modified_date": "2024-11-21T04:17:55.643Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6297",
+            "cvss_v2": null,
+            "cvss_v3": null,
+            "description": "It was discovered that dpkg-deb does not properly sanitize directory permissions when extracting a c...",
+            "published_date": "2025-07-01T17:15:30.177Z",
+            "last_modified_date": "2025-08-19T17:50:38.047Z",
+            "severity": "NONE",
+            "exploitability": 0.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This...",
+            "published_date": "2025-06-16T22:16:41.527Z",
+            "last_modified_date": "2025-06-17T20:50:23.507Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      },
+      "wordpress": {
+        "name": "wordpress",
+        "category": "web_cms",
+        "instance_count": 1,
+        "port": 80,
+        "protocol": "TCP",
+        "is_public": true,
+        "has_authentication": true,
+        "vulnerability_level": 0.41978891689204584,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2011-3374",
+            "cvss_v2": {
+              "base_score": 4.3,
+              "vector_string": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 3.7,
+              "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master k...",
+            "published_date": "2019-11-26T00:15:11.03Z",
+            "last_modified_date": "2024-11-21T01:30:22.61Z",
+            "severity": "LOW",
+            "exploitability": 0.5105999999999999,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "version": "3.1"
+            },
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This...",
+            "published_date": "2025-06-16T22:16:41.527Z",
+            "last_modified_date": "2025-06-17T20:50:23.507Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31439",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a seal...",
+            "published_date": "2023-06-13T17:15:14.753Z",
+            "last_modified_date": "2024-11-21T08:01:52.097Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-31437",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 5.3,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some ...",
+            "published_date": "2023-06-13T17:15:14.657Z",
+            "last_modified_date": "2025-01-03T20:15:26.457Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.80454,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "PrivilegeEscalation",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2022-0563",
+            "cvss_v2": {
+              "base_score": 1.9,
+              "vector_string": "AV:L/AC:M/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 5.5,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The ...",
+            "published_date": "2022-02-21T19:15:08.393Z",
+            "last_modified_date": "2025-06-09T16:15:33.237Z",
+            "severity": "MEDIUM",
+            "exploitability": 0.42350000000000004,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec...",
+            "published_date": "2019-02-26T02:29:00.45Z",
+            "last_modified_date": "2024-11-21T04:02:11.827Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "version": "3.0"
+            },
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec...",
+            "published_date": "2019-02-26T18:29:00.34Z",
+            "last_modified_date": "2024-11-21T04:51:10.53Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "AdminEscalation",
+            "privilege_level": 2
+          },
+          {
+            "cve_id": "CVE-2018-6829",
+            "cvss_v2": {
+              "base_score": 5.0,
+              "vector_string": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 7.5,
+              "vector_string": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "version": "3.0"
+            },
+            "description": "cipher/elgamal.c in Libgcrypt through 1.8.2, when used to encrypt messages directly, improperly enco...",
+            "published_date": "2018-02-07T23:29:01.703Z",
+            "last_modified_date": "2024-11-21T04:11:15.41Z",
+            "severity": "HIGH",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6020",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 7.8,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "A flaw was found in linux-pam. The module pam_namespace may use access user-controlled paths without...",
+            "published_date": "2025-06-17T13:15:21.66Z",
+            "last_modified_date": "2025-09-11T16:15:34.16Z",
+            "severity": "HIGH",
+            "exploitability": 0.6006,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2023-45853",
+            "cvss_v2": null,
+            "cvss_v3": {
+              "base_score": 9.8,
+              "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "version": "3.1"
+            },
+            "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipO...",
+            "published_date": "2023-10-14T02:15:09.323Z",
+            "last_modified_date": "2024-12-20T17:41:31.237Z",
+            "severity": "CRITICAL",
+            "exploitability": 1.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "CustomerData",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2025-6297",
+            "cvss_v2": null,
+            "cvss_v3": null,
+            "description": "It was discovered that dpkg-deb does not properly sanitize directory permissions when extracting a c...",
+            "published_date": "2025-07-01T17:15:30.177Z",
+            "last_modified_date": "2025-08-19T17:50:38.047Z",
+            "severity": "NONE",
+            "exploitability": 0.0,
+            "vulnerability_type": "REMOTE",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          },
+          {
+            "cve_id": "CVE-2011-4116",
+            "cvss_v2": {
+              "base_score": 1.5,
+              "vector_string": "AV:L/AC:M/Au:S/C:N/I:P/A:N",
+              "version": "2.0"
+            },
+            "cvss_v3": {
+              "base_score": 3.3,
+              "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "version": "3.1"
+            },
+            "description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
+            "published_date": "2020-01-31T18:15:11.343Z",
+            "last_modified_date": "2025-08-04T19:04:38.29Z",
+            "severity": "LOW",
+            "exploitability": 0.2541,
+            "vulnerability_type": "LOCAL",
+            "outcome_type": "LeakedNodesId",
+            "privilege_level": 1
+          }
+        ]
+      }
+    },
+    "knows_connectivity": [
+      {
+        "source": "etcd",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 4032,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "jaeger",
+        "target": "elasticsearch",
+        "protocol": "TCP",
+        "port": 9254,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": false
+      },
+      {
+        "source": "kibana",
+        "target": "elasticsearch",
+        "protocol": "TCP",
+        "port": 9254,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "wordpress",
+        "target": "mysql",
+        "protocol": "TCP",
+        "port": 3306,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": false
+      },
+      {
+        "source": "wordpress",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "etcd",
+        "protocol": "TCP",
+        "port": 2379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 8122,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jenkins",
+        "protocol": "TCP",
+        "port": 23015,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "jupyterhub",
+        "protocol": "TCP",
+        "port": 8081,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      },
+      {
+        "source": "prometheus",
+        "target": "kibana",
+        "protocol": "TCP",
+        "port": 5601,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "minio",
+        "protocol": "TCP",
+        "port": 9001,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mongodb",
+        "protocol": "TCP",
+        "port": 27017,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mysql",
+        "protocol": "TCP",
+        "port": 3306,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "nginx",
+        "protocol": "TCP",
+        "port": 428,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "wordpress",
+        "protocol": "TCP",
+        "port": 80,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": false
+      }
+    ],
+    "knows_reachability": [
+      "kube-state-metrics",
+      "nginx-ingress-controller",
+      "elasticsearch",
+      "grafana",
+      "minio",
+      "mongodb",
+      "nginx",
+      "kibana",
+      "jupyterhub",
+      "etcd",
+      "prometheus",
+      "wordpress",
+      "metrics-server",
+      "mysql",
+      "jaeger",
+      "grafana-loki",
+      "jenkins",
+      "redis"
+    ],
+    "access_connectivity": [
+      {
+        "source": "etcd",
+        "target": "metrics-server",
+        "protocol": "TCP",
+        "port": 4032,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "protocol": "TCP",
+        "port": 9090,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "protocol": "TCP",
+        "port": 3100,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "kibana",
+        "target": "elasticsearch",
+        "protocol": "TCP",
+        "port": 9254,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "nginx-ingress-controller",
+        "target": "nginx",
+        "protocol": "TCP",
+        "port": 428,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "wordpress",
+        "target": "redis",
+        "protocol": "TCP",
+        "port": 6379,
+        "bidirectional": false,
+        "requires_auth": true,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "argo-cd",
+        "protocol": "TCP",
+        "port": 407,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "cert-manager",
+        "protocol": "TCP",
+        "port": 9402,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "etcd",
+        "protocol": "TCP",
+        "port": 2379,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "grafana",
+        "protocol": "TCP",
+        "port": 3000,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "harbor",
+        "protocol": "TCP",
+        "port": 129,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "jaeger",
+        "protocol": "TCP",
+        "port": 8122,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kibana",
+        "protocol": "TCP",
+        "port": 5601,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "kube-state-metrics",
+        "protocol": "TCP",
+        "port": 8080,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "minio",
+        "protocol": "TCP",
+        "port": 9001,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mongodb",
+        "protocol": "TCP",
+        "port": 27017,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "mysql",
+        "protocol": "TCP",
+        "port": 3306,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "nginx",
+        "protocol": "TCP",
+        "port": 428,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      },
+      {
+        "source": "prometheus",
+        "target": "nginx-ingress-controller",
+        "protocol": "TCP",
+        "port": 350,
+        "bidirectional": false,
+        "requires_auth": false,
+        "firewall_allowed": true
+      }
+    ],
+    "access_reachability": [
+      "nginx-ingress-controller",
+      "etcd",
+      "mysql",
+      "wordpress",
+      "metrics-server",
+      "grafana-loki",
+      "elasticsearch",
+      "mongodb",
+      "harbor",
+      "minio",
+      "jenkins",
+      "redis",
+      "kube-state-metrics",
+      "argo-cd",
+      "jaeger",
+      "grafana",
+      "nginx",
+      "kibana",
+      "cert-manager",
+      "jupyterhub",
+      "prometheus"
+    ],
+    "credential_flow": [
+      {
+        "source": "grafana",
+        "target": "prometheus",
+        "credential_level": "LocalUser",
+        "credential_type": "token",
+        "is_cached": false,
+        "is_shared": true,
+        "can_pivot": false
+      },
+      {
+        "source": "grafana",
+        "target": "grafana-loki",
+        "credential_level": "LocalUser",
+        "credential_type": "token",
+        "is_cached": false,
+        "is_shared": false,
+        "can_pivot": false
+      },
+      {
+        "source": "wordpress",
+        "target": "redis",
+        "credential_level": "LocalUser",
+        "credential_type": "password",
+        "is_cached": true,
+        "is_shared": false,
+        "can_pivot": false
+      }
+    ],
+    "metadata": {
+      "total_services": 23,
+      "total_edges": 28,
+      "entry_points": [
+        "grafana",
+        "jenkins",
+        "jupyterhub",
+        "kibana",
+        "nginx",
+        "nginx-ingress-controller",
+        "wordpress"
+      ],
+      "connectivity_metrics": {
+        "avg_degree": 1.826086956521739,
+        "density": 0.041501976284584984,
+        "is_connected": false,
+        "num_components": 6
+      }
+    }
+  },
+  "physical_topology": {
+    "metadata": {
+      "generator": "PhysicalNodeGenerator",
+      "version": "2.1-InternetAware",
+      "num_physical_nodes": 6,
+      "num_zones": 3
+    },
+    "network_configuration": {
+      "zone_subnets": {
+        "zone-a": "10.0.0.0/16",
+        "zone-b": "10.1.0.0/16",
+        "zone-c": "10.2.0.0/16"
+      },
+      "ip_allocations": {
+        "zone-a": [
+          "10.0.0.2",
+          "10.0.0.5"
+        ],
+        "zone-b": [
+          "10.1.0.6",
+          "10.1.0.3"
+        ],
+        "zone-c": [
+          "10.2.0.4",
+          "10.2.0.7"
+        ]
+      }
+    },
+    "security_groups": {
+      "zone-a": {
+        "group_id": "sg-zone-a-1488",
+        "zone": "zone-a",
+        "name": "security-group-zone-a",
+        "rules": [
+          {
+            "rule_id": "sg-zone-a-1488-ingress-internal",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.0.0.0/16",
+            "destination_cidr": "10.0.0.0/16",
+            "action": "allow",
+            "description": "Allow all traffic within zone"
+          },
+          {
+            "rule_id": "sg-zone-a-1488-ingress-zone-b",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.1.0.0/16",
+            "destination_cidr": "10.0.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-b"
+          },
+          {
+            "rule_id": "sg-zone-a-1488-ingress-zone-c",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.2.0.0/16",
+            "destination_cidr": "10.0.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-c"
+          }
+        ]
+      },
+      "zone-b": {
+        "group_id": "sg-zone-b-2535",
+        "zone": "zone-b",
+        "name": "security-group-zone-b",
+        "rules": [
+          {
+            "rule_id": "sg-zone-b-2535-ingress-internal",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.1.0.0/16",
+            "destination_cidr": "10.1.0.0/16",
+            "action": "allow",
+            "description": "Allow all traffic within zone"
+          },
+          {
+            "rule_id": "sg-zone-b-2535-ingress-zone-a",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.0.0.0/16",
+            "destination_cidr": "10.1.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-a"
+          },
+          {
+            "rule_id": "sg-zone-b-2535-ingress-zone-c",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.2.0.0/16",
+            "destination_cidr": "10.1.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-c"
+          }
+        ]
+      },
+      "zone-c": {
+        "group_id": "sg-zone-c-4582",
+        "zone": "zone-c",
+        "name": "security-group-zone-c",
+        "rules": [
+          {
+            "rule_id": "sg-zone-c-4582-ingress-internal",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.2.0.0/16",
+            "destination_cidr": "10.2.0.0/16",
+            "action": "allow",
+            "description": "Allow all traffic within zone"
+          },
+          {
+            "rule_id": "sg-zone-c-4582-ingress-zone-a",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.0.0.0/16",
+            "destination_cidr": "10.2.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-a"
+          },
+          {
+            "rule_id": "sg-zone-c-4582-ingress-zone-b",
+            "direction": "ingress",
+            "protocol": "all",
+            "port_range": null,
+            "source_cidr": "10.1.0.0/16",
+            "destination_cidr": "10.2.0.0/16",
+            "action": "allow",
+            "description": "Allow traffic from zone-b"
+          }
+        ]
+      }
+    },
+    "nodes": [
+      {
+        "node_id": "node-control_plane-000",
+        "node_type": "control_plane",
+        "zone": "zone-a",
+        "ip_allocation": {
+          "ipv4": "10.0.0.2",
+          "subnet": "255.255.0.0",
+          "gateway": "10.0.0.1",
+          "cidr": "10.0.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 7,
+          "memory_gb": 18,
+          "disk_gb": 135,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "etcd",
+            "instance": 0
+          },
+          {
+            "service": "etcd",
+            "instance": 2
+          },
+          {
+            "service": "metrics-server",
+            "instance": 0
+          }
+        ],
+        "labels": {
+          "node-type": "control_plane",
+          "zone": "zone-a",
+          "kubernetes.io/hostname": "node-control_plane-000",
+          "ipv4": "10.0.0.2"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 3,
+        "security_groups": [
+          "sg-zone-a"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 308
+      },
+      {
+        "node_id": "node-control_plane-001",
+        "node_type": "control_plane",
+        "zone": "zone-b",
+        "ip_allocation": {
+          "ipv4": "10.1.0.3",
+          "subnet": "255.255.0.0",
+          "gateway": "10.1.0.1",
+          "cidr": "10.1.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 5,
+          "memory_gb": 21,
+          "disk_gb": 113,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "etcd",
+            "instance": 1
+          },
+          {
+            "service": "kube-state-metrics",
+            "instance": 0
+          }
+        ],
+        "labels": {
+          "node-type": "control_plane",
+          "zone": "zone-b",
+          "kubernetes.io/hostname": "node-control_plane-001",
+          "ipv4": "10.1.0.3"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 2,
+        "security_groups": [
+          "sg-zone-b"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 291
+      },
+      {
+        "node_id": "node-control_plane-002",
+        "node_type": "control_plane",
+        "zone": "zone-c",
+        "ip_allocation": {
+          "ipv4": "10.2.0.4",
+          "subnet": "255.255.0.0",
+          "gateway": "10.2.0.1",
+          "cidr": "10.2.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 7,
+          "memory_gb": 31,
+          "disk_gb": 111,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "cert-manager",
+            "instance": 0
+          },
+          {
+            "service": "etcd",
+            "instance": 3
+          }
+        ],
+        "labels": {
+          "node-type": "control_plane",
+          "zone": "zone-c",
+          "kubernetes.io/hostname": "node-control_plane-002",
+          "ipv4": "10.2.0.4"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 2,
+        "security_groups": [
+          "sg-zone-c"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 340
+      },
+      {
+        "node_id": "node-worker-000",
+        "node_type": "worker",
+        "zone": "zone-a",
+        "ip_allocation": {
+          "ipv4": "10.0.0.5",
+          "subnet": "255.255.0.0",
+          "gateway": "10.0.0.1",
+          "cidr": "10.0.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 13,
+          "memory_gb": 27,
+          "disk_gb": 402,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "keycloak",
+            "instance": 0
+          },
+          {
+            "service": "minio",
+            "instance": 2
+          },
+          {
+            "service": "jaeger",
+            "instance": 0
+          },
+          {
+            "service": "redis",
+            "instance": 1
+          },
+          {
+            "service": "keycloak",
+            "instance": 1
+          },
+          {
+            "service": "mongodb",
+            "instance": 1
+          },
+          {
+            "service": "mysql",
+            "instance": 1
+          },
+          {
+            "service": "redis",
+            "instance": 0
+          },
+          {
+            "service": "grafana",
+            "instance": 0
+          },
+          {
+            "service": "argo-cd",
+            "instance": 2
+          },
+          {
+            "service": "nginx",
+            "instance": 1
+          },
+          {
+            "service": "harbor",
+            "instance": 2
+          },
+          {
+            "service": "kibana",
+            "instance": 0
+          },
+          {
+            "service": "nginx-ingress-controller",
+            "instance": 0
+          },
+          {
+            "service": "mysql",
+            "instance": 0
+          },
+          {
+            "service": "mongodb",
+            "instance": 0
+          }
+        ],
+        "labels": {
+          "node-type": "worker",
+          "zone": "zone-a",
+          "kubernetes.io/hostname": "node-worker-000",
+          "ipv4": "10.0.0.5"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 16,
+        "security_groups": [
+          "sg-zone-a"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "5601",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "9000",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "27017",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "3306",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "9001",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "6379",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "16686",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "6831",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "8080",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "80",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "6832",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "3000",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "443",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "14268",
+              "reason": "Public Service Access"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 127
+      },
+      {
+        "node_id": "node-worker-001",
+        "node_type": "worker",
+        "zone": "zone-b",
+        "ip_allocation": {
+          "ipv4": "10.1.0.6",
+          "subnet": "255.255.0.0",
+          "gateway": "10.1.0.1",
+          "cidr": "10.1.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 15,
+          "memory_gb": 23,
+          "disk_gb": 316,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "jaeger",
+            "instance": 2
+          },
+          {
+            "service": "nginx",
+            "instance": 2
+          },
+          {
+            "service": "elasticsearch",
+            "instance": 0
+          },
+          {
+            "service": "jupyterhub",
+            "instance": 0
+          },
+          {
+            "service": "harbor",
+            "instance": 1
+          },
+          {
+            "service": "minio",
+            "instance": 0
+          },
+          {
+            "service": "prometheus",
+            "instance": 0
+          },
+          {
+            "service": "jaeger",
+            "instance": 1
+          },
+          {
+            "service": "minio",
+            "instance": 1
+          },
+          {
+            "service": "prometheus",
+            "instance": 2
+          },
+          {
+            "service": "jenkins",
+            "instance": 0
+          },
+          {
+            "service": "mysql",
+            "instance": 2
+          },
+          {
+            "service": "mongodb",
+            "instance": 2
+          },
+          {
+            "service": "postgresql",
+            "instance": 1
+          },
+          {
+            "service": "argo-cd",
+            "instance": 1
+          },
+          {
+            "service": "grafana-loki",
+            "instance": 2
+          }
+        ],
+        "labels": {
+          "node-type": "worker",
+          "zone": "zone-b",
+          "kubernetes.io/hostname": "node-worker-001",
+          "ipv4": "10.1.0.6"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 16,
+        "security_groups": [
+          "sg-zone-b"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 190
+      },
+      {
+        "node_id": "node-worker-002",
+        "node_type": "worker",
+        "zone": "zone-c",
+        "ip_allocation": {
+          "ipv4": "10.2.0.7",
+          "subnet": "255.255.0.0",
+          "gateway": "10.2.0.1",
+          "cidr": "10.2.0.0/16"
+        },
+        "characteristics": {
+          "cpu_cores": 19,
+          "memory_gb": 21,
+          "disk_gb": 116,
+          "network_bandwidth_gbps": 10.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [
+          {
+            "service": "elasticsearch",
+            "instance": 1
+          },
+          {
+            "service": "elasticsearch",
+            "instance": 2
+          },
+          {
+            "service": "redis",
+            "instance": 2
+          },
+          {
+            "service": "harbor",
+            "instance": 0
+          },
+          {
+            "service": "keycloak",
+            "instance": 2
+          },
+          {
+            "service": "postgresql",
+            "instance": 2
+          },
+          {
+            "service": "nginx-ingress-controller",
+            "instance": 1
+          },
+          {
+            "service": "nginx-ingress-controller",
+            "instance": 2
+          },
+          {
+            "service": "prometheus",
+            "instance": 1
+          },
+          {
+            "service": "grafana-loki",
+            "instance": 1
+          },
+          {
+            "service": "argo-cd",
+            "instance": 0
+          },
+          {
+            "service": "wordpress",
+            "instance": 0
+          },
+          {
+            "service": "postgresql",
+            "instance": 0
+          },
+          {
+            "service": "grafana-loki",
+            "instance": 0
+          },
+          {
+            "service": "nginx",
+            "instance": 0
+          }
+        ],
+        "labels": {
+          "node-type": "worker",
+          "zone": "zone-c",
+          "kubernetes.io/hostname": "node-worker-002",
+          "ipv4": "10.2.0.7"
+        },
+        "properties": [],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 15,
+        "security_groups": [
+          "sg-zone-c"
+        ],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Trust"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "10.0.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.1.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "10.2.0.0/16",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internal Routing"
+            },
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "DENY",
+              "port": "*",
+              "reason": "Default Deny"
+            }
+          ]
+        },
+        "value": 119
+      },
+      {
+        "node_id": "node-internet",
+        "node_type": "internet",
+        "zone": "public",
+        "ip_allocation": {
+          "ipv4": "0.0.0.0",
+          "subnet": "0.0.0.0",
+          "gateway": "0.0.0.0",
+          "cidr": "0.0.0.0/0"
+        },
+        "characteristics": {
+          "cpu_cores": 0,
+          "memory_gb": 0,
+          "disk_gb": 0,
+          "network_bandwidth_gbps": 1000.0,
+          "has_gpu": false,
+          "gpu_count": 0
+        },
+        "assigned_pods": [],
+        "labels": {
+          "node-type": "internet",
+          "zone": "public",
+          "kubernetes.io/hostname": "node-internet-000",
+          "ipv4": "0.0.0.0"
+        },
+        "properties": [
+          "attacker",
+          "external",
+          "internet"
+        ],
+        "is_healthy": true,
+        "cpu_utilization": 0.0,
+        "memory_utilization": 0.0,
+        "pod_count": 0,
+        "security_groups": [],
+        "firewall": {
+          "incoming": [
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internet"
+            }
+          ],
+          "outgoing": [
+            {
+              "subnet": "0.0.0.0/0",
+              "permission": "ALLOW",
+              "port": "*",
+              "reason": "Internet"
+            }
+          ]
+        },
+        "value": 0
+      }
+    ],
+    "node_connections": [
+      {
+        "from": "node-control_plane-000",
+        "to": "node-control_plane-001",
+        "from_ip": "10.0.0.2",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 1.98,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-control_plane-000",
+        "from_ip": "10.1.0.3",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 1.32,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-000",
+        "to": "node-control_plane-002",
+        "from_ip": "10.0.0.2",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 1.16,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-control_plane-000",
+        "from_ip": "10.2.0.4",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 1.4,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-000",
+        "to": "node-worker-000",
+        "from_ip": "10.0.0.2",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 1.7,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-control_plane-000",
+        "from_ip": "10.0.0.5",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 1.57,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-000",
+        "to": "node-worker-001",
+        "from_ip": "10.0.0.2",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 0.54,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-control_plane-000",
+        "from_ip": "10.1.0.6",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 0.16,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-000",
+        "to": "node-worker-002",
+        "from_ip": "10.0.0.2",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 0.7,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-control_plane-000",
+        "from_ip": "10.2.0.7",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 0.61,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-000",
+        "to": "node-internet",
+        "from_ip": "10.0.0.2",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 0.5,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-control_plane-000",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.0.0.2",
+        "latency_ms": 1.89,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-control_plane-002",
+        "from_ip": "10.1.0.3",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 1.77,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-control_plane-001",
+        "from_ip": "10.2.0.4",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 0.7,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-worker-000",
+        "from_ip": "10.1.0.3",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 1.35,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-control_plane-001",
+        "from_ip": "10.0.0.5",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 0.85,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-worker-001",
+        "from_ip": "10.1.0.3",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 1.84,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-control_plane-001",
+        "from_ip": "10.1.0.6",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 0.97,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-worker-002",
+        "from_ip": "10.1.0.3",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 0.6,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-control_plane-001",
+        "from_ip": "10.2.0.7",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 0.57,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-001",
+        "to": "node-internet",
+        "from_ip": "10.1.0.3",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 1.17,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-control_plane-001",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.1.0.3",
+        "latency_ms": 0.6,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-worker-000",
+        "from_ip": "10.2.0.4",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 1.21,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-control_plane-002",
+        "from_ip": "10.0.0.5",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 1.81,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-worker-001",
+        "from_ip": "10.2.0.4",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 0.86,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-control_plane-002",
+        "from_ip": "10.1.0.6",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 0.52,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-worker-002",
+        "from_ip": "10.2.0.4",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 2.0,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-control_plane-002",
+        "from_ip": "10.2.0.7",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 1.07,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-control_plane-002",
+        "to": "node-internet",
+        "from_ip": "10.2.0.4",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 0.27,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-control_plane-002",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.2.0.4",
+        "latency_ms": 0.19,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-worker-001",
+        "from_ip": "10.0.0.5",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 0.31,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-worker-000",
+        "from_ip": "10.1.0.6",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 1.29,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-worker-002",
+        "from_ip": "10.0.0.5",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 1.6,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-worker-000",
+        "from_ip": "10.2.0.7",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 0.9,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-000",
+        "to": "node-internet",
+        "from_ip": "10.0.0.5",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 0.22,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-worker-000",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.0.0.5",
+        "latency_ms": 0.83,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-worker-002",
+        "from_ip": "10.1.0.6",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 1.99,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-worker-001",
+        "from_ip": "10.2.0.7",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 1.11,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-001",
+        "to": "node-internet",
+        "from_ip": "10.1.0.6",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 1.95,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-worker-001",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.1.0.6",
+        "latency_ms": 1.74,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-worker-002",
+        "to": "node-internet",
+        "from_ip": "10.2.0.7",
+        "to_ip": "0.0.0.0",
+        "latency_ms": 0.12,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      },
+      {
+        "from": "node-internet",
+        "to": "node-worker-002",
+        "from_ip": "0.0.0.0",
+        "to_ip": "10.2.0.7",
+        "latency_ms": 1.47,
+        "bandwidth_gbps": 10.0,
+        "packet_loss": 0.0,
+        "is_firewalled": false,
+        "firewall_rules": [],
+        "allowed_ports": []
+      }
+    ],
+    "network_access_graph": [],
+    "node_to_service_mapping": {
+      "etcd": [
+        {
+          "pod_id": "etcd-0",
+          "node_id": "node-control_plane-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.2",
+          "services_ports": [
+            2379,
+            2380
+          ]
+        },
+        {
+          "pod_id": "etcd-2",
+          "node_id": "node-control_plane-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.2",
+          "services_ports": [
+            2379,
+            2380
+          ]
+        },
+        {
+          "pod_id": "etcd-1",
+          "node_id": "node-control_plane-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.3",
+          "services_ports": [
+            2379,
+            2380
+          ]
+        },
+        {
+          "pod_id": "etcd-3",
+          "node_id": "node-control_plane-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.4",
+          "services_ports": [
+            2379,
+            2380
+          ]
+        }
+      ],
+      "metrics-server": [
+        {
+          "pod_id": "metrics-server-0",
+          "node_id": "node-control_plane-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.2",
+          "services_ports": [
+            443,
+            4443
+          ]
+        }
+      ],
+      "kube-state-metrics": [
+        {
+          "pod_id": "kube-state-metrics-0",
+          "node_id": "node-control_plane-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.3",
+          "services_ports": [
+            8080,
+            8081
+          ]
+        }
+      ],
+      "cert-manager": [
+        {
+          "pod_id": "cert-manager-0",
+          "node_id": "node-control_plane-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.4",
+          "services_ports": [
+            9402
+          ]
+        }
+      ],
+      "keycloak": [
+        {
+          "pod_id": "keycloak-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            8080
+          ]
+        },
+        {
+          "pod_id": "keycloak-1",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            8080
+          ]
+        },
+        {
+          "pod_id": "keycloak-2",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            8080
+          ]
+        }
+      ],
+      "minio": [
+        {
+          "pod_id": "minio-2",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            9000,
+            9001
+          ]
+        },
+        {
+          "pod_id": "minio-0",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            9000,
+            9001
+          ]
+        },
+        {
+          "pod_id": "minio-1",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            9000,
+            9001
+          ]
+        }
+      ],
+      "jaeger": [
+        {
+          "pod_id": "jaeger-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            6831,
+            6832,
+            14268,
+            16686
+          ]
+        },
+        {
+          "pod_id": "jaeger-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            6831,
+            6832,
+            14268,
+            16686
+          ]
+        },
+        {
+          "pod_id": "jaeger-1",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            6831,
+            6832,
+            14268,
+            16686
+          ]
+        }
+      ],
+      "redis": [
+        {
+          "pod_id": "redis-1",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            6379
+          ]
+        },
+        {
+          "pod_id": "redis-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            6379
+          ]
+        },
+        {
+          "pod_id": "redis-2",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            6379
+          ]
+        }
+      ],
+      "mongodb": [
+        {
+          "pod_id": "mongodb-1",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            27017
+          ]
+        },
+        {
+          "pod_id": "mongodb-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            27017
+          ]
+        },
+        {
+          "pod_id": "mongodb-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            27017
+          ]
+        }
+      ],
+      "mysql": [
+        {
+          "pod_id": "mysql-1",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            3306
+          ]
+        },
+        {
+          "pod_id": "mysql-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            3306
+          ]
+        },
+        {
+          "pod_id": "mysql-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            3306
+          ]
+        }
+      ],
+      "grafana": [
+        {
+          "pod_id": "grafana-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            3000
+          ]
+        }
+      ],
+      "argo-cd": [
+        {
+          "pod_id": "argo-cd-2",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "argo-cd-1",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "argo-cd-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        }
+      ],
+      "nginx": [
+        {
+          "pod_id": "nginx-1",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "nginx-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "nginx-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        }
+      ],
+      "harbor": [
+        {
+          "pod_id": "harbor-2",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "harbor-1",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "harbor-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        }
+      ],
+      "kibana": [
+        {
+          "pod_id": "kibana-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            5601
+          ]
+        }
+      ],
+      "nginx-ingress-controller": [
+        {
+          "pod_id": "nginx-ingress-controller-0",
+          "node_id": "node-worker-000",
+          "zone": "zone-a",
+          "node_ip": "10.0.0.5",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "nginx-ingress-controller-1",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        },
+        {
+          "pod_id": "nginx-ingress-controller-2",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        }
+      ],
+      "elasticsearch": [
+        {
+          "pod_id": "elasticsearch-0",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            9200,
+            9300
+          ]
+        },
+        {
+          "pod_id": "elasticsearch-1",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            9200,
+            9300
+          ]
+        },
+        {
+          "pod_id": "elasticsearch-2",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            9200,
+            9300
+          ]
+        }
+      ],
+      "jupyterhub": [
+        {
+          "pod_id": "jupyterhub-0",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            8000,
+            8081
+          ]
+        }
+      ],
+      "prometheus": [
+        {
+          "pod_id": "prometheus-0",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            9090
+          ]
+        },
+        {
+          "pod_id": "prometheus-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            9090
+          ]
+        },
+        {
+          "pod_id": "prometheus-1",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            9090
+          ]
+        }
+      ],
+      "jenkins": [
+        {
+          "pod_id": "jenkins-0",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            8080,
+            50000
+          ]
+        }
+      ],
+      "postgresql": [
+        {
+          "pod_id": "postgresql-1",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            5432
+          ]
+        },
+        {
+          "pod_id": "postgresql-2",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            5432
+          ]
+        },
+        {
+          "pod_id": "postgresql-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            5432
+          ]
+        }
+      ],
+      "grafana-loki": [
+        {
+          "pod_id": "grafana-loki-2",
+          "node_id": "node-worker-001",
+          "zone": "zone-b",
+          "node_ip": "10.1.0.6",
+          "services_ports": [
+            3100
+          ]
+        },
+        {
+          "pod_id": "grafana-loki-1",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            3100
+          ]
+        },
+        {
+          "pod_id": "grafana-loki-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            3100
+          ]
+        }
+      ],
+      "wordpress": [
+        {
+          "pod_id": "wordpress-0",
+          "node_id": "node-worker-002",
+          "zone": "zone-c",
+          "node_ip": "10.2.0.7",
+          "services_ports": [
+            80,
+            443
+          ]
+        }
+      ]
+    }
+  }
+}

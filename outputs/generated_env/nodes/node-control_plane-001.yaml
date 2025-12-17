@@ -1,0 +1,284 @@
+services:
+- name: etcd
+  port: '2379'
+  allowedCredentials:
+  - etcd_creds
+  running: true
+- name: kube-state-metrics
+  port: '8080'
+  allowedCredentials:
+  - kube-state-metrics_creds
+  running: true
+vulnerabilities:
+  CVE-2022-0563:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The ...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.15
+    reward_string: Exploited CVE-2022-0563 on node-control_plane-001
+  CVE-2025-4802:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2....
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.87
+    reward_string: Exploited CVE-2025-4802 on node-control_plane-001
+  CVE-2025-8058:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if s..."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.41
+    reward_string: Exploited CVE-2025-8058 on node-control_plane-001
+  CVE-2022-3219:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with th...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-001
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-worker-002
+        - node-control_plane-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2022-3219 on node-control_plane-001
+  CVE-2023-4016:
+    description: "Under some circumstances, this weakness allows a user who has access\
+      \ to run the \u201Cps\u201D utility on a ma..."
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-control_plane-001
+        - node-worker-002
+        - node-worker-001
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2023-4016 on node-control_plane-001
+  CVE-2011-3389:
+    description: The SSL protocol, as used in certain configurations in Microsoft
+      Windows and Microsoft Internet Expl...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.97
+    reward_string: Exploited CVE-2011-3389 on node-control_plane-001
+  CVE-2019-1010025:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may guess the heap addre...'
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.39
+    reward_string: Exploited CVE-2019-1010025 on node-control_plane-001
+  CVE-2025-6297:
+    description: It was discovered that dpkg-deb does not properly sanitize directory
+      permissions when extracting a c...
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-control_plane-001
+        - node-worker-002
+        - node-worker-001
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.0
+    reward_string: Exploited CVE-2025-6297 on node-control_plane-001
+value: 291
+network_info:
+- ip_address: 10.1.0.3
+  subnet:
+    network: 10.1.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- control_plane
+- zone-b
+- ip_10_1_0_3
+- service_etcd
+- running_etcd
+- service_kube-state-metrics
+- running_kube-state-metrics
+- zone_zone-b
+- subnet_10.1.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: wordpress-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: wordpress
+    cybersim/generated: 'true'
+  name: wordpress
+  namespace: cybersim-subnet-1
+spec:
+  ports:
+  - name: main
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app.kubernetes.io/name: wordpress
+  type: LoadBalancer

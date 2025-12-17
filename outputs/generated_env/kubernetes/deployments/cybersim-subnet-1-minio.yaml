@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: minio-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: minio
+    cybersim/generated: 'true'
+  name: minio
+  namespace: cybersim-subnet-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: minio
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '9001'
+        cybersim/service: minio
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: minio-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: minio
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - env:
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        image: minio/minio:RELEASE.2023-11-01T01-57-10Z
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 9001
+        name: minio
+        ports:
+        - containerPort: 9001
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 9001
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000

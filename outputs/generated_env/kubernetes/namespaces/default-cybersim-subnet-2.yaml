@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: cyberbattlesim
+    cybersim/generated: 'true'
+    cybersim/subnet-id: '2'
+    cybersim/subnet-label: subnet_2
+  name: cybersim-subnet-2

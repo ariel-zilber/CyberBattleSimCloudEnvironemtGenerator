@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    cybersim/description: Zone zone-b with CIDR 10.1.0.0/16
+  labels:
+    app.kubernetes.io/managed-by: cyberbattlesim
+    cybersim/cidr: 10.1.0.0/16
+    cybersim/generated: 'true'
+    cybersim/zone: zone-b
+  name: cybersim-zone-b

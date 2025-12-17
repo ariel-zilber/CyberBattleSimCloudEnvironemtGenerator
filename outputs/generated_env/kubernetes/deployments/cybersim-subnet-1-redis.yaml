@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: redis-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: redis
+    cybersim/generated: 'true'
+  name: redis
+  namespace: cybersim-subnet-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '6379'
+        cybersim/service: redis
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: redis-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: redis
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - env:
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        image: redis:7-alpine
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 6379
+        name: redis
+        ports:
+        - containerPort: 6379
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 6379
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000

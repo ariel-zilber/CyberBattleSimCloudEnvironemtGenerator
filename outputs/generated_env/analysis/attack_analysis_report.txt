@@ -1,0 +1,72 @@
+CYBERBATTLESIM ATTACK ANALYSIS REPORT
+==================================================
+
+BASIC STATISTICS:
+Total target nodes: 6
+Total vulnerabilities: 133
+Attacker entry points: 1
+
+ATTACK PATH ANALYSIS:
+------------------------------
+Maximal achievement: 4/6 nodes owned
+Steps: 48
+
+ATTACK PATH:
+  1. local_exploit InitialScan
+  2. change_destination node-worker-000
+  3. remote_exploit CVE-2011-3389
+  4. change_source node-worker-000
+  5. local_exploit CredentialLeak_grafana_to_prometheus
+  6. local_exploit CredentialLeak_grafana_to_grafana-loki
+  7. change_source attacker
+  8. change_destination attacker
+  9. change_source node-worker-000
+  10. change_destination node-worker-001
+  11. connect Connect_prometheus
+  12. change_source attacker
+  13. change_source node-worker-001
+  14. local_exploit CVE-2013-4392
+  15. change_source attacker
+  16. change_source node-worker-000
+  17. change_destination node-control_plane-001
+  18. remote_exploit CVE-2011-3389
+  19. change_source attacker
+  20. change_source node-worker-001
+  21. change_source node-control_plane-001
+  22. change_destination node-control_plane-002
+  23. change_source attacker
+  24. change_source node-worker-000
+  25. change_source node-worker-001
+  26. change_destination node-worker-001
+  27. change_source attacker
+  28. change_source node-worker-000
+  29. change_source node-control_plane-001
+  30. change_destination node-control_plane-000
+  31. change_source attacker
+  32. change_source node-worker-000
+  33. change_source node-worker-001
+  34. change_destination attacker
+  35. change_source attacker
+  36. change_source node-worker-000
+  37. change_source node-control_plane-001
+  38. change_destination node-worker-000
+  39. change_source attacker
+  40. change_source node-worker-000
+  41. change_source node-worker-001
+  42. change_destination node-worker-002
+  43. remote_exploit CVE-2019-1010025
+  44. change_source node-control_plane-001
+  45. change_source attacker
+  46. change_source node-worker-000
+  47. change_source node-worker-002
+  48. local_exploit CredentialLeak_wordpress_to_redis
+
+CRITICAL NODES:
+------------------------------
+node-control_plane-002: value 340
+node-control_plane-000: value 308
+node-control_plane-001: value 291
+node-worker-001: value 190
+node-worker-000: value 127
+node-worker-002: value 119
+Total value:	727

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: nginx-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: nginx
+    cybersim/generated: 'true'
+  name: nginx
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 428
+    protocol: TCP
+    targetPort: 428
+  selector:
+    app.kubernetes.io/name: nginx
+  type: LoadBalancer

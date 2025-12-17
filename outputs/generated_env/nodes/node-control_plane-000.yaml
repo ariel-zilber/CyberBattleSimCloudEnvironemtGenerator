@@ -1,0 +1,232 @@
+services:
+- name: etcd
+  port: '2379'
+  allowedCredentials:
+  - etcd_creds
+  running: true
+- name: metrics-server
+  port: '443'
+  allowedCredentials:
+  - metrics-server_creds
+  running: true
+vulnerabilities:
+  CVE-2022-0563:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The ...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.15
+    reward_string: Exploited CVE-2022-0563 on node-control_plane-000
+  CVE-2025-4802:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2....
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.87
+    reward_string: Exploited CVE-2025-4802 on node-control_plane-000
+  CVE-2025-8058:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if s..."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.41
+    reward_string: Exploited CVE-2025-8058 on node-control_plane-000
+  CVE-2022-3219:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with th...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-001
+        - node-control_plane-000
+        - node-control_plane-001
+        - node-worker-002
+        - node-control_plane-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2022-3219 on node-control_plane-000
+  CVE-2025-27587:
+    description: OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable
+      to a Minerva attack, exploitab...
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-control_plane-001
+        - node-control_plane-000
+        - node-control_plane-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.0
+    reward_string: Exploited CVE-2025-27587 on node-control_plane-000
+value: 308
+network_info:
+- ip_address: 10.0.0.2
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- control_plane
+- zone-a
+- ip_10_0_0_2
+- service_etcd
+- running_etcd
+- service_etcd
+- running_etcd
+- service_metrics-server
+- running_metrics-server
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

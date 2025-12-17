@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: mysql-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: mysql
+    cybersim/generated: 'true'
+  name: mysql
+  namespace: cybersim-subnet-2
+spec:
+  ports:
+  - name: main
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app.kubernetes.io/name: mysql
+  type: ClusterIP

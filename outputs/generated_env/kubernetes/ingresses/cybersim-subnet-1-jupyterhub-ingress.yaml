@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app.kubernetes.io/component: ingress
+    app.kubernetes.io/instance: jupyterhub-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: jupyterhub
+    cybersim/generated: 'true'
+  name: jupyterhub-ingress
+  namespace: cybersim-subnet-1
+spec:
+  rules:
+  - host: jupyterhub.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: jupyterhub
+            port:
+              number: 8081
+        path: /
+        pathType: Prefix

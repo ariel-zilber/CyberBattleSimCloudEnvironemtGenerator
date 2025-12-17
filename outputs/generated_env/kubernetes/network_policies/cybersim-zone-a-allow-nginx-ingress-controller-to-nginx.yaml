@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: cyberbattlesim
+    cybersim/generated: 'true'
+  name: allow-nginx-ingress-controller-to-nginx
+  namespace: cybersim-zone-a
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: cybersim-subnet-1
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/name: nginx-ingress-controller
+    ports:
+    - port: 428
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: nginx
+  policyTypes:
+  - Ingress

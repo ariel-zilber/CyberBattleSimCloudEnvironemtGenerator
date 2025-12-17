@@ -1,0 +1,984 @@
+services:
+- name: keycloak
+  port: '8080'
+  allowedCredentials:
+  - keycloak_creds
+  running: true
+- name: minio
+  port: '9000'
+  allowedCredentials:
+  - minio_creds
+  running: true
+- name: jaeger
+  port: '6831'
+  allowedCredentials:
+  - jaeger_creds
+  running: true
+- name: redis
+  port: '6379'
+  allowedCredentials:
+  - redis_creds
+  - wordpress_to_redis_key
+  running: true
+- name: mongodb
+  port: '27017'
+  allowedCredentials:
+  - mongodb_creds
+  running: true
+- name: mysql
+  port: '3306'
+  allowedCredentials:
+  - mysql_creds
+  running: true
+- name: grafana
+  port: '3000'
+  allowedCredentials:
+  - grafana_creds
+  running: true
+- name: argo-cd
+  port: '80'
+  allowedCredentials:
+  - argo-cd_creds
+  running: true
+- name: nginx
+  port: '80'
+  allowedCredentials:
+  - nginx_creds
+  running: true
+- name: harbor
+  port: '80'
+  allowedCredentials:
+  - harbor_creds
+  running: true
+- name: kibana
+  port: '5601'
+  allowedCredentials:
+  - kibana_creds
+  running: true
+- name: nginx-ingress-controller
+  port: '80'
+  allowedCredentials:
+  - nginx-ingress-controller_creds
+  running: true
+vulnerabilities:
+  CVE-2025-6141:
+    description: A vulnerability has been found in GNU ncurses up to 6.5-20250322
+      and classified as problematic. This...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-000
+        - node-worker-001
+        - node-worker-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2025-6141 on node-worker-000
+  CVE-2025-40909:
+    description: Perl threads have a working directory race condition where file operations
+      may target unintended pat...
+    type: 2
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.96
+    reward_string: Exploited CVE-2025-40909 on node-worker-000
+  CVE-2011-3389:
+    description: The SSL protocol, as used in certain configurations in Microsoft
+      Windows and Microsoft Internet Expl...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.97
+    reward_string: Exploited CVE-2011-3389 on node-worker-000
+  CVE-2025-4802:
+    description: Untrusted LD_LIBRARY_PATH environment variable vulnerability in the
+      GNU C Library version 2.27 to 2....
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.87
+    reward_string: Exploited CVE-2025-4802 on node-worker-000
+  CVE-2025-6020:
+    description: A flaw was found in linux-pam. The module pam_namespace may use access
+      user-controlled paths without...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.8
+    reward_string: Exploited CVE-2025-6020 on node-worker-000
+  CVE-2019-1010022:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may bypass stack guard p...'
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 2.0
+    reward_string: Exploited CVE-2019-1010022 on node-worker-000
+  CVE-2024-56433:
+    description: shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default
+      /etc/subuid behavior (e.g., uid 1...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.5
+    reward_string: Exploited CVE-2024-56433 on node-worker-000
+  CVE-2013-4392:
+    description: systemd, when updating file permissions, allows local users to change
+      the permissions and SELinux se...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-000
+        - node-worker-001
+        - node-worker-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.54
+    reward_string: Exploited CVE-2013-4392 on node-worker-000
+  CVE-2020-15719:
+    description: libldap in certain third-party OpenLDAP packages has a certificate-validation
+      flaw when the third-pa...
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.84
+    reward_string: Exploited CVE-2020-15719 on node-worker-000
+  CVE-2017-14159:
+    description: slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping
+      privileges to a non-root acco...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.34
+    reward_string: Exploited CVE-2017-14159 on node-worker-000
+  CVE-2018-5709:
+    description: An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16.
+      There is a variable "dbentry->n_k...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2018-5709 on node-worker-000
+  CVE-2022-3219:
+    description: GnuPG can be made to spin on a relatively small input by (for example)
+      crafting a public key with th...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-000
+        - node-worker-001
+        - node-worker-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2022-3219 on node-worker-000
+  CVE-2010-4756:
+    description: The glob implementation in the GNU C Library (aka glibc or libc6)
+      allows remote authenticated users ...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.94
+    reward_string: Exploited CVE-2010-4756 on node-worker-000
+  CVE-2017-18018:
+    description: In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does
+      not prevent replacement of a pla...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.34
+    reward_string: Exploited CVE-2017-18018 on node-worker-000
+  CVE-2023-31439:
+    description: An issue was discovered in systemd 253. An attacker can modify the
+      contents of past events in a seal...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.39
+    reward_string: Exploited CVE-2023-31439 on node-worker-000
+  CVE-2019-1010023:
+    description: 'GNU Libc current is affected by: Re-mapping current loaded library
+      with malicious ELF file. The impa...'
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2019-1010023 on node-worker-000
+  CVE-2025-6297:
+    description: It was discovered that dpkg-deb does not properly sanitize directory
+      permissions when extracting a c...
+    type: 3
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-000
+        - node-worker-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.0
+    reward_string: Exploited CVE-2025-6297 on node-worker-000
+  CVE-2025-30258:
+    description: In GnuPG before 2.5.5, if a user chooses to import a certificate
+      with certain crafted subkey data th...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.57
+    reward_string: Exploited CVE-2025-30258 on node-worker-000
+  CVE-2023-31437:
+    description: An issue was discovered in systemd 253. An attacker can modify a
+      sealed log file such that, in some ...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.39
+    reward_string: Exploited CVE-2023-31437 on node-worker-000
+  CVE-2019-1010025:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may guess the heap addre...'
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.39
+    reward_string: Exploited CVE-2019-1010025 on node-worker-000
+  CVE-2018-20796:
+    description: In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1
+      in posix/regexec...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2018-20796 on node-worker-000
+  CVE-2024-22365:
+    description: linux-pam (aka Linux PAM) before 1.6.0 allows attackers to cause
+      a denial of service (blocked login ...
+    type: 2
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.15
+    reward_string: Exploited CVE-2024-22365 on node-worker-000
+  CVE-2018-20712:
+    description: A heap-based buffer over-read exists in the function d_expression_1
+      in cp-demangle.c in GNU libibert...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.03
+    reward_string: Exploited CVE-2018-20712 on node-worker-000
+  CVE-2019-9192:
+    description: In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1
+      in posix/regexec...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2019-9192 on node-worker-000
+  CVE-2020-36325:
+    description: An issue was discovered in Jansson through 2.13.1. Due to a parsing
+      error in json_loads, there's an ...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2020-36325 on node-worker-000
+  CVE-2024-26461:
+    description: Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability
+      in /krb5/src/lib/gssapi/krb5/k5sea...
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.37
+    reward_string: Exploited CVE-2024-26461 on node-worker-000
+  CVE-2025-5278:
+    description: A flaw was found in GNU Coreutils. The sort utility's begfield()
+      function is vulnerable to a heap bu...
+    type: 2
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.22
+    reward_string: Exploited CVE-2025-5278 on node-worker-000
+  CVE-2022-0563:
+    description: A flaw was found in the util-linux chfn and chsh utilities when compiled
+      with Readline support. The ...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.15
+    reward_string: Exploited CVE-2022-0563 on node-worker-000
+  CVE-2025-0725:
+    description: 'When libcurl is asked to perform automatic gzip decompression of
+
+      content-encoded HTTP responses with...'
+    type: 2
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.29
+    reward_string: Exploited CVE-2025-0725 on node-worker-000
+  CVE-2025-8058:
+    description: "The regcomp function in the GNU C library version from 2.4 to 2.41\
+      \ is \nsubject to a double free if s..."
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.41
+    reward_string: Exploited CVE-2025-8058 on node-worker-000
+  CVE-2023-4016:
+    description: "Under some circumstances, this weakness allows a user who has access\
+      \ to run the \u201Cps\u201D utility on a ma..."
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-worker-000
+        - node-worker-001
+        - node-worker-002
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2023-4016 on node-worker-000
+  CVE-2024-2236:
+    description: A timing-based side-channel flaw was found in libgcrypt's RSA implementation.
+      This issue may allow a...
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.37
+    reward_string: Exploited CVE-2024-2236 on node-worker-000
+  CVE-2018-6829:
+    description: cipher/elgamal.c in Libgcrypt through 1.8.2, when used to encrypt
+      messages directly, improperly enco...
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2018-6829 on node-worker-000
+  CVE-2024-10041:
+    description: A vulnerability was found in PAM. The secret information is stored
+      in memory, where the attacker can...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 7.34
+    reward_string: Exploited CVE-2024-10041 on node-worker-000
+  CVE-2017-11695:
+    description: Heap-based buffer overflow in the alloc_segs function in lib/dbm/src/hash.c
+      in Mozilla Network Secur...
+    type: 2
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.8
+    reward_string: Exploited CVE-2017-11695 on node-worker-000
+  CVE-2011-3374:
+    description: It was found that apt-key in apt, all versions, do not correctly
+      validate gpg keys with the master k...
+    type: 3
+    outcome:
+      type: customer_data
+      kwargs: {}
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 8.98
+    reward_string: Exploited CVE-2011-3374 on node-worker-000
+  CVE-2019-1010024:
+    description: 'GNU Libc current is affected by: Mitigation bypass. The impact is:
+      Attacker may bypass ASLR using ca...'
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.39
+    reward_string: Exploited CVE-2019-1010024 on node-worker-000
+  CVE-2023-50495:
+    description: NCurse v6.4-20230418 was discovered to contain a segmentation fault
+      via the component _nc_wrap_entry...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.03
+    reward_string: Exploited CVE-2023-50495 on node-worker-000
+  CVE-2024-2379:
+    description: libcurl skips the certificate verification for a QUIC connection
+      under certain conditions, when buil...
+    type: 3
+    outcome:
+      type: privilege_escalation
+      kwargs:
+        level: 1
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 6.57
+    reward_string: Exploited CVE-2024-2379 on node-worker-000
+  CVE-2017-17740:
+    description: contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when
+      both the nops module and the memb...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2017-17740 on node-worker-000
+  CVE-2019-20838:
+    description: libpcre in PCRE before 8.43 allows a subject buffer over-read in
+      JIT when UTF is disabled, and \X or...
+    type: 3
+    outcome:
+      type: admin_escalation
+      kwargs:
+        level: 2
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 4.0
+    reward_string: Exploited CVE-2019-20838 on node-worker-000
+  CredentialLeak_grafana_to_prometheus:
+    description: Stored credentials for prometheus
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-worker-001
+            port: '9090'
+            credential: grafana_to_prometheus_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.0
+    reward_string: Found credentials for prometheus
+  CredentialLeak_grafana_to_grafana-loki:
+    description: Stored credentials for grafana-loki
+    type: 2
+    outcome:
+      type: leaked_credentials
+      kwargs:
+        credentials:
+        - type: cached_credentials
+          kwargs:
+            node: node-worker-001
+            port: '3100'
+            credential: grafana_to_grafana-loki_key
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 3.0
+    reward_string: Found credentials for grafana-loki
+value: 127
+network_info:
+- ip_address: 10.0.0.5
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- worker
+- zone-a
+- ip_10_0_0_5
+- service_keycloak
+- running_keycloak
+- service_minio
+- running_minio
+- service_jaeger
+- running_jaeger
+- service_redis
+- running_redis
+- service_keycloak
+- running_keycloak
+- service_mongodb
+- running_mongodb
+- service_mysql
+- running_mysql
+- service_redis
+- running_redis
+- service_grafana
+- running_grafana
+- service_argo-cd
+- running_argo-cd
+- service_nginx
+- running_nginx
+- service_harbor
+- running_harbor
+- service_kibana
+- running_kibana
+- service_nginx-ingress-controller
+- running_nginx-ingress-controller
+- service_mysql
+- running_mysql
+- service_mongodb
+- running_mongodb
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '3000'
+    reason: Public access for service
+    permission: 0
+    subnet:
+      network: 192.168.1.0/24
+      name: ''
+    priority: 1
+  - port: '80'
+    reason: Public access for service
+    permission: 0
+    subnet:
+      network: 192.168.1.0/24
+      name: ''
+    priority: 1
+  - port: '5601'
+    reason: Public access for service
+    permission: 0
+    subnet:
+      network: 192.168.1.0/24
+      name: ''
+    priority: 1
+  - port: '80'
+    reason: Public access for service
+    permission: 0
+    subnet:
+      network: 192.168.1.0/24
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server
