@@ -2,9 +2,11 @@ from dataclasses import dataclass
 from typing import List, Dict
 from .enums import ClusterSize
 
+
 @dataclass
 class ServiceProfile:
     """Metadata about a service"""
+
     name: str
     category: str
     resource_weight: int  # 1-10, relative resource consumption

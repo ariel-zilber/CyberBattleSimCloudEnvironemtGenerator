@@ -4,6 +4,11 @@ services:
   allowedCredentials:
   - etcd_creds
   running: true
+- name: cert-manager
+  port: '9402'
+  allowedCredentials:
+  - cert-manager_creds
+  running: true
 - name: metrics-server
   port: '443'
   allowedCredentials:
@@ -66,11 +71,9 @@ vulnerabilities:
       type: leaked_nodes_id
       kwargs:
         nodes:
-        - node-worker-001
-        - node-control_plane-000
         - node-control_plane-001
-        - node-worker-002
         - node-control_plane-002
+        - node-control_plane-000
     precondition:
       expression: 'true'
     rates:
@@ -80,6 +83,25 @@ vulnerabilities:
     URL: ''
     cost: 9.49
     reward_string: Exploited CVE-2022-3219 on node-control_plane-000
+  CVE-2025-6141:
+    description: A vulnerability has been found in GNU ncurses up to 6.5-20250322
+      and classified as problematic. This...
+    type: 2
+    outcome:
+      type: leaked_nodes_id
+      kwargs:
+        nodes:
+        - node-control_plane-000
+        - node-worker-001
+    precondition:
+      expression: 'true'
+    rates:
+      probingDetectionRate: 0.0
+      exploitDetectionRate: 0.0
+      successRate: 1.0
+    URL: ''
+    cost: 9.49
+    reward_string: Exploited CVE-2025-6141 on node-control_plane-000
   CVE-2025-27587:
     description: OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable
       to a Minerva attack, exploitab...
@@ -89,8 +111,8 @@ vulnerabilities:
       kwargs:
         nodes:
         - node-control_plane-001
-        - node-control_plane-000
         - node-control_plane-002
+        - node-control_plane-000
     precondition:
       expression: 'true'
     rates:
@@ -100,7 +122,7 @@ vulnerabilities:
     URL: ''
     cost: 8.0
     reward_string: Exploited CVE-2025-27587 on node-control_plane-000
-value: 308
+value: 375
 network_info:
 - ip_address: 10.0.0.2
   subnet:
@@ -114,8 +136,8 @@ properties:
 - ip_10_0_0_2
 - service_etcd
 - running_etcd
-- service_etcd
-- running_etcd
+- service_cert-manager
+- running_cert-manager
 - service_metrics-server
 - running_metrics-server
 - zone_zone-a
@@ -148,13 +170,6 @@ firewall:
     permission: 0
     subnet:
       network: 10.1.0.6/32
-      name: ''
-    priority: 1
-  - port: '*'
-    reason: Connection to node-worker-002
-    permission: 0
-    subnet:
-      network: 10.2.0.7/32
       name: ''
     priority: 1
   - port: '*'
@@ -198,13 +213,6 @@ firewall:
     permission: 0
     subnet:
       network: 10.1.0.6/32
-      name: ''
-    priority: 1
-  - port: '*'
-    reason: Connection from node-worker-002
-    permission: 0
-    subnet:
-      network: 10.2.0.7/32
       name: ''
     priority: 1
   - port: '*'

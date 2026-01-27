@@ -12,9 +12,9 @@ metadata:
 spec:
   ports:
   - name: main
-    port: 350
+    port: 332
     protocol: TCP
-    targetPort: 350
+    targetPort: 332
   selector:
     app.kubernetes.io/name: nginx-ingress-controller
   type: LoadBalancer

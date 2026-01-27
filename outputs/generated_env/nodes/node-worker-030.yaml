@@ -1,0 +1,749 @@
+services:
+- name: mongodb
+  port: '27017'
+  allowedCredentials:
+  - mongodb_creds
+  running: true
+vulnerabilities: {}
+value: 70
+network_info:
+- ip_address: 10.0.0.35
+  subnet:
+    network: 10.0.0.0/16
+    name: ''
+  interface: eth1
+properties:
+- kubernetes
+- worker
+- zone-a
+- ip_10_0_0_35
+- service_mongodb
+- running_mongodb
+- zone_zone-a
+- subnet_10.0.0.0_16
+firewall:
+  outgoing:
+  - port: '*'
+    reason: Connection to node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-004
+    permission: 0
+    subnet:
+      network: 10.1.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-005
+    permission: 0
+    subnet:
+      network: 10.2.0.10/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-006
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-007
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-008
+    permission: 0
+    subnet:
+      network: 10.2.0.13/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-009
+    permission: 0
+    subnet:
+      network: 10.0.0.14/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-010
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-011
+    permission: 0
+    subnet:
+      network: 10.2.0.16/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-012
+    permission: 0
+    subnet:
+      network: 10.0.0.17/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-013
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-014
+    permission: 0
+    subnet:
+      network: 10.2.0.19/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-015
+    permission: 0
+    subnet:
+      network: 10.0.0.20/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-016
+    permission: 0
+    subnet:
+      network: 10.1.0.21/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-017
+    permission: 0
+    subnet:
+      network: 10.2.0.22/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-018
+    permission: 0
+    subnet:
+      network: 10.0.0.23/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-019
+    permission: 0
+    subnet:
+      network: 10.1.0.24/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-020
+    permission: 0
+    subnet:
+      network: 10.2.0.25/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-021
+    permission: 0
+    subnet:
+      network: 10.0.0.26/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-022
+    permission: 0
+    subnet:
+      network: 10.1.0.27/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-023
+    permission: 0
+    subnet:
+      network: 10.2.0.28/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-024
+    permission: 0
+    subnet:
+      network: 10.0.0.29/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-025
+    permission: 0
+    subnet:
+      network: 10.1.0.30/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-026
+    permission: 0
+    subnet:
+      network: 10.2.0.31/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-027
+    permission: 0
+    subnet:
+      network: 10.0.0.32/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-028
+    permission: 0
+    subnet:
+      network: 10.1.0.33/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-029
+    permission: 0
+    subnet:
+      network: 10.2.0.34/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-031
+    permission: 0
+    subnet:
+      network: 10.1.0.36/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-032
+    permission: 0
+    subnet:
+      network: 10.2.0.37/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-033
+    permission: 0
+    subnet:
+      network: 10.0.0.38/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-034
+    permission: 0
+    subnet:
+      network: 10.1.0.39/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-035
+    permission: 0
+    subnet:
+      network: 10.2.0.40/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-036
+    permission: 0
+    subnet:
+      network: 10.0.0.41/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-037
+    permission: 0
+    subnet:
+      network: 10.1.0.42/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-038
+    permission: 0
+    subnet:
+      network: 10.2.0.43/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-039
+    permission: 0
+    subnet:
+      network: 10.0.0.44/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-040
+    permission: 0
+    subnet:
+      network: 10.1.0.45/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-041
+    permission: 0
+    subnet:
+      network: 10.2.0.46/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-042
+    permission: 0
+    subnet:
+      network: 10.0.0.47/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-043
+    permission: 0
+    subnet:
+      network: 10.1.0.48/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-044
+    permission: 0
+    subnet:
+      network: 10.2.0.49/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-045
+    permission: 0
+    subnet:
+      network: 10.0.0.50/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-worker-046
+    permission: 0
+    subnet:
+      network: 10.1.0.51/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection to node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default allow
+    permission: 0
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+  incoming:
+  - port: '*'
+    reason: Connection from node-control_plane-000
+    permission: 0
+    subnet:
+      network: 10.0.0.2/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-001
+    permission: 0
+    subnet:
+      network: 10.1.0.3/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-control_plane-002
+    permission: 0
+    subnet:
+      network: 10.2.0.4/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-000
+    permission: 0
+    subnet:
+      network: 10.0.0.5/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-001
+    permission: 0
+    subnet:
+      network: 10.1.0.6/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-002
+    permission: 0
+    subnet:
+      network: 10.2.0.7/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-003
+    permission: 0
+    subnet:
+      network: 10.0.0.8/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-004
+    permission: 0
+    subnet:
+      network: 10.1.0.9/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-005
+    permission: 0
+    subnet:
+      network: 10.2.0.10/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-006
+    permission: 0
+    subnet:
+      network: 10.0.0.11/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-007
+    permission: 0
+    subnet:
+      network: 10.1.0.12/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-008
+    permission: 0
+    subnet:
+      network: 10.2.0.13/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-009
+    permission: 0
+    subnet:
+      network: 10.0.0.14/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-010
+    permission: 0
+    subnet:
+      network: 10.1.0.15/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-011
+    permission: 0
+    subnet:
+      network: 10.2.0.16/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-012
+    permission: 0
+    subnet:
+      network: 10.0.0.17/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-013
+    permission: 0
+    subnet:
+      network: 10.1.0.18/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-014
+    permission: 0
+    subnet:
+      network: 10.2.0.19/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-015
+    permission: 0
+    subnet:
+      network: 10.0.0.20/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-016
+    permission: 0
+    subnet:
+      network: 10.1.0.21/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-017
+    permission: 0
+    subnet:
+      network: 10.2.0.22/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-018
+    permission: 0
+    subnet:
+      network: 10.0.0.23/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-019
+    permission: 0
+    subnet:
+      network: 10.1.0.24/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-020
+    permission: 0
+    subnet:
+      network: 10.2.0.25/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-021
+    permission: 0
+    subnet:
+      network: 10.0.0.26/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-022
+    permission: 0
+    subnet:
+      network: 10.1.0.27/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-023
+    permission: 0
+    subnet:
+      network: 10.2.0.28/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-024
+    permission: 0
+    subnet:
+      network: 10.0.0.29/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-025
+    permission: 0
+    subnet:
+      network: 10.1.0.30/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-026
+    permission: 0
+    subnet:
+      network: 10.2.0.31/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-027
+    permission: 0
+    subnet:
+      network: 10.0.0.32/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-028
+    permission: 0
+    subnet:
+      network: 10.1.0.33/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-029
+    permission: 0
+    subnet:
+      network: 10.2.0.34/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-031
+    permission: 0
+    subnet:
+      network: 10.1.0.36/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-032
+    permission: 0
+    subnet:
+      network: 10.2.0.37/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-033
+    permission: 0
+    subnet:
+      network: 10.0.0.38/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-034
+    permission: 0
+    subnet:
+      network: 10.1.0.39/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-035
+    permission: 0
+    subnet:
+      network: 10.2.0.40/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-036
+    permission: 0
+    subnet:
+      network: 10.0.0.41/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-037
+    permission: 0
+    subnet:
+      network: 10.1.0.42/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-038
+    permission: 0
+    subnet:
+      network: 10.2.0.43/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-039
+    permission: 0
+    subnet:
+      network: 10.0.0.44/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-040
+    permission: 0
+    subnet:
+      network: 10.1.0.45/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-041
+    permission: 0
+    subnet:
+      network: 10.2.0.46/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-042
+    permission: 0
+    subnet:
+      network: 10.0.0.47/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-043
+    permission: 0
+    subnet:
+      network: 10.1.0.48/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-044
+    permission: 0
+    subnet:
+      network: 10.2.0.49/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-045
+    permission: 0
+    subnet:
+      network: 10.0.0.50/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-worker-046
+    permission: 0
+    subnet:
+      network: 10.1.0.51/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Connection from node-internet
+    permission: 0
+    subnet:
+      network: 0.0.0.0/32
+      name: ''
+    priority: 1
+  - port: '*'
+    reason: Default deny
+    permission: 1
+    subnet:
+      network: 0.0.0.0/0
+      name: ''
+    priority: 1
+agent_installed: false
+privilege_level: 0
+reimagable: false
+owned_string: ''
+status: 1
+last_reimaging: null
+sla_weight: 1.0
+is_goal: false
+image: server

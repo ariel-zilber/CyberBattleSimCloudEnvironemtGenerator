@@ -1,20 +1,25 @@
-
-from dataclasses import dataclass,field
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Dict
 
-from cyberbattlesim_network_gen.network_generators.cloud.network_topology_generator import CredentialGrant
+from cyberbattlesim_network_gen.network_generators.cloud.network_topology_generator import (
+    CredentialGrant,
+)
+
 
 class GraphType(Enum):
     """Types of connectivity graphs"""
+
     KNOWS_CONNECTIVITY = "knows_connectivity"
     KNOWS_REACHABILITY = "knows_reachability"
     ACCESS_CONNECTIVITY = "access_connectivity"
     ACCESS_REACHABILITY = "access_reachability"
 
+
 @dataclass
 class ServiceNode:
     """Represents a service node in the network"""
+
     name: str
     category: str
     instance_count: int
@@ -25,9 +30,11 @@ class ServiceNode:
     vulnerability_level: float = 0.0
     vulnerabilities: List[Dict] = field(default_factory=list)
 
+
 @dataclass
 class NetworkEdge:
     """Represents a connection between services"""
+
     source: str
     target: str
     protocol: str
@@ -36,9 +43,11 @@ class NetworkEdge:
     requires_auth: bool = True
     firewall_allowed: bool = True
 
+
 @dataclass
 class NetworkTopology:
     """Complete network topology with all graph types"""
+
     services: Dict[str, ServiceNode]
     knows_connectivity: List[NetworkEdge]
     knows_reachability: List[str]

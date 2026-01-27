@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: kibana-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: kibana
+    cybersim/generated: 'true'
+  name: kibana
+  namespace: cybersim-zone-b
+spec:
+  ports:
+  - name: main
+    port: 5601
+    protocol: TCP
+    targetPort: 5601
+  selector:
+    app.kubernetes.io/name: kibana
+  type: LoadBalancer

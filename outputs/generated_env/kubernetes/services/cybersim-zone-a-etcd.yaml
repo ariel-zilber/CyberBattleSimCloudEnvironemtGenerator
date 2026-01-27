@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: etcd-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: etcd
+    cybersim/generated: 'true'
+  name: etcd
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 2379
+    protocol: TCP
+    targetPort: 2379
+  selector:
+    app.kubernetes.io/name: etcd
+  type: ClusterIP

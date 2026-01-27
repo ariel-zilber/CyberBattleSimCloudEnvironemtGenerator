@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        cybersim/port: '350'
+        cybersim/port: '332'
         cybersim/service: nginx-ingress-controller
       labels:
         app.kubernetes.io/component: server
@@ -32,32 +32,22 @@ spec:
           value: 'true'
         - name: ALLOW_REMOTE_DEBUG
           value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
         image: nginx:1.25-alpine
         livenessProbe:
           initialDelaySeconds: 30
           periodSeconds: 10
           tcpSocket:
-            port: 350
+            port: 332
         name: nginx-ingress-controller
         ports:
-        - containerPort: 350
+        - containerPort: 332
           name: main
           protocol: TCP
         readinessProbe:
           initialDelaySeconds: 5
           periodSeconds: 5
           tcpSocket:
-            port: 350
+            port: 332
         resources:
           limits:
             cpu: 100m

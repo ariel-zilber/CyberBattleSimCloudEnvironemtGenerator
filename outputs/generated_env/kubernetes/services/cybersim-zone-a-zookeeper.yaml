@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: zookeeper-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: zookeeper
+    cybersim/generated: 'true'
+  name: zookeeper
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 3741
+    protocol: TCP
+    targetPort: 3741
+  selector:
+    app.kubernetes.io/name: zookeeper
+  type: ClusterIP

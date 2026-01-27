@@ -1,9 +1,14 @@
 setup.py
 cyberbattlesim_cloud_gen/__init__.py
 cyberbattlesim_cloud_gen/interactive_attack_solver.py
+cyberbattlesim_cloud_gen/k8s_manifest_generator.py
+cyberbattlesim_cloud_gen/kwok_cluster_manager.py
 cyberbattlesim_cloud_gen/main.py
+cyberbattlesim_cloud_gen/main_with_k8s.py
+cyberbattlesim_cloud_gen/real.py
 cyberbattlesim_cloud_gen/run_demo.py
 cyberbattlesim_cloud_gen/run_ui.py
+cyberbattlesim_cloud_gen/state.py
 cyberbattlesim_cloud_gen.egg-info/PKG-INFO
 cyberbattlesim_cloud_gen.egg-info/SOURCES.txt
 cyberbattlesim_cloud_gen.egg-info/dependency_links.txt
@@ -52,6 +57,7 @@ cyberbattlesim_cloud_gen/generators/vulnerability_gen/cvss_score.py
 cyberbattlesim_cloud_gen/generators/vulnerability_gen/vulnerabilities_to_dict.py
 cyberbattlesim_cloud_gen/generators/vulnerability_gen/vulnerability_assigner.py
 cyberbattlesim_cloud_gen/generators/vulnerability_gen/vulnerability_info.py
+cyberbattlesim_cloud_gen/k8s/__init__.py
 cyberbattlesim_cloud_gen/visualization/__init__.py
 cyberbattlesim_cloud_gen/visualization/logical_viz.py
 cyberbattlesim_cloud_gen/visualization/physical_viz.py

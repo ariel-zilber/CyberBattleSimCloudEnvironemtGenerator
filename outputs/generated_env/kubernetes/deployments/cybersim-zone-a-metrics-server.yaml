@@ -32,7 +32,7 @@ spec:
           value: 'true'
         - name: ALLOW_REMOTE_DEBUG
           value: 'true'
-        image: busybox:1.36
+        image: k8s.gcr.io/metrics-server/metrics-server:v0.6.4
         livenessProbe:
           initialDelaySeconds: 30
           periodSeconds: 10

@@ -9,13 +9,14 @@ Generates the logical network layer:
 """
 
 from typing import Dict
-from dataclasses import  asdict
+from dataclasses import asdict
 
 from cyberbattlesim_cloud_gen.generators.network_gen.graph_model import NetworkTopology
 
 # ======================================================================
 # Export Helpers
 # ======================================================================
+
 
 def topology_to_dict(topology: NetworkTopology) -> Dict:
     """Convert NetworkTopology to dictionary format"""
@@ -26,11 +27,8 @@ def topology_to_dict(topology: NetworkTopology) -> Dict:
         "access_connectivity": [asdict(edge) for edge in topology.access_connectivity],
         "access_reachability": topology.access_reachability,
         "credential_flow": [
-            {
-                **asdict(cred),
-                "credential_level": cred.credential_level.name
-            }
+            {**asdict(cred), "credential_level": cred.credential_level.name}
             for cred in topology.credential_flow
         ],
-        "metadata": topology.metadata
+        "metadata": topology.metadata,
     }

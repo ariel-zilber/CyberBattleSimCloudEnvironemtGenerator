@@ -1,0 +1,75 @@
+# =============================================================================
+# Full Stack Cloud Generator Configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Core Settings
+# -----------------------------------------------------------------------------
+core:
+  nodes: 5                      # Number of nodes in the cluster
+  use_case: "microservices"      # Options: microservices, ml_platform, data_pipeline, etc.
+  zones: 3                       # Number of availability zones
+  seed: 42                       # Random seed for reproducibility
+
+# -----------------------------------------------------------------------------
+# Network & Topology Settings
+# -----------------------------------------------------------------------------
+network:
+  topology_type: "mesh"          # Options: mesh, star, hub_spoke, random, exact
+  firewall_probability: 0.2      # Internal firewall block probability (0.0-1.0)
+  knowledge_completeness: 0.7    # Attacker knowledge completeness (0.0-1.0)
+
+# -----------------------------------------------------------------------------
+# Vulnerability Settings (Optional)
+# -----------------------------------------------------------------------------
+vulnerabilities:
+  enabled: true
+  cve_json_path: /home/ariel/Documents/thesis/CyberBattleSimCloudEnvironemtGenerator/data/final.json            # Path to final.json with CVE lists per service
+  vuln_db_path: /home/ariel/Documents/thesis/CyberBattleSimCloudEnvironemtGenerator/data/vulnerability_db.yml             # Path to vulnerability_db.yml with CVE details
+
+# -----------------------------------------------------------------------------
+# Output Settings
+# -----------------------------------------------------------------------------
+output:
+  base_dir: "/home/ariel/Documents/thesis/CyberBattleSimCloudEnvironemtGenerator/outputs/"
+  intermediate_json: "cluster_full.json"
+  sim_output_dir: "generated_env"
+  visualize: true                # Generate PNG visualization graphs
+
+# -----------------------------------------------------------------------------
+# Kubernetes Manifest Generation
+# -----------------------------------------------------------------------------
+kubernetes:
+  enabled: true                 # Set to true to generate K8s manifests
+  output_dir: null               # null = <sim_output_dir>/kubernetes
+  
+  # Namespace settings
+  namespace_prefix: "cybersim"
+  
+  # Resource generation flags
+  generate_network_policies: true
+  generate_ingress: true
+  ingress_class: "nginx"         # Options: nginx, traefik, alb, etc.
+  
+  # Output format
+  single_file: false             # true = all manifests in one YAML file
+  
+  # Helm chart generation
+  helm:
+    enabled: false
+    chart_name: "cybersim-cluster"
+  
+  # Default resource limits for containers
+  resources:
+    limits:
+      cpu: "100m"
+      memory: "128Mi"
+    requests:
+      cpu: "50m"
+      memory: "64Mi"
+
+# -----------------------------------------------------------------------------
+# Config Loader Settings (for internal topology/subnet configs)
+# -----------------------------------------------------------------------------
+config_loader:
+  base_dir: /home/ariel/Documents/thesis/CyberBattleSimCloudEnvironemtGenerator/data

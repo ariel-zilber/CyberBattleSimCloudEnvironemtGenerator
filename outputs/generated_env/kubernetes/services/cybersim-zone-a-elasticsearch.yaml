@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: elasticsearch-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: elasticsearch
+    cybersim/generated: 'true'
+  name: elasticsearch
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 9254
+    protocol: TCP
+    targetPort: 9254
+  selector:
+    app.kubernetes.io/name: elasticsearch
+  type: ClusterIP

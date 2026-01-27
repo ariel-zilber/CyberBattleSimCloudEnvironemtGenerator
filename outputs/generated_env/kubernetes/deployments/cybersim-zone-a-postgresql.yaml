@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: postgresql-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: postgresql
+    cybersim/generated: 'true'
+  name: postgresql
+  namespace: cybersim-zone-a
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgresql
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '5432'
+        cybersim/service: postgresql
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: postgresql-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: postgresql
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - image: postgres:15-alpine
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 5432
+        name: postgresql
+        ports:
+        - containerPort: 5432
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 5432
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000

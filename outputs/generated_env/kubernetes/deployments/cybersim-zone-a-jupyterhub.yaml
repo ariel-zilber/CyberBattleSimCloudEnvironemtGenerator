@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: jupyterhub-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: jupyterhub
+    cybersim/generated: 'true'
+  name: jupyterhub
+  namespace: cybersim-zone-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jupyterhub
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '8081'
+        cybersim/service: jupyterhub
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: jupyterhub-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: jupyterhub
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - env:
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        image: jupyterhub/jupyterhub:3.1.1
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        name: jupyterhub
+        ports:
+        - containerPort: 8081
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 8081
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000

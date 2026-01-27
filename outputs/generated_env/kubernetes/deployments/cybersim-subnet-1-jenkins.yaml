@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: jenkins-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: jenkins
+    cybersim/generated: 'true'
+  name: jenkins
+  namespace: cybersim-subnet-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jenkins
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '23015'
+        cybersim/service: jenkins
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: jenkins-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: jenkins
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - env:
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        - name: ALLOW_REMOTE_DEBUG
+          value: 'true'
+        image: jenkins/jenkins:lts-jdk17
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 23015
+        name: jenkins
+        ports:
+        - containerPort: 23015
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 23015
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000

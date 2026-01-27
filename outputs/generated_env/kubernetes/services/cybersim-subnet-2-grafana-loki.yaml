@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: grafana-loki-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: grafana-loki
+    cybersim/generated: 'true'
+  name: grafana-loki
+  namespace: cybersim-subnet-2
+spec:
+  ports:
+  - name: main
+    port: 3100
+    protocol: TCP
+    targetPort: 3100
+  selector:
+    app.kubernetes.io/name: grafana-loki
+  type: ClusterIP

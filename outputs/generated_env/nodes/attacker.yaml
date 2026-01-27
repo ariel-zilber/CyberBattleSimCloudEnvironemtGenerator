@@ -7,9 +7,8 @@ vulnerabilities:
       type: leaked_nodes_id
       kwargs:
         nodes:
-        - node-worker-000
         - node-worker-001
-        - node-worker-002
+        - node-worker-000
     precondition:
       expression: 'true'
     rates:
@@ -26,9 +25,8 @@ vulnerabilities:
       type: leaked_nodes_id
       kwargs:
         nodes:
-        - node-worker-000
         - node-worker-001
-        - node-worker-002
+        - node-worker-000
     precondition:
       expression: 'true'
     rates:

@@ -34,7 +34,7 @@ spec:
           value: 'true'
         - name: ALLOW_REMOTE_DEBUG
           value: 'true'
-        image: busybox:1.36
+        image: k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.10.0
         livenessProbe:
           initialDelaySeconds: 30
           periodSeconds: 10

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: cert-manager-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: cert-manager
+    cybersim/generated: 'true'
+  name: cert-manager
+  namespace: cybersim-subnet-1
+spec:
+  ports:
+  - name: main
+    port: 9402
+    protocol: TCP
+    targetPort: 9402
+  selector:
+    app.kubernetes.io/name: cert-manager
+  type: ClusterIP

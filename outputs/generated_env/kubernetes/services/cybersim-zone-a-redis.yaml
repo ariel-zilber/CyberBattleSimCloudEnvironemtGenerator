@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: redis-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: redis
+    cybersim/generated: 'true'
+  name: redis
+  namespace: cybersim-zone-a
+spec:
+  ports:
+  - name: main
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app.kubernetes.io/name: redis
+  type: ClusterIP

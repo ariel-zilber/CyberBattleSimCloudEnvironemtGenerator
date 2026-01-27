@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: jupyterhub-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: jupyterhub
+    cybersim/generated: 'true'
+  name: jupyterhub
+  namespace: cybersim-zone-b
+spec:
+  ports:
+  - name: main
+    port: 8057
+    protocol: TCP
+    targetPort: 8057
+  selector:
+    app.kubernetes.io/name: jupyterhub
+  type: LoadBalancer

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: harbor-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: harbor
+    cybersim/generated: 'true'
+  name: harbor
+  namespace: cybersim-subnet-2
+spec:
+  ports:
+  - name: main
+    port: 388
+    protocol: TCP
+    targetPort: 388
+  selector:
+    app.kubernetes.io/name: harbor
+  type: ClusterIP

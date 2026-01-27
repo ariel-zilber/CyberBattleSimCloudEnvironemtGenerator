@@ -32,8 +32,6 @@ spec:
           value: 'true'
         - name: ALLOW_REMOTE_DEBUG
           value: 'true'
-        - name: ALLOW_REMOTE_DEBUG
-          value: 'true'
         image: redis:7-alpine
         livenessProbe:
           initialDelaySeconds: 30

@@ -1,11 +1,13 @@
-from typing import Dict, List, Set, Tuple, Optional
-from dataclasses import dataclass, asdict, field
+from typing import Dict, List
+from dataclasses import dataclass
 
-# 
+#
+
 
 @dataclass
 class NetworkAccessGraph:
     """Represents network accessibility between nodes"""
+
     source_node: str
     destination_node: str
     source_ip: str
@@ -15,7 +17,7 @@ class NetworkAccessGraph:
     blocked_ports: List[int]
     path_latency: float
     firewall_rules_applied: List[str]
-    
+
     def to_dict(self) -> Dict:
         return {
             "source_node": self.source_node,
@@ -26,6 +28,5 @@ class NetworkAccessGraph:
             "allowed_ports": self.allowed_ports,
             "blocked_ports": self.blocked_ports,
             "path_latency": round(self.path_latency, 2),
-            "firewall_rules_applied": self.firewall_rules_applied
+            "firewall_rules_applied": self.firewall_rules_applied,
         }
-

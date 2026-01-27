@@ -32,7 +32,7 @@ spec:
           value: 'true'
         - name: ALLOW_REMOTE_DEBUG
           value: 'true'
-        image: grafana/grafana:10.2.0
+        image: grafana/loki:2.9.0
         livenessProbe:
           initialDelaySeconds: 30
           periodSeconds: 10

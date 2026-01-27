@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app.kubernetes.io/component: ingress
+    app.kubernetes.io/instance: nginx-ingress-controller-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: nginx-ingress-controller
+    cybersim/generated: 'true'
+  name: nginx-ingress-controller-ingress
+  namespace: cybersim-subnet-2
+spec:
+  rules:
+  - host: nginx-ingress-controller.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx-ingress-controller
+            port:
+              number: 256
+        path: /
+        pathType: Prefix

@@ -66,11 +66,9 @@ vulnerabilities:
       type: leaked_nodes_id
       kwargs:
         nodes:
-        - node-worker-001
-        - node-control_plane-000
         - node-control_plane-001
-        - node-worker-002
         - node-control_plane-002
+        - node-control_plane-000
     precondition:
       expression: 'true'
     rates:
@@ -89,7 +87,8 @@ vulnerabilities:
       kwargs:
         nodes:
         - node-control_plane-001
-        - node-worker-002
+        - node-control_plane-002
+        - node-control_plane-000
         - node-worker-001
     precondition:
       expression: 'true'
@@ -143,7 +142,8 @@ vulnerabilities:
       kwargs:
         nodes:
         - node-control_plane-001
-        - node-worker-002
+        - node-control_plane-002
+        - node-control_plane-000
         - node-worker-001
     precondition:
       expression: 'true'
@@ -154,7 +154,7 @@ vulnerabilities:
     URL: ''
     cost: 8.0
     reward_string: Exploited CVE-2025-6297 on node-control_plane-001
-value: 291
+value: 292
 network_info:
 - ip_address: 10.1.0.3
   subnet:
@@ -203,13 +203,6 @@ firewall:
       name: ''
     priority: 1
   - port: '*'
-    reason: Connection to node-worker-002
-    permission: 0
-    subnet:
-      network: 10.2.0.7/32
-      name: ''
-    priority: 1
-  - port: '*'
     reason: Connection to node-internet
     permission: 0
     subnet:
@@ -250,13 +243,6 @@ firewall:
     permission: 0
     subnet:
       network: 10.1.0.6/32
-      name: ''
-    priority: 1
-  - port: '*'
-    reason: Connection from node-worker-002
-    permission: 0
-    subnet:
-      network: 10.2.0.7/32
       name: ''
     priority: 1
   - port: '*'

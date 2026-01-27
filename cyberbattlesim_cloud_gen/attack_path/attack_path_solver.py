@@ -15,6 +15,16 @@ from cyberbattlesim_cloud_gen.attack_path.exceptions import (
 )
 from cyberbattlesim_cloud_gen.attack_path.attack_state import AttackState
 
+import argparse
+import copy
+import os
+import random
+from abc import ABC, abstractmethod
+from enum import Enum, auto
+from typing import Dict, Iterator, List, Optional, Tuple, Any, cast
+
+import yaml
+
 sys.setrecursionlimit(25000)
 IS_DEBUG = False
 
@@ -35,6 +45,8 @@ class AttackPathSolver:
         self.visited_states_count = 0
         self.total_nodes = len(self.nodes) - len(self.non_target_nodes)
 
+
+
     def _check_firewall_access(
         self, source_node: str, target_node: str, port: str
     ) -> bool:
@@ -47,23 +59,52 @@ class AttackPathSolver:
         source_info = self.nodes[source_node]
         target_info = self.nodes[target_node]
 
-        # Get IP addresses
-        source_ip = "0.0.0.0"
-        if source_info.network_info and len(source_info.network_info) > 0:
-            source_ip = source_info.network_info[0].ip_address
+        # Get ALL IP addresses for source and target
+        source_ips = []
+        if source_info.network_info:
+            source_ips = [ni.ip_address for ni in source_info.network_info]
+        if not source_ips:
+            source_ips = ["0.0.0.0"]
 
-        target_ip = "0.0.0.0"
-        if target_info.network_info and len(target_info.network_info) > 0:
-            target_ip = target_info.network_info[0].ip_address
+        target_ips = []
+        if target_info.network_info:
+            target_ips = [ni.ip_address for ni in target_info.network_info]
+        if not target_ips:
+            target_ips = ["0.0.0.0"]
 
+        # Try all combinations of source and target IPs
+        for source_ip in source_ips:
+            for target_ip in target_ips:
+                if self._check_firewall_access_for_ips(
+                    source_info, target_info, source_ip, target_ip, port
+                ):
+                    return True
+
+        return False
+
+    def _check_firewall_access_for_ips(
+        self,
+        source_info: NodeInfo,
+        target_info: NodeInfo,
+        source_ip: str,
+        target_ip: str,
+        port: str,
+    ) -> bool:
+        """Check if firewall rules allow access for a specific source/target IP pair"""
+        
         # Check outgoing rules
         outgoing_allowed = False
         for rule in source_info.firewall.outgoing:
             if rule.permission == RulePermission.ALLOW:
+                # Check if port matches
+                if str(rule.port) not in ["*", str(port)]:
+                    continue
+                
+                # Check if subnet matches
                 if str(rule.subnet) in ["0.0.0.0/0", "*"]:
-                    if str(rule.port) in ["*", str(port)]:
-                        outgoing_allowed = True
-                        break
+                    outgoing_allowed = True
+                    break
+                
                 try:
                     rule_subnet = (
                         str(rule.subnet)
@@ -73,23 +114,27 @@ class AttackPathSolver:
                     if target_ip == "0.0.0.0" or ipaddress.ip_address(
                         target_ip
                     ) in ipaddress.ip_network(rule_subnet, strict=False):
-                        if str(rule.port) in ["*", str(port)]:
-                            outgoing_allowed = True
-                            break
+                        outgoing_allowed = True
+                        break
                 except:
                     continue
+
         if not outgoing_allowed:
             return False
 
         # Check incoming rules
         incoming_allowed = False
         for rule in target_info.firewall.incoming:
-            # print(rule.permission,str(rule.subnet),source_ip)
             if rule.permission == RulePermission.ALLOW:
+                # Check if port matches
+                if str(rule.port) not in ["*", str(port)]:
+                    continue
+                
+                # Check if subnet matches
                 if str(rule.subnet) in ["0.0.0.0/0", "*"]:
-                    if str(rule.port) in ["*", str(port)]:
-                        incoming_allowed = True
-                        break
+                    incoming_allowed = True
+                    break
+                
                 try:
                     rule_subnet = (
                         str(rule.subnet)
@@ -99,12 +144,14 @@ class AttackPathSolver:
                     if source_ip == "0.0.0.0" or ipaddress.ip_address(
                         source_ip
                     ) in ipaddress.ip_network(rule_subnet, strict=False):
-                        if str(rule.port) in ["*", str(port)]:
-                            incoming_allowed = True
-                            break
+                        incoming_allowed = True
+                        break
                 except:
                     continue
-        return outgoing_allowed and incoming_allowed
+
+        return incoming_allowed
+
+
 
     def _get_available_actions(self, state: AttackState):
         """Generate all possible actions from current state"""
@@ -291,7 +338,6 @@ class AttackPathSolver:
         # Track the last time we made progress
         last_progress_count = 0
         iterations_without_progress = 0
-        max_iterations_without_progress = 1000  # Safety check
 
         while stack:
             # Check timeout and state limit (safety limits)
@@ -458,7 +504,6 @@ class AttackPathSolver:
 
         start = time.time()
         initial_state = AttackState.create_initial(self.attacker_node, self.nodes)
-        print(initial_state)
         self.best_state = initial_state
         self.prev_map = {initial_state: (None, "Initial State")}
         self.visited_states_count = 0
@@ -494,10 +539,132 @@ class AttackPathSolver:
             "maximal_achievement": {
                 "path": path,
                 "nodes_owned": best_state.get_owned_count(self.non_target_nodes),
+                "nodes_owned_names": best_state.owned_nodes,
                 "value": total_value,
+                "nodes_discovered": len(best_state.known_nodes),
+                "credentials_found": len(best_state.credentials),
                 "total_target_nodes": self.total_nodes,
                 "starting_node": self.attacker_node,
                 "computation_time": f"{duration:.2f}s",
                 "best_state": best_state.to_dict(),
             }
         }
+
+
+class ScenarioLoader:
+    """Loads CyberBattleSim scenarios from YAML files."""
+    
+    @staticmethod
+    def load(path: str) -> Dict[str, Any]:
+        """
+        Load a scenario from a directory.
+        
+        Args:
+            path: Directory containing identifiers/, vulnerability_library/, and nodes/
+            
+        Returns:
+            Dictionary with 'nodes', 'identifier', 'vulnerability_library'
+        """
+        nodes = ScenarioLoader._load_nodes(path)
+        identifier = ScenarioLoader._load_yaml(f'{path}/identifiers/identifiers.yaml')
+        vulnerability_library = ScenarioLoader._load_yaml(
+            f'{path}/vulnerability_library/vulnerability_library.yaml'
+        )
+        
+        return {
+            'nodes': nodes,
+            'identifier': identifier,
+            'vulnerability_library': vulnerability_library,
+        }
+    
+    @staticmethod
+    def _load_yaml(filepath: str) -> Any:
+        """Load a single YAML file."""
+        with open(filepath, 'r') as f:
+            return yaml.load(f, Loader=yaml.SafeLoader)
+    
+    @staticmethod
+    def _load_nodes(path: str) -> Dict[str, NodeInfo]:
+        """Load all node definitions from the nodes directory."""
+        nodes = {}
+        nodes_dir = os.path.join(path, 'nodes')
+        
+        for filename in os.listdir(nodes_dir):
+            filepath = os.path.join(nodes_dir, filename)
+            with open(filepath, 'r') as f:
+                node_data = yaml.load(f, Loader=yaml.SafeLoader)
+                node = NodeInfo.from_dict(node_data)
+                name = filename.replace('.yaml', '').replace('.yml', '')
+                nodes[name] = node
+        
+        return nodes
+
+import argparse
+import os
+import time
+import ipaddress
+import sys
+
+# ... (Keep all your existing imports and AttackPathSolver class definition here) ...
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="CyberBattleSim Attack Path Solver")
+    parser.add_argument("--scenario", type=str, required=True, 
+                        help="Path to the scenario directory containing nodes/ and identifiers/")
+    parser.add_argument("--max-depth", type=int, default=50, 
+                        help="Maximum search depth for the solver")
+    parser.add_argument("--timeout", type=int, default=60, 
+                        help="Timeout in seconds")
+    parser.add_argument("--max-states", type=int, default=100000, 
+                        help="Maximum number of states to visit")
+    
+    args = parser.parse_args()
+
+    # 1. Load the Scenario
+    if not os.path.exists(args.scenario):
+        print(f"Error: Scenario path '{args.scenario}' does not exist.")
+        sys.exit(1)
+
+    print(f"Loading scenario from: {args.scenario}")
+    scenario_data = ScenarioLoader.load(args.scenario)
+    nodes = scenario_data['nodes']
+    
+    # 2. Determine the starting (attacker) node
+    # Usually, this is the first node in the list or one named 'client' or 'attacker'
+    # Adjust this logic based on how your YAMLs identify the entry point
+    attacker_node = None
+    for n,d in nodes.items():
+        if d.agent_installed:
+            attacker_node=n
+
+    if not attacker_node:
+        print("Error: Could not identify a starting attacker node in the scenario.")
+        sys.exit(1)
+
+    print(f"Starting solver from node: {attacker_node}")
+
+    # 3. Initialize and Run the Solver
+    solver = AttackPathSolver(nodes=nodes, attacker_node=attacker_node)
+    
+    result = solver.solve(
+        max_depth=args.max_depth,
+        timeout_sec=args.timeout,
+        max_visited_states=args.max_states
+    )
+
+    # 4. Output Results
+    print("\n" + "="*30)
+    print("ATTACK PATH SEARCH COMPLETE")
+    print("="*30)
+    achievement = result["maximal_achievement"]
+    print(f"Nodes starting_node: {achievement['starting_node']}")
+    print(f"Nodes Owned: {achievement['nodes_owned']}/{achievement['total_target_nodes']}")
+    
+    print(f"nodes_owned_names: {achievement['nodes_owned_names']}")
+    print(f"nodes_discovered: {achievement['nodes_discovered']}")
+    print(f"credentials_found: {achievement['credentials_found']}")
+    print(f"Total Value: {achievement['value']}")
+    print(f"Time Taken:  {achievement['computation_time']}")
+    print("\nPath Found:")
+    for i, step in enumerate(achievement['path'], 1):
+        print(f"  {i}. {step}")

@@ -11,7 +11,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: cybersim-zone-b
+          kubernetes.io/metadata.name: cybersim-subnet-1
       podSelector:
         matchLabels:
           app.kubernetes.io/name: prometheus

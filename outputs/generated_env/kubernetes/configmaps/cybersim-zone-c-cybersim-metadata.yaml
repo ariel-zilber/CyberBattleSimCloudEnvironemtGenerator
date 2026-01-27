@@ -2,8 +2,8 @@ apiVersion: v1
 data:
   cluster-size: SMALL
   generator: CyberBattleSim
-  total-services: '23'
-  use-case: web_hosting
+  total-services: '21'
+  use-case: microservices
 kind: ConfigMap
 metadata:
   labels:

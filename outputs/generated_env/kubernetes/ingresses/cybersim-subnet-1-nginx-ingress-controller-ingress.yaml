@@ -20,6 +20,6 @@ spec:
           service:
             name: nginx-ingress-controller
             port:
-              number: 350
+              number: 332
         path: /
         pathType: Prefix

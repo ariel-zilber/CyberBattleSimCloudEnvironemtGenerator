@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: service
+    app.kubernetes.io/instance: grafana-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: grafana
+    cybersim/generated: 'true'
+  name: grafana
+  namespace: cybersim-subnet-2
+spec:
+  ports:
+  - name: main
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app.kubernetes.io/name: grafana
+  type: LoadBalancer

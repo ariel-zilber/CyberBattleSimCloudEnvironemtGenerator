@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: etcd-instance
+    app.kubernetes.io/managed-by: cyberbattlesim
+    app.kubernetes.io/name: etcd
+    cybersim/generated: 'true'
+  name: etcd
+  namespace: cybersim-subnet-2
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etcd
+  template:
+    metadata:
+      annotations:
+        cybersim/port: '2379'
+        cybersim/service: etcd
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: etcd-instance
+        app.kubernetes.io/managed-by: cyberbattlesim
+        app.kubernetes.io/name: etcd
+        cybersim/generated: 'true'
+    spec:
+      containers:
+      - image: quay.io/coreos/etcd:v3.5.9
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          tcpSocket:
+            port: 2379
+        name: etcd
+        ports:
+        - containerPort: 2379
+          name: main
+          protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 2379
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
