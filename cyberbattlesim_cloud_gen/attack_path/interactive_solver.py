@@ -78,14 +78,14 @@ class VulnerabilityInfo:
     description: str = ""
 
 
-@dataclass
-class NodeInfo:
-    id: str
-    vulnerabilities: Dict[str, VulnerabilityInfo] = field(default_factory=dict)
-    services: List[Service] = field(default_factory=list)
-    network_info: List[NetworkInfo] = field(default_factory=list)
-    firewall: Firewall = field(default_factory=Firewall)
-    properties: Dict[str, Any] = field(default_factory=dict)
+# @dataclass
+# class NodeInfo:
+#     id: str
+#     vulnerabilities: Dict[str, VulnerabilityInfo] = field(default_factory=dict)
+#     services: List[Service] = field(default_factory=list)
+#     network_info: List[NetworkInfo] = field(default_factory=list)
+#     firewall: Firewall = field(default_factory=Firewall)
+#     properties: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
